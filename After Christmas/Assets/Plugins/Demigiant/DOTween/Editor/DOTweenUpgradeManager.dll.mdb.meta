@@ -1,0 +1,11 @@
+fileFormatVersion: 2
+guid: cee7901aa47968a46af805b3a7632bcc
+DefaultImporter:
+  userData: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 27676
+  packageName: DOTween (HOTween v2)
+  packageVersion: 1.2.765
+  assetPath: Assets/Plugins/Demigiant/DOTween/Editor/DOTweenUpgradeManager.dll.mdb
+  uploadId: 642066
