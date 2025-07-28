@@ -97,3 +97,6 @@ After Christmas/InitTestScene*.unity*
 
 # Auto-generated scenes by play mode tests
 /After Christmas/[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
+
+# Ignore Private Repository
+/After Christmas/[Aa]ssets/00. Outer Assets
