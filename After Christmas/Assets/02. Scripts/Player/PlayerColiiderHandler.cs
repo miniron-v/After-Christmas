@@ -63,10 +63,10 @@ public class PlayerColliderHandler : MonoBehaviour
             if (closest != null)
             {
                 // IInteractable 구현체 찾기
-                IInteractable interactable = closest.GetComponent<IInteractable>();
+                ITeleportable interactable = closest.GetComponent<ITeleportable>();
                 if (interactable != null)
                 {
-                    interactable.Interact();
+                    interactable.Teleport();
                 }
             }
         }

@@ -1,4 +1,4 @@
-public interface IInteractable
+public interface ITeleportable
 {
-    void Interact();
+    void Teleport();
 }
