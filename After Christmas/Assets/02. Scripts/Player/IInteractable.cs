@@ -1,4 +1,6 @@
-public interface ITeleportable
+using UnityEngine;
+
+public interface IInteractable
 {
-    void Teleport();
+    void Interact();
 }
