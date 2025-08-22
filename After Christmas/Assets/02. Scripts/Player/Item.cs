@@ -1,9 +1,10 @@
 using System;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class Item : MonoBehaviour, IInteractable
 {
-    [SerializeField] private String itemID;
+    public String itemID;
     private Renderer rend;
     private Color originalColor;
 
@@ -18,17 +19,18 @@ public class Item : MonoBehaviour, IInteractable
     //===================
 
     // 반대편 오브젝트
-    [SerializeField] private Item linkedItem;
+    // 빈칸일 수도 있음
+    public Item linkedItem = null;
 
 
     // 현재 오브젝트가 맡고 있는 도착지(종단 아이템에는 필요없는 변수)
     public Transform playerSpawnPoint;
     public Transform cameraSpawnPoint;
 
-    // 기록되었는지 확인하는 변수
+    // 기록되었는지 확인하는 변수, 디폴트값 false
     public bool isRecorded = false;
-    // 텔레포트(연결된 물체가 있는지)여부 확인하는 변수
-    public bool isTeleportItem = false;
+    // 텔레포트(연결된 물체가 있는지)기능이 있는 아이템인지 확인하는 변수, 디폴트값 true
+    public bool isTeleportItem = true;
 
     private void Awake()
     {
@@ -61,42 +63,43 @@ public class Item : MonoBehaviour, IInteractable
         {
             return;
         }
+
         if (!isRecorded)
         {
             RecordItem(player);
         }
-        Teleport(player);
+
+        if (isTeleportItem)
+        {
+            Teleport(player);
+        }
     }
 
     public void RecordItem(GameObject player)
     {
-        // 상호작용한 적이 없다면 최초 1회에 정보 저장(반대편 아이템 정보까지)
-        // 만약 사이클이 있어서
-        // 상호작용됨 - 상호작용됨 - 상호작용 안됨 상태에서도 hashset을 사용하기 때문에 좌표 중복저장 방지됨
+        // 정보 저장은 핸들러가 하는게 자연스러워 보임
+        PlayerItemHandler itemHandler = player.GetComponent<PlayerItemHandler>();
+        itemHandler.RecordFromItem(this);
+        // 저장된 아이템인지만 갱신
         isRecorded = true;
-        linkedItem.isRecorded = true;
-        PlayerItemHandler playerItemHandler = player.GetComponent<PlayerItemHandler>();
-        // 만약 아이템 목록에 아예 없다면 새 공간 할당
-        if (!playerItemHandler.isHavingItem(itemID))
+        if (isTeleportItem)
         {
-            playerItemHandler.GetNewItem(itemID);
+            linkedItem.isRecorded = true;
         }
-        // 현재 상호작용한 아이템 좌표정보와 상대 아이템 좌표정보 전부 기록
-        playerItemHandler.RecordItemInfo(itemID, playerSpawnPoint, cameraSpawnPoint);
-        playerItemHandler.RecordItemInfo(itemID, linkedItem.playerSpawnPoint, linkedItem.cameraSpawnPoint);
     }
 
     public void Teleport(GameObject player)
     {
         // 연결된 물체로 상대 이동
-        if (player != null && playerSpawnPoint != null)
+        if (player != null && linkedItem.playerSpawnPoint != null)
         {
+            Debug.Log("플레이어");
             player.transform.position = linkedItem.playerSpawnPoint.position;
             player.transform.rotation = linkedItem.playerSpawnPoint.rotation;
         }
 
         // 카메라 위치 이동
-        if (cameraSpawnPoint != null && Camera.main != null)
+        if (linkedItem.cameraSpawnPoint != null && Camera.main != null)
         {
             Camera.main.transform.position = linkedItem.cameraSpawnPoint.position;
             Camera.main.transform.rotation = linkedItem.cameraSpawnPoint.rotation;
