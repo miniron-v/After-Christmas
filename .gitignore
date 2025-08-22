@@ -100,3 +100,6 @@ After Christmas/InitTestScene*.unity*
 
 # Ignore Private Repository
 /After Christmas/[Aa]ssets/00. Outer Assets
+
+# Ignore VSCode folder
+.vscode/
