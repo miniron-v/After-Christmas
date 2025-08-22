@@ -1,6 +1,19 @@
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
+
+public struct SpawnTransform
+{
+    public Transform playerSpawnPoint;
+    public Transform cameraSpawnPoint;
+
+    public SpawnTransform(Transform player, Transform camera)
+    {
+        playerSpawnPoint = player;
+        cameraSpawnPoint = camera;
+    }
+}
 
 public class Item : MonoBehaviour, IInteractable
 {
@@ -19,16 +32,19 @@ public class Item : MonoBehaviour, IInteractable
     //===================
 
     // 반대편 오브젝트
-    // 빈칸일 수도 있음
+    // 빈칸일 수도 있고, 여러개일 수도 있음
     public Item linkedItem = null;
+    //public List<Item> linkedItem = null;
+
 
 
     // 현재 오브젝트가 맡고 있는 도착지(종단 아이템에는 필요없는 변수)
     public Transform playerSpawnPoint;
     public Transform cameraSpawnPoint;
 
-    // 기록되었는지 확인하는 변수, 디폴트값 false
-    public bool isRecorded = false;
+    // 반대 아이템으로 가는 경로가 열렸는지 체크하는 변수
+    // public List<bool> isRecorded;
+    public bool isRecorded;
     // 텔레포트(연결된 물체가 있는지)기능이 있는 아이템인지 확인하는 변수, 디폴트값 true
     public bool isTeleportItem = true;
 
@@ -93,7 +109,6 @@ public class Item : MonoBehaviour, IInteractable
         // 연결된 물체로 상대 이동
         if (player != null && linkedItem.playerSpawnPoint != null)
         {
-            Debug.Log("플레이어");
             player.transform.position = linkedItem.playerSpawnPoint.position;
             player.transform.rotation = linkedItem.playerSpawnPoint.rotation;
         }

@@ -3,18 +3,6 @@ using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine;
 
-public struct SpawnTransform
-{
-    public Transform playerSpawnPoint;
-    public Transform cameraSpawnPoint;
-
-    public SpawnTransform(Transform player, Transform camera)
-    {
-        playerSpawnPoint = player;
-        cameraSpawnPoint = camera;
-    }
-}
-
 public class PlayerItemHandler : MonoBehaviour
 {
     // 현재 들고있는 아이템
@@ -94,8 +82,9 @@ public class PlayerItemHandler : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
-            Debug.Log("=== PlayerItemHandler: 아이템 목록 출력 ===");
+            /*Debug.Log("=== PlayerItemHandler: 아이템 목록 출력 ===");
 
+            
             if (itemList.Count == 0)
             {
                 Debug.Log("보유한 아이템 없음");
@@ -118,7 +107,9 @@ public class PlayerItemHandler : MonoBehaviour
 
                     Debug.Log($"  PlayerSpawn: {playerPos}, CameraSpawn: {cameraPos}");
                 }
-            }
+            }*/
+
+
         }
     }
 }
