@@ -33,8 +33,7 @@ public class Item : MonoBehaviour, IInteractable
 
     // 반대편 오브젝트
     // 빈칸일 수도 있고, 여러개일 수도 있음
-    public Item linkedItem = null;
-    //public List<Item> linkedItem = null;
+    public List<Item> linkedItems = new List<Item>();
 
 
 
@@ -79,45 +78,70 @@ public class Item : MonoBehaviour, IInteractable
         {
             return;
         }
-
-        if (!isRecorded)
-        {
-            RecordItem(player);
-        }
-
         if (isTeleportItem)
         {
-            Teleport(player);
+            ShowUI(player);
         }
     }
 
-    public void RecordItem(GameObject player)
+    public void RecordItem(GameObject player, int linkedItemIDX)
     {
         // 정보 저장은 핸들러가 하는게 자연스러워 보임
         PlayerItemHandler itemHandler = player.GetComponent<PlayerItemHandler>();
-        itemHandler.RecordFromItem(this);
-        // 저장된 아이템인지만 갱신
+        itemHandler.RecordFromItem(this, linkedItemIDX);
         isRecorded = true;
-        if (isTeleportItem)
-        {
-            linkedItem.isRecorded = true;
-        }
     }
 
-    public void Teleport(GameObject player)
+    private void ShowUI(GameObject player)
     {
-        // 연결된 물체로 상대 이동
-        if (player != null && linkedItem.playerSpawnPoint != null)
+        // linkedItems 중 isRecorded가true 인 것들만
+        var candidateIndices = new List<int>();
+        var candidateLabels = new List<string>();
+
+        for (int i = 0; i < linkedItems.Count; i++)
         {
-            player.transform.position = linkedItem.playerSpawnPoint.position;
-            player.transform.rotation = linkedItem.playerSpawnPoint.rotation;
+            Item dst = linkedItems[i];
+            // 방문해 본 목적지만 후보
+            if (dst.isRecorded)
+            {
+                candidateIndices.Add(i);
+                candidateLabels.Add(dst.itemID);
+            }
         }
 
-        // 카메라 위치 이동
-        if (linkedItem.cameraSpawnPoint != null && Camera.main != null)
+        /*TeleportSelectionUI.Instance.Show(
+            owner: this,
+            labels: candidateLabels,
+            onSelectIndex: (selectedIdxInCandidates) =>
+            {
+                int selectedIndex = candidateIndices[selectedIdxInCandidates];
+                RecordItem(player, selectedIndex);
+                TeleportByIndex(player, selectedIndex);
+            }
+        );*/
+    }
+
+    // 인덱스로 텔레포트 (UI에서 호출)
+    public void TeleportByIndex(GameObject player, int index)
+    {
+        var target = linkedItems[index];
+
+        // 플레이어 이동
+        player.transform.SetPositionAndRotation(
+            target.playerSpawnPoint.position,
+            target.playerSpawnPoint.rotation
+        );
+
+        // 카메라 이동
+        if (Camera.main != null)
         {
-            Camera.main.transform.position = linkedItem.cameraSpawnPoint.position;
-            Camera.main.transform.rotation = linkedItem.cameraSpawnPoint.rotation;
+            Camera.main.transform.SetPositionAndRotation(
+                target.cameraSpawnPoint.position,
+                target.cameraSpawnPoint.rotation
+            );
         }
+
+        // 도착지 방문 기록 (다음부터 이 경로가 후보로 보임)
+        target.isRecorded = true;
     }
 }

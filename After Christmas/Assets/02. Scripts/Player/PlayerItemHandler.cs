@@ -38,7 +38,7 @@ public class PlayerItemHandler : MonoBehaviour
     }
 
     // Item에서 상호작용 발생 → 여기서 “기록만” 수행
-    public void RecordFromItem(Item item)
+    public void RecordFromItem(Item item, int linkedItemIDX)
     {
         if (item == null) return;
 
@@ -52,9 +52,10 @@ public class PlayerItemHandler : MonoBehaviour
         RecordItemInfo(item.itemID, item.playerSpawnPoint, item.cameraSpawnPoint);
 
         // 텔레포트 기능 있는 아이템이면 연결 대상 좌표도 기록
+        // 연결된 아이템들을 list로 관리함에 따라 인덱스를 추가 파라미터로 받음
         if (item.isTeleportItem)
         {
-            RecordItemInfo(item.itemID, item.linkedItem.playerSpawnPoint, item.linkedItem.cameraSpawnPoint);
+            RecordItemInfo(item.itemID, item.linkedItems[linkedItemIDX].playerSpawnPoint, item.linkedItems[linkedItemIDX].cameraSpawnPoint);
         }
     }
 
