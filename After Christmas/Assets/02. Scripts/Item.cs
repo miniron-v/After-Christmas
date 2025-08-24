@@ -20,7 +20,9 @@ public struct SpawnTransform
 
 public class Item : MonoBehaviour, IInteractable
 {
+    // 아이템이 있던 위치(하나의 기억)
     public String mapName;
+    // 아이템의 이름(식별자)
     public String itemID;
     private Renderer rend;
     private Color originalColor;
@@ -49,8 +51,13 @@ public class Item : MonoBehaviour, IInteractable
     // 반대 아이템으로 가는 경로가 열렸는지 체크하는 변수
     public bool isRecorded;
 
+    // 물건을 가지고 와서 잡은 상태로 상호작용하면 특수 상호작용할 수 있는지 체크하는 변수, 디폴트값 false
+    private bool isInteractableWithItem = false;
+    [SerializeField] private String needItemID;
+
     // 텔레포트(연결된 물체가 있는지)기능이 있는 아이템인지 확인하는 변수, 디폴트값 true
     // isteleportitem이 true라면 linkeditem이 1개는 있어야 함
+    // isteleportitem이 false라면 이 아이템은 종단 아이템
     public bool isTeleportItem = true;
 
     private void Awake()
@@ -84,13 +91,28 @@ public class Item : MonoBehaviour, IInteractable
         {
             return;
         }
-        if (isTeleportItem)
+        // 아이템을 든 상태로 상호작용 가능한지 먼저 체크
+        if (isInteractableWithItem)
         {
-            ShowUI(player);
+            String holdItemID = player.GetComponent<PlayerItemHandler>().ReturnItemID();
+            if (holdItemID == needItemID)
+            {
+                // 특수상호작용 로직 넣기(TODO)
+            }
         }
+        // 텔레포트 가능(반대 아이템 있음)
+            if (isTeleportItem)
+            {
+                ShowUI(player);
+            }
+            // 아닐 경우 정보 저장만
+            else
+            {
+                RecordItem(player);
+            }
     }
 
-    public void RecordItem(GameObject player, int linkedItemIDX)
+    public void RecordItem(GameObject player, int linkedItemIDX = 0)
     {
         // 정보 저장은 핸들러가 하는게 자연스러워 보임
         PlayerItemHandler itemHandler = player.GetComponent<PlayerItemHandler>();
@@ -101,11 +123,10 @@ public class Item : MonoBehaviour, IInteractable
     private void ShowUI(GameObject player)
     {
         teleportUI.gameObject.SetActive(true);
-        // linkedItems의 길이가 2 이상이라면 isRecorded가 true 인 것들만
-        // 길이가 1이라면 그것만
         var candidateIndices = new List<int>();
         var candidateLabels = new List<string>();
 
+        // 길이가 1이라면 그것만
         if (linkedItems.Count == 1)
         {
             Debug.Log("여기1");
@@ -113,6 +134,7 @@ public class Item : MonoBehaviour, IInteractable
             // 오브젝트 이름이 아니라, 오브젝트가 있는 기억(맵)의 이름을 전달해줘야 할 것 같음
             candidateLabels.Add(linkedItems[0].mapName);
         }
+        // linkedItems의 길이가 2 이상이라면 isRecorded가 true 인 것들만
         else
         {
             for (int i = 0; i < linkedItems.Count; i++)

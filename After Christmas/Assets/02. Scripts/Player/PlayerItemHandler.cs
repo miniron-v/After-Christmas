@@ -55,11 +55,16 @@ public class PlayerItemHandler : MonoBehaviour
         {
             RecordItemInfo(item.itemID, item.playerSpawnPoint, item.cameraSpawnPoint, item.mapName);
         }
+        // 반대 아이템이 없다면 반대 아이템은 없으므로 기록 못함, return
+        if (!item.isTeleportItem)
+        {
+            return;
+        }
 
         // 텔레포트 기능 있는 아이템이면 연결 대상 좌표도 기록
         // 연결된 아이템들을 list로 관리함에 따라 인덱스를 추가 파라미터로 받음
         Item linkeditem = item.linkedItems[linkedItemIDX];
-        if (item.isTeleportItem && !item.linkedItems[linkedItemIDX].isRecorded)
+        if (!item.linkedItems[linkedItemIDX].isRecorded)
         {
             RecordItemInfo(item.itemID, linkeditem.playerSpawnPoint, linkeditem.cameraSpawnPoint, linkeditem.mapName);
         }
@@ -105,7 +110,7 @@ public class PlayerItemHandler : MonoBehaviour
         {
             inventoryUI.gameObject.SetActive(true);
 
-            // [ADDED] 인벤토리 UI 열 때 이 핸들러 전달
+            // 인벤토리 UI 열 때 이 핸들러 전달
             var ui = inventoryUI.GetComponent<InventoryUI>();
             if (ui != null) ui.Open(this);
             /*Debug.Log("=== PlayerItemHandler: 아이템 목록 출력 ===");
@@ -130,6 +135,8 @@ public class PlayerItemHandler : MonoBehaviour
                 }
             }*/
         }
+
+        // 임시로 아이템 내려놓기는 G로 설정
         if (Input.GetKeyDown(KeyCode.G))
         {
             UnHoldItem();
