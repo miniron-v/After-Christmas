@@ -9,6 +9,12 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] private Transform contentRoot;   // 버튼들이 들어갈 부모 (하나만 사용)
     [SerializeField] private Button buttonPrefab;     // TMP_Text 포함 버튼 프리팹
 
+    [Header("Context Menu")]
+    [SerializeField] private Canvas rootCanvas;               // 최상위 Canvas
+    [SerializeField] private RectTransform contextMenu;       // 컨텍스트 메뉴 패널 (Pivot (0,1))
+    [SerializeField] private Button holdButton;               // "잡기"
+    [SerializeField] private Button readButton;               // "기억 데이터 읽기"
+
     private PlayerItemHandler handler;
 
     // 현재 화면 상태
@@ -25,24 +31,25 @@ public class InventoryUI : MonoBehaviour
     void Awake()
     {
         gameObject.SetActive(false);
-    }
 
-    public void Open(PlayerItemHandler h)
-    {
-        handler = h;
-        state = PanelState.Items;
-        BuildItems();
-        gameObject.SetActive(true);
-    }
+        // ===== 컨텍스트 메뉴 초기 설정 및 버튼 리스너 =====
+        if (contextMenu) contextMenu.gameObject.SetActive(false);
+        if (contextMenu) contextMenu.pivot = new Vector2(0f, 0f); // 마우스 기준으로 어디에 생성될지 정함. 기본값은 우측상단
 
-    public void Close()
-    {
-        gameObject.SetActive(false);
-        handler = null;
-        itemIdSnapshot.Clear();
-        spawnSnapshot.Clear();
-        currentItemID = null;
-        state = PanelState.Items;
+        if (holdButton)
+            holdButton.onClick.AddListener(() =>
+            {
+                handler.HoldItem(currentItemID);      // ← 잡기 수행
+                Close();
+            });
+
+        if (readButton)
+            readButton.onClick.AddListener(() =>
+            {
+                contextMenu.gameObject.SetActive(false);
+                BuildSpawns(currentItemID);           // ← 기억 데이터 읽기
+            });
+        // =========================================================
     }
 
     void Update()
@@ -80,7 +87,7 @@ public class InventoryUI : MonoBehaviour
             btn.onClick.AddListener(() =>
             {
                 currentItemID = itemIdSnapshot[captured];
-                BuildSpawns(currentItemID);
+                ShowItemContextMenuAtMouse();
             });
         }
     }
@@ -102,11 +109,8 @@ public class InventoryUI : MonoBehaviour
             var label = btn.GetComponentInChildren<TMP_Text>(true);
             if (label)
             {
-                // [중요] 맵 이름 그대로 표시 (없으면 좌표 요약)
                 string name = spawnSnapshot[i].mapName;
-                label.text = string.IsNullOrEmpty(name)
-                    ? $"P {Fmt(spawnSnapshot[i].playerSpawnPoint)} | C {Fmt(spawnSnapshot[i].cameraSpawnPoint)}"
-                    : name;
+                label.text = name;
             }
 
             int captured = i;
@@ -118,13 +122,57 @@ public class InventoryUI : MonoBehaviour
         }
     }
 
-    // ================== 유틸 ==================
+    // ===== 컨텍스트 메뉴 띄우기 =====
+    private void ShowItemContextMenuAtMouse()
+    {
+        if (contextMenu == null || rootCanvas == null) return;
 
-    private static void Clear(Transform root)
+        // 화면 좌표 → Canvas 좌표 변환
+        Vector2 screen = Input.mousePosition;
+        RectTransform canvasRT = rootCanvas.transform as RectTransform;
+
+        Vector2 localPoint;
+        Camera cam = null;
+        if (rootCanvas.renderMode == RenderMode.ScreenSpaceCamera ||
+            rootCanvas.renderMode == RenderMode.WorldSpace)
+        {
+            cam = rootCanvas.worldCamera;
+        }
+
+        if (RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRT, screen, cam, out localPoint))
+        {
+            contextMenu.anchoredPosition = localPoint;
+            contextMenu.gameObject.SetActive(true);
+        }
+    }
+    // =================================================
+
+    public void Open(PlayerItemHandler h)
+    {
+        handler = h;
+        state = PanelState.Items;
+        BuildItems();
+        gameObject.SetActive(true);
+
+        // 메뉴는 열릴 때 기본 숨김
+        if (contextMenu) contextMenu.gameObject.SetActive(false);
+    }
+
+    public void Close()
+    {
+        gameObject.SetActive(false);
+        handler = null;
+        itemIdSnapshot.Clear();
+        spawnSnapshot.Clear();
+        currentItemID = null;
+        state = PanelState.Items;
+
+        if (contextMenu) contextMenu.gameObject.SetActive(false);
+    }
+
+    private void Clear(Transform root)
     {
         for (int i = root.childCount - 1; i >= 0; i--)
             Destroy(root.GetChild(i).gameObject);
     }
-
-    private static string Fmt(Vector3 v) => $"{v.x:0.##},{v.y:0.##},{v.z:0.##}";
 }

@@ -46,14 +46,14 @@ public class PlayerItemHandler : MonoBehaviour
         if (item == null) return;
 
         // 처음 먹는(아이템 리스트에 없는)아이템이면 먼저 공간 확보
-        if (!itemList.ContainsKey(item.itemID))
+        if (!isHavingItem(item.itemID))
         {
             GetNewItem(item.itemID);
         }
         // 중복저장 방지: 처음 방문일 때만 저장
         if (!item.isRecorded)
         {
-RecordItemInfo(item.itemID, item.playerSpawnPoint, item.cameraSpawnPoint, item.mapName);
+            RecordItemInfo(item.itemID, item.playerSpawnPoint, item.cameraSpawnPoint, item.mapName);
         }
 
         // 텔레포트 기능 있는 아이템이면 연결 대상 좌표도 기록
@@ -129,8 +129,10 @@ RecordItemInfo(item.itemID, item.playerSpawnPoint, item.cameraSpawnPoint, item.m
                     Debug.Log($"  PlayerSpawn: {playerPos}, CameraSpawn: {cameraPos}");
                 }
             }*/
-
-
+        }
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            UnHoldItem();
         }
     }
 }
