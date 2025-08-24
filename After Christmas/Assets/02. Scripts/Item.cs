@@ -1,15 +1,18 @@
 using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public struct SpawnTransform
 {
-    public Transform playerSpawnPoint;
-    public Transform cameraSpawnPoint;
+    public Vector3 playerSpawnPoint;
+    public Vector3 cameraSpawnPoint;
+    public String mapName;
 
-    public SpawnTransform(Transform player, Transform camera)
+    public SpawnTransform(Vector3 player, Vector3 camera, String mapName)
     {
+        this.mapName = mapName;
         playerSpawnPoint = player;
         cameraSpawnPoint = camera;
     }
@@ -17,6 +20,7 @@ public struct SpawnTransform
 
 public class Item : MonoBehaviour, IInteractable
 {
+    public String mapName;
     public String itemID;
     private Renderer rend;
     private Color originalColor;
@@ -35,6 +39,7 @@ public class Item : MonoBehaviour, IInteractable
     // 빈칸일 수도 있고, 여러개일 수도 있음
     public List<Item> linkedItems = new List<Item>();
 
+    [SerializeField] private GameObject teleportUI;
 
 
     // 현재 오브젝트가 맡고 있는 도착지(종단 아이템에는 필요없는 변수)
@@ -42,9 +47,10 @@ public class Item : MonoBehaviour, IInteractable
     public Transform cameraSpawnPoint;
 
     // 반대 아이템으로 가는 경로가 열렸는지 체크하는 변수
-    // public List<bool> isRecorded;
     public bool isRecorded;
+
     // 텔레포트(연결된 물체가 있는지)기능이 있는 아이템인지 확인하는 변수, 디폴트값 true
+    // isteleportitem이 true라면 linkeditem이 1개는 있어야 함
     public bool isTeleportItem = true;
 
     private void Awake()
@@ -94,31 +100,46 @@ public class Item : MonoBehaviour, IInteractable
 
     private void ShowUI(GameObject player)
     {
-        // linkedItems 중 isRecorded가true 인 것들만
+        teleportUI.gameObject.SetActive(true);
+        // linkedItems의 길이가 2 이상이라면 isRecorded가 true 인 것들만
+        // 길이가 1이라면 그것만
         var candidateIndices = new List<int>();
         var candidateLabels = new List<string>();
 
-        for (int i = 0; i < linkedItems.Count; i++)
+        if (linkedItems.Count == 1)
         {
-            Item dst = linkedItems[i];
-            // 방문해 본 목적지만 후보
-            if (dst.isRecorded)
+            Debug.Log("여기1");
+            candidateIndices.Add(0);
+            // 오브젝트 이름이 아니라, 오브젝트가 있는 기억(맵)의 이름을 전달해줘야 할 것 같음
+            candidateLabels.Add(linkedItems[0].mapName);
+        }
+        else
+        {
+            for (int i = 0; i < linkedItems.Count; i++)
             {
-                candidateIndices.Add(i);
-                candidateLabels.Add(dst.itemID);
+                Item dst = linkedItems[i];
+                // 방문해 본 목적지만 후보
+                if (dst.isRecorded)
+                {
+                    candidateIndices.Add(i);
+                    candidateLabels.Add(dst.mapName);
+                }
             }
         }
 
-        /*TeleportSelectionUI.Instance.Show(
-            owner: this,
-            labels: candidateLabels,
-            onSelectIndex: (selectedIdxInCandidates) =>
+        // 컴포넌트 참조해서 Open에 '데이터와 콜백'을 전달
+        TeleportSelectionUI ui = teleportUI.GetComponent<TeleportSelectionUI>();
+        ui.Open(
+            candidateLabels,
+            onSelectIndex: selectedIdxInCandidates =>
             {
-                int selectedIndex = candidateIndices[selectedIdxInCandidates];
-                RecordItem(player, selectedIndex);
-                TeleportByIndex(player, selectedIndex);
+                int originalIndex = candidateIndices[selectedIdxInCandidates];
+
+                // 저장 → 텔레포트
+                RecordItem(player, originalIndex);
+                TeleportByIndex(player, originalIndex);
             }
-        );*/
+        );
     }
 
     // 인덱스로 텔레포트 (UI에서 호출)

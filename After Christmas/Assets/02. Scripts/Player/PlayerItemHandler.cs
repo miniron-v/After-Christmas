@@ -5,10 +5,11 @@ using UnityEngine;
 
 public class PlayerItemHandler : MonoBehaviour
 {
+    [SerializeField] private GameObject inventoryUI;
     // 현재 들고있는 아이템
     private String holdItemID = "";
     // 아이템 목록(이름,좌표리스트)
-    private Dictionary<String, HashSet<SpawnTransform>> itemList = new Dictionary<string, HashSet<SpawnTransform>>();
+    private Dictionary<String, List<SpawnTransform>> itemList = new Dictionary<String, List<SpawnTransform>>();
     // 아이템은 씬별로 사용 가능함, 단 하이라이트 씬에서는 전부 사용 가능하게 할것
     private Dictionary<String, String> useableScene = new Dictionary<string, string>();
 
@@ -29,12 +30,14 @@ public class PlayerItemHandler : MonoBehaviour
 
     public void GetNewItem(String itemID)
     {
-        itemList.Add(itemID, new HashSet<SpawnTransform>());
+        itemList.Add(itemID, new List<SpawnTransform>());
     }
 
-    public void RecordItemInfo(string itemID, Transform playerT, Transform cameraT)
+    public void RecordItemInfo(string itemID, Transform playerT, Transform cameraT, string mapName)
     {
-        itemList[itemID].Add(new SpawnTransform(playerT, cameraT));
+        Vector3 playerVec = playerT.transform.position;
+        Vector3 cameraVec = cameraT.transform.position;
+        itemList[itemID].Add(new SpawnTransform(playerVec, cameraVec, mapName));
     }
 
     // Item에서 상호작용 발생 → 여기서 “기록만” 수행
@@ -47,15 +50,18 @@ public class PlayerItemHandler : MonoBehaviour
         {
             GetNewItem(item.itemID);
         }
-
-        // 자기 자신 좌표 기록
-        RecordItemInfo(item.itemID, item.playerSpawnPoint, item.cameraSpawnPoint);
+        // 중복저장 방지: 처음 방문일 때만 저장
+        if (!item.isRecorded)
+        {
+RecordItemInfo(item.itemID, item.playerSpawnPoint, item.cameraSpawnPoint, item.mapName);
+        }
 
         // 텔레포트 기능 있는 아이템이면 연결 대상 좌표도 기록
         // 연결된 아이템들을 list로 관리함에 따라 인덱스를 추가 파라미터로 받음
-        if (item.isTeleportItem)
+        Item linkeditem = item.linkedItems[linkedItemIDX];
+        if (item.isTeleportItem && !item.linkedItems[linkedItemIDX].isRecorded)
         {
-            RecordItemInfo(item.itemID, item.linkedItems[linkedItemIDX].playerSpawnPoint, item.linkedItems[linkedItemIDX].cameraSpawnPoint);
+            RecordItemInfo(item.itemID, linkeditem.playerSpawnPoint, linkeditem.cameraSpawnPoint, linkeditem.mapName);
         }
     }
 
@@ -68,21 +74,40 @@ public class PlayerItemHandler : MonoBehaviour
     public void Teleport(SpawnTransform SelectedTransform)
     {
         // 선택한 위치로 플레이어 이동
-        gameObject.transform.position = SelectedTransform.playerSpawnPoint.position;
-        gameObject.transform.rotation = SelectedTransform.playerSpawnPoint.rotation;
+        gameObject.transform.position = SelectedTransform.playerSpawnPoint;
+        //gameObject.transform.rotation = SelectedTransform.playerSpawnPoint.rotation;
 
         // 카메라 위치 이동
         if (Camera.main != null)
         {
-            Camera.main.transform.position = SelectedTransform.cameraSpawnPoint.position;
-            Camera.main.transform.rotation = SelectedTransform.cameraSpawnPoint.rotation;
+            Camera.main.transform.position = SelectedTransform.cameraSpawnPoint;
+            //Camera.main.transform.rotation = SelectedTransform.cameraSpawnPoint.rotation;
         }
+    }
+
+    public IReadOnlyList<string> GetAllItemIDs()
+    {
+        var ids = new List<string>(itemList.Keys);
+        ids.Sort(StringComparer.Ordinal);
+        return ids;
+    }
+
+    public IReadOnlyList<SpawnTransform> GetSpawnsOf(string itemID)
+    {
+        if (!itemList.TryGetValue(itemID, out var list) || list == null)
+            return Array.Empty<SpawnTransform>();
+        return list;
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
+            inventoryUI.gameObject.SetActive(true);
+
+            // [ADDED] 인벤토리 UI 열 때 이 핸들러 전달
+            var ui = inventoryUI.GetComponent<InventoryUI>();
+            if (ui != null) ui.Open(this);
             /*Debug.Log("=== PlayerItemHandler: 아이템 목록 출력 ===");
 
             
@@ -99,13 +124,8 @@ public class PlayerItemHandler : MonoBehaviour
 
                 foreach (var spawn in kvp.Value)
                 {
-                    string playerPos = spawn.playerSpawnPoint
-                        ? spawn.playerSpawnPoint.position.ToString()
-                        : "null";
-                    string cameraPos = spawn.cameraSpawnPoint
-                        ? spawn.cameraSpawnPoint.position.ToString()
-                        : "null";
-
+                    string playerPos = spawn.playerSpawnPoint.ToString();
+                    string cameraPos = spawn.cameraSpawnPoint.ToString();
                     Debug.Log($"  PlayerSpawn: {playerPos}, CameraSpawn: {cameraPos}");
                 }
             }*/
