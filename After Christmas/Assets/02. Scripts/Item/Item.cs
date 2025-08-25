@@ -51,9 +51,9 @@ public class Item : MonoBehaviour, IInteractable
     public bool isRecorded = false;
 
     // 물건을 가지고 와서 잡은 상태로 상호작용하면 특수 상호작용할 수 있는지 체크하는 변수, 디폴트값 false
-    private bool isInteractableWithItem = false;
+    [SerializeField] private bool isInteractableWithItem = false;
     [SerializeField] private String needItemID;
-    public static event Action interactWithItem; 
+    public static event Action interactWithItem;
 
     // 텔레포트(연결된 물체가 있는지)기능이 있는 아이템인지 확인하는 변수, 디폴트값 true
     // isteleportitem이 true라면 linkeditem이 1개는 있어야 함
@@ -86,37 +86,32 @@ public class Item : MonoBehaviour, IInteractable
     {
         Debug.Log("interact");
         // 플레이어 찾기 (Tag 이용)
+        // 캐싱을 해둘지 고민중...
+        // 처음부터 싹다 캐싱을 해둔다면 나중에 글로우 효과 같은거도 특수 상호작용 가능할 때 다르게 표현하기 편할 것 같음
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player == null)
         {
             return;
         }
         // 아이템을 든 상태로 상호작용 가능한지 먼저 체크
-        if (isInteractableWithItem)
+        if (isInteractableWithItem && IsSpecialInteractable(player))
         {
-            String holdItemID = player.GetComponent<PlayerItemHandler>().ReturnItemID();
-            if (holdItemID == needItemID)
-            {
-                // 특수상호작용(현재는 클리어 카운트 증가, 이벤트 쏴서 매니저한테 전달)
-                interactWithItem?.Invoke();
-                // 한번 상호작용이 끝났다면 끝, 특수상호작용 불가 상태로
-                isInteractableWithItem = false;
-                return;
-            }
+            SpecialInteraction();
+            return;
         }
         // 텔레포트 가능(반대 아이템 있음)
-            if (isTeleportItem)
-            {
-                ShowUI(player);
-            }
-            // 아닐 경우 정보 저장만
-            else
-            {
-                RecordItem(player);
-            }
+        if (isTeleportItem)
+        {
+            ShowTeleportUI(player);
+        }
+        // 아닐 경우 정보 저장만
+        else
+        {
+            RecordItem(player);
+        }
     }
 
-    public void RecordItem(GameObject player, int linkedItemIDX = 0)
+    private void RecordItem(GameObject player, int linkedItemIDX = 0)
     {
         // 정보 저장은 핸들러가 하는게 자연스러워 보임
         PlayerItemHandler itemHandler = player.GetComponent<PlayerItemHandler>();
@@ -124,7 +119,7 @@ public class Item : MonoBehaviour, IInteractable
         isRecorded = true;
     }
 
-    private void ShowUI(GameObject player)
+    private void ShowTeleportUI(GameObject player)
     {
         teleportUI.gameObject.SetActive(true);
         var candidateIndices = new List<int>();
@@ -161,7 +156,7 @@ public class Item : MonoBehaviour, IInteractable
             {
                 int originalIndex = candidateIndices[selectedIdxInCandidates];
 
-                // 저장 → 텔레포트
+                // 저장, 텔레포트
                 RecordItem(player, originalIndex);
                 TeleportByIndex(player, originalIndex);
             }
@@ -169,7 +164,7 @@ public class Item : MonoBehaviour, IInteractable
     }
 
     // 인덱스로 텔레포트 (UI에서 호출)
-    public void TeleportByIndex(GameObject player, int index)
+    private void TeleportByIndex(GameObject player, int index)
     {
         var target = linkedItems[index];
 
@@ -190,5 +185,19 @@ public class Item : MonoBehaviour, IInteractable
 
         // 도착지 방문 기록 (다음부터 이 경로가 후보로 보임)
         target.isRecorded = true;
+    }
+
+    private bool IsSpecialInteractable(GameObject player)
+    {
+        String holdItemID = player.GetComponent<PlayerItemHandler>().GetHoldItemID();
+        return holdItemID == needItemID;
+    }
+
+    private void SpecialInteraction()
+    {
+        // 특수상호작용(현재는 클리어 카운트 증가, 이벤트 쏴서 매니저한테 전달)
+        interactWithItem?.Invoke();
+        // 한번 상호작용이 끝났다면 끝, 특수상호작용 불가 상태로
+        isInteractableWithItem = false;
     }
 }

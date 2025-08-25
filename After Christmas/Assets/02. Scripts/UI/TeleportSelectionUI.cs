@@ -18,6 +18,9 @@ public class TeleportSelectionUI : MonoBehaviour
 
     public void Open(List<string> labels, Action<int> onSelectIndex)
     {
+        // 기존 모달이 있으면 자동으로 닫히고 이 창이 소유권을 가짐
+        UIModalGate.Acquire(this, Close);
+
         onSelect = onSelectIndex;
 
         // 내용 초기화
@@ -41,8 +44,13 @@ public class TeleportSelectionUI : MonoBehaviour
         }
 
         gameObject.SetActive(true);
-        // 필요시 레이아웃 강제 갱신:
-        // LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)contentRoot);
+    }
+
+    public void Close()
+    {
+        UIModalGate.Release(this);
+        gameObject.SetActive(false);
+        onSelect = null;
     }
 
     public void Update()
@@ -53,9 +61,9 @@ public class TeleportSelectionUI : MonoBehaviour
         }
     }
 
-    public void Close()
+    void OnDisable()
     {
-        gameObject.SetActive(false);
-        onSelect = null;
+        // 방어코드
+        UIModalGate.Release(this);
     }
 }

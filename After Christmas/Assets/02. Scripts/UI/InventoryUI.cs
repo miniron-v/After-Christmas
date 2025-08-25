@@ -149,6 +149,9 @@ public class InventoryUI : MonoBehaviour
 
     public void Open(PlayerItemHandler h)
     {
+        // 기존 모달이 있으면 자동으로 닫히고 소유권 점유
+        UIModalGate.Acquire(this, Close);
+
         handler = h;
         state = PanelState.Items;
         BuildItems();
@@ -160,6 +163,7 @@ public class InventoryUI : MonoBehaviour
 
     public void Close()
     {
+        UIModalGate.Release(this);
         gameObject.SetActive(false);
         handler = null;
         itemIdSnapshot.Clear();
@@ -174,5 +178,11 @@ public class InventoryUI : MonoBehaviour
     {
         for (int i = root.childCount - 1; i >= 0; i--)
             Destroy(root.GetChild(i).gameObject);
+    }
+
+    private void OnDisable()
+    {
+        //방어코드
+        UIModalGate.Release(this);
     }
 }

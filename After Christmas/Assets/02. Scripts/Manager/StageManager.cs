@@ -20,10 +20,15 @@ public class StageManager : MonoBehaviour
     {
         currentInteractionCount++;
         Debug.Log($"[StageManager] 특수 상호작용 {currentInteractionCount}회)");
-        if (requiredInteractionCount == currentInteractionCount)
+        if (isClearable())
         {
             StageClear();
         }
+    }
+
+    private bool isClearable()
+    {
+        return requiredInteractionCount == currentInteractionCount;
     }
 
     private void StageClear()
