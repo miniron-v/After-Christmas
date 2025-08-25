@@ -30,12 +30,11 @@ public class Item : MonoBehaviour, IInteractable
     [SerializeField] private Color glowColor = Color.yellow;
     [SerializeField] private float glowDuration = 0.2f;
 
-    //===================
-    // 로직 변경
-    // 아이템은 텔레포트시킬 위치가 아니라, 텔레포트될 상대 오브젝트 자체를 가지고 있음
+    //========로직=========
+    // 아이템은 텔레포트시킬 위치가 아니라, 텔레포트될 상대 오브젝트(링크 오브젝트)자체를 가지고 있음
     // 거기에서 좌표를 가져오는 걸로
     // + 자신이 맡고 있는 좌표 또한 기억해야 함
-    //===================
+    //====================
 
     // 반대편 오브젝트
     // 빈칸일 수도 있고, 여러개일 수도 있음
@@ -48,12 +47,13 @@ public class Item : MonoBehaviour, IInteractable
     public Transform playerSpawnPoint;
     public Transform cameraSpawnPoint;
 
-    // 반대 아이템으로 가는 경로가 열렸는지 체크하는 변수
-    public bool isRecorded;
+    // 반대 아이템으로 가는 경로가 열렸는지 체크하는 변수, 디폴트값 false
+    public bool isRecorded = false;
 
     // 물건을 가지고 와서 잡은 상태로 상호작용하면 특수 상호작용할 수 있는지 체크하는 변수, 디폴트값 false
     private bool isInteractableWithItem = false;
     [SerializeField] private String needItemID;
+    public static event Action interactWithItem; 
 
     // 텔레포트(연결된 물체가 있는지)기능이 있는 아이템인지 확인하는 변수, 디폴트값 true
     // isteleportitem이 true라면 linkeditem이 1개는 있어야 함
@@ -97,7 +97,11 @@ public class Item : MonoBehaviour, IInteractable
             String holdItemID = player.GetComponent<PlayerItemHandler>().ReturnItemID();
             if (holdItemID == needItemID)
             {
-                // 특수상호작용 로직 넣기(TODO)
+                // 특수상호작용(현재는 클리어 카운트 증가, 이벤트 쏴서 매니저한테 전달)
+                interactWithItem?.Invoke();
+                // 한번 상호작용이 끝났다면 끝, 특수상호작용 불가 상태로
+                isInteractableWithItem = false;
+                return;
             }
         }
         // 텔레포트 가능(반대 아이템 있음)
