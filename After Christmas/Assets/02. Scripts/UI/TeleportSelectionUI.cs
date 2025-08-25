@@ -30,7 +30,6 @@ public class TeleportSelectionUI : MonoBehaviour
         // 버튼 생성
         for (int i = 0; i < labels.Count; i++)
         {
-            Debug.Log("버튼생성?");
             var btn = Instantiate(optionButtonPrefab, contentRoot);
             var text = btn.GetComponentInChildren<TMP_Text>();
             if (text) text.text = labels[i];

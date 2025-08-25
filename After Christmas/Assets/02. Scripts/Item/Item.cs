@@ -128,7 +128,6 @@ public class Item : MonoBehaviour, IInteractable
         // 길이가 1이라면 그것만
         if (linkedItems.Count == 1)
         {
-            Debug.Log("여기1");
             candidateIndices.Add(0);
             // 오브젝트 이름이 아니라, 오브젝트가 있는 기억(맵)의 이름을 전달해줘야 할 것 같음
             candidateLabels.Add(linkedItems[0].mapName);

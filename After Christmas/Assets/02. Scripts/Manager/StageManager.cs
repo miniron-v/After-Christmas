@@ -19,7 +19,6 @@ public class StageManager : MonoBehaviour
     private void IncreaseCount()
     {
         currentInteractionCount++;
-        Debug.Log($"[StageManager] 특수 상호작용 {currentInteractionCount}회)");
         if (isClearable())
         {
             StageClear();
