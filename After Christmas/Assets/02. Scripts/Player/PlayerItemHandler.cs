@@ -88,7 +88,7 @@ public class PlayerItemHandler : MonoBehaviour
     public void Teleport(SpawnTransform SelectedTransform)
     {
         // 선택한 위치로 플레이어 이동
-        gameObject.transform.position = SelectedTransform.playerSpawnPoint;
+        transform.position = SelectedTransform.playerSpawnPoint;
 
         // 카메라 위치 이동
         if (Camera.main != null)

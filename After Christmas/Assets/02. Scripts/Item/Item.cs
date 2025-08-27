@@ -121,7 +121,7 @@ public class Item : MonoBehaviour, IInteractable
 
     private void ShowTeleportUI(GameObject player)
     {
-        teleportUI.gameObject.SetActive(true);
+        teleportUI.SetActive(true);
         var candidateIndices = new List<int>();
         var candidateLabels = new List<string>();
 
