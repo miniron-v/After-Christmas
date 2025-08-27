@@ -8,9 +8,9 @@ public struct SpawnTransform
 {
     public Vector3 playerSpawnPoint;
     public Vector3 cameraSpawnPoint;
-    public String mapName;
+    public string mapName;
 
-    public SpawnTransform(Vector3 player, Vector3 camera, String mapName)
+    public SpawnTransform(Vector3 player, Vector3 camera, string mapName)
     {
         this.mapName = mapName;
         playerSpawnPoint = player;
@@ -21,9 +21,9 @@ public struct SpawnTransform
 public class Item : MonoBehaviour, IInteractable
 {
     // 아이템이 있던 위치(하나의 기억)
-    public String mapName;
+    public string mapName;
     // 아이템의 이름(식별자)
-    public String itemID;
+    public string itemID;
     private Renderer rend;
     private Color originalColor;
 
@@ -52,7 +52,7 @@ public class Item : MonoBehaviour, IInteractable
 
     // 물건을 가지고 와서 잡은 상태로 상호작용하면 특수 상호작용할 수 있는지 체크하는 변수, 디폴트값 false
     [SerializeField] private bool isInteractableWithItem = false;
-    [SerializeField] private String needItemID;
+    [SerializeField] private string needItemID;
     public static event Action interactWithItem;
 
     // 텔레포트(연결된 물체가 있는지)기능이 있는 아이템인지 확인하는 변수, 디폴트값 true
@@ -188,7 +188,7 @@ public class Item : MonoBehaviour, IInteractable
 
     private bool IsSpecialInteractable(GameObject player)
     {
-        String holdItemID = player.GetComponent<PlayerItemHandler>().GetHoldItemID();
+        string holdItemID = player.GetComponent<PlayerItemHandler>().GetHoldItemID();
         return holdItemID == needItemID;
     }
 

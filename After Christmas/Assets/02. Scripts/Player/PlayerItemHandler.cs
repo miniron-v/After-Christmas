@@ -7,16 +7,16 @@ public class PlayerItemHandler : MonoBehaviour
 {
     [SerializeField] private GameObject inventoryUI;
     // 현재 들고있는 아이템
-    public String holdItemID = "";
+    public string holdItemID = "";
     // 아이템 목록(이름,좌표)
-    // 한 스테이지에서 다른 스테이지에서 먹은 아이템들을 볼 수는 있게 하려면 3차원 자료구조를 써야할지도 ex.(List<Dict<String,List<>>>)
-    private Dictionary<String, List<SpawnTransform>> itemList = new Dictionary<String, List<SpawnTransform>>();
+    // 한 스테이지에서 다른 스테이지에서 먹은 아이템들을 볼 수는 있게 하려면 3차원 자료구조를 써야할지도 ex.(List<Dict<string,List<>>>)
+    private Dictionary<string, List<SpawnTransform>> itemList = new Dictionary<string, List<SpawnTransform>>();
     // 아이템은 씬별로 사용 가능함, 단 하이라이트 씬에서는 전부 사용 가능하게 할것
-    private Dictionary<String, String> useableScene = new Dictionary<string, string>();
+    private Dictionary<string, string> useableScene = new Dictionary<string, string>();
 
     #region 잡기 관련 함수
 
-    public void HoldItem(String itemID)
+    public void HoldItem(string itemID)
     {
         holdItemID = itemID;
     }
@@ -26,7 +26,7 @@ public class PlayerItemHandler : MonoBehaviour
         holdItemID = "";
     }
 
-    public String GetHoldItemID()
+    public string GetHoldItemID()
     {
         return holdItemID;
     }
@@ -63,12 +63,12 @@ public class PlayerItemHandler : MonoBehaviour
         }
     }
 
-    public bool isHavingItem(String itemID)
+    public bool isHavingItem(string itemID)
     {
         return itemList.ContainsKey(itemID);
     }
 
-    public void GetNewItem(String itemID)
+    public void GetNewItem(string itemID)
     {
         itemList.Add(itemID, new List<SpawnTransform>());
     }
