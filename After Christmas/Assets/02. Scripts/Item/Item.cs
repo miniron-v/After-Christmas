@@ -43,7 +43,7 @@ public class Item : MonoBehaviour, IInteractable
     [SerializeField] private GameObject teleportUI;
 
 
-    // 현재 오브젝트가 맡고 있는 도착지(종단 아이템에는 필요없는 변수)
+    // 현재 오브젝트가 맡고 있는 좌표
     public Transform playerSpawnPoint;
     public Transform cameraSpawnPoint;
 
@@ -121,20 +121,20 @@ public class Item : MonoBehaviour, IInteractable
 
     private void ShowTeleportUI(GameObject player)
     {
-        teleportUI.SetActive(true);
         var candidateIndices = new List<int>();
         var candidateLabels = new List<string>();
-
         // 길이가 1이라면 그것만
         if (linkedItems.Count == 1)
         {
-            candidateIndices.Add(0);
-            // 오브젝트 이름이 아니라, 오브젝트가 있는 기억(맵)의 이름을 전달해줘야 할 것 같음
-            candidateLabels.Add(linkedItems[0].mapName);
+            RecordItem(player, 0);
+            TeleportByIndex(player, 0);
+            return;
         }
         // linkedItems의 길이가 2 이상이라면 isRecorded가 true 인 것들만
         else
         {
+            teleportUI.SetActive(true);
+
             for (int i = 0; i < linkedItems.Count; i++)
             {
                 Item dst = linkedItems[i];
