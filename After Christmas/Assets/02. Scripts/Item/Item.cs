@@ -123,8 +123,20 @@ public class Item : MonoBehaviour, IInteractable
     {
         var candidateIndices = new List<int>();
         var candidateLabels = new List<string>();
+        int linkedItemCount = 0;
+        for (int i = 0; i < linkedItems.Count; i++)
+        {
+            Item dst = linkedItems[i];
+            // 방문해 본 목적지만 후보
+            if (dst.isRecorded)
+            {
+                linkedItemCount++;
+                candidateIndices.Add(i);
+                candidateLabels.Add(dst.mapName);
+            }
+        }
         // 길이가 1이라면 그것만
-        if (linkedItems.Count == 1)
+        if (linkedItemCount <= 1)
         {
             RecordItem(player, 0);
             TeleportByIndex(player, 0);
@@ -134,17 +146,6 @@ public class Item : MonoBehaviour, IInteractable
         else
         {
             teleportUI.SetActive(true);
-
-            for (int i = 0; i < linkedItems.Count; i++)
-            {
-                Item dst = linkedItems[i];
-                // 방문해 본 목적지만 후보
-                if (dst.isRecorded)
-                {
-                    candidateIndices.Add(i);
-                    candidateLabels.Add(dst.mapName);
-                }
-            }
         }
 
         // 컴포넌트 참조해서 Open에 '데이터와 콜백'을 전달

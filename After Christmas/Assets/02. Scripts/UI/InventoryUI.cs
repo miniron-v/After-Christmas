@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class InventoryUI : MonoBehaviour
 {
@@ -87,10 +88,19 @@ public class InventoryUI : MonoBehaviour
             btn.onClick.AddListener(() =>
             {
                 currentItemID = itemIdSnapshot[captured];
-                ShowItemContextMenuAtMouse();
+                if (CanUseItemInCurrentScene(currentItemID))
+                {
+                    ShowItemContextMenuAtMouse();
+                }
+                else
+                {
+                    ShowItemNotUsableMessage();
+                }
             });
         }
     }
+
+    // ================== 스폰 목록 구성 ==================
 
     private void BuildSpawns(string itemID)
     {
@@ -122,6 +132,20 @@ public class InventoryUI : MonoBehaviour
         }
     }
 
+    // ===== 현재 씬에서 아이템을 사용할 수 있는지 확인 =====
+    private bool CanUseItemInCurrentScene(string itemID)
+    {
+        // 아이템이 현재 씬에서 사용 가능한지 확인
+        return handler.isHavingItem(itemID);
+    }
+
+    // ===== 사용 불가능한 아이템에 대한 메시지 출력 =====
+    private void ShowItemNotUsableMessage()
+    {
+        Debug.Log("이 아이템은 현재 씬에서 사용할 수 없습니다.");
+        // 추가로 UI에 알림 메시지를 띄우는 코드 작성 가능
+    }
+
     // ===== 컨텍스트 메뉴 띄우기 =====
     private void ShowItemContextMenuAtMouse()
     {
@@ -145,6 +169,7 @@ public class InventoryUI : MonoBehaviour
             contextMenu.gameObject.SetActive(true);
         }
     }
+
     // =================================================
 
     public void Open(PlayerItemHandler h)
