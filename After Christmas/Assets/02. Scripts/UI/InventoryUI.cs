@@ -12,9 +12,14 @@ public class InventoryUI : MonoBehaviour
 
     [Header("Context Menu")]
     [SerializeField] private Canvas rootCanvas;               // 최상위 Canvas
-    [SerializeField] private RectTransform contextMenu;       // 컨텍스트 메뉴 패널 (Pivot (0,1))
-    [SerializeField] private Button holdButton;               // "잡기"
-    [SerializeField] private Button readButton;               // "기억 데이터 읽기"
+    //[SerializeField] private RectTransform contextMenu;       // 컨텍스트 메뉴 패널 (Pivot (0,1))
+    //[SerializeField] private Button holdButton;               // "잡기"
+    //[SerializeField] private Button readButton;               // "기억 데이터 읽기"
+
+    // 추가: '기억 목록으로 돌아가기' 버튼
+    [SerializeField] private Button backToItemsButton;
+    //[SerializeField] private GameObject itemsPanel; // 아이템 목록 패널
+    //[SerializeField] private GameObject spawnsPanel; // 기억 목록 패널
 
     private PlayerItemHandler handler;
 
@@ -34,7 +39,7 @@ public class InventoryUI : MonoBehaviour
         gameObject.SetActive(false);
 
         // ===== 컨텍스트 메뉴 초기 설정 및 버튼 리스너 =====
-        if (contextMenu) contextMenu.gameObject.SetActive(false);
+        /*if (contextMenu) contextMenu.gameObject.SetActive(false);
         if (contextMenu) contextMenu.pivot = new Vector2(0f, 0f); // 마우스 기준으로 어디에 생성될지 정함. 기본값은 우측상단
 
         if (holdButton)
@@ -49,8 +54,16 @@ public class InventoryUI : MonoBehaviour
             {
                 contextMenu.gameObject.SetActive(false);
                 BuildSpawns(currentItemID);           // ← 기억 데이터 읽기
-            });
+            });*/
         // =========================================================
+        if (backToItemsButton)
+        {
+            backToItemsButton.onClick.AddListener(() =>
+            {
+                Close(); // ← 취소 시에 바로 모든 UI 끄기
+                //BuildItems(); ← 이걸로 하면 아이템 선택창으로 돌아감
+            });
+        }
     }
 
     void Update()
@@ -67,11 +80,16 @@ public class InventoryUI : MonoBehaviour
 
     private void BuildItems()
     {
+        backToItemsButton.gameObject.SetActive(false);
         state = PanelState.Items;
         Clear(contentRoot);
         itemIdSnapshot.Clear();
         spawnSnapshot.Clear();
         currentItemID = null;
+
+        // 패널 전환
+        //if (itemsPanel) itemsPanel.SetActive(true);
+        //if (spawnsPanel) spawnsPanel.SetActive(false);
 
         if (handler == null) return;
 
@@ -88,9 +106,12 @@ public class InventoryUI : MonoBehaviour
             btn.onClick.AddListener(() =>
             {
                 currentItemID = itemIdSnapshot[captured];
-                if (CanUseItemInCurrentScene(currentItemID))
+                if (IsUseableItemInCurrentScene(currentItemID))
                 {
-                    ShowItemContextMenuAtMouse();
+                    // 아이템을 잡기
+                    handler.HoldItem(currentItemID);
+                    // 잡은 아이템의 기억 목록으로 이동
+                    BuildSpawns();
                 }
                 else
                 {
@@ -102,15 +123,28 @@ public class InventoryUI : MonoBehaviour
 
     // ================== 스폰 목록 구성 ==================
 
-    private void BuildSpawns(string itemID)
+    private void BuildSpawns()
     {
+        backToItemsButton.gameObject.SetActive(true);
         state = PanelState.Spawns;
         Clear(contentRoot);
         spawnSnapshot.Clear();
 
+        // 패널 전환
+        //if (itemsPanel) itemsPanel.SetActive(false);
+        //if (spawnsPanel) spawnsPanel.SetActive(true);
+
         if (handler == null) return;
 
-        var spawns = handler.GetSpawnsOf(itemID);
+        string holdItemID = handler.GetHoldItemID();
+        if (string.IsNullOrEmpty(holdItemID))
+        {
+            // 잡고 있는 아이템이 없으면 다시 아이템 목록으로 돌아감
+            BuildItems();
+            return;
+        }
+
+        var spawns = handler.GetSpawnsOf(holdItemID);
         spawnSnapshot.AddRange(spawns);
 
         for (int i = 0; i < spawnSnapshot.Count; i++)
@@ -133,7 +167,7 @@ public class InventoryUI : MonoBehaviour
     }
 
     // ===== 현재 씬에서 아이템을 사용할 수 있는지 확인 =====
-    private bool CanUseItemInCurrentScene(string itemID)
+    private bool IsUseableItemInCurrentScene(string itemID)
     {
         // 아이템이 현재 씬에서 사용 가능한지 확인
         return handler.isHavingItem(itemID);
@@ -147,7 +181,7 @@ public class InventoryUI : MonoBehaviour
     }
 
     // ===== 컨텍스트 메뉴 띄우기 =====
-    private void ShowItemContextMenuAtMouse()
+    /*private void ShowItemContextMenuAtMouse()
     {
         if (contextMenu == null || rootCanvas == null) return;
 
@@ -168,7 +202,7 @@ public class InventoryUI : MonoBehaviour
             contextMenu.anchoredPosition = localPoint;
             contextMenu.gameObject.SetActive(true);
         }
-    }
+    }*/
 
     // =================================================
 
@@ -182,8 +216,7 @@ public class InventoryUI : MonoBehaviour
         BuildItems();
         gameObject.SetActive(true);
 
-        // 메뉴는 열릴 때 기본 숨김
-        if (contextMenu) contextMenu.gameObject.SetActive(false);
+        if (backToItemsButton) backToItemsButton.gameObject.SetActive(false);
     }
 
     public void Close()
@@ -196,7 +229,7 @@ public class InventoryUI : MonoBehaviour
         currentItemID = null;
         state = PanelState.Items;
 
-        if (contextMenu) contextMenu.gameObject.SetActive(false);
+        if (backToItemsButton) backToItemsButton.gameObject.SetActive(false);
     }
 
     private void Clear(Transform root)
