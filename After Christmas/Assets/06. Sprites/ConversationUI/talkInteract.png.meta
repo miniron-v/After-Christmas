@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e207cafbea4146748aeb97fda1a6ee9b
+guid: 1a1fde73be090f244b42257ff214997f
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,23 +97,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: capsule_0
+      name: talkInteract_0
       rect:
         serializedVersion: 2
-        x: 102
-        y: 77
-        width: 685
-        height: 1025
+        x: 23
+        y: 20
+        width: 465
+        height: 466
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5de764fe710704f4793441c2120a2378
-      internalID: 731834852
+      spriteID: 1e67350d427f71a439b961888708e1c4
+      internalID: 895457686
       vertices: []
       indices: 
       edges: []
@@ -122,8 +122,8 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5b518f8939e7b734a94566464751188a
-    internalID: 1938363860
+    spriteID: 30443b6e9a4ccca4bb7c6350d35cbf83
+    internalID: 0
     vertices: []
     indices: 
     edges: []
@@ -132,7 +132,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      capsule_0: 731834852
+      talkInteract_0: 895457686
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
