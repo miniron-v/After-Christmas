@@ -960,7 +960,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -2015,8 +2015,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bf470d4ee349b848a23e498212aa13e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testDialogue: {fileID: 0}
-  testCharacter: {fileID: 0}
+  testDialogue: {fileID: 11400000, guid: 5e2c2dad7624c2947a06c600f735efa0, type: 2}
+  testCharacter: {fileID: 11400000, guid: 755763d612b95744e81c60d91ed6c176, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
