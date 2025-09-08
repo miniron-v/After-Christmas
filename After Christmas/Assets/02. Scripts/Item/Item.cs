@@ -161,7 +161,8 @@ public class Item : MonoBehaviour, IInteractable
         // 후보가 2개 이상 → UI
         teleportUI.SetActive(true);
         TeleportSelectionUI ui = teleportUI.GetComponent<TeleportSelectionUI>();
-        ui.Open(candidateLabels, selectedIdx =>
+        // 수정
+        ui.Open(transform.position + Vector3.up * 3f, candidateLabels, selectedIdx =>
         {
             Item target = candidateItems[selectedIdx];
             int idx = linkedItems.IndexOf(target);
