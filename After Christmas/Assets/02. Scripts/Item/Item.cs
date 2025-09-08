@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public struct SpawnTransform
@@ -42,7 +40,6 @@ public class Item : MonoBehaviour, IInteractable
 
     [SerializeField] private GameObject teleportUI;
 
-
     // 현재 오브젝트가 맡고 있는 좌표
     public Transform playerSpawnPoint;
     public Transform cameraSpawnPoint;
@@ -56,8 +53,8 @@ public class Item : MonoBehaviour, IInteractable
     public static event Action interactWithItem;
 
     // 텔레포트(연결된 물체가 있는지)기능이 있는 아이템인지 확인하는 변수, 디폴트값 true
-    // isteleportitem이 true라면 linkeditem이 1개는 있어야 함
-    // isteleportitem이 false라면 이 아이템은 종단 아이템
+    // isTeleportItem이 true라면 linkeditem이 1개는 있어야 함
+    // isTeleportItem이 false라면 이 아이템은 종단 아이템
     public bool isTeleportItem = true;
 
     private void Awake()
@@ -72,33 +69,26 @@ public class Item : MonoBehaviour, IInteractable
         Debug.Log("Sucessed Glow");
         if (rend != null)
         {
-            if (detected)
-            {
-                rend.material.color = glowColor;
-            }
-            else
-            {
-                rend.material.color = originalColor;
-            }
+            rend.material.color = detected ? glowColor : originalColor;
         }
     }
+
     public void Interact()
     {
         Debug.Log("interact");
-        // 플레이어 찾기 (Tag 이용)
-        // 캐싱을 해둘지 고민중...
-        // 처음부터 싹다 캐싱을 해둔다면 나중에 글로우 효과 같은거도 특수 상호작용 가능할 때 다르게 표현하기 편할 것 같음
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player == null)
-        {
-            return;
-        }
+        if (player == null) return;
+
         // 아이템을 든 상태로 상호작용 가능한지 먼저 체크
         if (isInteractableWithItem && IsSpecialInteractable(player))
         {
             SpecialInteraction();
             return;
         }
+
+        // 자기 자신 기록 (Interact 시점)
+        isRecorded = true;
+
         // 텔레포트 가능(반대 아이템 있음)
         if (isTeleportItem)
         {
@@ -107,13 +97,12 @@ public class Item : MonoBehaviour, IInteractable
         // 아닐 경우 정보 저장만
         else
         {
-            RecordItem(player);
+            RecordItem(player, -1);
         }
     }
 
-    private void RecordItem(GameObject player, int linkedItemIDX = 0)
+    private void RecordItem(GameObject player, int linkedItemIDX = -1)
     {
-        // 정보 저장은 핸들러가 하는게 자연스러워 보임
         PlayerItemHandler itemHandler = player.GetComponent<PlayerItemHandler>();
         itemHandler.RecordFromItem(this, linkedItemIDX);
         isRecorded = true;
@@ -121,69 +110,83 @@ public class Item : MonoBehaviour, IInteractable
 
     private void ShowTeleportUI(GameObject player)
     {
-        var candidateIndices = new List<int>();
-        var candidateLabels = new List<string>();
-        int linkedItemCount = 0;
-        for (int i = 0; i < linkedItems.Count; i++)
+        List<Item> candidateItems = new List<Item>();
+        List<string> candidateLabels = new List<string>();
+
+        // BFS 후보 수집 (isRecorded된 아이템만)
+        HashSet<Item> visited = new HashSet<Item>();
+        Queue<Item> q = new Queue<Item>();
+
+        visited.Add(this);
+        q.Enqueue(this);
+
+        while (q.Count > 0)
         {
-            Item dst = linkedItems[i];
-            // 방문해 본 목적지만 후보
-            if (dst.isRecorded)
+            Item current = q.Dequeue();
+            foreach (var neighbor in current.linkedItems)
             {
-                linkedItemCount++;
-                candidateIndices.Add(i);
-                candidateLabels.Add(dst.mapName);
+                if (neighbor != null && !visited.Contains(neighbor) && neighbor.isRecorded)
+                {
+                    visited.Add(neighbor);
+                    q.Enqueue(neighbor);
+                }
             }
         }
-        // 길이가 1이라면 그것만
-        if (linkedItemCount <= 1)
+
+        // 자기 자신 제외 후보
+        foreach (var item in visited)
         {
+            if (item != this)
+            {
+                candidateItems.Add(item);
+                candidateLabels.Add(item.mapName);
+            }
+        }
+
+        // 후보가 없으면 linkedItems 중 첫 번째로 이동
+        if (candidateItems.Count == 0 && linkedItems.Count > 0)
+        {
+            Item target = linkedItems[0];
             RecordItem(player, 0);
-            TeleportByIndex(player, 0);
+            TeleportByItem(player, target);
             return;
         }
-        // linkedItems의 길이가 2 이상이라면 isRecorded가 true 인 것들만
-        else
+
+        // 후보가 1개 → 바로 이동
+        if (candidateItems.Count == 1)
         {
-            teleportUI.SetActive(true);
+            Item target = candidateItems[0];
+            int idx = linkedItems.IndexOf(target);
+            RecordItem(player, idx >= 0 ? idx : -1);
+            TeleportByItem(player, target);
+            return;
         }
 
-        // 컴포넌트 참조해서 Open에 '데이터와 콜백'을 전달
+        // 후보가 2개 이상 → UI
+        teleportUI.SetActive(true);
         TeleportSelectionUI ui = teleportUI.GetComponent<TeleportSelectionUI>();
-        ui.Open(
-            candidateLabels,
-            onSelectIndex: selectedIdxInCandidates =>
-            {
-                int originalIndex = candidateIndices[selectedIdxInCandidates];
-
-                // 저장, 텔레포트
-                RecordItem(player, originalIndex);
-                TeleportByIndex(player, originalIndex);
-            }
-        );
+        ui.Open(candidateLabels, selectedIdx =>
+        {
+            Item target = candidateItems[selectedIdx];
+            int idx = linkedItems.IndexOf(target);
+            RecordItem(player, idx >= 0 ? idx : -1);
+            TeleportByItem(player, target);
+        });
     }
 
-    // 인덱스로 텔레포트 (UI에서 호출)
-    private void TeleportByIndex(GameObject player, int index)
+    private void TeleportByItem(GameObject player, Item target)
     {
-        var target = linkedItems[index];
-
-        // 플레이어 이동
         player.transform.SetPositionAndRotation(
             target.playerSpawnPoint.position,
             target.playerSpawnPoint.rotation
         );
 
-        // 카메라 이동
         if (Camera.main != null)
-        {
             Camera.main.transform.SetPositionAndRotation(
                 target.cameraSpawnPoint.position,
                 target.cameraSpawnPoint.rotation
             );
-        }
 
-        // 도착지 방문 기록 (다음부터 이 경로가 후보로 보임)
         target.isRecorded = true;
     }
 
@@ -195,9 +198,7 @@ public class Item : MonoBehaviour, IInteractable
 
     private void SpecialInteraction()
     {
-        // 특수상호작용(현재는 클리어 카운트 증가, 이벤트 쏴서 매니저한테 전달)
         interactWithItem?.Invoke();
-        // 한번 상호작용이 끝났다면 끝, 특수상호작용 불가 상태로
         isInteractableWithItem = false;
     }
 }

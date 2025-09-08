@@ -15,6 +15,7 @@ public class PlayerItemHandler : MonoBehaviour
 
     public void RecordFromItem(Item item, int linkedItemIDX)
     {
+        // 자기 자신 기록
         if (!item.isRecorded)
         {
             SpawnTransform info = new SpawnTransform(
@@ -26,10 +27,11 @@ public class PlayerItemHandler : MonoBehaviour
             item.isRecorded = true;
         }
 
-        if (item.isTeleportItem && linkedItemIDX < item.linkedItems.Count)
+        // linkedItems 안전 처리
+        if (item.isTeleportItem && linkedItemIDX >= 0 && linkedItemIDX < item.linkedItems.Count)
         {
             Item linked = item.linkedItems[linkedItemIDX];
-            if (!linked.isRecorded)
+            if (linked != null && !linked.isRecorded)
             {
                 SpawnTransform info = new SpawnTransform(
                     linked.playerSpawnPoint.position,
