@@ -47,12 +47,12 @@ public class Item : MonoBehaviour, IInteractable
     // 반대 아이템으로 가는 경로가 열렸는지 체크하는 변수, 디폴트값 false
     public bool isRecorded = false;
 
-    // 물건을 가지고 와서 잡은 상태로 상호작용하면 특수 상호작용할 수 있는지 체크하는 변수, 디폴트값 false
+    // 물건을 가지고 와서 잡은 상태로 상호작용하면 특수 상호작용할 수 있는지 체크
     [SerializeField] private bool isInteractableWithItem = false;
     [SerializeField] private string needItemID;
     public static event Action interactWithItem;
 
-    // 텔레포트(연결된 물체가 있는지)기능이 있는 아이템인지 확인하는 변수, 디폴트값 true
+    // 텔레포트(연결된 물체가 있는지)기능이 있는 아이템인지 확인, 디폴트값 true
     // isTeleportItem이 true라면 linkeditem이 1개는 있어야 함
     // isTeleportItem이 false라면 이 아이템은 종단 아이템
     public bool isTeleportItem = true;
@@ -86,15 +86,12 @@ public class Item : MonoBehaviour, IInteractable
             return;
         }
 
-        // 자기 자신 기록 (Interact 시점)
-        isRecorded = true;
-
         // 텔레포트 가능(반대 아이템 있음)
         if (isTeleportItem)
         {
             ShowTeleportUI(player);
         }
-        // 아닐 경우 정보 저장만
+        // 아닐 경우 정보 저장만 (종단 아이템)
         else
         {
             RecordItem(player, -1);
@@ -105,7 +102,6 @@ public class Item : MonoBehaviour, IInteractable
     {
         PlayerItemHandler itemHandler = player.GetComponent<PlayerItemHandler>();
         itemHandler.RecordFromItem(this, linkedItemIDX);
-        isRecorded = true;
     }
 
     private void ShowTeleportUI(GameObject player)

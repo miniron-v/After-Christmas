@@ -24,14 +24,14 @@ public class PlayerItemHandler : MonoBehaviour
                 item.mapName
             );
             ItemInfoManager.Instance.RecordItemInfo(item.itemID, info);
-            item.isRecorded = true;
+            item.isRecorded = true; // 기록 완료 후 플래그 처리
         }
 
-        // linkedItems 안전 처리
+        // linkedItemIDX가 유효한 경우에만 linkedItem 처리
         if (item.isTeleportItem && linkedItemIDX >= 0 && linkedItemIDX < item.linkedItems.Count)
         {
             Item linked = item.linkedItems[linkedItemIDX];
-            if (linked != null && !linked.isRecorded)
+            if (!linked.isRecorded)
             {
                 SpawnTransform info = new SpawnTransform(
                     linked.playerSpawnPoint.position,
