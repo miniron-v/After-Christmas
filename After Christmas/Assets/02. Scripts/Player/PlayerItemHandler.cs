@@ -1,10 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class PlayerItemHandler : MonoBehaviour
 {
-    [SerializeField] private GameObject inventoryUI;
+    [SerializeField] private InventoryUI inventoryUI;
 
     public string holdItemID { get; private set; } = "";
 
@@ -15,7 +14,6 @@ public class PlayerItemHandler : MonoBehaviour
 
     public void RecordFromItem(Item item, int linkedItemIDX)
     {
-        // 자기 자신 기록
         if (!item.isRecorded)
         {
             SpawnTransform info = new SpawnTransform(
@@ -24,10 +22,9 @@ public class PlayerItemHandler : MonoBehaviour
                 item.mapName
             );
             ItemInfoManager.Instance.RecordItemInfo(item.itemID, info);
-            item.isRecorded = true; // 기록 완료 후 플래그 처리
+            item.isRecorded = true;
         }
 
-        // linkedItemIDX가 유효한 경우에만 linkedItem 처리
         if (item.isTeleportItem && linkedItemIDX >= 0 && linkedItemIDX < item.linkedItems.Count)
         {
             Item linked = item.linkedItems[linkedItemIDX];
@@ -46,8 +43,15 @@ public class PlayerItemHandler : MonoBehaviour
 
     public bool isHavingItem(string itemID) => ItemInfoManager.Instance.IsHavingItem(itemID);
 
-    public IReadOnlyList<string> GetAllItemIDs() => ItemInfoManager.Instance.GetAllItemIDs();
-    public IReadOnlyList<SpawnTransform> GetSpawnsOf(string itemID) => ItemInfoManager.Instance.GetSpawnsOf(itemID);
+    public IReadOnlyList<string> GetAllItemIDs() => ItemInfoManager.Instance.GetAllItemIDs(
+        ItemInfoManager.Instance.GetSceneIndex(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name));
+
+    public IReadOnlyList<string> GetAllItemIDs(int sceneIndex) => ItemInfoManager.Instance.GetAllItemIDs(sceneIndex);
+
+    public IReadOnlyList<SpawnTransform> GetSpawnsOf(string itemID) => ItemInfoManager.Instance.GetSpawnsOf(
+        itemID, ItemInfoManager.Instance.GetSceneIndex(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name));
+
+    public IReadOnlyList<SpawnTransform> GetSpawnsOf(string itemID, int sceneIndex) => ItemInfoManager.Instance.GetSpawnsOf(itemID, sceneIndex);
 
     public void Teleport(SpawnTransform selected)
     {
@@ -59,7 +63,7 @@ public class PlayerItemHandler : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.F) && inventoryUI != null)
-            inventoryUI.GetComponent<InventoryUI>().Open(this);
+            inventoryUI.Open(this);
 
         if (Input.GetKeyDown(KeyCode.G))
             UnHoldItem();

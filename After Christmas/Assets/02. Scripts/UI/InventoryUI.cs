@@ -2,12 +2,15 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class InventoryUI : MonoBehaviour
 {
     [SerializeField] private Transform contentRoot;
     [SerializeField] private Button buttonPrefab;
     [SerializeField] private Button backToItemsButton;
+    [SerializeField] private Button prevSceneButton;
+    [SerializeField] private Button nextSceneButton;
 
     private PlayerItemHandler handler;
     private enum PanelState { Items, Spawns }
@@ -16,14 +19,18 @@ public class InventoryUI : MonoBehaviour
     private List<string> itemSnapshot = new();
     private List<SpawnTransform> spawnSnapshot = new();
     private string currentItemID = null;
+    private int currentSceneIndex = 0;
+    private int activeSceneIndex = 0;
 
     private void Awake()
     {
-        gameObject.SetActive(false);
         if (backToItemsButton != null)
-        {
             backToItemsButton.onClick.AddListener(() => BuildItems());
-        }
+
+        if (prevSceneButton != null)
+            prevSceneButton.onClick.AddListener(() => ChangeScenePage(-1));
+        if (nextSceneButton != null)
+            nextSceneButton.onClick.AddListener(() => ChangeScenePage(1));
     }
 
     private void Update()
@@ -38,8 +45,10 @@ public class InventoryUI : MonoBehaviour
     public void Open(PlayerItemHandler h)
     {
         handler = h;
-        BuildItems();
+        activeSceneIndex = ItemInfoManager.Instance.GetSceneIndex(SceneManager.GetActiveScene().name);
+        currentSceneIndex = activeSceneIndex;
         gameObject.SetActive(true);
+        BuildItems();
         backToItemsButton?.gameObject.SetActive(false);
     }
 
@@ -64,28 +73,37 @@ public class InventoryUI : MonoBehaviour
 
         if (handler == null) return;
 
-        var ids = handler.GetAllItemIDs();
+        var ids = handler.GetAllItemIDs(currentSceneIndex);
         itemSnapshot.AddRange(ids);
+
+        bool isCurrentScenePage = currentSceneIndex == activeSceneIndex;
 
         for (int i = 0; i < itemSnapshot.Count; i++)
         {
             int captured = i;
             var btn = Instantiate(buttonPrefab, contentRoot);
             btn.GetComponentInChildren<TMP_Text>().text = itemSnapshot[i];
+
+            btn.interactable = isCurrentScenePage; // 현재 씬이 아니면 클릭 불가
+
             btn.onClick.AddListener(() =>
             {
+                if (!btn.interactable)
+                {
+                    Debug.Log("현재 씬에서 사용할 수 없습니다.");
+                    return;
+                }
+
                 currentItemID = itemSnapshot[captured];
                 if (handler.isHavingItem(currentItemID))
                 {
                     handler.HoldItem(currentItemID);
                     BuildSpawns();
                 }
-                else
-                {
-                    Debug.Log("현재 씬에서 사용할 수 없습니다.");
-                }
             });
         }
+
+        UpdateSceneButtons();
     }
 
     private void BuildSpawns()
@@ -96,7 +114,7 @@ public class InventoryUI : MonoBehaviour
         spawnSnapshot.Clear();
 
         if (handler == null) return;
-        var spawns = handler.GetSpawnsOf(handler.GetHoldItemID());
+        var spawns = handler.GetSpawnsOf(handler.GetHoldItemID(), currentSceneIndex);
         spawnSnapshot.AddRange(spawns);
 
         for (int i = 0; i < spawnSnapshot.Count; i++)
@@ -104,17 +122,38 @@ public class InventoryUI : MonoBehaviour
             int captured = i;
             var btn = Instantiate(buttonPrefab, contentRoot);
             btn.GetComponentInChildren<TMP_Text>().text = spawnSnapshot[i].mapName;
+
+            // 현재 씬이 아니면 비활성화
+            btn.interactable = currentSceneIndex == activeSceneIndex;
+
             btn.onClick.AddListener(() =>
             {
+                if (!btn.interactable) return;
                 handler.Teleport(spawnSnapshot[captured]);
                 Close();
             });
         }
+
+        UpdateSceneButtons();
     }
 
     private void Clear(Transform root)
     {
         for (int i = root.childCount - 1; i >= 0; i--)
             Destroy(root.GetChild(i).gameObject);
+    }
+
+    private void ChangeScenePage(int dir)
+    {
+        int sceneCount = ItemInfoManager.Instance.GetSceneCount();
+        currentSceneIndex = Mathf.Clamp(currentSceneIndex + dir, 0, sceneCount - 1);
+        BuildItems();
+    }
+
+    private void UpdateSceneButtons()
+    {
+        int sceneCount = ItemInfoManager.Instance.GetSceneCount();
+        if (prevSceneButton != null) prevSceneButton.interactable = currentSceneIndex > 0;
+        if (nextSceneButton != null) nextSceneButton.interactable = currentSceneIndex < sceneCount - 1;
     }
 }
