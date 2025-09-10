@@ -4522,12 +4522,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneInfos:
-  - sceneName: itemHandlerScene
-    sceneIndex: 0
-    sceneAsset: {fileID: 102900000, guid: 48ee3ce7afa04ba4f91f3a7551e5455f, type: 3}
-  - sceneName: itemHandlerScene2
-    sceneIndex: 0
-    sceneAsset: {fileID: 102900000, guid: a904f164e4ca3944eaeb854d05cbc87a, type: 3}
+  - sceneAsset: {fileID: 102900000, guid: 48ee3ce7afa04ba4f91f3a7551e5455f, type: 3}
+    sceneName: itemHandlerScene2
+  - sceneAsset: {fileID: 102900000, guid: a904f164e4ca3944eaeb854d05cbc87a, type: 3}
+    sceneName: itemHandlerScene
 --- !u!4 &1964675070
 Transform:
   m_ObjectHideFlags: 0

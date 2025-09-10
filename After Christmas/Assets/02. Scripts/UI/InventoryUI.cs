@@ -83,14 +83,13 @@ public class InventoryUI : MonoBehaviour
             int captured = i;
             var btn = Instantiate(buttonPrefab, contentRoot);
             btn.GetComponentInChildren<TMP_Text>().text = itemSnapshot[i];
-
-            btn.interactable = isCurrentScenePage; // 현재 씬이 아니면 클릭 불가
+            btn.interactable = isCurrentScenePage;
 
             btn.onClick.AddListener(() =>
             {
                 if (!btn.interactable)
                 {
-                    Debug.Log("현재 씬에서 사용할 수 없습니다.");
+                    Debug.Log("해당되는 씬 아님");
                     return;
                 }
 
@@ -122,8 +121,6 @@ public class InventoryUI : MonoBehaviour
             int captured = i;
             var btn = Instantiate(buttonPrefab, contentRoot);
             btn.GetComponentInChildren<TMP_Text>().text = spawnSnapshot[i].mapName;
-
-            // 현재 씬이 아니면 비활성화
             btn.interactable = currentSceneIndex == activeSceneIndex;
 
             btn.onClick.AddListener(() =>
@@ -153,7 +150,17 @@ public class InventoryUI : MonoBehaviour
     private void UpdateSceneButtons()
     {
         int sceneCount = ItemInfoManager.Instance.GetSceneCount();
-        if (prevSceneButton != null) prevSceneButton.interactable = currentSceneIndex > 0;
-        if (nextSceneButton != null) nextSceneButton.interactable = currentSceneIndex < sceneCount - 1;
+
+        if (prevSceneButton != null)
+        {
+            bool hasPrev = currentSceneIndex > 0 && ItemInfoManager.Instance.HasVisitedScene(currentSceneIndex - 1);
+            prevSceneButton.gameObject.SetActive(hasPrev);
+        }
+
+        if (nextSceneButton != null)
+        {
+            bool hasNext = currentSceneIndex < sceneCount - 1 && ItemInfoManager.Instance.HasVisitedScene(currentSceneIndex + 1);
+            nextSceneButton.gameObject.SetActive(hasNext);
+        }
     }
 }

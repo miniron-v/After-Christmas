@@ -9,12 +9,14 @@ public class ItemInfoManager : MonoBehaviour
     [Serializable]
     public class SceneInfo
     {
-        public SceneAsset sceneAsset;  // 드래그용
+        public SceneAsset sceneAsset;
         [HideInInspector] public string sceneName;
     }
 
     public static ItemInfoManager Instance { get; private set; }
 
+    [Header("기억 씬 리스트")]
+    [Tooltip("기억 씬들을 플레이 순서에 따라서 인스펙터에 넣어 주세요")]
     [SerializeField] private List<SceneInfo> sceneInfos = new List<SceneInfo>();
 
     private List<Dictionary<string, List<SpawnTransform>>> itemList 
@@ -43,7 +45,6 @@ public class ItemInfoManager : MonoBehaviour
 
     private void OnEnable() => SceneManager.activeSceneChanged += OnSceneChanged;
     private void OnDisable() => SceneManager.activeSceneChanged -= OnSceneChanged;
-
     private void OnSceneChanged(Scene oldScene, Scene newScene) { }
 
     public int GetSceneIndex(string sceneName)
@@ -59,7 +60,6 @@ public class ItemInfoManager : MonoBehaviour
     {
         int sceneIndex = GetSceneIndex(SceneManager.GetActiveScene().name);
         if (sceneIndex < 0) return false;
-
         return itemList[sceneIndex].ContainsKey(itemID);
     }
 
@@ -92,6 +92,12 @@ public class ItemInfoManager : MonoBehaviour
     }
 
     public int GetSceneCount() => sceneInfos.Count;
+
+    public bool HasVisitedScene(int sceneIndex)
+    {
+        if (sceneIndex < 0 || sceneIndex >= itemList.Count) return false;
+        return itemList[sceneIndex].Count > 0;
+    }
 
     #endregion
 }
