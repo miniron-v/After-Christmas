@@ -30,7 +30,7 @@ public class DialogueTrigger : MonoBehaviour
                     speechBubble.SetActive(false);
                 }
 
-                DialogueManager.Instance.StartDialogue(dialogueData, characterData);
+                DialogueManager.Instance.StartDialogue(dialogueData);
             }
         }
     }

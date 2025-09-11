@@ -11,7 +11,7 @@ public class DialogueTest : MonoBehaviour
         {
             if (testDialogue != null && DialogueManager.Instance != null)
             {
-                DialogueManager.Instance.StartDialogue(testDialogue, testCharacter);
+                DialogueManager.Instance.StartDialogue(testDialogue);
             }
             else
             {
