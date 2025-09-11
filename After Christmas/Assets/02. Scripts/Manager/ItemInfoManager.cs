@@ -43,10 +43,6 @@ public class ItemInfoManager : MonoBehaviour
         }
     }
 
-    private void OnEnable() => SceneManager.activeSceneChanged += OnSceneChanged;
-    private void OnDisable() => SceneManager.activeSceneChanged -= OnSceneChanged;
-    private void OnSceneChanged(Scene oldScene, Scene newScene) { }
-
     public int GetSceneIndex(string sceneName)
     {
         for (int i = 0; i < sceneInfos.Count; i++)
