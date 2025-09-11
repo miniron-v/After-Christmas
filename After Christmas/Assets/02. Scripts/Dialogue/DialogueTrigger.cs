@@ -1,36 +1,23 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class DialogueTrigger : MonoBehaviour
 {
-    public DialogueData dialogueData;
-    public CharacterData characterData;
-
-    public GameObject speechBubble;
+    public List<DialogueData> dialogueSequence;
 
     private bool isPlayerInRange = false;
+    private int currentDialogueIndex = 0;
 
     public string playerTag = "Player";
-
-    private void Awake()
-    {
-        if (speechBubble != null)
-        {
-            speechBubble.SetActive(false);
-        }
-    }
 
     void Update()
     {
         if (isPlayerInRange && Input.GetKeyDown(KeyCode.E))
         {
-            if (dialogueData != null)
+            if (currentDialogueIndex < dialogueSequence.Count)
             {
-                if (speechBubble != null)
-                {
-                    speechBubble.SetActive(false);
-                }
-
-                DialogueManager.Instance.StartDialogue(dialogueData);
+                DialogueManager.Instance.StartDialogue(dialogueSequence[currentDialogueIndex]);
+                currentDialogueIndex++;
             }
         }
     }
@@ -41,11 +28,6 @@ public class DialogueTrigger : MonoBehaviour
         {
             Debug.Log("Dialogue Trigger Enter");
             isPlayerInRange = true;
-
-            if (speechBubble != null)
-            {
-                speechBubble.SetActive(true);
-            }
         }
     }
 
@@ -55,12 +37,6 @@ public class DialogueTrigger : MonoBehaviour
         {
             Debug.Log("Dialogue Trigger Exit");
             isPlayerInRange = false;
-
-
-            if (speechBubble != null)
-            {
-                speechBubble.SetActive(false);
-            }
         }
     }
 }
