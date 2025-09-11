@@ -1798,7 +1798,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f4ae4a892db02a45b7b5bacb4b9dfc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueSequence: []
+  dialogueSequence:
+  - {fileID: 11400000, guid: cac610d00ea13a84e95fe6737763aebd, type: 2}
+  - {fileID: 11400000, guid: b2cfde31110b1c447b2db7fee8d35c90, type: 2}
   playerTag: Player
 --- !u!1001 &1653929210
 PrefabInstance:
@@ -1925,7 +1927,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f4ae4a892db02a45b7b5bacb4b9dfc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueSequence: []
+  dialogueSequence:
+  - {fileID: 11400000, guid: 5e2c2dad7624c2947a06c600f735efa0, type: 2}
   playerTag: Player
 --- !u!1 &1683113254
 GameObject:
@@ -2186,52 +2189,6 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
---- !u!1 &2016671338
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2016671339}
-  - component: {fileID: 2016671340}
-  m_Layer: 0
-  m_Name: DialogueTest
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2016671339
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2016671338}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 605.5, y: 473, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2016671340
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2016671338}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bf470d4ee349b848a23e498212aa13e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  testDialogue: {fileID: 11400000, guid: 5e2c2dad7624c2947a06c600f735efa0, type: 2}
-  testCharacter: {fileID: 11400000, guid: 755763d612b95744e81c60d91ed6c176, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -2243,4 +2200,3 @@ SceneRoots:
   - {fileID: 816105153}
   - {fileID: 1579894019}
   - {fileID: 834935912}
-  - {fileID: 2016671339}
