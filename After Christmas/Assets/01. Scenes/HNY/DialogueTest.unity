@@ -732,10 +732,10 @@ RectTransform:
   - {fileID: 295026366}
   m_Father: {fileID: 816105153}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -6.7450104, y: 335.88702}
-  m_SizeDelta: {x: 814.1333, y: 164.12012}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: 0, y: 335.88702}
+  m_SizeDelta: {x: -52.489, y: 164.1201}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &596451621
 Canvas:
@@ -1910,7 +1910,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1683113255}
   m_Layer: 0
-  m_Name: map1
+  m_Name: 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

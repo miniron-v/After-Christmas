@@ -14,11 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   participants:
   - {fileID: 11400000, guid: e21499412581dec4cba34e1b5ecc8400, type: 2}
-  - {fileID: 11400000, guid: 755763d612b95744e81c60d91ed6c176, type: 2}
   dialogueLines:
   - speaker: {fileID: 11400000, guid: e21499412581dec4cba34e1b5ecc8400, type: 2}
-    sentence: You are not have color...
-  - speaker: {fileID: 11400000, guid: 755763d612b95744e81c60d91ed6c176, type: 2}
-    sentence: I don't know...
+    sentence: (He dosen't have color...)
   - speaker: {fileID: 11400000, guid: e21499412581dec4cba34e1b5ecc8400, type: 2}
-    sentence: Cheer up.
+    sentence: (He looks upset...)
+  - speaker: {fileID: 11400000, guid: e21499412581dec4cba34e1b5ecc8400, type: 2}
+    sentence: (Don't talking to him....)
