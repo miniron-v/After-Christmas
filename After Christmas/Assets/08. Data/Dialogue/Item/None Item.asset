@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c24672a27f90a24fb333e3077219294, type: 3}
   m_Name: None Item
   m_EditorClassIdentifier: 
-  participants:
-  - {fileID: 0}
+  participants: []
   dialogueLines:
   - speaker: {fileID: 0}
     sentence: No Item Here.
