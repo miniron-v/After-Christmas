@@ -80,24 +80,25 @@ public class DialogueManager : MonoBehaviour
                 characterImageMap[character] = currentSlot;
                 currentSlot.sprite = character.characterImage;
                 currentSlot.color = inactiveColor;
-                currentSlot.transform.SetAsFirstSibling();
                 slotIndex++;
             }
         }
 
-        if (playerData != null && playerData.characterImage != null && !characterImageMap.ContainsKey(playerData))
+        // 대화할 상대가 없다면, player Image를 표시하지 않음
+        if (data.participants.Length > 0)
         {
-            if (slotIndex < characterImageSlots.Count)
+            if (playerData != null && playerData.characterImage != null && !characterImageMap.ContainsKey(playerData))
             {
-                Image nextSlot = characterImageSlots[slotIndex];
-                nextSlot.gameObject.SetActive(true);
-                characterImageMap[playerData] = nextSlot;
-                nextSlot.sprite = playerData.characterImage;
-                nextSlot.color = inactiveColor;
-                nextSlot.transform.SetAsFirstSibling();
+                if (slotIndex < characterImageSlots.Count)
+                {
+                    Image nextSlot = characterImageSlots[slotIndex];
+                    nextSlot.gameObject.SetActive(true);
+                    characterImageMap[playerData] = nextSlot;
+                    nextSlot.sprite = playerData.characterImage;
+                    nextSlot.color = inactiveColor;
+                }
             }
         }
-
 
         // 대화 시작 문장 꺼내기
         foreach (DialogueData.DialogueLine line in data.dialogueLines)
