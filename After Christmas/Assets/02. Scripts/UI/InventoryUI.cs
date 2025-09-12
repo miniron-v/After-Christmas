@@ -31,9 +31,7 @@ public class InventoryUI : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
-        {
             Close();
-        }
     }
 
     public void Open(PlayerItemHandler h)
@@ -51,11 +49,18 @@ public class InventoryUI : MonoBehaviour
 
     public void Close()
     {
+        // 이미 Destroy된 경우 방어
+        if (this == null || gameObject == null)
+            return;
+
         gameObject.SetActive(false);
         handler = null;
         itemSnapshot.Clear();
         spawnSnapshot.Clear();
         currentItemID = null;
+
+        // 자기 자신이 Owner일 경우만 Release
+        UIModalGate.Release(this);
     }
 
     private void BuildItems()
@@ -132,7 +137,6 @@ public class InventoryUI : MonoBehaviour
 
             handler.Teleport(spawnSnapshot[selectedIndex]);
             teleportSelectionUI.Close();
-
         });
 
         // InventoryUI 비활성화

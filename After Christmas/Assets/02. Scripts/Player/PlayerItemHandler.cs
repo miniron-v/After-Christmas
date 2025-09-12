@@ -62,8 +62,19 @@ public class PlayerItemHandler : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F) && inventoryUI != null)
-            inventoryUI.Open(this);
+        // inventoryUI가 null이 아니고, 오브젝트가 파괴되지 않은 경우만 열기
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            if (inventoryUI == null || inventoryUI.gameObject == null)
+            {
+                // 씬에서 새로운 InventoryUI를 찾음
+                inventoryUI = FindFirstObjectByType<InventoryUI>();
+            }
+
+
+            if (inventoryUI != null && inventoryUI.gameObject != null)
+                inventoryUI.Open(this);
+        }
 
         if (Input.GetKeyDown(KeyCode.G))
             UnHoldItem();
