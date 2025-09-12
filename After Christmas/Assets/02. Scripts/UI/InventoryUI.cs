@@ -8,14 +8,11 @@ public class InventoryUI : MonoBehaviour
 {
     [SerializeField] private Transform contentRoot;
     [SerializeField] private Button buttonPrefab;
-    [SerializeField] private Button backToItemsButton;
     [SerializeField] private Button prevSceneButton;
     [SerializeField] private Button nextSceneButton;
     [SerializeField] private TeleportSelectionUI teleportSelectionUI;
 
     private PlayerItemHandler handler;
-    private enum PanelState { Items, Spawns }
-    private PanelState state = PanelState.Items;
 
     private List<string> itemSnapshot = new();
     private List<SpawnTransform> spawnSnapshot = new();
@@ -25,9 +22,6 @@ public class InventoryUI : MonoBehaviour
 
     private void Awake()
     {
-        if (backToItemsButton != null)
-            backToItemsButton.onClick.AddListener(BuildItems);
-
         if (prevSceneButton != null)
             prevSceneButton.onClick.AddListener(() => ChangeScenePage(-1));
         if (nextSceneButton != null)
@@ -38,8 +32,7 @@ public class InventoryUI : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (state == PanelState.Items) Close();
-            else BuildItems();
+            Close();
         }
     }
 
@@ -54,7 +47,6 @@ public class InventoryUI : MonoBehaviour
 
         gameObject.SetActive(true);
         BuildItems();
-        backToItemsButton?.gameObject.SetActive(false);
     }
 
     public void Close()
@@ -64,13 +56,10 @@ public class InventoryUI : MonoBehaviour
         itemSnapshot.Clear();
         spawnSnapshot.Clear();
         currentItemID = null;
-        state = PanelState.Items;
     }
 
     private void BuildItems()
     {
-        state = PanelState.Items;
-        backToItemsButton?.gameObject.SetActive(false);
         Clear(contentRoot);
         itemSnapshot.Clear();
         spawnSnapshot.Clear();

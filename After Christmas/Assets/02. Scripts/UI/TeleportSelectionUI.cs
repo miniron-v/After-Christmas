@@ -8,27 +8,36 @@ public class TeleportSelectionUI : MonoBehaviour
 {
     [SerializeField] private Transform contentRoot;
     [SerializeField] private Button optionButtonPrefab;
-    [SerializeField] private float radius;
+    [SerializeField] private float radius = 2f; // 적당히 플레이어 앞쪽으로 당길 거리
+    [SerializeField] private float pivot = 10f; // 적당히 플레이어 앞쪽으로 당길 거리
 
     private Action<int> onSelect;
 
+    [Header("Camera Follow Reference")]
+    public Camera mainCamera;
 
-    public void Open(Vector3 worldPosition, List<string> labels, Action<int> onSelectIndex)
+    void Awake()
     {
-        transform.position = worldPosition;
+        if (mainCamera == null) mainCamera = Camera.main;
+    }
 
-        UIModalGate.Acquire(this, Close);
-
+    public void Open(Vector3 targetPosition, List<string> labels, Action<int> onSelectIndex)
+    {
         onSelect = onSelectIndex;
 
         // 기존 버튼 제거
         for (int i = contentRoot.childCount - 1; i >= 0; i--)
             Destroy(contentRoot.GetChild(i).gameObject);
 
+        // **카메라 회전 기준 offset**
+        Quaternion camRot = mainCamera.transform.rotation; 
+        Vector3 offset = camRot * new Vector3(0, 0, -pivot); // 플레이어 머리 위, 앞쪽으로 당기기
+        transform.position = targetPosition + offset;
+
+        // 버튼 배치
         int N = labels.Count;
         float startAngle = -90f;
         float endAngle = 90f;
-
         Vector3 canvasScale = contentRoot.lossyScale;
         float scaleFactor = canvasScale.x;
 
@@ -57,6 +66,10 @@ public class TeleportSelectionUI : MonoBehaviour
             });
         }
 
+        // 카메라 평행 방향 바라보기
+        transform.rotation = camRot;
+
+        UIModalGate.Acquire(this, Close);
         gameObject.SetActive(true);
     }
 
