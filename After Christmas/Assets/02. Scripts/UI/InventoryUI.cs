@@ -11,6 +11,7 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] private Button backToItemsButton;
     [SerializeField] private Button prevSceneButton;
     [SerializeField] private Button nextSceneButton;
+    [SerializeField] private TeleportSelectionUI teleportSelectionUI;
 
     private PlayerItemHandler handler;
     private enum PanelState { Items, Spawns }
@@ -25,7 +26,7 @@ public class InventoryUI : MonoBehaviour
     private void Awake()
     {
         if (backToItemsButton != null)
-            backToItemsButton.onClick.AddListener(() => BuildItems());
+            backToItemsButton.onClick.AddListener(BuildItems);
 
         if (prevSceneButton != null)
             prevSceneButton.onClick.AddListener(() => ChangeScenePage(-1));
@@ -47,6 +48,10 @@ public class InventoryUI : MonoBehaviour
         handler = h;
         activeSceneIndex = ItemInfoManager.Instance.GetSceneIndex(SceneManager.GetActiveScene().name);
         currentSceneIndex = activeSceneIndex;
+
+        // InventoryUI가 Gate 확보
+        UIModalGate.Acquire(this, Close);
+
         gameObject.SetActive(true);
         BuildItems();
         backToItemsButton?.gameObject.SetActive(false);
@@ -64,8 +69,8 @@ public class InventoryUI : MonoBehaviour
 
     private void BuildItems()
     {
-        backToItemsButton?.gameObject.SetActive(false);
         state = PanelState.Items;
+        backToItemsButton?.gameObject.SetActive(false);
         Clear(contentRoot);
         itemSnapshot.Clear();
         spawnSnapshot.Clear();
@@ -89,7 +94,7 @@ public class InventoryUI : MonoBehaviour
             {
                 if (!btn.interactable)
                 {
-                    Debug.Log("해당되는 씬 아님");
+                    Debug.Log("해당 씬에서는 사용할 수 없는 아이템입니다.");
                     return;
                 }
 
@@ -107,29 +112,42 @@ public class InventoryUI : MonoBehaviour
 
     private void BuildSpawns()
     {
-        backToItemsButton?.gameObject.SetActive(true);
-        state = PanelState.Spawns;
-        Clear(contentRoot);
-        spawnSnapshot.Clear();
-
         if (handler == null) return;
+
         var spawns = handler.GetSpawnsOf(handler.GetHoldItemID(), currentSceneIndex);
+        spawnSnapshot.Clear();
         spawnSnapshot.AddRange(spawns);
 
-        for (int i = 0; i < spawnSnapshot.Count; i++)
+        if (spawnSnapshot.Count == 0)
         {
-            int captured = i;
-            var btn = Instantiate(buttonPrefab, contentRoot);
-            btn.GetComponentInChildren<TMP_Text>().text = spawnSnapshot[i].mapName;
-            btn.interactable = currentSceneIndex == activeSceneIndex;
-
-            btn.onClick.AddListener(() =>
-            {
-                if (!btn.interactable) return;
-                handler.Teleport(spawnSnapshot[captured]);
-                Close();
-            });
+            Debug.Log("해당 아이템에 사용할 스폰 지점이 없습니다.");
+            UpdateSceneButtons();
+            return;
         }
+
+        List<string> labels = new List<string>();
+        foreach (var spawn in spawnSnapshot)
+            labels.Add(spawn.mapName);
+
+        Vector3 headPos = handler != null && handler.gameObject != null
+            ? handler.gameObject.transform.position + Vector3.up * 1.8f
+            : Vector3.zero;
+
+        // InventoryUI를 끄기 전에 Gate Release
+        UIModalGate.Release(this);
+
+        // Teleport UI 열기
+        teleportSelectionUI.Open(headPos, labels, (selectedIndex) =>
+        {
+            if (selectedIndex < 0 || selectedIndex >= spawnSnapshot.Count) return;
+
+            handler.Teleport(spawnSnapshot[selectedIndex]);
+            teleportSelectionUI.Close();
+
+        });
+
+        // InventoryUI 비활성화
+        gameObject.SetActive(false);
 
         UpdateSceneButtons();
     }

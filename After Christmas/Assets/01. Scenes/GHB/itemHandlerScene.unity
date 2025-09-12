@@ -1774,6 +1774,7 @@ MonoBehaviour:
   backToItemsButton: {fileID: 585168450}
   prevSceneButton: {fileID: 1666430026}
   nextSceneButton: {fileID: 1322836898}
+  teleportSelectionUI: {fileID: 1840213031}
 --- !u!114 &684201080
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4161,7 +4162,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   contentRoot: {fileID: 1143030291}
   optionButtonPrefab: {fileID: 4989172451609177710, guid: 4ba2c62a0330f814a9a2e7f89bc1939f, type: 3}
-  radius: 3
+  radius: 2
 --- !u!114 &1840213032
 MonoBehaviour:
   m_ObjectHideFlags: 0
