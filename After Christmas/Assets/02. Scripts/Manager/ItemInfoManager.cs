@@ -19,8 +19,12 @@ public class ItemInfoManager : MonoBehaviour
     [Tooltip("기억 씬들을 플레이 순서에 따라서 인스펙터에 넣어 주세요")]
     [SerializeField] private List<SceneInfo> sceneInfos = new List<SceneInfo>();
 
-    private List<Dictionary<string, List<SpawnTransform>>> itemList 
+    // 씬<아이템 이름,<아이템에 연결된 텔레포트 지점>>
+    private List<Dictionary<string, List<SpawnTransform>>> itemList
         = new List<Dictionary<string, List<SpawnTransform>>>();
+
+    private Dictionary<string, Sprite> itemIcons
+        = new Dictionary<string, Sprite>();
 
     private void Awake()
     {
@@ -59,17 +63,33 @@ public class ItemInfoManager : MonoBehaviour
         return itemList[sceneIndex].ContainsKey(itemID);
     }
 
-    public void RecordItemInfo(string itemID, SpawnTransform info)
+    public void RecordItemInfo(string itemID, SpawnTransform info, Sprite icon = null)
     {
         int sceneIndex = GetSceneIndex(SceneManager.GetActiveScene().name);
         if (sceneIndex < 0) return;
 
+        // 씬별 아이템 위치 기록
         var dict = itemList[sceneIndex];
         if (!dict.ContainsKey(itemID))
             dict[itemID] = new List<SpawnTransform>();
 
         dict[itemID].Add(info);
+
+        // 아이콘 저장 (이미 등록되어 있으면 건너뛰기)
+        if (icon != null && !itemIcons.ContainsKey(itemID))
+        {
+            itemIcons[itemID] = icon;
+        }
     }
+
+    // 아이콘 조회용
+    public Sprite GetItemIcon(string itemID)
+    {
+        if (itemIcons.TryGetValue(itemID, out var sprite))
+            return sprite;
+        return null;
+    }
+
 
     public IReadOnlyList<string> GetAllItemIDs(int sceneIndex)
     {

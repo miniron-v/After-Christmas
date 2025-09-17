@@ -8,8 +8,8 @@ public class TeleportSelectionUI : MonoBehaviour
 {
     [SerializeField] private Transform contentRoot;
     [SerializeField] private Button optionButtonPrefab;
-    [SerializeField] private float radius = 2f; // 적당히 플레이어 앞쪽으로 당길 거리
-    [SerializeField] private float pivot = 10f; // 적당히 플레이어 앞쪽으로 당길 거리
+    [SerializeField] private float radius = 2f;
+    [SerializeField] private float pivot = 5f; // 적당히 플레이어 앞쪽으로 당길 거리
 
     private Action<int> onSelect;
 

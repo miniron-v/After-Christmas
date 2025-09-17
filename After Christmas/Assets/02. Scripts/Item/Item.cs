@@ -57,6 +57,10 @@ public class Item : MonoBehaviour, IInteractable
     // isTeleportItem이 false라면 이 아이템은 종단 아이템
     public bool isTeleportItem = true;
 
+    // 아이템 아이콘
+    [SerializeField] private Sprite itemIcon;
+    public Sprite ItemIcon => itemIcon;
+
     private void Awake()
     {
         rend = GetComponent<Renderer>();
