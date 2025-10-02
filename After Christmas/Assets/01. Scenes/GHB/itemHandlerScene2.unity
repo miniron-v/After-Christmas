@@ -180,6 +180,7 @@ MonoBehaviour:
   isInteractableWithItem: 0
   needItemID: 
   isTeleportItem: 1
+  itemIcon: {fileID: 0}
 --- !u!65 &24790181
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -704,6 +705,7 @@ MonoBehaviour:
   isInteractableWithItem: 0
   needItemID: 
   isTeleportItem: 0
+  itemIcon: {fileID: 0}
 --- !u!65 &300606229
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1040,6 +1042,7 @@ MonoBehaviour:
   isInteractableWithItem: 0
   needItemID: 
   isTeleportItem: 1
+  itemIcon: {fileID: 0}
 --- !u!65 &504589213
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1493,6 +1496,7 @@ GameObject:
   - component: {fileID: 684201081}
   - component: {fileID: 684201080}
   - component: {fileID: 684201079}
+  - component: {fileID: 684201084}
   m_Layer: 5
   m_Name: InventoryUI
   m_TagString: Untagged
@@ -1513,7 +1517,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   contentRoot: {fileID: 1397736110}
-  buttonPrefab: {fileID: 8762293252099541848, guid: 71bfc5f99f75c824f90673255f9f1b9e, type: 3}
+  buttonPool: {fileID: 684201084}
   prevSceneButton: {fileID: 1666430026}
   nextSceneButton: {fileID: 1322836898}
   teleportSelectionUI: {fileID: 1840213031}
@@ -1603,6 +1607,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &684201084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 684201078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dad45f3e764455458ffdd201b1b5f48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 9221568696884975382, guid: 71bfc5f99f75c824f90673255f9f1b9e, type: 3}
+  initialCount: 10
 --- !u!1 &757733452
 GameObject:
   m_ObjectHideFlags: 0
@@ -1807,6 +1825,7 @@ MonoBehaviour:
   isInteractableWithItem: 0
   needItemID: 
   isTeleportItem: 1
+  itemIcon: {fileID: 0}
 --- !u!65 &849629920
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2018,6 +2037,7 @@ MonoBehaviour:
   isInteractableWithItem: 0
   needItemID: 
   isTeleportItem: 1
+  itemIcon: {fileID: 0}
 --- !u!1 &1008061616
 GameObject:
   m_ObjectHideFlags: 0
@@ -4007,6 +4027,7 @@ MonoBehaviour:
   isInteractableWithItem: 0
   needItemID: 
   isTeleportItem: 1
+  itemIcon: {fileID: 0}
 --- !u!1 &1840213030
 GameObject:
   m_ObjectHideFlags: 0
@@ -4649,6 +4670,7 @@ MonoBehaviour:
   isInteractableWithItem: 1
   needItemID: OBJ3
   isTeleportItem: 1
+  itemIcon: {fileID: 0}
 --- !u!65 &2047469811
 BoxCollider:
   m_ObjectHideFlags: 0

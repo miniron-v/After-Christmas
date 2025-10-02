@@ -26,6 +26,9 @@ public class ItemInfoManager : MonoBehaviour
     private Dictionary<string, Sprite> itemIcons
         = new Dictionary<string, Sprite>();
 
+    // 추가: 방문 기록
+    private HashSet<int> visitedScenes = new HashSet<int>();
+
     private void Awake()
     {
         if (Instance == null)
@@ -40,11 +43,26 @@ public class ItemInfoManager : MonoBehaviour
 
                 itemList.Add(new Dictionary<string, List<SpawnTransform>>());
             }
+
+            // 씬 로딩 이벤트 구독
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
         else
         {
             Destroy(gameObject);
         }
+    }
+
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        int index = GetSceneIndex(scene.name);
+        if (index >= 0)
+            MarkSceneVisited(index);
     }
 
     public int GetSceneIndex(string sceneName)
@@ -90,7 +108,6 @@ public class ItemInfoManager : MonoBehaviour
         return null;
     }
 
-
     public IReadOnlyList<string> GetAllItemIDs(int sceneIndex)
     {
         if (sceneIndex < 0 || sceneIndex >= itemList.Count) return Array.Empty<string>();
@@ -109,10 +126,16 @@ public class ItemInfoManager : MonoBehaviour
 
     public int GetSceneCount() => sceneInfos.Count;
 
+    // 방문 기록 관련
+    public void MarkSceneVisited(int sceneIndex)
+    {
+        if (!visitedScenes.Contains(sceneIndex))
+            visitedScenes.Add(sceneIndex);
+    }
+
     public bool HasVisitedScene(int sceneIndex)
     {
-        if (sceneIndex < 0 || sceneIndex >= itemList.Count) return false;
-        return itemList[sceneIndex].Count > 0;
+        return visitedScenes.Contains(sceneIndex);
     }
 
     #endregion

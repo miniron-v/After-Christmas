@@ -10,6 +10,7 @@ public static class UIModalGate
     {
         if (currentOwner != null && currentOwner != newOwner)
         {
+            Debug.Log("여기");
             // Unity Object가 이미 Destroy 되었는지 체크
             if (currentOwner is UnityEngine.Object unityObj && unityObj == null)
             {

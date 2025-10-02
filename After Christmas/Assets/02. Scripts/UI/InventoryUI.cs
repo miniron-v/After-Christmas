@@ -7,18 +7,20 @@ using UnityEngine.SceneManagement;
 public class InventoryUI : MonoBehaviour
 {
     [SerializeField] private Transform contentRoot;
-    [SerializeField] private Button buttonPrefab;
+    [SerializeField] private PoolManager buttonPool;     // 범용 버튼 풀
     [SerializeField] private Button prevSceneButton;
     [SerializeField] private Button nextSceneButton;
     [SerializeField] private TeleportSelectionUI teleportSelectionUI;
 
     private PlayerItemHandler handler;
-
     private List<string> itemSnapshot = new();
     private List<SpawnTransform> spawnSnapshot = new();
     private string currentItemID = null;
     private int currentSceneIndex = 0;
     private int activeSceneIndex = 0;
+
+    // 씬별 버튼 매핑
+    private Dictionary<string, Button> itemButtons = new();
 
     private void Awake()
     {
@@ -28,30 +30,22 @@ public class InventoryUI : MonoBehaviour
             nextSceneButton.onClick.AddListener(() => ChangeScenePage(1));
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-            Close();
-    }
-
     public void Open(PlayerItemHandler h)
     {
+        if (gameObject.activeSelf) return;
+
         handler = h;
         activeSceneIndex = ItemInfoManager.Instance.GetSceneIndex(SceneManager.GetActiveScene().name);
         currentSceneIndex = activeSceneIndex;
 
-        // InventoryUI가 Gate 확보
         UIModalGate.Acquire(this, Close);
-
         gameObject.SetActive(true);
         BuildItems();
     }
 
     public void Close()
     {
-        // 이미 Destroy된 경우 방어
-        if (this == null || gameObject == null)
-            return;
+        if (this == null || gameObject == null) return;
 
         gameObject.SetActive(false);
         handler = null;
@@ -59,50 +53,63 @@ public class InventoryUI : MonoBehaviour
         spawnSnapshot.Clear();
         currentItemID = null;
 
-        // 자기 자신이 Owner일 경우만 Release
         UIModalGate.Release(this);
     }
 
     private void BuildItems()
     {
-        Clear(contentRoot);
-        itemSnapshot.Clear();
-        spawnSnapshot.Clear();
-        currentItemID = null;
-
         if (handler == null) return;
 
         var ids = handler.GetAllItemIDs(currentSceneIndex);
+        itemSnapshot.Clear();
         itemSnapshot.AddRange(ids);
 
         bool isCurrentScenePage = currentSceneIndex == activeSceneIndex;
 
+        // 1️⃣ 기존 버튼 모두 비활성화
+        foreach (var btn in itemButtons.Values)
+            btn.gameObject.SetActive(false);
+
+        // 2️⃣ 아이템 리스트 순회
         for (int i = 0; i < itemSnapshot.Count; i++)
         {
-            int captured = i;
-            var btn = Instantiate(buttonPrefab, contentRoot);
-            btn.GetComponentInChildren<TMP_Text>().text = itemSnapshot[i];
-            btn.interactable = isCurrentScenePage;
+            string itemID = itemSnapshot[i];
+            Button btn;
 
-            btn.onClick.AddListener(() =>
+            // 2-1️⃣ 기존 버튼 재활용
+            if (!itemButtons.TryGetValue(itemID, out btn))
             {
-                if (!btn.interactable)
-                {
-                    Debug.Log("해당 씬에서는 사용할 수 없는 아이템입니다.");
-                    return;
-                }
+                var obj = buttonPool.Get();
+                obj.transform.SetParent(contentRoot, false);
 
-                currentItemID = itemSnapshot[captured];
-                if (handler.isHavingItem(currentItemID))
+                btn = obj.GetComponent<Button>();
+                itemButtons[itemID] = btn;
+
+                var txt = obj.GetComponentInChildren<TMP_Text>();
+                if (txt != null) txt.text = itemID;
+
+                btn.onClick.RemoveAllListeners();
+                btn.onClick.AddListener(() =>
                 {
-                    handler.HoldItem(currentItemID);
-                    BuildSpawns();
-                }
-            });
+                    if (!btn.interactable) return;
+
+                    currentItemID = itemID;
+                    if (handler.isHavingItem(currentItemID))
+                    {
+                        handler.HoldItem(currentItemID);
+                        BuildSpawns();
+                    }
+                });
+            }
+
+            // 2-2️⃣ 버튼 상태 갱신 후 활성화
+            btn.interactable = isCurrentScenePage;
+            btn.gameObject.SetActive(true);
         }
 
         UpdateSceneButtons();
     }
+
 
     private void BuildSpawns()
     {
@@ -127,10 +134,8 @@ public class InventoryUI : MonoBehaviour
             ? handler.gameObject.transform.position + Vector3.up * 1.8f
             : Vector3.zero;
 
-        // InventoryUI를 끄기 전에 Gate Release
         UIModalGate.Release(this);
 
-        // Teleport UI 열기
         teleportSelectionUI.Open(headPos, labels, (selectedIndex) =>
         {
             if (selectedIndex < 0 || selectedIndex >= spawnSnapshot.Count) return;
@@ -139,16 +144,8 @@ public class InventoryUI : MonoBehaviour
             teleportSelectionUI.Close();
         });
 
-        // InventoryUI 비활성화
         gameObject.SetActive(false);
-
         UpdateSceneButtons();
-    }
-
-    private void Clear(Transform root)
-    {
-        for (int i = root.childCount - 1; i >= 0; i--)
-            Destroy(root.GetChild(i).gameObject);
     }
 
     private void ChangeScenePage(int dir)
