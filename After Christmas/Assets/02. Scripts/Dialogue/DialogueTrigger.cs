@@ -1,42 +1,44 @@
+// DialogueTrigger.cs
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DialogueTrigger : MonoBehaviour
+public class DialogueTrigger : MonoBehaviour, IInteractable
 {
-    public List<DialogueData> dialogueSequence;
+    [SerializeField] private List<DialogueData> dialogueSequence;
+    private int currentIndex = 0;
+    private bool hasPlayedDialogue = false;
 
-    private bool isPlayerInRange = false;
-    private int currentDialogueIndex = 0;
+    public bool HasDialogue() => dialogueSequence != null && dialogueSequence.Count > 0;
 
-    public string playerTag = "Player";
-
-    void Update()
+    // 대화 시퀀스 시작, 끝나면 onEnd 콜백 호출
+    public void StartDialogueSequence(Action onEnd = null)
     {
-        if (isPlayerInRange && Input.GetKeyDown(KeyCode.E))
+        if (!HasDialogue() || hasPlayedDialogue)
         {
-            if (currentDialogueIndex < dialogueSequence.Count)
+            onEnd?.Invoke();
+            return;
+        }
+
+        hasPlayedDialogue = true;
+
+        if (currentIndex < dialogueSequence.Count)
+        {
+            DialogueData data = dialogueSequence[currentIndex];
+            currentIndex++;
+            DialogueManager.Instance.StartDialogue(data, () =>
             {
-                DialogueManager.Instance.StartDialogue(dialogueSequence[currentDialogueIndex]);
-                currentDialogueIndex++;
-            }
+                StartDialogueSequence(onEnd); // 다음 대화 또는 끝나면 onEnd 호출
+            });
+        }
+        else
+        {
+            onEnd?.Invoke();
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void Interact()
     {
-        if (other.CompareTag(playerTag))
-        {
-            Debug.Log("Dialogue Trigger Enter");
-            isPlayerInRange = true;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag(playerTag))
-        {
-            Debug.Log("Dialogue Trigger Exit");
-            isPlayerInRange = false;
-        }
+        StartDialogueSequence();
     }
 }

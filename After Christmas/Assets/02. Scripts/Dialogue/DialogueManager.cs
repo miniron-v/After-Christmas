@@ -4,6 +4,7 @@ using TMPro;
 using System.Collections.Generic;
 using System.Collections;
 using System.Linq;
+using System;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -27,6 +28,8 @@ public class DialogueManager : MonoBehaviour
 
     private Color activeColor = new Color(1f, 1f, 1f, 1f);
     private Color inactiveColor = new Color(0.5f, 0.5f, 0.5f, 1f);
+
+    public Action onDialogueEnd;
 
     private void Awake()
     {
@@ -54,9 +57,10 @@ public class DialogueManager : MonoBehaviour
     }
 
     // Dialogue 시작
-    public void StartDialogue(DialogueData data)
+    public void StartDialogue(DialogueData data, Action onEnd = null)
     {
         if (isDialogueActive) return;
+        onDialogueEnd = onEnd;
         isDialogueActive = true;
         dialogueCanvas.SetActive(true);
         dialogueQueue.Clear();
@@ -182,6 +186,7 @@ public class DialogueManager : MonoBehaviour
             image.sprite = null;
             image.color = Color.white;
         }
+        onDialogueEnd?.Invoke();
         characterImageMap.Clear();
     }
 

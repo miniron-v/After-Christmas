@@ -58,6 +58,10 @@ public class Item : MonoBehaviour, IInteractable, IGlowable
     [SerializeField] private Sprite itemIcon;
     public Sprite ItemIcon => itemIcon;
 
+    // 대화 로직 관련 변수
+    private DialogueTrigger dialogueTrigger;
+    private bool hasPlayedDialogue = false;
+
     private void Awake()
     {
         rend = GetComponent<Renderer>();
@@ -70,6 +74,8 @@ public class Item : MonoBehaviour, IInteractable, IGlowable
         {
             isTeleportItem = false;
         }
+
+        dialogueTrigger = GetComponent<DialogueTrigger>();
     }
 
     public void Glow(bool detected)
@@ -83,16 +89,25 @@ public class Item : MonoBehaviour, IInteractable, IGlowable
 
     public void Interact()
     {
-        Debug.Log("interact");
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player == null) return;
 
-        // 텔레포트 가능(반대 아이템 있음)
+        if (!hasPlayedDialogue && dialogueTrigger != null && dialogueTrigger.HasDialogue())
+        {
+            hasPlayedDialogue = true;
+            dialogueTrigger.StartDialogueSequence(() => PerformInteraction(player));
+        }
+        else
+        {
+            PerformInteraction(player);
+        }
+    }
+
+    private void PerformInteraction(GameObject player)
+    {
         if (isTeleportItem)
         {
             ShowTeleportUI(player);
         }
-        // 아닐 경우 정보 저장만 (종단 아이템)
         else
         {
             RecordItem(player, -1);
