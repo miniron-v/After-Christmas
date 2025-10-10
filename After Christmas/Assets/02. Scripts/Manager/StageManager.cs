@@ -10,12 +10,12 @@ public class StageManager : MonoBehaviour
 
     private void OnEnable()
     {
-        Item.interactWithItem += IncreaseCount;
+        SpecialInteractObj.interactWithItem += IncreaseCount;
     }
 
     private void OnDisable()
     {
-        Item.interactWithItem -= IncreaseCount;
+        SpecialInteractObj.interactWithItem -= IncreaseCount;
     }
 
     private void IncreaseCount()

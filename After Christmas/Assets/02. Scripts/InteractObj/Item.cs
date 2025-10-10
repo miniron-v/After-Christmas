@@ -16,7 +16,7 @@ public struct SpawnTransform
     }
 }
 
-public class Item : MonoBehaviour, IInteractable
+public class Item : MonoBehaviour, IInteractable, IGlowable
 {
     // 아이템이 있던 위치(하나의 기억)
     public string mapName;
@@ -44,24 +44,32 @@ public class Item : MonoBehaviour, IInteractable
     public Transform playerSpawnPoint;
     public Transform cameraSpawnPoint;
 
+    [HideInInspector]
     // 반대 아이템으로 가는 경로가 열렸는지 체크하는 변수, 디폴트값 false
     public bool isRecorded = false;
-
-    // 물건을 가지고 와서 잡은 상태로 상호작용하면 특수 상호작용할 수 있는지 체크
-    [SerializeField] private bool isInteractableWithItem = false;
-    [SerializeField] private string needItemID;
-    public static event Action interactWithItem;
 
     // 텔레포트(연결된 물체가 있는지)기능이 있는 아이템인지 확인, 디폴트값 true
     // isTeleportItem이 true라면 linkeditem이 1개는 있어야 함
     // isTeleportItem이 false라면 이 아이템은 종단 아이템
+    [HideInInspector]
     public bool isTeleportItem = true;
+
+    // 아이템 아이콘
+    [SerializeField] private Sprite itemIcon;
+    public Sprite ItemIcon => itemIcon;
 
     private void Awake()
     {
         rend = GetComponent<Renderer>();
         if (rend != null)
             originalColor = rend.material.color;
+
+        // 인스펙터 수정을 최소화하기 위한 로직
+        // 링크된 아이템이 없다 -> 텔레포트용 X, 종단 아이템
+        if (linkedItems.Count == 0)
+        {
+            isTeleportItem = false;
+        }
     }
 
     public void Glow(bool detected)
@@ -78,13 +86,6 @@ public class Item : MonoBehaviour, IInteractable
         Debug.Log("interact");
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player == null) return;
-
-        // 아이템을 든 상태로 상호작용 가능한지 먼저 체크
-        if (isInteractableWithItem && IsSpecialInteractable(player))
-        {
-            SpecialInteraction();
-            return;
-        }
 
         // 텔레포트 가능(반대 아이템 있음)
         if (isTeleportItem)
@@ -185,17 +186,5 @@ public class Item : MonoBehaviour, IInteractable
             );
 
         target.isRecorded = true;
-    }
-
-    private bool IsSpecialInteractable(GameObject player)
-    {
-        string holdItemID = player.GetComponent<PlayerItemHandler>().GetHoldItemID();
-        return holdItemID == needItemID;
-    }
-
-    private void SpecialInteraction()
-    {
-        interactWithItem?.Invoke();
-        isInteractableWithItem = false;
     }
 }
