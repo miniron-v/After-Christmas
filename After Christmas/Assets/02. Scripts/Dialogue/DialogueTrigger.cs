@@ -13,6 +13,11 @@ public class DialogueTrigger : MonoBehaviour, IInteractable
 
     // 대화 시퀀스 시작, 끝나면 onEnd 콜백 호출
     public void StartDialogueSequence(Action onEnd = null)
+    public string playerTag = "Player";
+
+    public GameObject talkInteract;
+
+    void Update()
     {
         if (!HasDialogue() || hasPlayedDialogue)
         {
@@ -40,5 +45,17 @@ public class DialogueTrigger : MonoBehaviour, IInteractable
     public void Interact()
     {
         StartDialogueSequence();
+    }
+
+    public void CheckToTalk()
+    {
+        if (currentDialogueIndex < dialogueSequence.Count)
+        {
+            talkInteract.SetActive(true);
+        }
+        else
+        {
+            talkInteract.SetActive(false);
+        }
     }
 }

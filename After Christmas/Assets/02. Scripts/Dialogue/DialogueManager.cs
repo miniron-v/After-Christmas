@@ -36,11 +36,11 @@ public class DialogueManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(transform.root.gameObject);
         }
         else
         {
-            Destroy(gameObject);
+            Destroy(transform.root.gameObject);
         }
 
         dialogueCanvas.SetActive(false);
@@ -153,12 +153,20 @@ public class DialogueManager : MonoBehaviour
             }
         }
 
-        if (!playerData)
+        string speakerName = line.speaker?.characterName;
+
+        if (line.speaker == null || string.IsNullOrEmpty(speakerName))
         {
-            nameText.text = line.speaker.characterName;
+            nameText.gameObject.SetActive(false);
         }
+        else
+        {
+            nameText.gameObject.SetActive(true);
+
+            nameText.text = speakerName;
+        }
+
         typingCoroutine = StartCoroutine(TypeSentence(line.sentence));
-    
     }
 
     // 타이핑 효과 코루틴
