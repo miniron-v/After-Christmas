@@ -12,10 +12,10 @@ public class PlayerColliderHandler : MonoBehaviour
     {
         if ((itemLayerMask.value & (1 << other.gameObject.layer)) != 0)
         {
-            Item itemScript = other.GetComponent<Item>();
-            if (itemScript != null)
+            IGlowable glowObject = other.GetComponent<IGlowable>();
+            if (glowObject != null)
             {
-                itemScript.Glow(true);
+                glowObject.Glow(true);
             }
         }
     }
@@ -24,10 +24,10 @@ public class PlayerColliderHandler : MonoBehaviour
     {
         if ((itemLayerMask.value & (1 << other.gameObject.layer)) != 0)
         {
-            Item itemScript = other.GetComponent<Item>();
-            if (itemScript != null)
+            IGlowable glowObject = other.GetComponent<IGlowable>();
+            if (glowObject != null)
             {
-                itemScript.Glow(false);
+                glowObject.Glow(true);
             }
         }
     }

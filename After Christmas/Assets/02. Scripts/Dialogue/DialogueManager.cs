@@ -4,6 +4,7 @@ using TMPro;
 using System.Collections.Generic;
 using System.Collections;
 using System.Linq;
+using System;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -28,16 +29,18 @@ public class DialogueManager : MonoBehaviour
     private Color activeColor = new Color(1f, 1f, 1f, 1f);
     private Color inactiveColor = new Color(0.5f, 0.5f, 0.5f, 1f);
 
+    public Action onDialogueEnd;
+
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(transform.root.gameObject);
         }
         else
         {
-            Destroy(gameObject);
+            Destroy(transform.root.gameObject);
         }
 
         dialogueCanvas.SetActive(false);
@@ -54,43 +57,50 @@ public class DialogueManager : MonoBehaviour
     }
 
     // Dialogue 시작
-    public void StartDialogue(DialogueData data)
+    public void StartDialogue(DialogueData data, Action onEnd = null)
     {
         if (isDialogueActive) return;
+        onDialogueEnd = onEnd;
         isDialogueActive = true;
         dialogueCanvas.SetActive(true);
         dialogueQueue.Clear();
         characterImageMap.Clear();
 
-        // 이미지 할당하기
+        // 이미지 슬롯 초기화
         foreach (var slot in characterImageSlots)
         {
-            slot.sprite = null;
-            slot.color = Color.clear;
-            slot.transform.SetAsFirstSibling();
+            slot.gameObject.SetActive(false);
         }
 
-        for (int i = 0; i < data.participants.Length && i < characterImageSlots.Count; i++)
+        int slotIndex = 0;
+        foreach (CharacterData character in data.participants)
         {
-            CharacterData character = data.participants[i];
-            if (character != null)
+            if (slotIndex >= characterImageSlots.Count) break;
+
+            Image currentSlot = characterImageSlots[slotIndex];
+            if (character != null && character.characterImage != null)
             {
-                characterImageMap[character] = characterImageSlots[i];
-                characterImageSlots[i].sprite = character.characterImage;
-                characterImageSlots[i].color = inactiveColor;
-                characterImageSlots[i].transform.SetAsFirstSibling();
+                currentSlot.gameObject.SetActive(true);
+                characterImageMap[character] = currentSlot;
+                currentSlot.sprite = character.characterImage;
+                currentSlot.color = inactiveColor;
+                slotIndex++;
             }
         }
 
-        if (playerData != null && !characterImageMap.ContainsKey(playerData))
+        // 대화할 상대가 없다면, player Image를 표시하지 않음
+        if (data.participants.Length > 0)
         {
-            Image nextSlot = GetAvailableImageSlot();
-            if (nextSlot != null)
+            if (playerData != null && playerData.characterImage != null && !characterImageMap.ContainsKey(playerData))
             {
-                characterImageMap[playerData] = nextSlot;
-                nextSlot.sprite = playerData.characterImage;
-                nextSlot.color = inactiveColor;
-                nextSlot.transform.SetAsFirstSibling();
+                if (slotIndex < characterImageSlots.Count)
+                {
+                    Image nextSlot = characterImageSlots[slotIndex];
+                    nextSlot.gameObject.SetActive(true);
+                    characterImageMap[playerData] = nextSlot;
+                    nextSlot.sprite = playerData.characterImage;
+                    nextSlot.color = inactiveColor;
+                }
             }
         }
 
@@ -130,28 +140,33 @@ public class DialogueManager : MonoBehaviour
         DialogueData.DialogueLine line = dialogueQueue.Dequeue();
         currentSentence = line.sentence;
 
-        if (line.speaker == null)
-        {
-            Debug.LogError("CharacterData is null on a dialogue line! Check your DialogueData asset.");
-            EndDialogue();
-            return;
-        }
-
         // 대화 중인 캐릭터만 강조
         foreach (var kvp in characterImageMap)
         {
-            kvp.Value.color = (kvp.Key == line.speaker) ? activeColor : inactiveColor;
+            if (kvp.Key == line.speaker)
+            {
+                kvp.Value.color = activeColor;
+            }
+            else
+            {
+                kvp.Value.color = inactiveColor;
+            }
         }
 
-        if (characterImageMap.ContainsKey(line.speaker))
+        string speakerName = line.speaker?.characterName;
+
+        if (line.speaker == null || string.IsNullOrEmpty(speakerName))
         {
-            // 말하는 캐릭터의 이미지를 맨 위로 올립니다.
-            characterImageMap[line.speaker].transform.SetAsLastSibling();
+            nameText.gameObject.SetActive(false);
+        }
+        else
+        {
+            nameText.gameObject.SetActive(true);
+
+            nameText.text = speakerName;
         }
 
-        nameText.text = line.speaker.characterName;
         typingCoroutine = StartCoroutine(TypeSentence(line.sentence));
-    
     }
 
     // 타이핑 효과 코루틴
@@ -179,6 +194,7 @@ public class DialogueManager : MonoBehaviour
             image.sprite = null;
             image.color = Color.white;
         }
+        onDialogueEnd?.Invoke();
         characterImageMap.Clear();
     }
 

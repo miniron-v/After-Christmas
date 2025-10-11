@@ -1,23 +1,32 @@
 using System;
+using UnityEngine;
 
-// UI가 한번에 하나만 열리게끔 제어
 public static class UIModalGate
 {
     private static object currentOwner;
     private static Action currentOwnerClose;
 
-    // 새로 열 때: 기존이 있으면 닫고, 소유권을 현재로 교체
     public static void Acquire(object newOwner, Action newOwnerClose)
     {
         if (currentOwner != null && currentOwner != newOwner)
         {
-            currentOwnerClose?.Invoke();
+            Debug.Log("여기");
+            // Unity Object가 이미 Destroy 되었는지 체크
+            if (currentOwner is UnityEngine.Object unityObj && unityObj == null)
+            {
+                // 이미 파괴됨 → 그냥 Release
+                Release(currentOwner);
+            }
+            else
+            {
+                currentOwnerClose?.Invoke();
+            }
         }
+
         currentOwner = newOwner;
         currentOwnerClose = newOwnerClose;
     }
 
-    // 닫을 때: 내가 소유자면 게이트 해제
     public static void Release(object owner)
     {
         if (currentOwner == owner)
@@ -27,4 +36,3 @@ public static class UIModalGate
         }
     }
 }
-

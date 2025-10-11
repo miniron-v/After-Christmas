@@ -7,8 +7,16 @@ public class PlayerItemHandler : MonoBehaviour
 
     public string holdItemID { get; private set; } = "";
 
-    public void HoldItem(string itemID) => holdItemID = itemID;
-    public void UnHoldItem() => holdItemID = "";
+    public void HoldItem(string itemID)
+    {
+        HoldItemUI.Instance.Show(ItemInfoManager.Instance.GetItemIcon(itemID));
+        holdItemID = itemID;
+    }
+    public void UnHoldItem()
+    {
+        HoldItemUI.Instance.Hide();
+        holdItemID = "";
+    }
 
     public string GetHoldItemID() => holdItemID;
 
@@ -21,7 +29,9 @@ public class PlayerItemHandler : MonoBehaviour
                 item.cameraSpawnPoint.position,
                 item.mapName
             );
-            ItemInfoManager.Instance.RecordItemInfo(item.itemID, info);
+
+            // 아이콘까지 함께 기록
+            ItemInfoManager.Instance.RecordItemInfo(item.itemID, info, item.ItemIcon);
             item.isRecorded = true;
         }
 
@@ -35,11 +45,12 @@ public class PlayerItemHandler : MonoBehaviour
                     linked.cameraSpawnPoint.position,
                     linked.mapName
                 );
-                ItemInfoManager.Instance.RecordItemInfo(linked.itemID, info);
+                ItemInfoManager.Instance.RecordItemInfo(linked.itemID, info, linked.ItemIcon);
                 linked.isRecorded = true;
             }
         }
     }
+
 
     public bool isHavingItem(string itemID) => ItemInfoManager.Instance.IsHavingItem(itemID);
 
@@ -62,8 +73,21 @@ public class PlayerItemHandler : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F) && inventoryUI != null)
-            inventoryUI.Open(this);
+        // inventoryUI가 null이 아니고, 오브젝트가 파괴되지 않은 경우만 열기
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            if (inventoryUI == null || inventoryUI.gameObject == null)
+                inventoryUI = FindFirstObjectByType<InventoryUI>();
+
+            if (inventoryUI != null && inventoryUI.gameObject != null)
+            {
+                if (inventoryUI.gameObject.activeSelf)
+                    inventoryUI.Close();
+                else
+                    inventoryUI.Open(this);
+            }
+        }
+
 
         if (Input.GetKeyDown(KeyCode.G))
             UnHoldItem();

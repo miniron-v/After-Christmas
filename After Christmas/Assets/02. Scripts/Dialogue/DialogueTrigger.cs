@@ -1,66 +1,44 @@
+// DialogueTrigger.cs
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class DialogueTrigger : MonoBehaviour
+public class DialogueTrigger : MonoBehaviour, IInteractable
 {
-    public DialogueData dialogueData;
-    public CharacterData characterData;
+    [SerializeField] private List<DialogueData> dialogueSequence;
+    private int currentIndex = 0;
+    private bool hasPlayedDialogue = false;
 
-    public GameObject speechBubble;
+    public bool HasDialogue() => dialogueSequence != null && dialogueSequence.Count > 0;
 
-    private bool isPlayerInRange = false;
-
-    public string playerTag = "Player";
-
-    private void Awake()
+    // 대화 시퀀스 시작, 끝나면 onEnd 콜백 호출
+    public void StartDialogueSequence(Action onEnd = null)
     {
-        if (speechBubble != null)
+        if (!HasDialogue() || hasPlayedDialogue)
         {
-            speechBubble.SetActive(false);
+            onEnd?.Invoke();
+            return;
+        }
+
+        hasPlayedDialogue = true;
+
+        if (currentIndex < dialogueSequence.Count)
+        {
+            DialogueData data = dialogueSequence[currentIndex];
+            currentIndex++;
+            DialogueManager.Instance.StartDialogue(data, () =>
+            {
+                StartDialogueSequence(onEnd); // 다음 대화 또는 끝나면 onEnd 호출
+            });
+        }
+        else
+        {
+            onEnd?.Invoke();
         }
     }
 
-    void Update()
+    public void Interact()
     {
-        if (isPlayerInRange && Input.GetKeyDown(KeyCode.E))
-        {
-            if (dialogueData != null)
-            {
-                if (speechBubble != null)
-                {
-                    speechBubble.SetActive(false);
-                }
-
-                DialogueManager.Instance.StartDialogue(dialogueData);
-            }
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag(playerTag))
-        {
-            Debug.Log("Dialogue Trigger Enter");
-            isPlayerInRange = true;
-
-            if (speechBubble != null)
-            {
-                speechBubble.SetActive(true);
-            }
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag(playerTag))
-        {
-            Debug.Log("Dialogue Trigger Exit");
-            isPlayerInRange = false;
-
-
-            if (speechBubble != null)
-            {
-                speechBubble.SetActive(false);
-            }
-        }
+        StartDialogueSequence();
     }
 }
