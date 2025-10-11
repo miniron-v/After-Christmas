@@ -468,7 +468,7 @@ GameObject:
   - component: {fileID: 144121625}
   - component: {fileID: 144121628}
   m_Layer: 5
-  m_Name: NPC1
+  m_Name: NPCImagePos1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -996,7 +996,7 @@ GameObject:
   - component: {fileID: 762596121}
   - component: {fileID: 762596120}
   m_Layer: 5
-  m_Name: NPC2
+  m_Name: NPCImagePos2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
