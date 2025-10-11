@@ -386,8 +386,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a0aea7ac70024994491f1a9495ed9447, type: 2}
+  m_sharedMaterial: {fileID: -5527028629639694758, guid: a0aea7ac70024994491f1a9495ed9447, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -819,8 +819,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: speaker
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a0aea7ac70024994491f1a9495ed9447, type: 2}
+  m_sharedMaterial: {fileID: -5527028629639694758, guid: a0aea7ac70024994491f1a9495ed9447, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -912,7 +912,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &742604770
 Transform:
   m_ObjectHideFlags: 0
@@ -1739,7 +1739,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 5fd33a525fb92764f9c37ae77b85ba0c, type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1802,6 +1802,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: cac610d00ea13a84e95fe6737763aebd, type: 2}
   - {fileID: 11400000, guid: b2cfde31110b1c447b2db7fee8d35c90, type: 2}
   playerTag: Player
+  talkInteract: {fileID: 1687603966}
 --- !u!1001 &1653929210
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1868,7 +1869,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 758408e33c2294841bd79dd15602df1e, type: 3}
       propertyPath: m_Layer
-      value: 10
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1928,8 +1929,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueSequence:
-  - {fileID: 11400000, guid: 5e2c2dad7624c2947a06c600f735efa0, type: 2}
+  - {fileID: 11400000, guid: 099dedd22f9b7f548b918d3e42d1a177, type: 2}
+  - {fileID: 11400000, guid: cac610d00ea13a84e95fe6737763aebd, type: 2}
   playerTag: Player
+  talkInteract: {fileID: 742604769}
 --- !u!1 &1683113254
 GameObject:
   m_ObjectHideFlags: 0
@@ -1981,7 +1984,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1687603967
 Transform:
   m_ObjectHideFlags: 0

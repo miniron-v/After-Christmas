@@ -10,6 +10,8 @@ public class DialogueTrigger : MonoBehaviour
 
     public string playerTag = "Player";
 
+    public GameObject talkInteract;
+
     void Update()
     {
         if (isPlayerInRange && Input.GetKeyDown(KeyCode.E))
@@ -27,6 +29,7 @@ public class DialogueTrigger : MonoBehaviour
         if (other.CompareTag(playerTag))
         {
             Debug.Log("Dialogue Trigger Enter");
+            CheckToTalk();
             isPlayerInRange = true;
         }
     }
@@ -35,8 +38,21 @@ public class DialogueTrigger : MonoBehaviour
     {
         if (other.CompareTag(playerTag))
         {
+            talkInteract.SetActive(false);
             Debug.Log("Dialogue Trigger Exit");
             isPlayerInRange = false;
+        }
+    }
+
+    public void CheckToTalk()
+    {
+        if (currentDialogueIndex < dialogueSequence.Count)
+        {
+            talkInteract.SetActive(true);
+        }
+        else
+        {
+            talkInteract.SetActive(false);
         }
     }
 }

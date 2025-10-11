@@ -15,7 +15,6 @@ MonoBehaviour:
   participants:
   - {fileID: 11400000, guid: e21499412581dec4cba34e1b5ecc8400, type: 2}
   - {fileID: 11400000, guid: 755763d612b95744e81c60d91ed6c176, type: 2}
-  - {fileID: 11400000, guid: 4c929a4e8c153934295b1fc9b95ebd29, type: 2}
   dialogueLines:
   - speaker: {fileID: 11400000, guid: 4c929a4e8c153934295b1fc9b95ebd29, type: 2}
     sentence: I have color.
