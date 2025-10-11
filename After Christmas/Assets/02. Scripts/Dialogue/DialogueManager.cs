@@ -33,11 +33,11 @@ public class DialogueManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(transform.root.gameObject);
         }
         else
         {
-            Destroy(gameObject);
+            Destroy(transform.root.gameObject);
         }
 
         dialogueCanvas.SetActive(false);
