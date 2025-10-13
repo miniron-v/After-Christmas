@@ -19,6 +19,8 @@ public struct SpawnTransform
 public class Item : MonoBehaviour, IInteractable, IGlowable
 {
     // 아이템이 있던 위치(하나의 기억)
+    // map.cs에서 중앙 관리하므로 인스펙터에서 숨김
+    [HideInInspector]
     public string mapName;
     // 아이템의 이름(식별자)
     public string itemID;
@@ -40,8 +42,11 @@ public class Item : MonoBehaviour, IInteractable, IGlowable
 
     [SerializeField] private GameObject teleportUI;
 
-    // 현재 오브젝트가 맡고 있는 좌표
+    // 현재 오브젝트가 맡고 있는 플레이어 스폰 좌표
     public Transform playerSpawnPoint;
+
+    // 현재 맵의 카메라 스폰 좌표. 이것도 map.cs에서 중앙관리 가능하므로 인스펙터에서 숨김
+    [HideInInspector]
     public Transform cameraSpawnPoint;
 
     [HideInInspector]
@@ -200,6 +205,7 @@ public class Item : MonoBehaviour, IInteractable, IGlowable
                 target.cameraSpawnPoint.rotation
             );
 
+        MapVisitManager.Instance.VisitMap(target.mapName);
         target.isRecorded = true;
     }
 }
