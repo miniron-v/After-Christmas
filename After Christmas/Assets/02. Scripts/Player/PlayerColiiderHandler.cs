@@ -27,7 +27,7 @@ public class PlayerColliderHandler : MonoBehaviour
             IGlowable glowObject = other.GetComponent<IGlowable>();
             if (glowObject != null)
             {
-                glowObject.Glow(true);
+                glowObject.Glow(false);
             }
         }
     }
