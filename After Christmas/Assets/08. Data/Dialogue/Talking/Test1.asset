@@ -12,5 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c24672a27f90a24fb333e3077219294, type: 3}
   m_Name: Test1
   m_EditorClassIdentifier: 
+  dialogueID: 0
+  prerequisiteCondition: {fileID: 0}
+  failSafeDialogue: {fileID: 0}
   participants: []
-  dialogueLines: []
+  dialogueLines:
+  - speaker: {fileID: 0}
+    sentence: "\uC7A0\uC2DC \uC911\uAC04\uC5D0 \uB4E4\uC5B4\uAC00\uB294 \uB0B4\uC6A9"

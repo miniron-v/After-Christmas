@@ -23,6 +23,7 @@ public class DialogueManager : MonoBehaviour
     private Coroutine typingCoroutine;
     private bool isTyping = false;
     private bool isDialogueActive = false;
+    private DialogueData currentDialogueData;
 
     private Dictionary<CharacterData, Image> characterImageMap;
 
@@ -60,6 +61,27 @@ public class DialogueManager : MonoBehaviour
     public void StartDialogue(DialogueData data, Action onEnd = null)
     {
         if (isDialogueActive) return;
+
+        if (data.prerequisiteCondition != null)
+        {
+            // ItemInfoManager의 CheckCondition 메서드를 사용
+            bool isMet = data.prerequisiteCondition.CheckCondition(ItemInfoManager.Instance);
+
+            if (!isMet)
+            {
+                // 조건 불만족
+                if (data.failSafeDialogue != null)
+                {
+                    Debug.Log($"Dialogue ID {data.dialogueID} 조건 불만족. Fail-safe Dialogue로 분기.");
+                    StartDialogue(data.failSafeDialogue, null);
+                    return;
+                }
+                Debug.Log($"Dialogue ID {data.dialogueID} 조건 불만족. 대화 실행 취소.");
+                return;
+            }
+        }
+
+        currentDialogueData = data;
         // onDialogueEnd = onEnd;
         isDialogueActive = true;
         dialogueCanvas.SetActive(true);
