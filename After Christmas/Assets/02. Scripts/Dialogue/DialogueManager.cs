@@ -60,7 +60,7 @@ public class DialogueManager : MonoBehaviour
     public void StartDialogue(DialogueData data, Action onEnd = null)
     {
         if (isDialogueActive) return;
-        onDialogueEnd = onEnd;
+        // onDialogueEnd = onEnd;
         isDialogueActive = true;
         dialogueCanvas.SetActive(true);
         dialogueQueue.Clear();
@@ -184,7 +184,7 @@ public class DialogueManager : MonoBehaviour
     }
 
     // dialogue 종료
-    void EndDialogue()
+    public void EndDialogue()
     {
         dialogueCanvas.SetActive(false);
         isDialogueActive = false;
