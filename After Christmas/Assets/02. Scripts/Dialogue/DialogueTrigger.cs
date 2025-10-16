@@ -1,44 +1,74 @@
-// DialogueTrigger.cs
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class DialogueTrigger : MonoBehaviour, IInteractable
 {
+    // 혼자 독립적으로 대화만 하는 오브젝트인지 체크
+    private bool isAlone = true;
     [SerializeField] private List<DialogueData> dialogueSequence;
-    private int currentIndex = 0;
-    private bool hasPlayedDialogue = false;
 
     public bool HasDialogue() => dialogueSequence != null && dialogueSequence.Count > 0;
 
-    // 대화 시퀀스 시작, 끝나면 onEnd 콜백 호출
+    private void Awake()
+    {
+        // 같은 오브젝트에 자기 자신을 제외한 IInteractable이 존재하면 isAlone = false
+        var interactables = GetComponents<IInteractable>();
+        foreach (var comp in interactables)
+        {
+            if (comp != (IInteractable)this)
+            {
+                isAlone = false;
+                return;
+            }
+        }
+
+        isAlone = true;
+    }
+
+    // 기존 전체 시퀀스 재생용
     public void StartDialogueSequence(Action onEnd = null)
     {
-        if (!HasDialogue() || hasPlayedDialogue)
+        if (!HasDialogue())
         {
             onEnd?.Invoke();
             return;
         }
 
-        hasPlayedDialogue = true;
+        PlayDialogueRecursive(0, onEnd);
+    }
 
-        if (currentIndex < dialogueSequence.Count)
-        {
-            DialogueData data = dialogueSequence[currentIndex];
-            currentIndex++;
-            DialogueManager.Instance.StartDialogue(data, () =>
-            {
-                StartDialogueSequence(onEnd); // 다음 대화 또는 끝나면 onEnd 호출
-            });
-        }
-        else
+    // 특정 인덱스 하나만 재생
+    public void StartDialogueAtIndex(int index, Action onEnd = null)
+    {
+        if (!HasDialogue() || index < 0 || index >= dialogueSequence.Count)
         {
             onEnd?.Invoke();
+            return;
         }
+
+        DialogueData data = dialogueSequence[index];
+        DialogueManager.Instance.StartDialogue(data, onEnd);
+    }
+
+    private void PlayDialogueRecursive(int index, Action onEnd)
+    {
+        if (index >= dialogueSequence.Count)
+        {
+            onEnd?.Invoke();
+            return;
+        }
+
+        DialogueData data = dialogueSequence[index];
+        DialogueManager.Instance.StartDialogue(data, () =>
+        {
+            PlayDialogueRecursive(index + 1, onEnd);
+        });
     }
 
     public void Interact()
     {
+        if (!isAlone) return;
         StartDialogueSequence();
     }
 }
