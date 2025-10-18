@@ -53,14 +53,17 @@ public class DialogueManager : MonoBehaviour
     {
         if (isDialogueActive && Input.GetKeyDown(KeyCode.Space))
         {
-            DisplayNextSentence();
+            if (isTyping)
+            {
+                DisplayNextSentence();
+            }
         }
     }
 
     // Dialogue 시작
-    public void StartDialogue(DialogueData data, Action onEnd = null)
+    public IEnumerator StartDialogue(DialogueData data, bool isCutscene = false)
     {
-        if (isDialogueActive) return;
+        if (isDialogueActive) yield break;
 
         if (data.prerequisiteCondition != null)
         {
@@ -73,16 +76,15 @@ public class DialogueManager : MonoBehaviour
                 if (data.failSafeDialogue != null)
                 {
                     Debug.Log($"Dialogue ID {data.dialogueID} 조건 불만족. Fail-safe Dialogue로 분기.");
-                    StartDialogue(data.failSafeDialogue, null);
-                    return;
+                    StartDialogue(data.failSafeDialogue);
+                    yield break;
                 }
                 Debug.Log($"Dialogue ID {data.dialogueID} 조건 불만족. 대화 실행 취소.");
-                return;
+                yield break;
             }
         }
 
         currentDialogueData = data;
-        // onDialogueEnd = onEnd;
         isDialogueActive = true;
         dialogueCanvas.SetActive(true);
         dialogueQueue.Clear();
@@ -133,36 +135,21 @@ public class DialogueManager : MonoBehaviour
         }
 
         DisplayNextSentence();
-    }
 
-    private Image GetAvailableImageSlot()
-    {
-        return characterImageSlots.FirstOrDefault(slot => !characterImageMap.ContainsValue(slot));
-    }
+        while (dialogueQueue.Count > 0)
+        {
+            DialogueData.DialogueLine line = dialogueQueue.Dequeue();
 
-    // 다음 문장 보여주기
-    public void DisplayNextSentence()
-    {
-        if (isTyping)
-        {
-            if (typingCoroutine != null)
-            {
-                StopCoroutine(typingCoroutine);
-            }
-            dialogueText.text = currentSentence;
-            isTyping = false;
-            return;
-        }
-        if (dialogueQueue.Count == 0)
-        {
-            EndDialogue();
-            return;
+            yield return StartCoroutine(RunSentenceFlow(line));
         }
 
-        DialogueData.DialogueLine line = dialogueQueue.Dequeue();
+        EndDialogue();
+    }
+
+    private IEnumerator RunSentenceFlow(DialogueData.DialogueLine line)
+    {
         currentSentence = line.sentence;
 
-        // 대화 중인 캐릭터만 강조
         foreach (var kvp in characterImageMap)
         {
             if (kvp.Key == line.speaker)
@@ -176,7 +163,6 @@ public class DialogueManager : MonoBehaviour
         }
 
         string speakerName = line.speaker?.characterName;
-
         if (line.speaker == null || string.IsNullOrEmpty(speakerName))
         {
             nameText.gameObject.SetActive(false);
@@ -184,11 +170,39 @@ public class DialogueManager : MonoBehaviour
         else
         {
             nameText.gameObject.SetActive(true);
-
             nameText.text = speakerName;
         }
 
         typingCoroutine = StartCoroutine(TypeSentence(line.sentence));
+        yield return typingCoroutine;
+
+        bool inputReceived = false;
+        while (!inputReceived)
+        {
+            if (!isTyping && Input.GetKeyDown(KeyCode.Space))
+            {
+                inputReceived = true;
+            }
+            yield return null;
+        }
+    }
+
+    // 다음 문장 실행
+    public void DisplayNextSentence()
+    {
+        if (isTyping)
+        {
+            Coroutine tempCoroutine = typingCoroutine;
+            typingCoroutine = null;
+
+            isTyping = false;
+
+            if (typingCoroutine != null)
+            {
+                StopCoroutine(tempCoroutine);
+            }
+            dialogueText.text = currentSentence;
+        }
     }
 
     // 타이핑 효과 코루틴
@@ -198,11 +212,12 @@ public class DialogueManager : MonoBehaviour
         dialogueText.text = "";
         foreach (char letter in sentence.ToCharArray())
         {
+            if (!isTyping) break;
+
             dialogueText.text += letter;
             yield return new WaitForSeconds(typingSpeed);
         }
         isTyping = false;
-        typingCoroutine = null;
     }
 
     // dialogue 종료
@@ -216,7 +231,7 @@ public class DialogueManager : MonoBehaviour
             image.sprite = null;
             image.color = Color.white;
         }
-        onDialogueEnd?.Invoke();
+
         characterImageMap.Clear();
     }
 

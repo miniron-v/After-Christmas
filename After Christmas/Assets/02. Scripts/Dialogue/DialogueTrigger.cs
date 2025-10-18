@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,6 +8,8 @@ public class DialogueTrigger : MonoBehaviour, IInteractable
     // 혼자 독립적으로 대화만 하는 오브젝트인지 체크
     private bool isAlone = true;
     [SerializeField] private List<DialogueData> dialogueSequence;
+
+    private Coroutine runningSequence = null;
 
     public bool HasDialogue() => dialogueSequence != null && dialogueSequence.Count > 0;
 
@@ -22,7 +25,6 @@ public class DialogueTrigger : MonoBehaviour, IInteractable
                 return;
             }
         }
-
         isAlone = true;
     }
 
@@ -35,7 +37,27 @@ public class DialogueTrigger : MonoBehaviour, IInteractable
             return;
         }
 
-        PlayDialogueRecursive(0, onEnd);
+        if (runningSequence == null)
+        {
+            runningSequence = StartCoroutine(RunDialogueSequence(onEnd));
+        }
+    }
+
+    // 전체 대화 목록을 순서대로 재생
+    private IEnumerator RunDialogueSequence(Action onEnd)
+    {
+        foreach (DialogueData data in dialogueSequence)
+        {
+            if (DialogueManager.Instance != null && data != null)
+            {
+                yield return StartCoroutine(DialogueManager.Instance.StartDialogue(
+                    data,
+                    isCutscene: false));
+            }
+        }
+
+        onEnd?.Invoke();
+        runningSequence = null;
     }
 
     // 특정 인덱스 하나만 재생
@@ -47,28 +69,38 @@ public class DialogueTrigger : MonoBehaviour, IInteractable
             return;
         }
 
-        DialogueData data = dialogueSequence[index];
-        DialogueManager.Instance.StartDialogue(data, onEnd);
+        if (runningSequence == null)
+        {
+            // 단일 대화 실행 코루틴을 시작
+            runningSequence = StartCoroutine(RunSingleDialogue(dialogueSequence[index], onEnd));
+        }
+        else
+        {
+            // 이미 실행 중일 경우, 외부 콜백(onEnd)만 호출하고 종료할 수 있습니다.
+            onEnd?.Invoke();
+        }
     }
 
-    private void PlayDialogueRecursive(int index, Action onEnd)
+    private IEnumerator RunSingleDialogue(DialogueData data, Action onEnd)
     {
-        if (index >= dialogueSequence.Count)
+        if (DialogueManager.Instance != null && data != null)
         {
-            onEnd?.Invoke();
-            return;
+            yield return StartCoroutine(DialogueManager.Instance.StartDialogue(data, isCutscene: false));
         }
 
-        DialogueData data = dialogueSequence[index];
-        DialogueManager.Instance.StartDialogue(data, () =>
-        {
-            PlayDialogueRecursive(index + 1, onEnd);
-        });
+        onEnd?.Invoke();
+        runningSequence = null;
     }
 
     public void Interact()
     {
+        if (DialogueManager.Instance != null && DialogueManager.Instance.IsDialogueActive())
+        {
+            return;
+        }
+
         if (!isAlone) return;
+
         StartDialogueSequence();
     }
 }

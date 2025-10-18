@@ -1399,8 +1399,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueSequence:
-  - {fileID: 11400000, guid: cac610d00ea13a84e95fe6737763aebd, type: 2}
-  - {fileID: 11400000, guid: b2cfde31110b1c447b2db7fee8d35c90, type: 2}
+  - {fileID: 11400000, guid: ada48a09e230bb647b5bf30d28e8b44d, type: 2}
+  - {fileID: 11400000, guid: ada48a09e230bb647b5bf30d28e8b44d, type: 2}
 --- !u!1 &1338641645
 GameObject:
   m_ObjectHideFlags: 0
@@ -1584,9 +1584,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1461526726}
-  - component: {fileID: 1461526728}
   m_Layer: 0
-  m_Name: CinematicManager
+  m_Name: CinematicControllerList
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1604,37 +1603,10 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1720992512}
   m_Father: {fileID: 1338641646}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1461526728
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1461526725}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b136ab09d4c85f428d1d99d6949a2da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cutsceneSequence:
-  - isDialogueEvent: 1
-    timelineToPlay: {fileID: 0}
-    dialogueData: {fileID: 11400000, guid: b2cfde31110b1c447b2db7fee8d35c90, type: 2}
-    timelineWhileDialogue: {fileID: 1969934870}
-    loopBackgroundTimeline: 1
-  - isDialogueEvent: 1
-    timelineToPlay: {fileID: 0}
-    dialogueData: {fileID: 11400000, guid: dd664374c276ef948a11e767dac9e09f, type: 2}
-    timelineWhileDialogue: {fileID: 0}
-    loopBackgroundTimeline: 0
-  - isDialogueEvent: 1
-    timelineToPlay: {fileID: 0}
-    dialogueData: {fileID: 11400000, guid: cac610d00ea13a84e95fe6737763aebd, type: 2}
-    timelineWhileDialogue: {fileID: 1969934870}
-    loopBackgroundTimeline: 0
 --- !u!1 &1481633301
 GameObject:
   m_ObjectHideFlags: 0
@@ -1666,6 +1638,63 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2064557514}
   m_LocalEulerAnglesHint: {x: 30, y: 45, z: 0}
+--- !u!1 &1720992511
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1720992512}
+  - component: {fileID: 1720992513}
+  m_Layer: 0
+  m_Name: Test
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1720992512
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1720992511}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.0340953, y: -1.151474, z: 0.9960954}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1461526726}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1720992513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1720992511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b136ab09d4c85f428d1d99d6949a2da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cutsceneEventList:
+  - hasDialogueContent: 1
+    cinematicTimeline: {fileID: 1969934870}
+    loopTimeline: 1
+    dialogueData: {fileID: 11400000, guid: ada48a09e230bb647b5bf30d28e8b44d, type: 2}
+  - hasDialogueContent: 0
+    cinematicTimeline: {fileID: 1969934870}
+    loopTimeline: 0
+    dialogueData: {fileID: 0}
+  - hasDialogueContent: 1
+    cinematicTimeline: {fileID: 1969934870}
+    loopTimeline: 0
+    dialogueData: {fileID: 11400000, guid: ada48a09e230bb647b5bf30d28e8b44d, type: 2}
 --- !u!1 &1851655693
 GameObject:
   m_ObjectHideFlags: 0
