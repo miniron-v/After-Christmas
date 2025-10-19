@@ -11,8 +11,16 @@ public class Map : MonoBehaviour
     [Header("최초 입장 시 실행할 대화")]
     public DialogueData arrivalDialogue;
 
-    [Header("맵 하나에 할당할 시네마틱 컨트롤러")]
+    // 맵 입장 시 사용할 시네마틱 컨트롤러
+    // awake에서 초기화해 주므로 hide in inspector
+    [HideInInspector]
     public CinematicController cinematicController;
+
+    private void Awake()
+    {
+        // 변수 할당 최소화를 위한 getcomponent 사용
+        cinematicController = GetComponent<CinematicController>();
+    }
 
     private void Start()
     {
