@@ -63,10 +63,7 @@ public class SpecialInteractObj : MonoBehaviour, IInteractable, IGlowable
         // 플레이상 자연스러우려면 균열을 메우고 대화 진행일 텐데, 그러면 콜백 안써도 될듯
         if (!isSpecialInteracted)
         {
-            dialogueTrigger.StartDialogueAtIndex(2, () =>
-        {
             SpecialInteraction();
-        });
         }
 
     }
