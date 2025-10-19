@@ -31,11 +31,12 @@ public class CinematicController : MonoBehaviour
     }
     #endregion
 
-    public void StartCutscene()
+    public void StartCutscene(Action onCutsceneEnd = null)
     {
+        Debug.Log("시네마틱 시작됨");
         if (runningCutscene == null)
         {
-            runningCutscene = StartCoroutine(RunCutsceneSequence());
+            runningCutscene = StartCoroutine(RunCutsceneSequence(onCutsceneEnd));
         }
     }
 
@@ -62,7 +63,7 @@ public class CinematicController : MonoBehaviour
         Debug.Log("컷신 종료");
     }
 
-    private IEnumerator RunCutsceneSequence()
+    private IEnumerator RunCutsceneSequence(Action onCutsceneEnd)
     {
         Debug.Log("컷신 시작");
 
@@ -78,9 +79,20 @@ public class CinematicController : MonoBehaviour
                 yield return StartCoroutine(RunTimelineEvent(currentEvent.cinematicTimeline));
             }
         }
-
-        Debug.Log("컷신 종료");
+        // ==디버그용 1초 동안 진행 로그 출력==
+        float debugTime = 1f;
+        float elapsed = 0f;
+        while (elapsed < debugTime)
+        {
+            Debug.Log("시네마틱 진행중...");
+            yield return null;
+            elapsed += Time.deltaTime;
+        }
+        // ==디버그용==
+        Debug.Log("시네마틱 끝ㄴ");
         runningCutscene = null;
+        // 컷신 종료 후 콜백 호출
+        onCutsceneEnd?.Invoke();
     }
 
     private IEnumerator RunTimelineEvent(PlayableDirector timelineToPlay)
@@ -140,7 +152,7 @@ public class CinematicController : MonoBehaviour
         {
             Debug.Log($"Dialogue 중 배경 Timeline 재생: {activeCinematicTimeline.name}");
 
-            activeCinematicTimeline.extrapolationMode = currentEvent.loopTimeline?DirectorWrapMode.Loop:DirectorWrapMode.Hold;
+            activeCinematicTimeline.extrapolationMode = currentEvent.loopTimeline ? DirectorWrapMode.Loop : DirectorWrapMode.Hold;
             activeCinematicTimeline.Play();
         }
 

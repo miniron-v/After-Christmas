@@ -6,27 +6,27 @@ public class Map : MonoBehaviour
     public string mapName;
 
     [Header("현재 맵 내의 오브젝트들로 텔레포트했을 때 카메라 스폰 위치")]
-    [SerializeField]
-    private Transform cameraSpawnPoint;
+    public Transform cameraSpawnPoint;
 
     [Header("최초 입장 시 실행할 대화")]
     public DialogueData arrivalDialogue;
 
+    [Header("맵 하나에 할당할 시네마틱 컨트롤러")]
+    public CinematicController cinematicController;
+
     private void Start()
     {
-        // MapVisitManager에 등록
-        if (!string.IsNullOrEmpty(mapName) && arrivalDialogue != null)
+        if (!string.IsNullOrEmpty(mapName))
         {
-            MapVisitManager.Instance.RegisterMapDialogue(mapName, arrivalDialogue);
+            MapVisitManager.Instance.RegisterMap(mapName, this);
         }
 
-        // 자식 아이템들 초기화
+        // 자식 아이템 초기화
         InitializeChildItems();
     }
 
     private void InitializeChildItems()
     {
-        // 자식 오브젝트에서 Item / LockItem 컴포넌트 검색
         Item[] items = GetComponentsInChildren<Item>();
         foreach (var item in items)
         {

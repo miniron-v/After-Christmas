@@ -832,6 +832,7 @@ GameObject:
   m_Component:
   - component: {fileID: 271446550}
   - component: {fileID: 271446551}
+  - component: {fileID: 271446552}
   m_Layer: 0
   m_Name: map3
   m_TagString: Untagged
@@ -873,6 +874,24 @@ MonoBehaviour:
   mapName: Map3
   cameraSpawnPoint: {fileID: 1261564698}
   arrivalDialogue: {fileID: 11400000, guid: b6a49f46cc838ca4ab14f4ee63354ad5, type: 2}
+  cinematicController: {fileID: 271446552}
+--- !u!114 &271446552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 271446549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b136ab09d4c85f428d1d99d6949a2da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cutsceneEventList:
+  - hasDialogueContent: 0
+    cinematicTimeline: {fileID: 0}
+    loopTimeline: 0
+    dialogueData: {fileID: 0}
 --- !u!1 &281946916
 GameObject:
   m_ObjectHideFlags: 0
@@ -969,6 +988,7 @@ GameObject:
   m_Component:
   - component: {fileID: 346922813}
   - component: {fileID: 346922814}
+  - component: {fileID: 346922815}
   m_Layer: 0
   m_Name: map0
   m_TagString: Untagged
@@ -1009,6 +1029,24 @@ MonoBehaviour:
   mapName: Map0
   cameraSpawnPoint: {fileID: 36031731}
   arrivalDialogue: {fileID: 11400000, guid: 6dafcb7571be30e4e9ff546b4afe059f, type: 2}
+  cinematicController: {fileID: 346922815}
+--- !u!114 &346922815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 346922812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b136ab09d4c85f428d1d99d6949a2da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cutsceneEventList:
+  - hasDialogueContent: 0
+    cinematicTimeline: {fileID: 0}
+    loopTimeline: 0
+    dialogueData: {fileID: 0}
 --- !u!1 &479615154
 GameObject:
   m_ObjectHideFlags: 0
@@ -2126,6 +2164,7 @@ GameObject:
   m_Component:
   - component: {fileID: 757733453}
   - component: {fileID: 757733454}
+  - component: {fileID: 757733455}
   m_Layer: 0
   m_Name: map4
   m_TagString: Untagged
@@ -2166,6 +2205,24 @@ MonoBehaviour:
   mapName: Map4
   cameraSpawnPoint: {fileID: 502580664}
   arrivalDialogue: {fileID: 11400000, guid: e70e677ea3bcf8d4eb200f0e80b494d7, type: 2}
+  cinematicController: {fileID: 757733455}
+--- !u!114 &757733455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 757733452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b136ab09d4c85f428d1d99d6949a2da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cutsceneEventList:
+  - hasDialogueContent: 0
+    cinematicTimeline: {fileID: 0}
+    loopTimeline: 0
+    dialogueData: {fileID: 0}
 --- !u!4 &763083775 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 758408e33c2294841bd79dd15602df1e, type: 3}
@@ -4616,6 +4673,7 @@ MonoBehaviour:
   mapName: Map1
   cameraSpawnPoint: {fileID: 168605406}
   arrivalDialogue: {fileID: 11400000, guid: 27fadf28d1a3b134f8297ed409261a0d, type: 2}
+  cinematicController: {fileID: 0}
 --- !u!1 &1684066414
 GameObject:
   m_ObjectHideFlags: 0
@@ -5419,6 +5477,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1937906457}
   - component: {fileID: 1937906458}
+  - component: {fileID: 1937906459}
   m_Layer: 0
   m_Name: map2
   m_TagString: Untagged
@@ -5459,6 +5518,24 @@ MonoBehaviour:
   mapName: Map2
   cameraSpawnPoint: {fileID: 1966472859}
   arrivalDialogue: {fileID: 11400000, guid: 47633bab85d27dc44a211df730ac6563, type: 2}
+  cinematicController: {fileID: 1937906459}
+--- !u!114 &1937906459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1937906456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b136ab09d4c85f428d1d99d6949a2da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cutsceneEventList:
+  - hasDialogueContent: 0
+    cinematicTimeline: {fileID: 0}
+    loopTimeline: 0
+    dialogueData: {fileID: 0}
 --- !u!1 &1955321501
 GameObject:
   m_ObjectHideFlags: 0
