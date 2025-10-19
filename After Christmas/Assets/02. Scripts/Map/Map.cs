@@ -12,7 +12,7 @@ public class Map : MonoBehaviour
     [Header("최초 입장 시 실행할 대화")]
     public DialogueData arrivalDialogue;
 
-    private void Awake()
+    private void Start()
     {
         // MapVisitManager에 등록
         if (!string.IsNullOrEmpty(mapName) && arrivalDialogue != null)

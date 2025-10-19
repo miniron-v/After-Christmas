@@ -65,7 +65,7 @@ public class MapVisitManager : MonoBehaviour
 
         if (mapDialogueMap.TryGetValue(mapName, out DialogueData dialogue))
         {
-            // DialogueManager.Instance.StartDialogue(dialogue);
+            StartCoroutine(DialogueManager.Instance.StartDialogue(dialogue));
         }
         else
         {
