@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneInfos:
-  - sceneAsset: {fileID: 102900000, guid: 731a24dfe79582942b2d3523a779888f, type: 3}
+  - sceneAsset: {fileID: 102900000, guid: 99c9720ab356a0642a771bea13969a05, type: 3}
     sceneName: MergeTestScene
   - sceneAsset: {fileID: 102900000, guid: d51ebc3434c436d45a21d0f37875d389, type: 3}
     sceneName: itemHandlerScene2
