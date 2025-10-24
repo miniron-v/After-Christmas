@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c24672a27f90a24fb333e3077219294, type: 3}
+  m_Name: Larva0
+  m_EditorClassIdentifier: 
+  dialogueID: 0
+  prerequisiteCondition: {fileID: 0}
+  failSafeDialogue: {fileID: 0}
+  participants:
+  - {fileID: 11400000, guid: 22d606ec3d6e3044d9ac351a2f4f229b, type: 2}
+  - {fileID: 11400000, guid: 3ddcd91a853eba54f992209cc90c0a82, type: 2}
+  dialogueLines:
+  - speaker: {fileID: 11400000, guid: 22d606ec3d6e3044d9ac351a2f4f229b, type: 2}
+    sentence: "\uB108 \uC65C \uB2ED\uC778\uB370, \uC774\uBBF8\uC9C0\uB294 \uBC8C\uB808\uB2C8?"
+  - speaker: {fileID: 11400000, guid: 3ddcd91a853eba54f992209cc90c0a82, type: 2}
+    sentence: "\uAC1C\uBC1C\uC790 \uB9D8\uC774\uC57C."
+  - speaker: {fileID: 11400000, guid: 22d606ec3d6e3044d9ac351a2f4f229b, type: 2}
+    sentence: "\uC800\uB7F0..."

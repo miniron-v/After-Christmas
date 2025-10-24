@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c24672a27f90a24fb333e3077219294, type: 3}
+  m_Name: Diamond0
+  m_EditorClassIdentifier: 
+  dialogueID: 0
+  prerequisiteCondition: {fileID: 0}
+  failSafeDialogue: {fileID: 0}
+  participants:
+  - {fileID: 11400000, guid: 22d606ec3d6e3044d9ac351a2f4f229b, type: 2}
+  dialogueLines:
+  - speaker: {fileID: 0}
+    sentence: "(\uBC88\uCA4D)"
+  - speaker: {fileID: 11400000, guid: 22d606ec3d6e3044d9ac351a2f4f229b, type: 2}
+    sentence: "\uC73C\uC557"
+  - speaker: {fileID: 0}
+    sentence: "( \uC568\uB9AC\uC2A4\uB294 \uB2E4\uC774\uC544\uC5D0\uC11C \uB098\uC628
+      \uBE5B\uC5D0 \uB208\uC744 \uC9C8\uB048 \uAC10\uC558\uB2E4.)"
