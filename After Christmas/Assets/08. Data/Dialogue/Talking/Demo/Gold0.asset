@@ -23,4 +23,4 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: 22d606ec3d6e3044d9ac351a2f4f229b, type: 2}
     sentence: "\uC774\uAC78\uB85C \uD1A0\uB07C\uB97C \uB9E4\uC218\uD574\uBCFC\uAE4C?"
   - speaker: {fileID: 0}
-    sentence: "(\uC568\uB9AC\uC2A4\uB294 \uAE08\uAD34\uB97C \uCC59\uACBC\uB2E4)"
+    sentence: "(\uC568\uB9AC\uC2A4\uB294 \uAE08\uAD34 \uD558\uB098\uB97C \uCC59\uACBC\uB2E4)"
