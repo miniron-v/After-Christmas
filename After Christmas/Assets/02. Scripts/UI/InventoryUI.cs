@@ -58,57 +58,42 @@ public class InventoryUI : MonoBehaviour
 
     private void BuildItems()
     {
-        if (handler == null) return;
+        buttonPool.ReleaseAll();   // 모든 버튼 비활성화
+        itemButtons.Clear();       // 딕셔너리 초기화
 
         var ids = handler.GetAllItemIDs(currentSceneIndex);
         itemSnapshot.Clear();
         itemSnapshot.AddRange(ids);
 
-        bool isCurrentScenePage = currentSceneIndex == activeSceneIndex;
-
-        // 1️⃣ 기존 버튼 모두 비활성화
-        foreach (var btn in itemButtons.Values)
-            btn.gameObject.SetActive(false);
-
-        // 2️⃣ 아이템 리스트 순회
-        for (int i = 0; i < itemSnapshot.Count; i++)
+        foreach (var itemID in itemSnapshot)
         {
-            string itemID = itemSnapshot[i];
-            Button btn;
+            var obj = buttonPool.Get();
+            obj.transform.SetParent(contentRoot, false);
 
-            // 2-1️⃣ 기존 버튼 재활용
-            if (!itemButtons.TryGetValue(itemID, out btn))
+            var btn = obj.GetComponent<Button>();
+            itemButtons[itemID] = btn;
+
+            var txt = obj.GetComponentInChildren<TMP_Text>();
+            if (txt != null) txt.text = itemID;
+
+            btn.onClick.RemoveAllListeners();
+            btn.onClick.AddListener(() =>
             {
-                var obj = buttonPool.Get();
-                obj.transform.SetParent(contentRoot, false);
-
-                btn = obj.GetComponent<Button>();
-                itemButtons[itemID] = btn;
-
-                var txt = obj.GetComponentInChildren<TMP_Text>();
-                if (txt != null) txt.text = itemID;
-
-                btn.onClick.RemoveAllListeners();
-                btn.onClick.AddListener(() =>
+                currentItemID = itemID;
+                if (handler.isHavingItem(itemID))
                 {
-                    if (!btn.interactable) return;
+                    handler.HoldItem(itemID);
+                    BuildSpawns();
+                }
+            });
 
-                    currentItemID = itemID;
-                    if (handler.isHavingItem(currentItemID))
-                    {
-                        handler.HoldItem(currentItemID);
-                        BuildSpawns();
-                    }
-                });
-            }
-
-            // 2-2️⃣ 버튼 상태 갱신 후 활성화
-            btn.interactable = isCurrentScenePage;
+            btn.interactable = true;
             btn.gameObject.SetActive(true);
         }
 
         UpdateSceneButtons();
     }
+
 
 
     private void BuildSpawns()
