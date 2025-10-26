@@ -35,7 +35,7 @@ public class Map : MonoBehaviour
 
     private void InitializeChildItems()
     {
-        Item[] items = GetComponentsInChildren<Item>();
+        Item[] items = GetComponentsInChildren<Item>(true);
         foreach (var item in items)
         {
             item.mapName = mapName;

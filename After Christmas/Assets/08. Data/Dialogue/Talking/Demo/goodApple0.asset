@@ -22,4 +22,6 @@ MonoBehaviour:
     sentence: "\uC6B0\uB9AC\uC9D1 \uC5B8\uB355\uC5D0 \uC788\uB294 \uC0AC\uACFC\uB791
       \uB611\uAC19\uC774 \uC0DD\uACBC\uC5B4!"
   - speaker: {fileID: 11400000, guid: 22d606ec3d6e3044d9ac351a2f4f229b, type: 2}
-    sentence: "\uC774 \uC0AC\uACFC\uB294 \uBE44\uC0C1\uC2DD\uB7C9\uC73C\uB85C \uCC59\uACA8\uAC00\uC790!"
+    sentence: "\uD55C \uC785 \uBA39\uC5B4\uBCFC\uAE4C?"
+  - speaker: {fileID: 0}
+    sentence: "(\uC0AC\uACFC\uB97C \uD55C \uC785 \uBCA0\uC5B4\uBA39\uC5C8\uB2E4.)"
