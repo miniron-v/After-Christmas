@@ -27,7 +27,7 @@ public class NewInventoryUI : MonoBehaviour
     [SerializeField] private Button selectedButton;
 
     private PlayerItemHandler handler;
-    private int currentSceneIndex = -1;
+    public int currentSceneIndex = -1;
     private bool isMapTab = true;
 
     #region Open / Close
