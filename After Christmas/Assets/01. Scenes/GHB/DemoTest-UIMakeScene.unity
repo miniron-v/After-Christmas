@@ -7081,6 +7081,30 @@ PrefabInstance:
       propertyPath: m_PresetInfoIsWorld
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7412203085129844962, guid: 061e266628a805d4e945f3d1e47781aa, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7412203085129844962, guid: 061e266628a805d4e945f3d1e47781aa, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7412203085129844962, guid: 061e266628a805d4e945f3d1e47781aa, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1613
+      objectReference: {fileID: 0}
+    - target: {fileID: 7412203085129844962, guid: 061e266628a805d4e945f3d1e47781aa, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 849
+      objectReference: {fileID: 0}
+    - target: {fileID: 7412203085129844962, guid: 061e266628a805d4e945f3d1e47781aa, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 7412203085129844962, guid: 061e266628a805d4e945f3d1e47781aa, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 500
+      objectReference: {fileID: 0}
     - target: {fileID: 9134657753228668916, guid: 061e266628a805d4e945f3d1e47781aa, type: 3}
       propertyPath: m_Name
       value: HoldItemUI
