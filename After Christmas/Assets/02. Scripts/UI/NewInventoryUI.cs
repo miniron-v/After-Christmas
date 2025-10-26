@@ -162,7 +162,6 @@ public class NewInventoryUI : MonoBehaviour
 
         if (isMapTab)
         {
-            // Map 탭
             var mapIDs = MapInfoManager.Instance.GetVisitedMapIDs(sceneIndex);
 
             foreach (var id in mapIDs)
@@ -172,20 +171,23 @@ public class NewInventoryUI : MonoBehaviour
 
                 bool canInteract = sceneIndex == ItemInfoManager.Instance.GetSceneIndex(SceneManager.GetActiveScene().name);
 
-                AddInventorySlot(record.mapID, record.mapIcon, record.description, true, canInteract);
+                // 첫 슬롯이면 자동 선택
+                bool autoSelect = first;
 
-                if (first)
-                {
-                    if (selectedImage != null) selectedImage.sprite = record.mapIcon;
-                    if (selectedName != null) selectedName.text = record.mapID;
-                    if (selectedDesc != null) selectedDesc.text = record.description;
-                    first = false;
-                }
+                AddInventorySlot(record.mapID, record.mapIcon, record.description, true, canInteract, autoSelect);
+
+                first = false;
+            }
+
+            if (first) // Map이 하나도 없으면 NULL 처리
+            {
+                selectedImage.sprite = null;
+                selectedName.text = "";
+                selectedDesc.text = "";
             }
         }
         else
         {
-            // Item 탭
             var itemIDs = ItemInfoManager.Instance.GetAllItemIDs(sceneIndex);
 
             foreach (var id in itemIDs)
@@ -195,23 +197,19 @@ public class NewInventoryUI : MonoBehaviour
 
                 bool canInteract = sceneIndex == ItemInfoManager.Instance.GetSceneIndex(SceneManager.GetActiveScene().name);
 
-                AddInventorySlot(id, icon, desc, false, canInteract);
+                // 첫 슬롯이면 자동 선택
+                bool autoSelect = first;
 
-                if (first)
-                {
-                    if (selectedImage != null) selectedImage.sprite = icon;
-                    if (selectedName != null) selectedName.text = id;
-                    if (selectedDesc != null) selectedDesc.text = desc;
-                    first = false;
-                }
+                AddInventorySlot(id, icon, desc, false, canInteract, autoSelect);
+
+                first = false;
             }
 
-            // 아이템이 하나도 없으면 NULL 처리
-            if (first)
+            if (first) // Item이 하나도 없으면 NULL 처리
             {
-                if (selectedImage != null) selectedImage.sprite = null;
-                if (selectedName != null) selectedName.text = "";
-                if (selectedDesc != null) selectedDesc.text = "";
+                selectedImage.sprite = null;
+                selectedName.text = "";
+                selectedDesc.text = "";
             }
         }
 
@@ -219,9 +217,8 @@ public class NewInventoryUI : MonoBehaviour
         UpdateSelectedButtonInteractable();
     }
 
-
-
-    private void AddInventorySlot(string id, Sprite icon, string description, bool isMap, bool canInteract)
+    // AddInventorySlot 수정 (autoSelect 플래그 추가)
+    private void AddInventorySlot(string id, Sprite icon, string description, bool isMap, bool canInteract, bool autoSelect)
     {
         if (string.IsNullOrEmpty(id)) return;
 
@@ -233,46 +230,52 @@ public class NewInventoryUI : MonoBehaviour
         if (txt != null) txt.text = id;
         if (img != null) img.sprite = icon;
 
-        if (btn != null)
+        void SelectSlot()
         {
-            btn.onClick.AddListener(() =>
+            selectedImage.sprite = icon;
+            selectedName.text = id;
+            selectedDesc.text = description;
+
+            selectedButton.onClick.RemoveAllListeners();
+            selectedButton.interactable = false;
+
+            if (canInteract && handler != null)
             {
-                selectedImage.sprite = icon;
-                selectedName.text = id;
-                selectedDesc.text = description;
-
-                selectedButton.onClick.RemoveAllListeners();
-                selectedButton.interactable = false;
-
-                if (canInteract && handler != null)
+                selectedButton.interactable = true;
+                selectedButton.onClick.AddListener(() =>
                 {
-                    selectedButton.interactable = true;
-                    selectedButton.onClick.AddListener(() =>
+                    if (isMap)
                     {
-                        if (isMap)
+                        MapRecord mapObj = MapInfoManager.Instance.GetMapRecord(id, currentSceneIndex);
+                        if (mapObj != null)
                         {
-                            MapRecord mapObj = MapInfoManager.Instance.GetMapRecord(id, currentSceneIndex);
-                            if (mapObj != null)
-                            {
-                                SpawnTransform spawn = new SpawnTransform(
-                                    mapObj.playerSpawnPoint,
-                                    mapObj.cameraSpawnPoint,
-                                    mapObj.mapID
-                                );
-                                handler.Teleport(spawn);
-                            }
+                            SpawnTransform spawn = new SpawnTransform(
+                                mapObj.playerSpawnPoint,
+                                mapObj.cameraSpawnPoint,
+                                mapObj.mapID
+                            );
+                            handler.Teleport(spawn);
                         }
-                        else
-                        {
-                            handler.HoldItem(id);
-                        }
+                    }
+                    else
+                    {
+                        handler.HoldItem(id);
+                    }
 
-                        Close();
-                    });
-                }
-            });
+                    Close();
+                });
+            }
         }
+
+        // 버튼 클릭 리스너
+        if (btn != null)
+            btn.onClick.AddListener(SelectSlot);
+
+        // 첫 슬롯이면 자동 선택
+        if (autoSelect)
+            SelectSlot();
     }
+
 
 
     public void OnClickMapTab()
