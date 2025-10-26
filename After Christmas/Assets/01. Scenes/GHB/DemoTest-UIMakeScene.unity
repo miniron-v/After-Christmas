@@ -1087,6 +1087,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: d2354a90339cfa844a4613a9e6c65960, type: 2}
     - target: {fileID: 3733507517434392424, guid: 220f8aaf7458be24e98749ddae62bdaa, type: 3}
+      propertyPath: isStartMap
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3733507517434392424, guid: 220f8aaf7458be24e98749ddae62bdaa, type: 3}
       propertyPath: arrivalDialogue
       value: 
       objectReference: {fileID: 11400000, guid: e1c2933f7c8302248bf6f89fb9775a27, type: 2}
@@ -5915,6 +5919,26 @@ PrefabInstance:
       propertyPath: startMap
       value: 
       objectReference: {fileID: 2028632933}
+    - target: {fileID: 1659318656483111510, guid: 5c5e5e24ab3ecd140ac6f2df5074c1ad, type: 3}
+      propertyPath: sceneInfos.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1659318656483111510, guid: 5c5e5e24ab3ecd140ac6f2df5074c1ad, type: 3}
+      propertyPath: sceneInfos.Array.data[0].sceneName
+      value: DemoTest-UIMakeScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 1659318656483111510, guid: 5c5e5e24ab3ecd140ac6f2df5074c1ad, type: 3}
+      propertyPath: sceneInfos.Array.data[1].sceneName
+      value: DemoTest-UIMakeScene 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1659318656483111510, guid: 5c5e5e24ab3ecd140ac6f2df5074c1ad, type: 3}
+      propertyPath: sceneInfos.Array.data[0].sceneAsset
+      value: 
+      objectReference: {fileID: 102900000, guid: 7d58f7ef9d0bd3d4f9e5f1116c773e50, type: 3}
+    - target: {fileID: 1659318656483111510, guid: 5c5e5e24ab3ecd140ac6f2df5074c1ad, type: 3}
+      propertyPath: sceneInfos.Array.data[1].sceneAsset
+      value: 
+      objectReference: {fileID: 102900000, guid: 7e8dabb3bf5eed044ad6af5beadfe3f2, type: 3}
     - target: {fileID: 6968511213989205126, guid: 5c5e5e24ab3ecd140ac6f2df5074c1ad, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

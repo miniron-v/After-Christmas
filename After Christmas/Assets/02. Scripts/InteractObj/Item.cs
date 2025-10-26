@@ -209,7 +209,7 @@ public class Item : MonoBehaviour, IInteractable, IGlowable
                 target.cameraSpawnPoint.rotation
             );
 
-        MapVisitManager.Instance.VisitMap(target.mapName);
+        MapInfoManager.Instance.VisitMap(target.mapName);
         target.isRecorded = true;
     }
 }

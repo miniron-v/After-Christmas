@@ -49,9 +49,13 @@ public class NewInventoryUI : MonoBehaviour
 
         patientInventoryRoot.gameObject.SetActive(false);
 
-        // 기본적으로 Map 탭 선택 + 버튼 색 변경
+        // Map 탭 선택 + 버튼 색 변경
         OnClickMapTab();
+
+        // 선택 버튼 상태 갱신
+        UpdateSelectedButtonInteractable();
     }
+
 
     public void Close()
     {
@@ -147,49 +151,77 @@ public class NewInventoryUI : MonoBehaviour
         if (inventoryScrollList == null || inventorySlotPrefab == null)
             return;
 
+        // 기존 슬롯 삭제
         foreach (Transform child in inventoryScrollList)
             Destroy(child.gameObject);
 
+        int sceneIndex = currentSceneIndex;
+        if (sceneIndex < 0) return;
+
+        bool first = true;
+
         if (isMapTab)
         {
-            bool firstSet = false; // 첫 번째 방문 맵 선택 표시
+            // Map 탭
+            var mapIDs = MapInfoManager.Instance.GetVisitedMapIDs(sceneIndex);
 
-            foreach (var mapName in MapVisitManager.Instance.GetVisitedMaps())
+            foreach (var id in mapIDs)
             {
-                Map mapObj = MapVisitManager.Instance.GetMapObject(mapName);
-                if (mapObj == null) continue;
+                var record = MapInfoManager.Instance.GetMapRecord(id, sceneIndex);
+                if (record == null) continue;
 
-                MapDataSO mapSO = mapObj.mapDataSO;
-                if (mapSO == null) continue;
+                bool canInteract = sceneIndex == ItemInfoManager.Instance.GetSceneIndex(SceneManager.GetActiveScene().name);
 
-                AddInventorySlot(mapSO.mapID, mapSO.mapIcon, mapSO.description, true);
+                AddInventorySlot(record.mapID, record.mapIcon, record.description, true, canInteract);
 
-                //첫 번째 슬롯 선택 표시
-                if (!firstSet)
+                if (first)
                 {
-                    selectedImage.sprite = mapSO.mapIcon;
-                    selectedName.text = mapSO.mapID;
-                    selectedDesc.text = mapSO.description;
-                    firstSet = true;
+                    if (selectedImage != null) selectedImage.sprite = record.mapIcon;
+                    if (selectedName != null) selectedName.text = record.mapID;
+                    if (selectedDesc != null) selectedDesc.text = record.description;
+                    first = false;
                 }
             }
         }
         else
         {
-            int sceneIndex = currentSceneIndex;
-            if (sceneIndex < 0) return;
+            // Item 탭
+            var itemIDs = ItemInfoManager.Instance.GetAllItemIDs(sceneIndex);
 
-            foreach (var id in handler.GetAllItemIDs(sceneIndex))
+            foreach (var id in itemIDs)
             {
-                if (!handler.isHavingItem(id)) continue;
                 var icon = ItemInfoManager.Instance.GetItemIcon(id);
                 var desc = ItemInfoManager.Instance.GetItemDescription(id);
-                AddInventorySlot(id, icon, desc, false);
+
+                bool canInteract = sceneIndex == ItemInfoManager.Instance.GetSceneIndex(SceneManager.GetActiveScene().name);
+
+                AddInventorySlot(id, icon, desc, false, canInteract);
+
+                if (first)
+                {
+                    if (selectedImage != null) selectedImage.sprite = icon;
+                    if (selectedName != null) selectedName.text = id;
+                    if (selectedDesc != null) selectedDesc.text = desc;
+                    first = false;
+                }
+            }
+
+            // 아이템이 하나도 없으면 NULL 처리
+            if (first)
+            {
+                if (selectedImage != null) selectedImage.sprite = null;
+                if (selectedName != null) selectedName.text = "";
+                if (selectedDesc != null) selectedDesc.text = "";
             }
         }
+
+        // 선택 버튼 상태 갱신
+        UpdateSelectedButtonInteractable();
     }
 
-    private void AddInventorySlot(string id, Sprite icon, string description, bool isMap)
+
+
+    private void AddInventorySlot(string id, Sprite icon, string description, bool isMap, bool canInteract)
     {
         if (string.IsNullOrEmpty(id)) return;
 
@@ -210,31 +242,38 @@ public class NewInventoryUI : MonoBehaviour
                 selectedDesc.text = description;
 
                 selectedButton.onClick.RemoveAllListeners();
-                selectedButton.onClick.AddListener(() =>
-                {
-                    if (isMap)
-                    {
-                        Map mapObj = MapVisitManager.Instance.GetMapObject(id);
-                        if (mapObj != null && handler != null)
-                        {
-                            SpawnTransform spawn = new SpawnTransform(
-                                mapObj.playerSpawnPoint.position,
-                                mapObj.cameraSpawnPoint.position,
-                                mapObj.mapName
-                            );
-                            handler.Teleport(spawn);
-                        }
-                    }
-                    else
-                    {
-                        handler.HoldItem(id);
-                    }
+                selectedButton.interactable = false;
 
-                    Close();
-                });
+                if (canInteract && handler != null)
+                {
+                    selectedButton.interactable = true;
+                    selectedButton.onClick.AddListener(() =>
+                    {
+                        if (isMap)
+                        {
+                            MapRecord mapObj = MapInfoManager.Instance.GetMapRecord(id, currentSceneIndex);
+                            if (mapObj != null)
+                            {
+                                SpawnTransform spawn = new SpawnTransform(
+                                    mapObj.playerSpawnPoint,
+                                    mapObj.cameraSpawnPoint,
+                                    mapObj.mapID
+                                );
+                                handler.Teleport(spawn);
+                            }
+                        }
+                        else
+                        {
+                            handler.HoldItem(id);
+                        }
+
+                        Close();
+                    });
+                }
             });
         }
     }
+
 
     public void OnClickMapTab()
     {
@@ -249,6 +288,35 @@ public class NewInventoryUI : MonoBehaviour
         BuildInventory();
         UpdateTabButtonColors();
     }
+
+    private void UpdateSelectedButtonInteractable()
+    {
+        if (selectedButton == null) return;
+
+        // 현재 선택된 이름 기준으로 맵/아이템 판단
+        string id = selectedName.text;
+        if (string.IsNullOrEmpty(id))
+        {
+            selectedButton.interactable = false;
+            return;
+        }
+
+        bool canInteract = false;
+
+        if (isMapTab)
+        {
+            // Map일 경우 현재 씬과 선택한 환자 씬 비교
+            canInteract = currentSceneIndex == ItemInfoManager.Instance.GetSceneIndex(SceneManager.GetActiveScene().name);
+        }
+        else
+        {
+            // Item일 경우도 동일하게 처리
+            canInteract = currentSceneIndex == ItemInfoManager.Instance.GetSceneIndex(SceneManager.GetActiveScene().name);
+        }
+
+        selectedButton.interactable = canInteract && handler != null;
+    }
+
 
     // Map / Item 버튼 색상 업데이트
     private void UpdateTabButtonColors()

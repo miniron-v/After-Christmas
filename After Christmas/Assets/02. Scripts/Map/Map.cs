@@ -23,6 +23,8 @@ public class Map : MonoBehaviour
     [HideInInspector]
     public CinematicController cinematicController;
 
+    public bool isStartMap = false;
+
     private void Awake()
     {
         // 변수 할당 최소화를 위한 getcomponent 사용
@@ -31,15 +33,9 @@ public class Map : MonoBehaviour
 
     void Start()
     {
-        if (!string.IsNullOrEmpty(mapName))
-        {
-            MapVisitManager.Instance.RegisterMap(mapName, this);
-        }
-
-        // 자식 아이템 초기화
+        MapInfoManager.Instance.RecordMap(this);
         InitializeChildItems();
     }
-    
 
     private void InitializeChildItems()
     {
