@@ -18,12 +18,20 @@ public struct SpawnTransform
 
 public class Item : MonoBehaviour, IInteractable, IGlowable
 {
+    [Header("SO Item Data")]
+    [SerializeField] private ItemDataSO itemData;
+
+    // 아이템 정보, itemData에서 중앙 관리하므로 hide in inspector
+    [HideInInspector]
+    public string itemID => itemData != null ? itemData.itemID : "Unknown";
+    [HideInInspector]
+    public Sprite itemIcon => itemData != null ? itemData.icon : null;
+    [HideInInspector]
+    public string itemDescription => itemData != null ? itemData.description : "No description";
     // 아이템이 있던 위치(하나의 기억)
     // map.cs에서 중앙 관리하므로 인스펙터에서 숨김
     [HideInInspector]
     public string mapName;
-    // 아이템의 이름(식별자)
-    public string itemID;
     private Renderer rend;
     private Color originalColor;
 
@@ -58,10 +66,6 @@ public class Item : MonoBehaviour, IInteractable, IGlowable
     // isTeleportItem이 false라면 이 아이템은 종단 아이템
     [HideInInspector]
     public bool isTeleportItem = true;
-
-    // 아이템 아이콘
-    [SerializeField] private Sprite itemIcon;
-    public Sprite ItemIcon => itemIcon;
 
     // 대화 로직 관련 변수
     private DialogueTrigger dialogueTrigger;

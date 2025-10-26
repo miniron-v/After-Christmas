@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,6 +10,9 @@ public class MapVisitManager : MonoBehaviour
 
     private HashSet<string> visitedMaps = new HashSet<string>();
     private Dictionary<string, Map> mapObjectMap = new Dictionary<string, Map>();
+
+    // Map이 등록될 때 발생하는 이벤트
+    public event Action<Map> OnMapRegistered;
 
     private void Awake()
     {
@@ -24,7 +28,17 @@ public class MapVisitManager : MonoBehaviour
     {
         if (startMap != null)
         {
-            VisitMap(startMap.mapName);
+            // StartMap 방문은 OnMapRegistered 이벤트로 처리
+            OnMapRegistered += CheckStartMapVisit;
+        }
+    }
+
+    private void CheckStartMapVisit(Map map)
+    {
+        if (map == startMap)
+        {
+            VisitMap(map.mapName);
+            OnMapRegistered -= CheckStartMapVisit; // 한 번만 호출
         }
     }
 
@@ -32,6 +46,9 @@ public class MapVisitManager : MonoBehaviour
     {
         if (!mapObjectMap.ContainsKey(mapName))
             mapObjectMap[mapName] = mapObj;
+
+        // Map 등록 이벤트 호출
+        OnMapRegistered?.Invoke(mapObj);
     }
 
     public void VisitMap(string mapName)
@@ -60,6 +77,19 @@ public class MapVisitManager : MonoBehaviour
         }
     }
 
+    // 방문한 맵 이름 리스트 반환
+    public IEnumerable<string> GetVisitedMaps()
+    {
+        return visitedMaps;
+    }
+
+    // mapName으로 Map 객체 반환
+    public Map GetMapObject(string mapName)
+    {
+        if (mapObjectMap.TryGetValue(mapName, out Map mapObj))
+            return mapObj;
+        return null;
+    }
 
     public bool HasVisited(string mapName)
     {

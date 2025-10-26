@@ -23,10 +23,13 @@ public class ItemInfoManager : MonoBehaviour
     private List<Dictionary<string, List<SpawnTransform>>> itemList
         = new List<Dictionary<string, List<SpawnTransform>>>();
 
-    private Dictionary<string, Sprite> itemIcons
-        = new Dictionary<string, Sprite>();
+    // 아이콘 저장
+    private Dictionary<string, Sprite> itemIcons = new Dictionary<string, Sprite>();
 
-    // 추가: 방문 기록
+    // description 저장
+    private Dictionary<string, string> itemDescriptions = new Dictionary<string, string>();
+
+    // 방문 기록
     private HashSet<int> visitedScenes = new HashSet<int>();
 
     private void Awake()
@@ -44,11 +47,12 @@ public class ItemInfoManager : MonoBehaviour
                 itemList.Add(new Dictionary<string, List<SpawnTransform>>());
             }
 
-            // 씬 로딩 이벤트 구독
             SceneManager.sceneLoaded += OnSceneLoaded;
+            Debug.Log($"[ItemInfoManager] Awake - Created new instance ({GetInstanceID()})");
         }
         else
         {
+            Debug.LogWarning($"[ItemInfoManager] Duplicate found ({GetInstanceID()}), destroying.");
             Destroy(gameObject);
         }
     }
@@ -81,7 +85,8 @@ public class ItemInfoManager : MonoBehaviour
         return itemList[sceneIndex].ContainsKey(itemID);
     }
 
-    public void RecordItemInfo(string itemID, SpawnTransform info, Sprite icon = null)
+    // description까지 기록
+    public void RecordItemInfo(string itemID, SpawnTransform info, Sprite icon = null, string description = null)
     {
         int sceneIndex = GetSceneIndex(SceneManager.GetActiveScene().name);
         if (sceneIndex < 0) return;
@@ -93,19 +98,29 @@ public class ItemInfoManager : MonoBehaviour
 
         dict[itemID].Add(info);
 
-        // 아이콘 저장 (이미 등록되어 있으면 건너뛰기)
+        // 아이콘 저장
         if (icon != null && !itemIcons.ContainsKey(itemID))
-        {
             itemIcons[itemID] = icon;
-        }
+
+        // description 저장
+        if (!string.IsNullOrEmpty(description) && !itemDescriptions.ContainsKey(itemID))
+            itemDescriptions[itemID] = description;
     }
 
-    // 아이콘 조회용
+    // 아이콘 조회
     public Sprite GetItemIcon(string itemID)
     {
         if (itemIcons.TryGetValue(itemID, out var sprite))
             return sprite;
         return null;
+    }
+
+    // description 조회
+    public string GetItemDescription(string itemID)
+    {
+        if (itemDescriptions.TryGetValue(itemID, out var desc))
+            return desc;
+        return "No description";
     }
 
     public IReadOnlyList<string> GetAllItemIDs(int sceneIndex)
@@ -126,7 +141,6 @@ public class ItemInfoManager : MonoBehaviour
 
     public int GetSceneCount() => sceneInfos.Count;
 
-    // 방문 기록 관련
     public void MarkSceneVisited(int sceneIndex)
     {
         if (!visitedScenes.Contains(sceneIndex))
