@@ -34,11 +34,15 @@ public class PlayerColliderHandler : MonoBehaviour
 
     private void Update()
     {
+        if (!PlayerStateManager.Instance.IsPlayerControllable())
+            return;
+
         if (Input.GetKeyDown(KeyCode.E))
         {
             TryInteract();
         }
     }
+
 
     private void TryInteract()
     {

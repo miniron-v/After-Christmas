@@ -34,11 +34,24 @@ public class CinematicController : MonoBehaviour
     public void StartCutscene(Action onCutsceneEnd = null)
     {
         Debug.Log("시네마틱 시작됨");
+
+        // 1. 시네마틱 시작 시 플레이어 상태 CINEMATIC으로 전환
+        PlayerStateManager.Instance?.SetState(PlayerState.Cinematic);
+
         if (runningCutscene == null)
         {
-            runningCutscene = StartCoroutine(RunCutsceneSequence(onCutsceneEnd));
+            // RunCutsceneSequence 호출, 끝나면 PLAY로 전환
+            runningCutscene = StartCoroutine(RunCutsceneSequence(() =>
+            {
+                // 2. 시네마틱 종료 시 플레이어 상태 PLAY로 전환
+                PlayerStateManager.Instance?.SetState(PlayerState.Play);
+
+                // 기존 외부 콜백이 있으면 실행
+                onCutsceneEnd?.Invoke();
+            }));
         }
     }
+
 
     public void StopCutscene()
     {

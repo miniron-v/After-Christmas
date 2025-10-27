@@ -34,8 +34,11 @@ public class NewInventoryUI : MonoBehaviour
 
     public void Open(PlayerItemHandler h)
     {
+        UIModalGate.Acquire(this, Close);
         handler = h;
         gameObject.SetActive(true);
+
+        PlayerStateManager.Instance?.SetState(PlayerState.UIOpen);
 
         BuildPatientList();
 
@@ -61,6 +64,8 @@ public class NewInventoryUI : MonoBehaviour
     {
         gameObject.SetActive(false);
         handler = null;
+        UIModalGate.Release(this);
+        PlayerStateManager.Instance?.SetState(PlayerState.Play);
     }
 
     #endregion

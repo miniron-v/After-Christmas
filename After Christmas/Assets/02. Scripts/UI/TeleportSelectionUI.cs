@@ -25,6 +25,8 @@ public class TeleportSelectionUI : MonoBehaviour
     {
         onSelect = onSelectIndex;
 
+        PlayerStateManager.Instance?.SetState(PlayerState.UIOpen);
+
         // 기존 버튼 제거
         for (int i = contentRoot.childCount - 1; i >= 0; i--)
             Destroy(contentRoot.GetChild(i).gameObject);
@@ -78,6 +80,8 @@ public class TeleportSelectionUI : MonoBehaviour
         UIModalGate.Release(this);
         gameObject.SetActive(false);
         onSelect = null;
+
+        PlayerStateManager.Instance?.SetState(PlayerState.Play);
     }
 
     void Update()
