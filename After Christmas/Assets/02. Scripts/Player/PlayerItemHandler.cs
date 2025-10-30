@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlayerItemHandler : MonoBehaviour
 {
-    [SerializeField] private InventoryUI inventoryUI;
+    [SerializeField] private NewInventoryUI inventoryUI;
 
     public string holdItemID { get; private set; } = "";
 
@@ -30,8 +30,14 @@ public class PlayerItemHandler : MonoBehaviour
                 item.mapName
             );
 
-            // 아이콘까지 함께 기록
-            ItemInfoManager.Instance.RecordItemInfo(item.itemID, info, item.ItemIcon);
+            // 아이콘 + description 함께 기록
+            ItemInfoManager.Instance.RecordItemInfo(
+                item.itemID,
+                info,
+                item.itemIcon,
+                item.itemDescription
+            );
+
             item.isRecorded = true;
         }
 
@@ -45,11 +51,19 @@ public class PlayerItemHandler : MonoBehaviour
                     linked.cameraSpawnPoint.position,
                     linked.mapName
                 );
-                ItemInfoManager.Instance.RecordItemInfo(linked.itemID, info, linked.ItemIcon);
+
+                ItemInfoManager.Instance.RecordItemInfo(
+                    linked.itemID,
+                    info,
+                    linked.itemIcon,
+                    linked.itemDescription
+                );
+
                 linked.isRecorded = true;
             }
         }
     }
+
 
 
     public bool isHavingItem(string itemID) => ItemInfoManager.Instance.IsHavingItem(itemID);
@@ -76,8 +90,6 @@ public class PlayerItemHandler : MonoBehaviour
         // inventoryUI가 null이 아니고, 오브젝트가 파괴되지 않은 경우만 열기
         if (Input.GetKeyDown(KeyCode.F))
         {
-            if (inventoryUI == null || inventoryUI.gameObject == null)
-                inventoryUI = FindFirstObjectByType<InventoryUI>();
 
             if (inventoryUI != null && inventoryUI.gameObject != null)
             {

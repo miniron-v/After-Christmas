@@ -390,6 +390,10 @@ PrefabInstance:
       value: "\uD1A0\uB07C\uC758 \uC9D1"
       objectReference: {fileID: 0}
     - target: {fileID: 3733507517434392424, guid: 220f8aaf7458be24e98749ddae62bdaa, type: 3}
+      propertyPath: mapDataSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 2fc94d84d0b88e3489dd50ebc3943d45, type: 2}
+    - target: {fileID: 3733507517434392424, guid: 220f8aaf7458be24e98749ddae62bdaa, type: 3}
       propertyPath: arrivalDialogue
       value: 
       objectReference: {fileID: 11400000, guid: 7c32a1464cd57b6468d8735427614f50, type: 2}
@@ -662,6 +666,10 @@ PrefabInstance:
       value: "\uD1A0\uB07C\uAD74"
       objectReference: {fileID: 0}
     - target: {fileID: 3092057549691042336, guid: ad5acee826c5e3e4193ee726e3d27c0f, type: 3}
+      propertyPath: itemData
+      value: 
+      objectReference: {fileID: 11400000, guid: 1c7b77646978d66458c8ec73845f6466, type: 2}
+    - target: {fileID: 3092057549691042336, guid: ad5acee826c5e3e4193ee726e3d27c0f, type: 3}
       propertyPath: itemIcon
       value: 
       objectReference: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
@@ -752,6 +760,10 @@ PrefabInstance:
       propertyPath: itemID
       value: "\uAE08\uD654"
       objectReference: {fileID: 0}
+    - target: {fileID: 3092057549691042336, guid: ad5acee826c5e3e4193ee726e3d27c0f, type: 3}
+      propertyPath: itemData
+      value: 
+      objectReference: {fileID: 11400000, guid: c34189fc300e30146b80b71c4a8d0d5a, type: 2}
     - target: {fileID: 3092057549691042336, guid: ad5acee826c5e3e4193ee726e3d27c0f, type: 3}
       propertyPath: itemIcon
       value: 
@@ -892,6 +904,10 @@ PrefabInstance:
       propertyPath: mapName
       value: "\uB0A1\uC740 \uC11C\uACE0"
       objectReference: {fileID: 0}
+    - target: {fileID: 3733507517434392424, guid: 220f8aaf7458be24e98749ddae62bdaa, type: 3}
+      propertyPath: mapDataSO
+      value: 
+      objectReference: {fileID: 11400000, guid: ea0bf7401d2547f45ba3747211879dc0, type: 2}
     - target: {fileID: 3733507517434392424, guid: 220f8aaf7458be24e98749ddae62bdaa, type: 3}
       propertyPath: arrivalDialogue
       value: 
@@ -1067,6 +1083,10 @@ PrefabInstance:
       value: "\uC0AC\uACFC\uB098\uBB34 \uC5B8\uB355"
       objectReference: {fileID: 0}
     - target: {fileID: 3733507517434392424, guid: 220f8aaf7458be24e98749ddae62bdaa, type: 3}
+      propertyPath: mapDataSO
+      value: 
+      objectReference: {fileID: 11400000, guid: d2354a90339cfa844a4613a9e6c65960, type: 2}
+    - target: {fileID: 3733507517434392424, guid: 220f8aaf7458be24e98749ddae62bdaa, type: 3}
       propertyPath: arrivalDialogue
       value: 
       objectReference: {fileID: 11400000, guid: e1c2933f7c8302248bf6f89fb9775a27, type: 2}
@@ -1147,6 +1167,10 @@ PrefabInstance:
       propertyPath: 'dialogueSequence.Array.data[0]'
       value: 
       objectReference: {fileID: 11400000, guid: a79c416e8e6a9574dad04e1f6981cd65, type: 2}
+    - target: {fileID: 5085485363866283460, guid: b931c348be7c7c24b96ee67ee23a45e1, type: 3}
+      propertyPath: itemData
+      value: 
+      objectReference: {fileID: 11400000, guid: ecb51c969639c0740872b41b64055e80, type: 2}
     - target: {fileID: 5085485363866283460, guid: b931c348be7c7c24b96ee67ee23a45e1, type: 3}
       propertyPath: teleportUI
       value: 
@@ -2413,6 +2437,10 @@ PrefabInstance:
       value: "\uAE08\uD654"
       objectReference: {fileID: 0}
     - target: {fileID: 3092057549691042336, guid: ad5acee826c5e3e4193ee726e3d27c0f, type: 3}
+      propertyPath: itemData
+      value: 
+      objectReference: {fileID: 11400000, guid: c34189fc300e30146b80b71c4a8d0d5a, type: 2}
+    - target: {fileID: 3092057549691042336, guid: ad5acee826c5e3e4193ee726e3d27c0f, type: 3}
       propertyPath: itemIcon
       value: 
       objectReference: {fileID: 1127241602, guid: 5cae241ac574f034ab08cd96f58e29fa, type: 3}
@@ -2565,6 +2593,10 @@ PrefabInstance:
       propertyPath: mapName
       value: "\uB9C8\uB2F9"
       objectReference: {fileID: 0}
+    - target: {fileID: 3733507517434392424, guid: 220f8aaf7458be24e98749ddae62bdaa, type: 3}
+      propertyPath: mapDataSO
+      value: 
+      objectReference: {fileID: 11400000, guid: f54657051d18d934e98bd8c8c2d1a2e9, type: 2}
     - target: {fileID: 3733507517434392424, guid: 220f8aaf7458be24e98749ddae62bdaa, type: 3}
       propertyPath: arrivalDialogue
       value: 
@@ -2885,6 +2917,10 @@ PrefabInstance:
       value: "\uC5B4\uB450\uC6B4 \uB545\uAD74"
       objectReference: {fileID: 0}
     - target: {fileID: 3733507517434392424, guid: 220f8aaf7458be24e98749ddae62bdaa, type: 3}
+      propertyPath: mapDataSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 529c390b3d4b8d24db910991ec8fe609, type: 2}
+    - target: {fileID: 3733507517434392424, guid: 220f8aaf7458be24e98749ddae62bdaa, type: 3}
       propertyPath: arrivalDialogue
       value: 
       objectReference: {fileID: 11400000, guid: e6b24e6b22615b54a909e287d53ebc48, type: 2}
@@ -2981,7 +3017,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3737468383214223777, guid: dfb7633b1abf6a043ac6b1ddd301f4ff, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3737468383214223777, guid: dfb7633b1abf6a043ac6b1ddd301f4ff, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3299,6 +3335,10 @@ PrefabInstance:
       value: "\uBE68\uAC04 \uC0AC\uACFC"
       objectReference: {fileID: 0}
     - target: {fileID: 3092057549691042336, guid: ad5acee826c5e3e4193ee726e3d27c0f, type: 3}
+      propertyPath: itemData
+      value: 
+      objectReference: {fileID: 11400000, guid: 57976d513e43f2b498ed4611872a3b39, type: 2}
+    - target: {fileID: 3092057549691042336, guid: ad5acee826c5e3e4193ee726e3d27c0f, type: 3}
       propertyPath: itemIcon
       value: 
       objectReference: {fileID: 21300000, guid: 9a719de5f7a40264480c3484696d3d81, type: 3}
@@ -3388,6 +3428,10 @@ PrefabInstance:
       propertyPath: itemID
       value: "\uB2E4\uC774\uC544"
       objectReference: {fileID: 0}
+    - target: {fileID: 3092057549691042336, guid: ad5acee826c5e3e4193ee726e3d27c0f, type: 3}
+      propertyPath: itemData
+      value: 
+      objectReference: {fileID: 11400000, guid: 8b3fec32fa37a8d4f82d172c30e8ad02, type: 2}
     - target: {fileID: 3092057549691042336, guid: ad5acee826c5e3e4193ee726e3d27c0f, type: 3}
       propertyPath: itemIcon
       value: 
@@ -3903,6 +3947,10 @@ PrefabInstance:
       value: "\uCEE4\uB2E4\uB780 \uC0AC\uACFC?"
       objectReference: {fileID: 0}
     - target: {fileID: 3733507517434392424, guid: 220f8aaf7458be24e98749ddae62bdaa, type: 3}
+      propertyPath: mapDataSO
+      value: 
+      objectReference: {fileID: 11400000, guid: da42fff2bd29c8e44bbc920808f32de7, type: 2}
+    - target: {fileID: 3733507517434392424, guid: 220f8aaf7458be24e98749ddae62bdaa, type: 3}
       propertyPath: arrivalDialogue
       value: 
       objectReference: {fileID: 11400000, guid: e8a4798a6c1e077488d0d3591b364a2d, type: 2}
@@ -4262,6 +4310,10 @@ PrefabInstance:
       value: "\uC218\uC0C1\uD55C \uC57D"
       objectReference: {fileID: 0}
     - target: {fileID: 3092057549691042336, guid: ad5acee826c5e3e4193ee726e3d27c0f, type: 3}
+      propertyPath: itemData
+      value: 
+      objectReference: {fileID: 11400000, guid: 784d8b0449bffc24cbcfdbadd913488c, type: 2}
+    - target: {fileID: 3092057549691042336, guid: ad5acee826c5e3e4193ee726e3d27c0f, type: 3}
       propertyPath: itemIcon
       value: 
       objectReference: {fileID: -823807647, guid: 172194976b66e7549a68b480f8cdd2b7, type: 3}
@@ -4383,6 +4435,10 @@ PrefabInstance:
       propertyPath: itemID
       value: "\uC218\uC0C1\uD55C \uC57D"
       objectReference: {fileID: 0}
+    - target: {fileID: 3092057549691042336, guid: ad5acee826c5e3e4193ee726e3d27c0f, type: 3}
+      propertyPath: itemData
+      value: 
+      objectReference: {fileID: 11400000, guid: 784d8b0449bffc24cbcfdbadd913488c, type: 2}
     - target: {fileID: 3092057549691042336, guid: ad5acee826c5e3e4193ee726e3d27c0f, type: 3}
       propertyPath: itemIcon
       value: 
@@ -4573,6 +4629,10 @@ PrefabInstance:
       propertyPath: itemID
       value: "\uB098\uBB47\uC78E"
       objectReference: {fileID: 0}
+    - target: {fileID: 3092057549691042336, guid: ad5acee826c5e3e4193ee726e3d27c0f, type: 3}
+      propertyPath: itemData
+      value: 
+      objectReference: {fileID: 11400000, guid: 6ec21895bcb332e45b4d572d73c4d55e, type: 2}
     - target: {fileID: 3092057549691042336, guid: ad5acee826c5e3e4193ee726e3d27c0f, type: 3}
       propertyPath: itemIcon
       value: 
@@ -5017,6 +5077,10 @@ PrefabInstance:
       value: "\uD1A0\uB07C\uAD74"
       objectReference: {fileID: 0}
     - target: {fileID: 3092057549691042336, guid: ad5acee826c5e3e4193ee726e3d27c0f, type: 3}
+      propertyPath: itemData
+      value: 
+      objectReference: {fileID: 11400000, guid: 1c7b77646978d66458c8ec73845f6466, type: 2}
+    - target: {fileID: 3092057549691042336, guid: ad5acee826c5e3e4193ee726e3d27c0f, type: 3}
       propertyPath: itemIcon
       value: 
       objectReference: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
@@ -5262,6 +5326,10 @@ PrefabInstance:
       propertyPath: mapName
       value: "\uCCB4\uC154\uC758 \uC232"
       objectReference: {fileID: 0}
+    - target: {fileID: 3733507517434392424, guid: 220f8aaf7458be24e98749ddae62bdaa, type: 3}
+      propertyPath: mapDataSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 3fb71f20c0bdd0544a920dd09b13f9e7, type: 2}
     - target: {fileID: 3733507517434392424, guid: 220f8aaf7458be24e98749ddae62bdaa, type: 3}
       propertyPath: arrivalDialogue
       value: 
@@ -6051,6 +6119,10 @@ PrefabInstance:
       value: "\uBE68\uAC04 \uC0AC\uACFC"
       objectReference: {fileID: 0}
     - target: {fileID: 3092057549691042336, guid: ad5acee826c5e3e4193ee726e3d27c0f, type: 3}
+      propertyPath: itemData
+      value: 
+      objectReference: {fileID: 11400000, guid: 57976d513e43f2b498ed4611872a3b39, type: 2}
+    - target: {fileID: 3092057549691042336, guid: ad5acee826c5e3e4193ee726e3d27c0f, type: 3}
       propertyPath: itemIcon
       value: 
       objectReference: {fileID: 21300000, guid: 9a719de5f7a40264480c3484696d3d81, type: 3}
@@ -6316,6 +6388,10 @@ PrefabInstance:
       value: "\uAE08\uAD11"
       objectReference: {fileID: 0}
     - target: {fileID: 3733507517434392424, guid: 220f8aaf7458be24e98749ddae62bdaa, type: 3}
+      propertyPath: mapDataSO
+      value: 
+      objectReference: {fileID: 11400000, guid: eb3e1fb7cc12e7648838e45ffdc1e4e4, type: 2}
+    - target: {fileID: 3733507517434392424, guid: 220f8aaf7458be24e98749ddae62bdaa, type: 3}
       propertyPath: arrivalDialogue
       value: 
       objectReference: {fileID: 11400000, guid: 21b40425e6882664a8ef50cec307aa5b, type: 2}
@@ -6426,6 +6502,10 @@ PrefabInstance:
       propertyPath: itemID
       value: "\uC218\uC0C1\uD55C \uC57D"
       objectReference: {fileID: 0}
+    - target: {fileID: 3092057549691042336, guid: ad5acee826c5e3e4193ee726e3d27c0f, type: 3}
+      propertyPath: itemData
+      value: 
+      objectReference: {fileID: 11400000, guid: 784d8b0449bffc24cbcfdbadd913488c, type: 2}
     - target: {fileID: 3092057549691042336, guid: ad5acee826c5e3e4193ee726e3d27c0f, type: 3}
       propertyPath: itemIcon
       value: 
@@ -6707,6 +6787,10 @@ PrefabInstance:
       value: "\uC218\uC0C1\uD55C \uC57D"
       objectReference: {fileID: 0}
     - target: {fileID: 3092057549691042336, guid: ad5acee826c5e3e4193ee726e3d27c0f, type: 3}
+      propertyPath: itemData
+      value: 
+      objectReference: {fileID: 11400000, guid: 784d8b0449bffc24cbcfdbadd913488c, type: 2}
+    - target: {fileID: 3092057549691042336, guid: ad5acee826c5e3e4193ee726e3d27c0f, type: 3}
       propertyPath: itemIcon
       value: 
       objectReference: {fileID: -823807647, guid: 172194976b66e7549a68b480f8cdd2b7, type: 3}
@@ -6800,6 +6884,10 @@ PrefabInstance:
       propertyPath: 'dialogueSequence.Array.data[0]'
       value: 
       objectReference: {fileID: 11400000, guid: c1f931303abacff4286c7c7aa13130b3, type: 2}
+    - target: {fileID: 5085485363866283460, guid: b931c348be7c7c24b96ee67ee23a45e1, type: 3}
+      propertyPath: itemData
+      value: 
+      objectReference: {fileID: 11400000, guid: ecb51c969639c0740872b41b64055e80, type: 2}
     - target: {fileID: 5085485363866283460, guid: b931c348be7c7c24b96ee67ee23a45e1, type: 3}
       propertyPath: teleportUI
       value: 
@@ -7195,6 +7283,10 @@ PrefabInstance:
       propertyPath: mapName
       value: "\uC228\uACA8\uC9C4 \uACF5\uAC04"
       objectReference: {fileID: 0}
+    - target: {fileID: 3733507517434392424, guid: 220f8aaf7458be24e98749ddae62bdaa, type: 3}
+      propertyPath: mapDataSO
+      value: 
+      objectReference: {fileID: 11400000, guid: b6ce93664fdc67e4bb99fbe6cc15e476, type: 2}
     - target: {fileID: 3733507517434392424, guid: 220f8aaf7458be24e98749ddae62bdaa, type: 3}
       propertyPath: arrivalDialogue
       value: 
@@ -7637,6 +7729,10 @@ PrefabInstance:
       value: "\uC369\uC740 \uC0AC\uACFC"
       objectReference: {fileID: 0}
     - target: {fileID: 3092057549691042336, guid: ad5acee826c5e3e4193ee726e3d27c0f, type: 3}
+      propertyPath: itemData
+      value: 
+      objectReference: {fileID: 11400000, guid: 665c52cb80d3b77469184d4f21463d21, type: 2}
+    - target: {fileID: 3092057549691042336, guid: ad5acee826c5e3e4193ee726e3d27c0f, type: 3}
       propertyPath: itemIcon
       value: 
       objectReference: {fileID: -789119931, guid: 8bbacbff6e79a4b43be8cecd8b2448a5, type: 3}
@@ -7738,6 +7834,10 @@ PrefabInstance:
       propertyPath: itemID
       value: "\uB2E4\uC774\uC544"
       objectReference: {fileID: 0}
+    - target: {fileID: 3092057549691042336, guid: ad5acee826c5e3e4193ee726e3d27c0f, type: 3}
+      propertyPath: itemData
+      value: 
+      objectReference: {fileID: 11400000, guid: 8b3fec32fa37a8d4f82d172c30e8ad02, type: 2}
     - target: {fileID: 3092057549691042336, guid: ad5acee826c5e3e4193ee726e3d27c0f, type: 3}
       propertyPath: itemIcon
       value: 

@@ -123,6 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94ef42f644130b046b34da3da814dfe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemData: {fileID: 0}
   mapName: map0
   itemID: OBJ1
   glowColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}

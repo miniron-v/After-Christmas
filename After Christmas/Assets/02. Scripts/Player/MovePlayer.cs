@@ -10,7 +10,7 @@ public class MovePlayer : MonoBehaviour
     private Vector2 moveInput;
 
     private readonly Vector3 isoForward = new Vector3(1, 0, 1).normalized;
-    private readonly Vector3 isoRight   = new Vector3(1, 0, -1).normalized;
+    private readonly Vector3 isoRight = new Vector3(1, 0, -1).normalized;
 
     [Header("Camera Follow")]
     public Camera mainCamera;
@@ -39,6 +39,10 @@ public class MovePlayer : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (!PlayerStateManager.Instance.IsPlayerControllable())
+        {
+            return;
+        }
         Vector3 moveDir = isoForward * moveInput.y + isoRight * moveInput.x;
         if (moveDir.sqrMagnitude > 1f) moveDir.Normalize();
 

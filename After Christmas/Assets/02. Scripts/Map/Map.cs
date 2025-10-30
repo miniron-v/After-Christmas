@@ -2,10 +2,17 @@ using UnityEngine;
 
 public class Map : MonoBehaviour
 {
-    [Header("맵 이름 (고유)")]
-    public string mapName;
+    [Header("맵 관련 데이터 (SO)")]
+    public MapDataSO mapDataSO;
 
-    [Header("현재 맵 내의 오브젝트들로 텔레포트했을 때 카메라 스폰 위치")]
+    // 맵 id, so에서 관리하므로 hide in inspector
+    [HideInInspector]
+    public string mapName => mapDataSO.mapID;
+
+    [Header("현재 맵으로 텔레포트했을 때 플레이어 스폰 위치")]
+    public Transform playerSpawnPoint;
+
+    [Header("현재 맵으로 텔레포트했을 때 카메라 스폰 위치")]
     public Transform cameraSpawnPoint;
 
     [Header("최초 입장 시 실행할 대화")]
@@ -16,20 +23,17 @@ public class Map : MonoBehaviour
     [HideInInspector]
     public CinematicController cinematicController;
 
+    public bool isStartMap = false;
+
     private void Awake()
     {
         // 변수 할당 최소화를 위한 getcomponent 사용
         cinematicController = GetComponent<CinematicController>();
     }
 
-    private void Start()
+    void Start()
     {
-        if (!string.IsNullOrEmpty(mapName))
-        {
-            MapVisitManager.Instance.RegisterMap(mapName, this);
-        }
-
-        // 자식 아이템 초기화
+        MapInfoManager.Instance.RecordMap(this);
         InitializeChildItems();
     }
 
