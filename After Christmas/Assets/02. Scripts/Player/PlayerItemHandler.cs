@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -80,10 +81,30 @@ public class PlayerItemHandler : MonoBehaviour
 
     public void Teleport(SpawnTransform selected)
     {
+        StartCoroutine(TeleportRoutine(selected));
+    }
+
+    private IEnumerator TeleportRoutine(SpawnTransform selected)
+    {
+        // 페이드 아웃
+        bool isFadeOutComplete = false;
+        FadeManager.Instance.FadeOut(() => { isFadeOutComplete = true; });
+
+        // 페이드 아웃 끝날 때까지 대기
+        yield return new WaitUntil(() => isFadeOutComplete);
+
+        // 위치 이동
         transform.position = selected.playerSpawnPoint;
         if (Camera.main != null)
             Camera.main.transform.position = selected.cameraSpawnPoint;
+
+        // 0.5초 대기
+        yield return new WaitForSeconds(0.5f);
+
+        // 페이드 인
+        FadeManager.Instance.FadeIn();
     }
+
 
     private void Update()
     {

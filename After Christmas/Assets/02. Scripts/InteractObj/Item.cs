@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -198,6 +199,22 @@ public class Item : MonoBehaviour, IInteractable, IGlowable
 
     private void TeleportByItem(GameObject player, Item target)
     {
+        StartCoroutine(TeleportByItemRoutine(player, target));
+    }
+
+    private IEnumerator TeleportByItemRoutine(GameObject player, Item target)
+    {
+        // 페이드 아웃
+        bool isFadeOutComplete = false;
+        FadeManager.Instance.FadeOut(() => { isFadeOutComplete = true; });
+
+        // 페이드 아웃 끝날 때까지 대기
+        yield return new WaitUntil(() => isFadeOutComplete);
+
+        // 0.5초 딜레이
+        yield return new WaitForSeconds(0.5f);
+
+        // 위치 이동
         player.transform.SetPositionAndRotation(
             target.playerSpawnPoint.position,
             target.playerSpawnPoint.rotation
@@ -211,5 +228,9 @@ public class Item : MonoBehaviour, IInteractable, IGlowable
 
         MapInfoManager.Instance.VisitMap(target.mapName);
         target.isRecorded = true;
+
+        // 페이드 인
+        FadeManager.Instance.FadeIn();
     }
+
 }

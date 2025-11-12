@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using DG.Tweening;
 
 public class NewInventoryUI : MonoBehaviour
 {
@@ -26,6 +27,21 @@ public class NewInventoryUI : MonoBehaviour
     [SerializeField] private TMP_Text selectedDesc;
     [SerializeField] private Button selectedButton;
 
+    [Header("Animation Settings")]
+    [SerializeField] private RectTransform rootPanel;   // UI 전체 패널
+    [SerializeField] private float slideDuration = 0.4f;
+    [SerializeField] private Ease slideEase = Ease.OutBack;    // 위로 올라올 때 튕기는 듯한 느낌
+    [SerializeField] private CanvasGroup tabletScreenCanvasGroup;
+    [SerializeField] private RectTransform tabletScreenRect;
+    [SerializeField] private float screenRevealDuration = 0.4f;
+    [SerializeField] private Ease screenEase = Ease.OutCubic;
+
+    private GameObject currentSelectedSlot = null;  // 현재 선택된 슬롯
+
+
+    private bool isAnimating = false;
+
+
     private PlayerItemHandler handler;
     public int currentSceneIndex = -1;
     private bool isMapTab = true;
@@ -34,12 +50,14 @@ public class NewInventoryUI : MonoBehaviour
 
     public void Open(PlayerItemHandler h)
     {
+        if (isAnimating) return;
+
+        isAnimating = true;
         UIModalGate.Acquire(this, Close);
         handler = h;
         gameObject.SetActive(true);
 
         PlayerStateManager.Instance?.SetState(PlayerState.UIOpen);
-
         BuildPatientList();
 
         string sceneName = SceneManager.GetActiveScene().name;
@@ -52,21 +70,44 @@ public class NewInventoryUI : MonoBehaviour
 
         patientInventoryRoot.gameObject.SetActive(false);
 
-        // Map 탭 선택 + 버튼 색 변경
         OnClickMapTab();
-
-        // 선택 버튼 상태 갱신
         UpdateSelectedButtonInteractable();
+
+        PlayOpenAnimation();
     }
+
 
 
     public void Close()
     {
-        gameObject.SetActive(false);
-        handler = null;
-        UIModalGate.Release(this);
-        PlayerStateManager.Instance?.SetState(PlayerState.Play);
+        if (isAnimating)
+            return;
+
+        isAnimating = true;
+
+        // DOTween 시퀀스
+        Sequence seq = DOTween.Sequence();
+
+        // 1️⃣ 화면 먼저 접히며 사라짐 (중앙에서 양쪽으로)
+        seq.Append(tabletScreenRect.DOScaleX(0f, screenRevealDuration * 0.8f).SetEase(screenEase));
+        seq.Join(tabletScreenCanvasGroup.DOFade(0f, screenRevealDuration).SetEase(Ease.OutQuad));
+
+        // 2️⃣ 화면이 완전히 닫히면 태블릿 본체 아래로 슬라이드
+        seq.Append(rootPanel.DOAnchorPosY(-Screen.height, slideDuration).SetEase(slideEase));
+
+        // 3️⃣ 완료 후 UI 비활성화 및 상태 초기화
+        seq.OnComplete(() =>
+        {
+            gameObject.SetActive(false);
+            tabletScreenRect.localScale = Vector3.one;           // 초기화
+            tabletScreenCanvasGroup.alpha = 1f;                 // 초기화
+            handler = null;
+            UIModalGate.Release(this);
+            PlayerStateManager.Instance?.SetState(PlayerState.Play);
+            isAnimating = false;
+        });
     }
+
 
     #endregion
 
@@ -237,40 +278,57 @@ public class NewInventoryUI : MonoBehaviour
 
         void SelectSlot()
         {
-            selectedImage.sprite = icon;
-            selectedName.text = id;
-            selectedDesc.text = description;
-
-            selectedButton.onClick.RemoveAllListeners();
-            selectedButton.interactable = false;
-
-            if (canInteract && handler != null)
+            if (slotObj == null) return; // slotObj 안전 체크
+            if (currentSelectedSlot != null)
             {
-                selectedButton.interactable = true;
-                selectedButton.onClick.AddListener(() =>
-                {
-                    if (isMap)
-                    {
-                        MapRecord mapObj = MapInfoManager.Instance.GetMapRecord(id, currentSceneIndex);
-                        if (mapObj != null)
-                        {
-                            SpawnTransform spawn = new SpawnTransform(
-                                mapObj.playerSpawnPoint,
-                                mapObj.cameraSpawnPoint,
-                                mapObj.mapID
-                            );
-                            handler.Teleport(spawn);
-                        }
-                    }
-                    else
-                    {
-                        handler.HoldItem(id);
-                    }
+                Transform prevSelected = currentSelectedSlot.transform.Find("Selected");
+                if (prevSelected != null)
+                    prevSelected.gameObject.SetActive(false);
+            }
 
-                    Close();
-                });
+            Transform selectedObj = slotObj.transform.Find("Selected");
+            if (selectedObj != null)
+                selectedObj.gameObject.SetActive(true);
+
+            currentSelectedSlot = slotObj;
+
+            if (selectedImage != null) selectedImage.sprite = icon;
+            if (selectedName != null) selectedName.text = id;
+            if (selectedDesc != null) selectedDesc.text = description;
+
+            if (selectedButton != null)
+            {
+                selectedButton.onClick.RemoveAllListeners();
+                selectedButton.interactable = canInteract && handler != null;
+
+                if (canInteract && handler != null)
+                {
+                    selectedButton.onClick.AddListener(() =>
+                    {
+                        if (isMap)
+                        {
+                            MapRecord mapObj = MapInfoManager.Instance.GetMapRecord(id, currentSceneIndex);
+                            if (mapObj != null)
+                            {
+                                SpawnTransform spawn = new SpawnTransform(
+                                    mapObj.playerSpawnPoint,
+                                    mapObj.cameraSpawnPoint,
+                                    mapObj.mapID
+                                );
+                                handler.Teleport(spawn);
+                            }
+                        }
+                        else
+                        {
+                            handler.HoldItem(id);
+                        }
+
+                        Close();
+                    });
+                }
             }
         }
+
 
         // 버튼 클릭 리스너
         if (btn != null)
@@ -359,6 +417,51 @@ public class NewInventoryUI : MonoBehaviour
         patientListRoot.gameObject.SetActive(false);
         patientInfoRoot.gameObject.SetActive(true);
         patientInventoryRoot.gameObject.SetActive(false);
+    }
+
+    #endregion
+
+    #region 애니메이션 관련 함수
+
+    private void PlayOpenAnimation()
+    {
+        Vector2 startPos = new Vector2(rootPanel.anchoredPosition.x, -Screen.height * 0.5f);
+        rootPanel.anchoredPosition = startPos;
+        tabletScreenCanvasGroup.alpha = 0f;
+
+        Sequence seq = DOTween.Sequence();
+        seq.Append(rootPanel.DOAnchorPosY(0f, slideDuration).SetEase(slideEase));
+        seq.AppendCallback(() =>
+        {
+            PlayInnerReveal();
+        });
+    }
+
+
+
+    private void PlayInnerReveal()
+    {
+        if (tabletScreenRect == null || tabletScreenCanvasGroup == null)
+            return;
+
+        // 초기 상태: 화면이 중앙에서 가늘게 존재 (X축 0)
+        tabletScreenRect.localScale = new Vector3(0f, 1f, 1f);
+
+        // 중앙에서 좌우로 확장되며 알파가 서서히 올라감
+        Sequence seq = DOTween.Sequence();
+        seq.Append(tabletScreenRect.DOScaleX(1f, screenRevealDuration * 0.8f)
+            .SetEase(screenEase));
+
+        seq.Join(tabletScreenCanvasGroup.DOFade(1f, screenRevealDuration)
+            .SetEase(Ease.OutQuad));
+
+        seq.OnComplete(() =>
+        {
+            // 완전히 켜진 상태 유지
+            tabletScreenRect.localScale = Vector3.one;
+            tabletScreenCanvasGroup.alpha = 1f;
+            isAnimating = false;
+        });
     }
 
     #endregion
