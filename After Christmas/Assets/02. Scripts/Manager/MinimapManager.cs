@@ -13,6 +13,9 @@ public class MinimapManager : MonoBehaviour
     [Header("전환 관련 설정")]
     [SerializeField] private float transitionDuration = 1f;
 
+    [Header("미니맵 클릭 설정")]
+    [SerializeField] private LayerMask planeLayerMask; 
+
     private Vector3 originalPosition;
     private float originalSize;
 
@@ -29,9 +32,16 @@ public class MinimapManager : MonoBehaviour
     {
         if (isTweening) return;
 
+        // Y 키 토글
         if (Input.GetKeyDown(KeyCode.Y) && IsMinimapControlEnabled)
         {
             ToggleMinimapView();
+        }
+
+        // 미니맵 모드에서 클릭 처리
+        if (isMinimapMode && Input.GetMouseButtonDown(0))
+        {
+            HandleMinimapClick();
         }
     }
 
@@ -47,7 +57,7 @@ public class MinimapManager : MonoBehaviour
         UnityEditor.EditorUtility.SetDirty(this);
 #endif
 
-        Debug.Log("✔ 미니맵 위치/사이즈 저장 완료!");
+        Debug.Log("미니맵 정보 저장 완료");
     }
 
     private void ToggleMinimapView()
@@ -63,7 +73,6 @@ public class MinimapManager : MonoBehaviour
         }
         else
         {
-            
             MoveToOriginal();
         }
 
@@ -77,6 +86,7 @@ public class MinimapManager : MonoBehaviour
         targetCam.transform
             .DOMove(minimapPosition, transitionDuration)
             .SetEase(Ease.InOutQuad);
+
         DOTween
             .To(() => targetCam.orthographicSize, x => targetCam.orthographicSize = x,
                 minimapSize, transitionDuration)
@@ -103,7 +113,6 @@ public class MinimapManager : MonoBehaviour
                 PlayerStateManager.Instance.SetState(PlayerState.Play);
             });
     }
-
 
     private void DisableUnvisitedMapObjects()
     {
@@ -147,8 +156,32 @@ public class MinimapManager : MonoBehaviour
         }
     }
 
-
     private bool IsMinimapControlEnabled =>
         PlayerStateManager.Instance.CurrentState is PlayerState.Play or PlayerState.MiniMap;
 
+    private void HandleMinimapClick()
+    {
+        Ray ray = targetCam.ScreenPointToRay(Input.mousePosition);
+
+        Debug.DrawRay(ray.origin, ray.direction * 500f, Color.yellow, 1f); // 디버그용
+
+        if (Physics.Raycast(ray, out RaycastHit hit, 500f, planeLayerMask))
+        {
+            TrySelectMapFromRay(hit);
+        }
+        else
+        {
+            Debug.Log("감지안됨");
+        }
+    }
+
+    private void TrySelectMapFromRay(RaycastHit hit)
+    {
+        Map map = hit.collider.GetComponentInParent<Map>();
+
+        if (map != null)
+        {
+            Debug.Log($"{map.mapName}");
+        }
+    }
 }

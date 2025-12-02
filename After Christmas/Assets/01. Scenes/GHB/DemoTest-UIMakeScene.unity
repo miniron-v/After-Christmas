@@ -385,6 +385,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 475763417900370761, guid: 220f8aaf7458be24e98749ddae62bdaa, type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 3733507517434392424, guid: 220f8aaf7458be24e98749ddae62bdaa, type: 3}
       propertyPath: mapName
       value: "\uD1A0\uB07C\uC758 \uC9D1"
@@ -764,6 +768,9 @@ MonoBehaviour:
   minimapPosition: {x: -10, y: 12, z: -68}
   minimapSize: 150
   transitionDuration: 1
+  planeLayerMask:
+    serializedVersion: 2
+    m_Bits: 16384
 --- !u!4 &92582965
 Transform:
   m_ObjectHideFlags: 0
@@ -1056,6 +1063,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 475763417900370761, guid: 220f8aaf7458be24e98749ddae62bdaa, type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 3733507517434392424, guid: 220f8aaf7458be24e98749ddae62bdaa, type: 3}
       propertyPath: mapName
       value: "\uB0A1\uC740 \uC11C\uACE0"
@@ -1342,6 +1353,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 475763417900370761, guid: 220f8aaf7458be24e98749ddae62bdaa, type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 3733507517434392424, guid: 220f8aaf7458be24e98749ddae62bdaa, type: 3}
       propertyPath: mapName
       value: "\uC0AC\uACFC\uB098\uBB34 \uC5B8\uB355"
@@ -3005,6 +3020,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 475763417900370761, guid: 220f8aaf7458be24e98749ddae62bdaa, type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 3733507517434392424, guid: 220f8aaf7458be24e98749ddae62bdaa, type: 3}
       propertyPath: mapName
       value: "\uB9C8\uB2F9"
@@ -3352,6 +3371,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 475763417900370761, guid: 220f8aaf7458be24e98749ddae62bdaa, type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 3733507517434392424, guid: 220f8aaf7458be24e98749ddae62bdaa, type: 3}
       propertyPath: mapName
       value: "\uC5B4\uB450\uC6B4 \uB545\uAD74"
@@ -4423,6 +4446,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 475763417900370761, guid: 220f8aaf7458be24e98749ddae62bdaa, type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 3733507517434392424, guid: 220f8aaf7458be24e98749ddae62bdaa, type: 3}
       propertyPath: mapName
       value: "\uCEE4\uB2E4\uB780 \uC0AC\uACFC?"
@@ -6458,6 +6485,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 475763417900370761, guid: 220f8aaf7458be24e98749ddae62bdaa, type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 3733507517434392424, guid: 220f8aaf7458be24e98749ddae62bdaa, type: 3}
       propertyPath: mapName
       value: "\uCCB4\uC154\uC758 \uC232"
@@ -8692,6 +8723,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 475763417900370761, guid: 220f8aaf7458be24e98749ddae62bdaa, type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 3733507517434392424, guid: 220f8aaf7458be24e98749ddae62bdaa, type: 3}
       propertyPath: mapName
       value: "\uC228\uACA8\uC9C4 \uACF5\uAC04"
@@ -9662,25 +9697,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2074708482}
   m_CullTransparentMesh: 1
---- !u!1 &2081140267 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1185539028464122985, guid: e59c27b2c25d61143b8145d138c3ffa8, type: 3}
-  m_PrefabInstance: {fileID: 2128487250}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2081140279
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2081140267}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0d7c8068f29ee24db67d2b530c325c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetCamera: {fileID: 0}
-  smoothSpeed: 5
 --- !u!1001 &2125142422
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9893,10 +9909,10 @@ PrefabInstance:
       propertyPath: inventoryUI
       value: 
       objectReference: {fileID: 1317593300}
-    - target: {fileID: 5612259126014292927, guid: e59c27b2c25d61143b8145d138c3ffa8, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 3ac688bedab6a8044a35ac655c51ec6c, type: 2}
+    - target: {fileID: 2431639842824240974, guid: e59c27b2c25d61143b8145d138c3ffa8, type: 3}
+      propertyPath: m_Constraints
+      value: 80
+      objectReference: {fileID: 0}
     - target: {fileID: 7733775996388582886, guid: e59c27b2c25d61143b8145d138c3ffa8, type: 3}
       propertyPath: m_LocalPosition.x
       value: -27.8
@@ -9940,10 +9956,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1185539028464122985, guid: e59c27b2c25d61143b8145d138c3ffa8, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2081140279}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e59c27b2c25d61143b8145d138c3ffa8, type: 3}
 --- !u!4 &2130350500 stripped
 Transform:

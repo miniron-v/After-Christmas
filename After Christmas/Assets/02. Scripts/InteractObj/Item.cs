@@ -226,6 +226,8 @@ public class Item : MonoBehaviour, IInteractable, IGlowable
                 target.cameraSpawnPoint.rotation
             );
 
+        TeleportEventManager.NotifyTeleport();
+
         MapInfoManager.Instance.VisitMap(target.mapName);
         target.isRecorded = true;
 

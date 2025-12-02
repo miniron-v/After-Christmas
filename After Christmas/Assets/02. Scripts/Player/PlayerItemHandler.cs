@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -97,6 +98,8 @@ public class PlayerItemHandler : MonoBehaviour
         transform.position = selected.playerSpawnPoint;
         if (Camera.main != null)
             Camera.main.transform.position = selected.cameraSpawnPoint;
+
+        TeleportEventManager.NotifyTeleport();
 
         // 0.5초 대기
         yield return new WaitForSeconds(0.5f);
