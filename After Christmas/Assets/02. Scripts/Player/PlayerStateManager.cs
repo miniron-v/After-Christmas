@@ -10,6 +10,8 @@ public enum PlayerState
     Dialogue,
     // 시네마틱 열려있는 시점
     Cinematic,
+    // 미니맵 열려있는 시점
+    MiniMap,
     // 일시정지(추후 시네마틱, 대화 시퀀스 등 전부 제어하기 위한 용도)
     Paused
 }
