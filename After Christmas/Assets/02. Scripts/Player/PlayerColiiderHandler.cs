@@ -5,7 +5,6 @@ public class PlayerColliderHandler : MonoBehaviour
 {
     [SerializeField] private LayerMask itemLayerMask;
     [SerializeField] private float interactRange = 2f;
-    [SerializeField] private LayerMask interactableMask;
 
 
     private void OnTriggerEnter(Collider other)
@@ -46,7 +45,7 @@ public class PlayerColliderHandler : MonoBehaviour
 
     private void TryInteract()
     {
-        Collider[] hits = Physics.OverlapSphere(transform.position, interactRange, interactableMask);
+        Collider[] hits = Physics.OverlapSphere(transform.position, interactRange, itemLayerMask);
 
         if (hits.Length > 0)
         {

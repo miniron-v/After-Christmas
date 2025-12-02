@@ -8852,7 +8852,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2979e22e693f2041a519f0cc8f82d6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeCanvasGroup: {fileID: 2074708486}
+  fadeImage: {fileID: 2074708484}
   fadeDuration: 1
 --- !u!114 &1945894358
 MonoBehaviour:
@@ -9542,7 +9542,6 @@ GameObject:
   - component: {fileID: 2074708483}
   - component: {fileID: 2074708485}
   - component: {fileID: 2074708484}
-  - component: {fileID: 2074708486}
   m_Layer: 5
   m_Name: FadeImage
   m_TagString: Untagged
@@ -9582,7 +9581,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -9607,18 +9606,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2074708482}
   m_CullTransparentMesh: 1
---- !u!225 &2074708486
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2074708482}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
 --- !u!1001 &2125142422
 PrefabInstance:
   m_ObjectHideFlags: 0
