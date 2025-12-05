@@ -208,16 +208,7 @@ public class MinimapManager : MonoBehaviour
             if (mapObj != null)
             {
                 mapObj.gameObject.SetActive(true);
-
-                // 맵이 현재 맵이면 알파 1, 아니면 반투명
-                if (mapID == MapInfoManager.Instance.currentMap)
-                {
-                    mapObj.SetMapAlpha(1f);
-                }
-                else
-                {
-                    mapObj.SetMapAlpha(alphaWhenPlayerAbsent); // 다른 맵은 반투명
-                }
+                mapObj.SetMapAlpha(1f);
             }
         }
     }
