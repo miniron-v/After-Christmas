@@ -19,7 +19,10 @@ public class MinimapManager : MonoBehaviour
     [SerializeField] private LayerMask planeLayerMask;
 
     [Header("ZoomManager 참조")]
-    [SerializeField] private ZoomManager zoomManager; // ZoomManager 참조 추가
+    [SerializeField] private ZoomManager zoomManager;
+    [Header("호버링 이동 캔버스 참조")]
+    [SerializeField] private GameObject cameraMoveCanvas;
+    private CanvasGroup cameraMoveCanvasGroup;
 
     private Vector3 originalPosition;
     private float originalSize;
@@ -29,13 +32,15 @@ public class MinimapManager : MonoBehaviour
 
     private void Start()
     {
+        cameraMoveCanvasGroup = cameraMoveCanvas.GetComponent<CanvasGroup>();
+
         originalSize = targetCam.orthographicSize;
         if (targetCam == null)
             targetCam = Camera.main;
         if (zoomManager != null)
         {
             // 줌 범위 설정 (originalSize, minimapSize를 줌 범위로 설정)
-            zoomManager.Init(originalSize,minimapSize);
+            zoomManager.Init(originalSize, minimapSize);
         }
     }
 
@@ -85,6 +90,7 @@ public class MinimapManager : MonoBehaviour
         {
             MoveToOriginal(originalPosition, Vector3.zero, false);  // 원래 위치로 돌아갈 때
             zoomManager.SetZoomState(false);
+            FadeOutCanvas();
         }
 
         isMinimapMode = !isMinimapMode;
@@ -93,6 +99,8 @@ public class MinimapManager : MonoBehaviour
     private void MoveToMinimap()
     {
         isTweening = true;
+        cameraMoveCanvas.SetActive(true);
+        FadeInCanvas(); // 캔버스를 서서히 나타나게 함
 
         targetCam.transform
             .DOMove(minimapPosition, transitionDuration)
@@ -215,6 +223,31 @@ public class MinimapManager : MonoBehaviour
             MoveToOriginal(map.cameraSpawnPoint.position, map.playerSpawnPoint.position, true);
             isMinimapMode = !isMinimapMode;
             zoomManager.SetZoomState(false);
+            FadeOutCanvas();
         }
     }
+
+    // CanvasGroup을 이용한 페이드 인
+    private void FadeInCanvas()
+    {
+        if (cameraMoveCanvasGroup != null)
+        {
+            cameraMoveCanvasGroup.alpha = 0f; // 시작은 투명
+            cameraMoveCanvasGroup.DOFade(1f, transitionDuration); // 서서히 나타나게 함
+        }
+    }
+
+    // CanvasGroup을 이용한 페이드 아웃
+    private void FadeOutCanvas()
+    {
+        if (cameraMoveCanvasGroup != null)
+        {
+            cameraMoveCanvasGroup.DOFade(0f, transitionDuration) // 서서히 사라지게 함
+                .OnComplete(() =>
+                {
+                    cameraMoveCanvas.SetActive(false); // 애니메이션 완료 후 SetActive(false)로 비활성화
+                });
+        }
+    }
+
 }
