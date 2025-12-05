@@ -226,6 +226,9 @@ public class Item : MonoBehaviour, IInteractable, IGlowable
                 target.cameraSpawnPoint.rotation
             );
 
+        Map map = target.GetComponentInParent<Map>();
+        MapInfoManager.Instance.currentMap = map.mapName;
+
         TeleportEventManager.NotifyTeleport();
 
         MapInfoManager.Instance.VisitMap(target.mapName);

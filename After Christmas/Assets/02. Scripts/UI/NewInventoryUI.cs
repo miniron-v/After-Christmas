@@ -315,7 +315,7 @@ public class NewInventoryUI : MonoBehaviour
                                     mapObj.cameraSpawnPoint,
                                     mapObj.mapID
                                 );
-                                handler.Teleport(spawn);
+                                handler.Teleport(spawn,id);
                             }
                         }
                         else

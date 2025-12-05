@@ -45,6 +45,8 @@ public class MapInfoManager : MonoBehaviour
 
     // 씬별 방문 기록
     private List<HashSet<string>> visitedMaps = new List<HashSet<string>>();
+    [HideInInspector]
+    public string currentMap;
 
     private void Awake()
     {
@@ -162,6 +164,7 @@ public class MapInfoManager : MonoBehaviour
         if (mapObj.isStartMap)
         {
             VisitMap(mapObj.mapName);
+            currentMap = mapObj.mapName;
         }
     }
 

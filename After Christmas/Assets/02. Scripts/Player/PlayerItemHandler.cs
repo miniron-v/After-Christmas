@@ -80,12 +80,12 @@ public class PlayerItemHandler : MonoBehaviour
 
     public IReadOnlyList<SpawnTransform> GetSpawnsOf(string itemID, int sceneIndex) => ItemInfoManager.Instance.GetSpawnsOf(itemID, sceneIndex);
 
-    public void Teleport(SpawnTransform selected)
+    public void Teleport(SpawnTransform selected, string mapID)
     {
-        StartCoroutine(TeleportRoutine(selected));
+        StartCoroutine(TeleportRoutine(selected,mapID));
     }
 
-    private IEnumerator TeleportRoutine(SpawnTransform selected)
+    private IEnumerator TeleportRoutine(SpawnTransform selected,string mapID)
     {
         // 페이드 아웃
         bool isFadeOutComplete = false;
@@ -100,7 +100,7 @@ public class PlayerItemHandler : MonoBehaviour
             Camera.main.transform.position = selected.cameraSpawnPoint;
 
         TeleportEventManager.NotifyTeleport();
-
+        MapInfoManager.Instance.currentMap = mapID;
         // 0.5초 대기
         yield return new WaitForSeconds(0.5f);
 

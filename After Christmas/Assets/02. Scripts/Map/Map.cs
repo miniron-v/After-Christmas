@@ -46,4 +46,35 @@ public class Map : MonoBehaviour
             item.cameraSpawnPoint = cameraSpawnPoint;
         }
     }
+
+    // 추가된 부분: 알파 값을 수정하는 함수
+    public void SetMapAlpha(float alpha)
+    {
+        // 모든 Renderer에 대해 alpha 값 수정
+        Renderer[] renderers = GetComponentsInChildren<Renderer>();
+        foreach (var renderer in renderers)
+        {
+            Material material = renderer.material;
+
+            // 렌더링 모드를 Transparent로 변경
+            if (material.HasProperty("_Mode"))
+            {
+                material.SetFloat("_Mode", 3); // 3은 Transparent 모드
+                material.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
+                material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+                material.SetInt("_ZWrite", 0); // 깊이 버퍼 비활성화 (투명 객체)
+                material.DisableKeyword("_ALPHATEST_ON");
+                material.EnableKeyword("_ALPHABLEND_ON");
+                material.DisableKeyword("_ALPHAPREMULTIPLY_ON");
+                material.renderQueue = 3000; // 투명 오브젝트의 기본 렌더 큐 값
+            }
+
+            // 알파 값 설정
+            Color color = material.color;
+            color.a = alpha;  // alpha 값 수정
+            material.color = color;
+        }
+    }
+
+
 }

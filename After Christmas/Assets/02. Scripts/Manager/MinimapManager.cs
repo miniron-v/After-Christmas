@@ -15,6 +15,10 @@ public class MinimapManager : MonoBehaviour
     [Header("전환 관련 설정")]
     [SerializeField] private float transitionDuration = 1f;
 
+    [Header("알파 값 설정")]
+    [Range(0f, 1f)]
+    [SerializeField] private float alphaWhenPlayerAbsent = 0.5f;  // 플레이어가 없는 맵의 알파 값 (0~1)
+
     [Header("미니맵 클릭 설정")]
     [SerializeField] private LayerMask planeLayerMask;
 
@@ -172,6 +176,20 @@ public class MinimapManager : MonoBehaviour
             {
                 mapObj.gameObject.SetActive(false);
             }
+            else
+            {
+                // 방문한 맵에서 currentMap에 해당하는 맵은 알파 1로 설정
+                if (mapID == MapInfoManager.Instance.currentMap)
+                {
+                    mapObj.gameObject.SetActive(true);
+                    mapObj.SetMapAlpha(1f); // 현재 맵은 불투명
+                }
+                else
+                {
+                    mapObj.gameObject.SetActive(true);
+                    mapObj.SetMapAlpha(alphaWhenPlayerAbsent); // 다른 방문한 맵은 반투명
+                }
+            }
         }
     }
 
@@ -188,7 +206,19 @@ public class MinimapManager : MonoBehaviour
         {
             Map mapObj = MapInfoManager.Instance.GetMapObject(mapID);
             if (mapObj != null)
+            {
                 mapObj.gameObject.SetActive(true);
+
+                // 맵이 현재 맵이면 알파 1, 아니면 반투명
+                if (mapID == MapInfoManager.Instance.currentMap)
+                {
+                    mapObj.SetMapAlpha(1f);
+                }
+                else
+                {
+                    mapObj.SetMapAlpha(alphaWhenPlayerAbsent); // 다른 맵은 반투명
+                }
+            }
         }
     }
 
@@ -221,6 +251,7 @@ public class MinimapManager : MonoBehaviour
 
             // Map 클릭 시, 해당 Map으로 텔레포트 처리
             MoveToOriginal(map.cameraSpawnPoint.position, map.playerSpawnPoint.position, true);
+            MapInfoManager.Instance.currentMap = map.mapName;
             isMinimapMode = !isMinimapMode;
             zoomManager.SetZoomState(false);
             FadeOutCanvas();
