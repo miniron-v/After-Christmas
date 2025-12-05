@@ -18,6 +18,9 @@ public class MinimapManager : MonoBehaviour
     [Header("미니맵 클릭 설정")]
     [SerializeField] private LayerMask planeLayerMask;
 
+    [Header("ZoomManager 참조")]
+    [SerializeField] private ZoomManager zoomManager; // ZoomManager 참조 추가
+
     private Vector3 originalPosition;
     private float originalSize;
 
@@ -26,8 +29,14 @@ public class MinimapManager : MonoBehaviour
 
     private void Start()
     {
+        originalSize = targetCam.orthographicSize;
         if (targetCam == null)
             targetCam = Camera.main;
+        if (zoomManager != null)
+        {
+            // 줌 범위 설정 (originalSize, minimapSize를 줌 범위로 설정)
+            zoomManager.Init(originalSize,minimapSize);
+        }
     }
 
     private void Update()
@@ -68,7 +77,6 @@ public class MinimapManager : MonoBehaviour
         {
             DisableUnvisitedMapObjects();
             originalPosition = targetCam.transform.position;
-            originalSize = targetCam.orthographicSize;
 
             PlayerStateManager.Instance.SetState(PlayerState.MiniMap);
             MoveToMinimap();
@@ -76,6 +84,7 @@ public class MinimapManager : MonoBehaviour
         else
         {
             MoveToOriginal(originalPosition, Vector3.zero, false);  // 원래 위치로 돌아갈 때
+            zoomManager.SetZoomState(false);
         }
 
         isMinimapMode = !isMinimapMode;
@@ -93,7 +102,11 @@ public class MinimapManager : MonoBehaviour
             .To(() => targetCam.orthographicSize, x => targetCam.orthographicSize = x,
                 minimapSize, transitionDuration)
             .SetEase(Ease.InOutQuad)
-            .OnComplete(() => isTweening = false);
+            .OnComplete(() =>
+            {
+                isTweening = false;
+                zoomManager.SetZoomState(true);
+            });
     }
 
     private void MoveToOriginal(Vector3 targetCameraPosition, Vector3 targetPlayerPosition, bool isMapMove)
@@ -201,6 +214,7 @@ public class MinimapManager : MonoBehaviour
             // Map 클릭 시, 해당 Map으로 텔레포트 처리
             MoveToOriginal(map.cameraSpawnPoint.position, map.playerSpawnPoint.position, true);
             isMinimapMode = !isMinimapMode;
+            zoomManager.SetZoomState(false);
         }
     }
 }
