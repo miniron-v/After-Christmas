@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class MinimapManager : MonoBehaviour
 {
+    [Header("플레이어 참조")]
+    [SerializeField] private Transform player;
     [Header("카메라 참조")]
     [SerializeField] private Camera targetCam;
 
@@ -14,7 +16,7 @@ public class MinimapManager : MonoBehaviour
     [SerializeField] private float transitionDuration = 1f;
 
     [Header("미니맵 클릭 설정")]
-    [SerializeField] private LayerMask planeLayerMask; 
+    [SerializeField] private LayerMask planeLayerMask;
 
     private Vector3 originalPosition;
     private float originalSize;
@@ -73,7 +75,7 @@ public class MinimapManager : MonoBehaviour
         }
         else
         {
-            MoveToOriginal();
+            MoveToOriginal(originalPosition, Vector3.zero, false);  // 원래 위치로 돌아갈 때
         }
 
         isMinimapMode = !isMinimapMode;
@@ -94,12 +96,25 @@ public class MinimapManager : MonoBehaviour
             .OnComplete(() => isTweening = false);
     }
 
-    private void MoveToOriginal()
+    private void MoveToOriginal(Vector3 targetCameraPosition, Vector3 targetPlayerPosition, bool isMapMove)
     {
         isTweening = true;
 
         targetCam.transform
-            .DOMove(originalPosition, transitionDuration)
+                .DOMove(targetCameraPosition, transitionDuration)
+                .SetEase(Ease.InOutQuad);
+
+        // 카메라 이동
+        if (isMapMove)
+        {
+            // 플레이어 텔레포트 처리
+            player.position = targetPlayerPosition;
+        }
+
+        // 카메라 사이즈 복원
+        DOTween
+            .To(() => targetCam.orthographicSize, x => targetCam.orthographicSize = x,
+                originalSize, transitionDuration)
             .SetEase(Ease.InOutQuad);
 
         DOTween
@@ -171,7 +186,7 @@ public class MinimapManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("감지안됨");
+            Debug.Log("감지 안됨");
         }
     }
 
@@ -182,6 +197,10 @@ public class MinimapManager : MonoBehaviour
         if (map != null)
         {
             Debug.Log($"{map.mapName}");
+
+            // Map 클릭 시, 해당 Map으로 텔레포트 처리
+            MoveToOriginal(map.cameraSpawnPoint.position, map.playerSpawnPoint.position, true);
+            isMinimapMode = !isMinimapMode;
         }
     }
 }

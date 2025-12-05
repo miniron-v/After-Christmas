@@ -764,6 +764,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cc24849384bc254387e54d405464fee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1917927662}
   targetCam: {fileID: 705671298}
   minimapPosition: {x: -10, y: 12, z: -68}
   minimapSize: 150
@@ -8833,6 +8834,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94ef42f644130b046b34da3da814dfe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1917927662 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7733775996388582886, guid: e59c27b2c25d61143b8145d138c3ffa8, type: 3}
+  m_PrefabInstance: {fileID: 2128487250}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1929349415
 PrefabInstance:
   m_ObjectHideFlags: 0
