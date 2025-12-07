@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c24672a27f90a24fb333e3077219294, type: 3}
+  m_Name: EnterForest
+  m_EditorClassIdentifier: 
+  dialogueID: 0
+  prerequisiteCondition: {fileID: 0}
+  failSafeDialogue: {fileID: 0}
+  participants:
+  - {fileID: 11400000, guid: 22d606ec3d6e3044d9ac351a2f4f229b, type: 2}
+  dialogueLines:
+  - speaker: {fileID: 11400000, guid: 22d606ec3d6e3044d9ac351a2f4f229b, type: 2}
+    sentence: "(\uC2DC\uC6D0\uD55C \uBC14\uB78C\uC774 \uBD80\uB294 \uC232\uC774\uB2E4.)"
+  - speaker: {fileID: 11400000, guid: 22d606ec3d6e3044d9ac351a2f4f229b, type: 2}
+    sentence: "\uC544\uB2C8 \uC800\uAC74 \uACE0\uC591\uC774\uC796\uC544!!"

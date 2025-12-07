@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,10 +19,20 @@ public struct SpawnTransform
 
 public class Item : MonoBehaviour, IInteractable, IGlowable
 {
+    [Header("SO Item Data")]
+    [SerializeField] private ItemDataSO itemData;
+
+    // 아이템 정보, itemData에서 중앙 관리하므로 hide in inspector
+    [HideInInspector]
+    public string itemID => itemData != null ? itemData.itemID : "Unknown";
+    [HideInInspector]
+    public Sprite itemIcon => itemData != null ? itemData.icon : null;
+    [HideInInspector]
+    public string itemDescription => itemData != null ? itemData.description : "No description";
     // 아이템이 있던 위치(하나의 기억)
+    // map.cs에서 중앙 관리하므로 인스펙터에서 숨김
+    [HideInInspector]
     public string mapName;
-    // 아이템의 이름(식별자)
-    public string itemID;
     private Renderer rend;
     private Color originalColor;
 
@@ -40,8 +51,11 @@ public class Item : MonoBehaviour, IInteractable, IGlowable
 
     [SerializeField] private GameObject teleportUI;
 
-    // 현재 오브젝트가 맡고 있는 좌표
+    // 현재 오브젝트가 맡고 있는 플레이어 스폰 좌표
     public Transform playerSpawnPoint;
+
+    // 현재 맵의 카메라 스폰 좌표. 이것도 map.cs에서 중앙관리 가능하므로 인스펙터에서 숨김
+    [HideInInspector]
     public Transform cameraSpawnPoint;
 
     [HideInInspector]
@@ -53,10 +67,6 @@ public class Item : MonoBehaviour, IInteractable, IGlowable
     // isTeleportItem이 false라면 이 아이템은 종단 아이템
     [HideInInspector]
     public bool isTeleportItem = true;
-
-    // 아이템 아이콘
-    [SerializeField] private Sprite itemIcon;
-    public Sprite ItemIcon => itemIcon;
 
     // 대화 로직 관련 변수
     private DialogueTrigger dialogueTrigger;
@@ -189,6 +199,22 @@ public class Item : MonoBehaviour, IInteractable, IGlowable
 
     private void TeleportByItem(GameObject player, Item target)
     {
+        StartCoroutine(TeleportByItemRoutine(player, target));
+    }
+
+    private IEnumerator TeleportByItemRoutine(GameObject player, Item target)
+    {
+        // 페이드 아웃
+        bool isFadeOutComplete = false;
+        FadeManager.Instance.FadeOut(() => { isFadeOutComplete = true; });
+
+        // 페이드 아웃 끝날 때까지 대기
+        yield return new WaitUntil(() => isFadeOutComplete);
+
+        // 0.5초 딜레이
+        yield return new WaitForSeconds(0.5f);
+
+        // 위치 이동
         player.transform.SetPositionAndRotation(
             target.playerSpawnPoint.position,
             target.playerSpawnPoint.rotation
@@ -200,6 +226,16 @@ public class Item : MonoBehaviour, IInteractable, IGlowable
                 target.cameraSpawnPoint.rotation
             );
 
+        Map map = target.GetComponentInParent<Map>();
+        MapInfoManager.Instance.currentMap = map.mapName;
+
+        TeleportEventManager.NotifyTeleport();
+
+        MapInfoManager.Instance.VisitMap(target.mapName);
         target.isRecorded = true;
+
+        // 페이드 인
+        FadeManager.Instance.FadeIn();
     }
+
 }

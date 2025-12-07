@@ -4,6 +4,23 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEditor;
 
+[Serializable]
+public class ItemRecord
+{
+    public List<SpawnTransform> spawnPoints = new List<SpawnTransform>();
+    public Sprite icon;
+    public string description;
+
+    public ItemRecord(SpawnTransform firstSpawn, Sprite icon = null, string desc = null)
+    {
+        if (firstSpawn.mapName != null)
+            spawnPoints.Add(firstSpawn);
+
+        this.icon = icon;
+        description = desc;
+    }
+}
+
 public class ItemInfoManager : MonoBehaviour
 {
     [Serializable]
@@ -19,14 +36,10 @@ public class ItemInfoManager : MonoBehaviour
     [Tooltip("기억 씬들을 플레이 순서에 따라서 인스펙터에 넣어 주세요")]
     [SerializeField] private List<SceneInfo> sceneInfos = new List<SceneInfo>();
 
-    // 씬<아이템 이름,<아이템에 연결된 텔레포트 지점>>
-    private List<Dictionary<string, List<SpawnTransform>>> itemList
-        = new List<Dictionary<string, List<SpawnTransform>>>();
+    // ✅ 씬별 아이템 데이터: 씬 -> (아이템 이름 -> 아이템정보)
+    private List<Dictionary<string, ItemRecord>> sceneItemData
+        = new List<Dictionary<string, ItemRecord>>();
 
-    private Dictionary<string, Sprite> itemIcons
-        = new Dictionary<string, Sprite>();
-
-    // 추가: 방문 기록
     private HashSet<int> visitedScenes = new HashSet<int>();
 
     private void Awake()
@@ -41,14 +54,15 @@ public class ItemInfoManager : MonoBehaviour
                 if (info.sceneAsset != null)
                     info.sceneName = info.sceneAsset.name;
 
-                itemList.Add(new Dictionary<string, List<SpawnTransform>>());
+                sceneItemData.Add(new Dictionary<string, ItemRecord>());
             }
 
-            // 씬 로딩 이벤트 구독
             SceneManager.sceneLoaded += OnSceneLoaded;
+            Debug.Log($"[ItemInfoManager] Awake - Created new instance ({GetInstanceID()})");
         }
         else
         {
+            Debug.LogWarning($"[ItemInfoManager] Duplicate found ({GetInstanceID()}), destroying.");
             Destroy(gameObject);
         }
     }
@@ -65,10 +79,50 @@ public class ItemInfoManager : MonoBehaviour
             MarkSceneVisited(index);
     }
 
+    private void Update()
+    {
+        // 0키 누르면 전체 디버그 출력
+        if (Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            DebugDumpAllData();
+        }
+    }
+
+    /// <summary>
+    /// ✅ 현재 ItemInfoManager 내부의 모든 씬 / 아이템 / 스폰 정보 디버그 출력
+    /// </summary>
+    private void DebugDumpAllData()
+    {
+        Debug.Log($"[ItemInfoManager DEBUG DUMP] InstanceID={GetInstanceID()} | SceneCount={sceneInfos.Count}");
+
+        for (int i = 0; i < sceneInfos.Count; i++)
+        {
+            string sceneName = sceneInfos[i].sceneName;
+            var dict = sceneItemData[i];
+            int itemCount = dict.Count;
+            bool visited = visitedScenes.Contains(i);
+
+            Debug.Log($" ── Scene[{i}] '{sceneName}' | Items={itemCount} | Visited={visited}");
+
+            foreach (var kvp in dict)
+            {
+                string itemID = kvp.Key;
+                var record = kvp.Value;
+
+                string iconInfo = record.icon != null ? "✅Icon" : "❌NoIcon";
+                string descInfo = string.IsNullOrEmpty(record.description) ? "❌NoDesc" : $"📝{record.description}";
+                Debug.Log($"     • ItemID='{itemID}' | {iconInfo} | {descInfo} | Spawns={record.spawnPoints.Count}");
+            }
+        }
+
+        Debug.Log($"[ItemInfoManager DEBUG DUMP END]");
+    }
+
     public int GetSceneIndex(string sceneName)
     {
         for (int i = 0; i < sceneInfos.Count; i++)
-            if (sceneInfos[i].sceneName == sceneName) return i;
+            if (sceneInfos[i].sceneName == sceneName)
+                return i;
         return -1;
     }
 
@@ -78,55 +132,77 @@ public class ItemInfoManager : MonoBehaviour
     {
         int sceneIndex = GetSceneIndex(SceneManager.GetActiveScene().name);
         if (sceneIndex < 0) return false;
-        return itemList[sceneIndex].ContainsKey(itemID);
+
+        return sceneItemData[sceneIndex].ContainsKey(itemID);
     }
 
-    public void RecordItemInfo(string itemID, SpawnTransform info, Sprite icon = null)
+    // ✅ 아이템 기록 (한 번에 icon, description, spawn 포함)
+    public void RecordItemInfo(string itemID, SpawnTransform info, Sprite icon = null, string description = null)
     {
         int sceneIndex = GetSceneIndex(SceneManager.GetActiveScene().name);
         if (sceneIndex < 0) return;
 
-        // 씬별 아이템 위치 기록
-        var dict = itemList[sceneIndex];
-        if (!dict.ContainsKey(itemID))
-            dict[itemID] = new List<SpawnTransform>();
+        var dict = sceneItemData[sceneIndex];
 
-        dict[itemID].Add(info);
-
-        // 아이콘 저장 (이미 등록되어 있으면 건너뛰기)
-        if (icon != null && !itemIcons.ContainsKey(itemID))
+        if (!dict.TryGetValue(itemID, out var record))
         {
-            itemIcons[itemID] = icon;
+            record = new ItemRecord(info, icon, description);
+            dict[itemID] = record;
+        }
+        else
+        {
+            record.spawnPoints.Add(info);
+            if (icon != null && record.icon == null)
+                record.icon = icon;
+            if (!string.IsNullOrEmpty(description) && string.IsNullOrEmpty(record.description))
+                record.description = description;
         }
     }
 
-    // 아이콘 조회용
     public Sprite GetItemIcon(string itemID)
     {
-        if (itemIcons.TryGetValue(itemID, out var sprite))
-            return sprite;
+        foreach (var dict in sceneItemData)
+        {
+            if (dict.TryGetValue(itemID, out var record) && record.icon != null)
+                return record.icon;
+        }
         return null;
+    }
+
+    public string GetItemDescription(string itemID)
+    {
+        foreach (var dict in sceneItemData)
+        {
+            if (dict.TryGetValue(itemID, out var record) && !string.IsNullOrEmpty(record.description))
+                return record.description;
+        }
+        return "No description";
     }
 
     public IReadOnlyList<string> GetAllItemIDs(int sceneIndex)
     {
-        if (sceneIndex < 0 || sceneIndex >= itemList.Count) return Array.Empty<string>();
-        var keys = new List<string>(itemList[sceneIndex].Keys);
+        if (sceneIndex < 0 || sceneIndex >= sceneItemData.Count)
+            return Array.Empty<string>();
+
+        var keys = new List<string>(sceneItemData[sceneIndex].Keys);
         keys.Sort(StringComparer.Ordinal);
         return keys;
     }
 
     public IReadOnlyList<SpawnTransform> GetSpawnsOf(string itemID, int sceneIndex)
     {
-        if (sceneIndex < 0 || sceneIndex >= itemList.Count) return Array.Empty<SpawnTransform>();
-        var dict = itemList[sceneIndex];
-        if (!dict.ContainsKey(itemID)) return Array.Empty<SpawnTransform>();
-        return dict[itemID];
+        if (sceneIndex < 0 || sceneIndex >= sceneItemData.Count)
+            return Array.Empty<SpawnTransform>();
+
+        var dict = sceneItemData[sceneIndex];
+        if (!dict.TryGetValue(itemID, out var record))
+            return Array.Empty<SpawnTransform>();
+
+        return record.spawnPoints;
     }
 
     public int GetSceneCount() => sceneInfos.Count;
 
-    // 방문 기록 관련
     public void MarkSceneVisited(int sceneIndex)
     {
         if (!visitedScenes.Contains(sceneIndex))

@@ -5,7 +5,6 @@ public class PlayerColliderHandler : MonoBehaviour
 {
     [SerializeField] private LayerMask itemLayerMask;
     [SerializeField] private float interactRange = 2f;
-    [SerializeField] private LayerMask interactableMask;
 
 
     private void OnTriggerEnter(Collider other)
@@ -27,22 +26,26 @@ public class PlayerColliderHandler : MonoBehaviour
             IGlowable glowObject = other.GetComponent<IGlowable>();
             if (glowObject != null)
             {
-                glowObject.Glow(true);
+                glowObject.Glow(false);
             }
         }
     }
 
     private void Update()
     {
+        if (!PlayerStateManager.Instance.IsPlayerControllable())
+            return;
+
         if (Input.GetKeyDown(KeyCode.E))
         {
             TryInteract();
         }
     }
 
+
     private void TryInteract()
     {
-        Collider[] hits = Physics.OverlapSphere(transform.position, interactRange, interactableMask);
+        Collider[] hits = Physics.OverlapSphere(transform.position, interactRange, itemLayerMask);
 
         if (hits.Length > 0)
         {

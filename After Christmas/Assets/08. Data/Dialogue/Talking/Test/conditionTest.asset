@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c24672a27f90a24fb333e3077219294, type: 3}
+  m_Name: conditionTest
+  m_EditorClassIdentifier: 
+  dialogueID: 0
+  prerequisiteCondition: {fileID: 11400000, guid: ae81c7e5a32a6614a8beb95ee501823f, type: 2}
+  failSafeDialogue: {fileID: 11400000, guid: ff2e68b798e370445b36c163652582e7, type: 2}
+  participants: []
+  dialogueLines:
+  - speaker: {fileID: 0}
+    sentence: "\uB4DC\uB514\uC5B4 \uC544\uC774\uD15C\uC744 \uAC00\uC838\uC654\uAD6C\uB098"

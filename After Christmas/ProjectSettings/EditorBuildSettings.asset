@@ -11,6 +11,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/01. Scenes/GHB/itemHandlerScene2.unity
     guid: a904f164e4ca3944eaeb854d05cbc87a
+  - enabled: 1
+    path: Assets/01. Scenes/GHB/DemoTest-UIMakeScene.unity
+    guid: 7d58f7ef9d0bd3d4f9e5f1116c773e50
+  - enabled: 1
+    path: Assets/01. Scenes/GHB/DemoTest-UIMakeScene 1.unity
+    guid: 7e8dabb3bf5eed044ad6af5beadfe3f2
+  - enabled: 1
+    path: Assets/01. Scenes/GHB/DemoTest-UIMakeScene 2.unity
+    guid: e65896694df7bfd4487c183e30f80d16
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
