@@ -1510,7 +1510,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 989089f2071046e4999725c93bf59b15, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -2627,6 +2627,7 @@ MonoBehaviour:
   isDown: 0
   isLeft: 1
   isRight: 0
+  arrowImage: {fileID: 2098699406}
 --- !u!114 &509256743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3238,7 +3239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 989089f2071046e4999725c93bf59b15, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -3320,6 +3321,7 @@ MonoBehaviour:
   isDown: 0
   isLeft: 0
   isRight: 1
+  arrowImage: {fileID: 1808337433}
 --- !u!114 &600073876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4202,6 +4204,7 @@ MonoBehaviour:
   isDown: 1
   isLeft: 0
   isRight: 0
+  arrowImage: {fileID: 257579747}
 --- !u!114 &735218755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6268,6 +6271,7 @@ MonoBehaviour:
   isDown: 1
   isLeft: 1
   isRight: 0
+  arrowImage: {fileID: 598886705}
 --- !u!114 &1144526680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8194,6 +8198,7 @@ MonoBehaviour:
   isDown: 0
   isLeft: 1
   isRight: 0
+  arrowImage: {fileID: 1779802000}
 --- !u!114 &1505246475
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8480,6 +8485,7 @@ MonoBehaviour:
   isDown: 0
   isLeft: 0
   isRight: 1
+  arrowImage: {fileID: 1704811322}
 --- !u!114 &1550852778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8588,7 +8594,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 989089f2071046e4999725c93bf59b15, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -8903,7 +8909,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 989089f2071046e4999725c93bf59b15, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -9689,7 +9695,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 989089f2071046e4999725c93bf59b15, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -9785,7 +9791,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 989089f2071046e4999725c93bf59b15, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -12046,6 +12052,7 @@ MonoBehaviour:
   isDown: 1
   isLeft: 0
   isRight: 1
+  arrowImage: {fileID: 2128779586}
 --- !u!114 &2067211522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12215,6 +12222,7 @@ MonoBehaviour:
   isDown: 0
   isLeft: 0
   isRight: 0
+  arrowImage: {fileID: 1574480224}
 --- !u!114 &2076653051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12287,6 +12295,7 @@ GameObject:
   - component: {fileID: 2098699405}
   - component: {fileID: 2098699407}
   - component: {fileID: 2098699406}
+  - component: {fileID: 2098699408}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -12325,7 +12334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 989089f2071046e4999725c93bf59b15, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -12351,6 +12360,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2098699404}
   m_CullTransparentMesh: 1
+--- !u!114 &2098699408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2098699404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee158225ee1e59f4791627785501d950, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentShaderType: 0
+  normalStrength: 5
+  normalSmoothing: 1
+  computingNormal: 0
 --- !u!1001 &2125142422
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12665,7 +12690,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 989089f2071046e4999725c93bf59b15, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
