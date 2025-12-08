@@ -18,6 +18,8 @@ public class Map : MonoBehaviour
     [Header("최초 입장 시 실행할 대화")]
     public DialogueData arrivalDialogue;
 
+    private Renderer[] mapRenderers;
+
     // 맵 입장 시 사용할 시네마틱 컨트롤러
     // awake에서 초기화해 주므로 hide in inspector
     [HideInInspector]
@@ -35,6 +37,7 @@ public class Map : MonoBehaviour
     {
         MapInfoManager.Instance.RecordMap(this);
         InitializeChildItems();
+        CacheRenderers();
     }
 
     private void InitializeChildItems()
@@ -47,34 +50,32 @@ public class Map : MonoBehaviour
         }
     }
 
-    // 추가된 부분: 알파 값을 수정하는 함수
-    public void SetMapAlpha(float alpha)
+    // ① 모든 Renderer 캐싱
+    private void CacheRenderers()
     {
-        // 모든 Renderer에 대해 alpha 값 수정
-        Renderer[] renderers = GetComponentsInChildren<Renderer>();
-        foreach (var renderer in renderers)
-        {
-            Material material = renderer.material;
-
-            // 렌더링 모드를 Transparent로 변경
-            if (material.HasProperty("_Mode"))
-            {
-                material.SetFloat("_Mode", 3); // 3은 Transparent 모드
-                material.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
-                material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
-                material.SetInt("_ZWrite", 0); // 깊이 버퍼 비활성화 (투명 객체)
-                material.DisableKeyword("_ALPHATEST_ON");
-                material.EnableKeyword("_ALPHABLEND_ON");
-                material.DisableKeyword("_ALPHAPREMULTIPLY_ON");
-                material.renderQueue = 3000; // 투명 오브젝트의 기본 렌더 큐 값
-            }
-
-            // 알파 값 설정
-            Color color = material.color;
-            color.a = alpha;  // alpha 값 수정
-            material.color = color;
-        }
+        mapRenderers = GetComponentsInChildren<Renderer>(true);
     }
 
+    public void SetDepthColoring(bool enable)
+    {
+        if (mapRenderers == null) return;
 
+        foreach (Renderer r in mapRenderers)
+        {
+            Material mat = r.material;
+
+            if (enable)
+            {
+                // 켜기
+                mat.EnableKeyword("_DEPTH_COLORING_ON");
+                mat.SetFloat("_DepthColoring", 1f);
+            }
+            else
+            {
+                // 끄기
+                mat.DisableKeyword("_DEPTH_COLORING_ON");
+                mat.SetFloat("_DepthColoring", 0f);
+            }
+        }
+    }
 }

@@ -125,6 +125,8 @@ public class MinimapManager : MonoBehaviour
     {
         isTweening = true;
 
+        SetEnableMapAlpha(isMapMove);
+
         targetCam.transform
                 .DOMove(targetCameraPosition, transitionDuration)
                 .SetEase(Ease.InOutQuad);
@@ -178,16 +180,15 @@ public class MinimapManager : MonoBehaviour
             }
             else
             {
-                // 방문한 맵에서 currentMap에 해당하는 맵은 알파 1로 설정
                 if (mapID == MapInfoManager.Instance.currentMap)
                 {
                     mapObj.gameObject.SetActive(true);
-                    mapObj.SetMapAlpha(1f); // 현재 맵은 불투명
+                    mapObj.SetDepthColoring(false);
                 }
                 else
                 {
                     mapObj.gameObject.SetActive(true);
-                    mapObj.SetMapAlpha(alphaWhenPlayerAbsent); // 다른 방문한 맵은 반투명
+                    mapObj.SetDepthColoring(true);
                 }
             }
         }
@@ -208,7 +209,33 @@ public class MinimapManager : MonoBehaviour
             if (mapObj != null)
             {
                 mapObj.gameObject.SetActive(true);
-                mapObj.SetMapAlpha(1f);
+            }
+        }
+    }
+
+    private void SetEnableMapAlpha(bool isMapMove)
+    {
+        int sceneIndex = MapInfoManager.Instance.GetSceneIndex(
+            UnityEngine.SceneManagement.SceneManager.GetActiveScene().name
+        );
+        if (sceneIndex < 0) return;
+
+        var mapIDs = MapInfoManager.Instance.GetAllMapIDs(sceneIndex);
+
+        foreach (var mapID in mapIDs)
+        {
+            Map mapObj = MapInfoManager.Instance.GetMapObject(mapID);
+            if (!isMapMove)
+            {
+                if (mapID == MapInfoManager.Instance.currentMap)
+                {
+                    mapObj.SetDepthColoring(false);
+                    continue;
+                }
+            }
+            if (mapObj != null)
+            {
+                mapObj.SetDepthColoring(true);
             }
         }
     }
@@ -220,9 +247,9 @@ public class MinimapManager : MonoBehaviour
     {
         Ray ray = targetCam.ScreenPointToRay(Input.mousePosition);
 
-        Debug.DrawRay(ray.origin, ray.direction * 500f, Color.yellow, 1f); // 디버그용
+        Debug.DrawRay(ray.origin, ray.direction * 2000f, Color.yellow, 1f); // 디버그용
 
-        if (Physics.Raycast(ray, out RaycastHit hit, 500f, planeLayerMask))
+        if (Physics.Raycast(ray, out RaycastHit hit, 2000f, planeLayerMask))
         {
             TrySelectMapFromRay(hit);
         }
@@ -239,10 +266,17 @@ public class MinimapManager : MonoBehaviour
         if (map != null)
         {
             Debug.Log($"{map.mapName}");
-
-            // Map 클릭 시, 해당 Map으로 텔레포트 처리
-            MoveToOriginal(map.cameraSpawnPoint.position, map.playerSpawnPoint.position, true);
-            MapInfoManager.Instance.currentMap = map.mapName;
+            if (MapInfoManager.Instance.currentMap != map.mapName)
+            {
+                // Map 클릭 시, 다른 맵이라면 해당 Map으로 텔레포트 처리
+                MapInfoManager.Instance.currentMap = map.mapName;
+                MoveToOriginal(map.cameraSpawnPoint.position, map.playerSpawnPoint.position, true);
+            }
+            else
+            {
+                // 원래 맵 클릭했다면 기존 맵으로
+                MoveToOriginal(originalPosition, Vector3.zero, false);
+            }
             isMinimapMode = !isMinimapMode;
             zoomManager.SetZoomState(false);
             FadeOutCanvas();
