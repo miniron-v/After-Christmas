@@ -125,16 +125,16 @@ public class MinimapManager : MonoBehaviour
     {
         isTweening = true;
 
+
         SetEnableMapAlpha(isMapMove);
 
         targetCam.transform
-                .DOMove(targetCameraPosition, transitionDuration)
-                .SetEase(Ease.InOutQuad);
+            .DOMove(targetCameraPosition, transitionDuration)
+            .SetEase(Ease.InOutQuad);
 
-        // 카메라 이동
+        // 플레이어 이동 처리
         if (isMapMove)
         {
-            // 플레이어 텔레포트 처리
             player.position = targetPlayerPosition;
         }
 
@@ -155,6 +155,7 @@ public class MinimapManager : MonoBehaviour
                 PlayerStateManager.Instance.SetState(PlayerState.Play);
             });
     }
+
 
     private void DisableUnvisitedMapObjects()
     {
@@ -209,8 +210,10 @@ public class MinimapManager : MonoBehaviour
             if (mapObj != null)
             {
                 mapObj.gameObject.SetActive(true);
+                mapObj.SetDepthColoring(true);
             }
         }
+
     }
 
     private void SetEnableMapAlpha(bool isMapMove)

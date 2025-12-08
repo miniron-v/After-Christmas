@@ -60,22 +60,28 @@ public class Map : MonoBehaviour
     {
         if (mapRenderers == null) return;
 
+        Debug.Log($"[DEPTH] Map({mapName}) SetDepthColoring({enable}) 호출됨");
+
         foreach (Renderer r in mapRenderers)
         {
             Material mat = r.material;
 
             if (enable)
             {
-                // 켜기
+                Debug.Log($"[DEPTH] -> {mapName} | Renderer({r.name}) ENABLE depth coloring");
+
                 mat.EnableKeyword("_DEPTH_COLORING_ON");
-                mat.SetFloat("_DepthColoring", 1f);
+                //mat.SetFloat("_DepthColoring", 1f);
             }
             else
             {
-                // 끄기
+                Debug.Log($"[DEPTH] -> {mapName} | Renderer({r.name}) DISABLE depth coloring");
+
                 mat.DisableKeyword("_DEPTH_COLORING_ON");
-                mat.SetFloat("_DepthColoring", 0f);
+
+                //mat.SetFloat("_DepthColoring", 0f);
             }
         }
     }
+
 }
