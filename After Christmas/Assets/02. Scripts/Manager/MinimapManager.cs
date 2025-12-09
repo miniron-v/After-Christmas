@@ -26,7 +26,7 @@ public class MinimapManager : MonoBehaviour
     [SerializeField] private ZoomManager zoomManager;
     [Header("호버링 이동 캔버스 참조")]
     [SerializeField] private GameObject cameraMoveCanvas;
-    private CanvasGroup cameraMoveCanvasGroup;
+    [SerializeField] private SpriteRenderer cameraMoveCanvasGroup;
 
     private Vector3 originalPosition;
     private float originalSize;
@@ -36,8 +36,6 @@ public class MinimapManager : MonoBehaviour
 
     private void Start()
     {
-        cameraMoveCanvasGroup = cameraMoveCanvas.GetComponent<CanvasGroup>();
-
         originalSize = targetCam.orthographicSize;
         if (targetCam == null)
             targetCam = Camera.main;
@@ -296,8 +294,8 @@ public class MinimapManager : MonoBehaviour
     {
         if (cameraMoveCanvasGroup != null)
         {
-            cameraMoveCanvasGroup.alpha = 0f; // 시작은 투명
-            cameraMoveCanvasGroup.DOFade(1f, transitionDuration); // 서서히 나타나게 함
+            cameraMoveCanvasGroup.DOFade(1f, 0f); // 시작은 투명
+            cameraMoveCanvasGroup.DOFade(0.9f, transitionDuration); // 서서히 나타나게 함
         }
     }
 
@@ -306,7 +304,7 @@ public class MinimapManager : MonoBehaviour
     {
         if (cameraMoveCanvasGroup != null)
         {
-            cameraMoveCanvasGroup.DOFade(0f, transitionDuration) // 서서히 사라지게 함
+            cameraMoveCanvasGroup.DOFade(1f, transitionDuration) // 서서히 사라지게 함
                 .OnComplete(() =>
                 {
                     cameraMoveCanvas.SetActive(false); // 애니메이션 완료 후 SetActive(false)로 비활성화
