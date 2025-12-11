@@ -11,6 +11,10 @@ public class DialogueManager : MonoBehaviour
     public static DialogueManager Instance;
 
     public GameObject dialogueCanvas;
+    
+    public GameObject continueIcon;
+    private Coroutine blinkCoroutine;
+
     public TMP_Text nameText;
     public TMP_Text dialogueText;
     public string currentSentence;
@@ -154,20 +158,15 @@ public class DialogueManager : MonoBehaviour
     {
         currentSentence = line.sentence;
 
+        // 밯롸자 강조
         foreach (var kvp in characterImageMap)
         {
-            if (kvp.Key == line.speaker)
-            {
-                kvp.Value.color = activeColor;
-            }
-            else
-            {
-                kvp.Value.color = inactiveColor;
-            }
+            kvp.Value.color = (kvp.Key == line.speaker) ? activeColor : inactiveColor;
         }
 
+        // 이름 표시
         string speakerName = line.speaker?.characterName;
-        if (line.speaker == null || string.IsNullOrEmpty(speakerName))
+        if (string.IsNullOrEmpty(speakerName))
         {
             nameText.gameObject.SetActive(false);
         }
@@ -177,8 +176,16 @@ public class DialogueManager : MonoBehaviour
             nameText.text = speakerName;
         }
 
+        // 타이핑 시작
+        continueIcon.SetActive(false);
+
         typingCoroutine = StartCoroutine(TypeSentence(line.sentence));
         yield return typingCoroutine;
+
+        // 타이핑 종료 + 깜박임 시작
+        if (blinkCoroutine != null)
+            StopCoroutine(blinkCoroutine);
+        blinkCoroutine = StartCoroutine(BlinkContinueIcon());
 
         bool inputReceived = false;
         while (!inputReceived)
@@ -189,6 +196,15 @@ public class DialogueManager : MonoBehaviour
             }
             yield return null;
         }
+
+        // Space 누르면 깜박임 종료
+        if (blinkCoroutine != null)
+        {
+            StopCoroutine(blinkCoroutine);
+            blinkCoroutine = null;
+        }
+
+        continueIcon.SetActive(false);
     }
 
     // 다음 문장 실행
@@ -196,16 +212,33 @@ public class DialogueManager : MonoBehaviour
     {
         if (isTyping)
         {
-            Coroutine tempCoroutine = typingCoroutine;
-            typingCoroutine = null;
+            ContinueTypingSkip();
+        }
+    }
 
-            isTyping = false;
+    private void ContinueTypingSkip()
+    {
+        Coroutine tempCoroutine = typingCoroutine;
+        typingCoroutine = null;
 
-            if (typingCoroutine != null)
-            {
-                StopCoroutine(tempCoroutine);
-            }
-            dialogueText.text = currentSentence;
+        isTyping = false;
+
+        if (tempCoroutine != null)
+            StopCoroutine(tempCoroutine);
+
+        dialogueText.text = currentSentence;
+    }
+
+    // 깜박임 코루틴
+    private IEnumerator BlinkContinueIcon()
+    {
+        while (true)
+        {
+            continueIcon.SetActive(true);
+            yield return new WaitForSeconds(0.5f);
+
+            continueIcon.SetActive(false);
+            yield return new WaitForSeconds(0.5f);
         }
     }
 
@@ -213,6 +246,7 @@ public class DialogueManager : MonoBehaviour
     IEnumerator TypeSentence(string sentence)
     {
         isTyping = true;
+        continueIcon.SetActive(false);
         dialogueText.text = "";
         foreach (char letter in sentence.ToCharArray())
         {
@@ -235,6 +269,13 @@ public class DialogueManager : MonoBehaviour
             image.sprite = null;
             image.color = Color.white;
         }
+
+        if (blinkCoroutine != null)
+{
+    StopCoroutine(blinkCoroutine);
+    blinkCoroutine = null;
+}
+continueIcon.SetActive(false);
 
         characterImageMap.Clear();
 

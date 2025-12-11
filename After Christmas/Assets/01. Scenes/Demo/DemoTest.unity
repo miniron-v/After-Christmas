@@ -879,6 +879,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4683424917303153952, guid: 975eb5e427897174f9c441b9a53b5a2a, type: 3}
+      propertyPath: continueIcon
+      value: 
+      objectReference: {fileID: 1177348308}
     - target: {fileID: 6406897179842145045, guid: 975eb5e427897174f9c441b9a53b5a2a, type: 3}
       propertyPath: m_Name
       value: DialogueSystem
@@ -4517,6 +4521,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94ef42f644130b046b34da3da814dfe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1177348308 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8363087351535682773, guid: 975eb5e427897174f9c441b9a53b5a2a, type: 3}
+  m_PrefabInstance: {fileID: 147668901}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1187034834 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7267863606461305299, guid: 220f8aaf7458be24e98749ddae62bdaa, type: 3}
