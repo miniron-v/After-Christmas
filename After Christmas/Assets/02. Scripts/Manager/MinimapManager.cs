@@ -278,7 +278,7 @@ public class MinimapManager : MonoBehaviour
     }*/
 
     private bool IsMinimapControlEnabled =>
-        PlayerStateManager.Instance.CurrentState is PlayerState.Play or PlayerState.MiniMap;
+        PlayerStateManager.Instance.currentState is PlayerState.Play or PlayerState.MiniMap;
 
     private void HandleMinimapClick()
     {
