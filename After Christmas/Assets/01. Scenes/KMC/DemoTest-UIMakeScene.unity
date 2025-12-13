@@ -698,7 +698,6 @@ MonoBehaviour:
     m_Bits: 16384
   zoomManager: {fileID: 92582966}
   cameraMoveCanvas: {fileID: 1324189193}
-  cameraMoveCanvasGroup: {fileID: 656245097}
 --- !u!4 &92582965
 Transform:
   m_ObjectHideFlags: 0
@@ -2593,6 +2592,7 @@ MonoBehaviour:
   isDown: 0
   isLeft: 1
   isRight: 0
+  arrowImage: {fileID: 0}
 --- !u!114 &509256743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3255,6 +3255,7 @@ MonoBehaviour:
   isDown: 0
   isLeft: 0
   isRight: 1
+  arrowImage: {fileID: 0}
 --- !u!114 &600073876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3627,9 +3628,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7267863606461305299, guid: 220f8aaf7458be24e98749ddae62bdaa, type: 3}
       insertIndex: -1
       addedObject: {fileID: 107729156}
-    - targetCorrespondingSourceObject: {fileID: 7267863606461305299, guid: 220f8aaf7458be24e98749ddae62bdaa, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1829439978}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 220f8aaf7458be24e98749ddae62bdaa, type: 3}
 --- !u!1001 &711495233
@@ -3844,6 +3842,7 @@ MonoBehaviour:
   isDown: 1
   isLeft: 0
   isRight: 0
+  arrowImage: {fileID: 0}
 --- !u!114 &735218755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5484,6 +5483,7 @@ MonoBehaviour:
   isDown: 1
   isLeft: 1
   isRight: 0
+  arrowImage: {fileID: 0}
 --- !u!114 &1144526680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6643,6 +6643,7 @@ MonoBehaviour:
   isDown: 0
   isLeft: 1
   isRight: 0
+  arrowImage: {fileID: 0}
 --- !u!114 &1505246475
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6929,6 +6930,7 @@ MonoBehaviour:
   isDown: 0
   isLeft: 0
   isRight: 1
+  arrowImage: {fileID: 0}
 --- !u!114 &1550852778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7162,7 +7164,7 @@ PrefabInstance:
     - target: {fileID: 1659318656483111510, guid: 5c5e5e24ab3ecd140ac6f2df5074c1ad, type: 3}
       propertyPath: sceneInfos.Array.data[0].sceneAsset
       value: 
-      objectReference: {fileID: 102900000, guid: 7d58f7ef9d0bd3d4f9e5f1116c773e50, type: 3}
+      objectReference: {fileID: 102900000, guid: 77b58b649da0a8c478ca81261cc68cc1, type: 3}
     - target: {fileID: 1659318656483111510, guid: 5c5e5e24ab3ecd140ac6f2df5074c1ad, type: 3}
       propertyPath: sceneInfos.Array.data[1].sceneAsset
       value: 
@@ -7892,8 +7894,12 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1187034834}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 475763417900370761, guid: 220f8aaf7458be24e98749ddae62bdaa, type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 3733507517434392424, guid: 220f8aaf7458be24e98749ddae62bdaa, type: 3}
       propertyPath: mapName
       value: "\uAE08\uAD11"
@@ -7916,7 +7922,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7267863606461305299, guid: 220f8aaf7458be24e98749ddae62bdaa, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -122.71
+      value: -150
       objectReference: {fileID: 0}
     - target: {fileID: 7267863606461305299, guid: 220f8aaf7458be24e98749ddae62bdaa, type: 3}
       propertyPath: m_LocalPosition.y
@@ -7924,7 +7930,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7267863606461305299, guid: 220f8aaf7458be24e98749ddae62bdaa, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -27.22
       objectReference: {fileID: 0}
     - target: {fileID: 7267863606461305299, guid: 220f8aaf7458be24e98749ddae62bdaa, type: 3}
       propertyPath: m_LocalRotation.w
@@ -10047,6 +10053,7 @@ MonoBehaviour:
   isDown: 1
   isLeft: 0
   isRight: 1
+  arrowImage: {fileID: 0}
 --- !u!114 &2067211522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10216,6 +10223,7 @@ MonoBehaviour:
   isDown: 0
   isLeft: 0
   isRight: 0
+  arrowImage: {fileID: 0}
 --- !u!114 &2076653051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11135,6 +11143,7 @@ SceneRoots:
   - {fileID: 43680715}
   - {fileID: 159467146}
   - {fileID: 997930765}
+  - {fileID: 1753008738}
   - {fileID: 708331219}
   - {fileID: 572718939}
   - {fileID: 1506873316}
