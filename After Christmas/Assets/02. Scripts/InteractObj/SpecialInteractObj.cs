@@ -8,9 +8,9 @@ public class SpecialInteractObj : MonoBehaviour, IInteractable, IGlowable
 
     // 기존 아이템 로직에도 있던 glow 로직 가져옴
     private Renderer rend;
-    private Color originalColor;
-    [SerializeField] private Color glowColor = Color.yellow;
-    [SerializeField] private float glowDuration = 0.2f;
+    private MaterialPropertyBlock mpb;
+
+    private string glowProperty = "_DepthGlowDist";
 
     private DialogueTrigger dialogueTrigger;
 
@@ -21,19 +21,19 @@ public class SpecialInteractObj : MonoBehaviour, IInteractable, IGlowable
 
     private void Awake()
     {
-        rend = GetComponent<Renderer>();
-        if (rend != null)
-            originalColor = rend.material.color;
+        rend = GetComponentInChildren<Renderer>();
+
+        mpb = new MaterialPropertyBlock();
         dialogueTrigger = GetComponent<DialogueTrigger>();
     }
 
-    public void Glow(bool detected)
+    public void SetGlowAmount(float value)
     {
-        Debug.Log("Sucessed Glow");
-        if (rend != null)
-        {
-            rend.material.color = detected ? glowColor : originalColor;
-        }
+        if (rend == null) return;
+
+        rend.GetPropertyBlock(mpb);
+        mpb.SetFloat(glowProperty, value);
+        rend.SetPropertyBlock(mpb);
     }
 
     public void Interact()

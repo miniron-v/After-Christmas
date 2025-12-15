@@ -10,27 +10,33 @@ public class LockItem : MonoBehaviour, IInteractable, IGlowable
     [SerializeField] private GameObject unLockedItem;
 
     private Renderer rend;
-    private Color originalColor;
-
-    [SerializeField] private Color glowColor = Color.red;
 
     private DialogueTrigger dialogueTrigger;
 
     private bool firstInteraction = true;
 
+    private MaterialPropertyBlock mpb;
+
+    private string glowProperty = "_DepthGlowDist";
+
     private void Awake()
     {
-        rend = GetComponent<Renderer>();
-        if (rend != null)
-            originalColor = rend.material.color;
+        rend = GetComponentInChildren<Renderer>();
+
+        mpb = new MaterialPropertyBlock();
 
         dialogueTrigger = GetComponent<DialogueTrigger>();
     }
 
-    public void Glow(bool detected)
+
+
+    public void SetGlowAmount(float value)
     {
-        if (rend != null)
-            rend.material.color = detected ? glowColor : originalColor;
+        if (rend == null) return;
+
+        rend.GetPropertyBlock(mpb);
+        mpb.SetFloat(glowProperty, value);
+        rend.SetPropertyBlock(mpb);
     }
 
     public void Interact()
