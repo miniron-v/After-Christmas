@@ -10,6 +10,9 @@ public class MovePlayer : MonoBehaviour
     [Header("Rotation")]
     public float rotationSpeed = 10f;
 
+    [Header("Animation")]
+    [SerializeField] private Animator animator;
+
 
     private Vector2 moveInput;
 
@@ -34,6 +37,8 @@ public class MovePlayer : MonoBehaviour
         if (moveDir.sqrMagnitude > 1f)
             moveDir.Normalize();
 
+        bool isMoving = moveDir.sqrMagnitude > 0.0001f;
+
         // 3. transform 기반 이동
         transform.position += moveDir * moveSpeed * Time.deltaTime;
 
@@ -46,5 +51,7 @@ public class MovePlayer : MonoBehaviour
                 rotationSpeed * Time.deltaTime
             );
         }
+
+        animator.SetBool("isMoving", isMoving);
     }
 }
