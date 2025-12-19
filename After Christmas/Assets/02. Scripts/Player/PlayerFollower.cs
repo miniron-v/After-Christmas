@@ -41,7 +41,7 @@ public class PlayerFollower : MonoBehaviour
         if (player == null) return;
 
         float distance = Vector3.Distance(transform.position, player.position);
-
+        offset = player.position - transform.position;
         if (distance > minDistance + stopBuffer)
         {
             Vector3 direction = (player.position - transform.position).normalized;
@@ -62,7 +62,7 @@ public class PlayerFollower : MonoBehaviour
         animator.SetBool("isMoving", isMoving);
         lastPosition = transform.position;
     }
-    
+
     private void TeleportFollower()
     {
         // 텔레포트 후에도 동일한 상대 위치 유지
