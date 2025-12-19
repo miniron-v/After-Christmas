@@ -10,6 +10,10 @@ public class PlayerFollower : MonoBehaviour
     [Header("부드러움(SmoothDamp)")]
     [SerializeField] private float smoothTime = 0.15f;
 
+    [Header("회전")]
+    [SerializeField] private float rotationSpeed = 8f;
+
+
     private Vector3 velocity = Vector3.zero;
 
     private Vector3 offset;
@@ -47,6 +51,8 @@ public class PlayerFollower : MonoBehaviour
             targetPos,
             ref velocity,
             smoothTime);
+
+        RotateTowardsPlayer();
     }
 
     private void TeleportFollower()
@@ -57,4 +63,21 @@ public class PlayerFollower : MonoBehaviour
         // SmoothDamp 잔여 속도 제거
         velocity = Vector3.zero;
     }
+
+    private void RotateTowardsPlayer()
+    {
+        Vector3 lookDir = player.position - transform.position;
+        lookDir.y = 0f; // 상하 회전 제거
+
+        if (lookDir.sqrMagnitude < 0.0001f)
+            return;
+
+        Quaternion targetRot = Quaternion.LookRotation(lookDir);
+        transform.rotation = Quaternion.Slerp(
+            transform.rotation,
+            targetRot,
+            rotationSpeed * Time.deltaTime
+        );
+    }
+
 }
