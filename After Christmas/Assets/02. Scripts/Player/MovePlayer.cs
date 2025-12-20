@@ -37,7 +37,7 @@ public class MovePlayer : MonoBehaviour
         if (moveDir.sqrMagnitude > 1f)
             moveDir.Normalize();
 
-        bool isMoving = moveDir.sqrMagnitude > 0.0001f;
+        bool isMoving = moveInput.sqrMagnitude > 0.01f;
 
         // 3. transform 기반 이동
         transform.position += moveDir * moveSpeed * Time.deltaTime;
@@ -52,6 +52,6 @@ public class MovePlayer : MonoBehaviour
             );
         }
 
-        animator.SetBool("isMoving", isMoving);
+        animator.SetBool("isMoving", isMoving); 
     }
 }
