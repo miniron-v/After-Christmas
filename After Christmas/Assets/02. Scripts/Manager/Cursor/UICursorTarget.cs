@@ -19,16 +19,16 @@ public class UICursorTarget : MonoBehaviour,
         if (button != null && !button.interactable)
             return;
 
-        CursorManager.Instance.RequestCursor(this, type);
+        CursorShapeManager.Instance.RequestCursor(this, type);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        CursorManager.Instance.ReleaseCursor(this);
+        CursorShapeManager.Instance.ReleaseCursor(this);
     }
 
     private void OnDisable()
     {
-        CursorManager.Instance.ReleaseCursor(this);
+        CursorShapeManager.Instance.ReleaseCursor(this);
     }
 }

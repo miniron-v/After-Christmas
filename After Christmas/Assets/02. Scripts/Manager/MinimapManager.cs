@@ -306,7 +306,7 @@ public class MinimapManager : MonoBehaviour
 
         if (map != null)
         {
-            CursorManager.Instance.RequestCursor(this, CursorType.Default);
+            CursorShapeManager.Instance.RequestCursor(this, CursorType.Default);
             Debug.Log($"{map.mapName}");
             if (MapInfoManager.Instance.currentMap != map.mapName)
             {
@@ -357,9 +357,9 @@ public class MinimapManager : MonoBehaviour
         bool isHoveringMap = Physics.Raycast(ray, out RaycastHit hit, 500f, planeLayerMask);
 
         if (isHoveringMap)
-            CursorManager.Instance.RequestCursor(this,CursorType.ButtonHover);
+            CursorShapeManager.Instance.RequestCursor(this,CursorType.ButtonHover);
         else
-            CursorManager.Instance.RequestCursor(this,CursorType.Default);
+            CursorShapeManager.Instance.RequestCursor(this,CursorType.Default);
 
 
         if (isHoveringMap)
@@ -383,7 +383,7 @@ public class MinimapManager : MonoBehaviour
         // 아무것도 hover 안됨 → hoveredMap 해제
         if (hoveredMap != null)
         {
-            CursorManager.Instance.RequestCursor(this,CursorType.Default);
+            CursorShapeManager.Instance.RequestCursor(this,CursorType.Default);
             hoveredMap.SetMapAlpha(true); hoveredMap = null;
         }
     }

@@ -1,7 +1,8 @@
+using System;
 using UnityEngine;
 
-[System.Serializable]
-public class CursorData
+[Serializable]
+public class CursorShapeData
 {
     public CursorType type;
     public Texture2D texture;
@@ -16,12 +17,12 @@ public enum CursorType
     ButtonHover
 }
 
-public class CursorManager : MonoBehaviour
+public class CursorShapeManager : MonoBehaviour
 {
-    public static CursorManager Instance;
+    public static CursorShapeManager Instance;
 
     [Header("Cursor Settings")]
-    [SerializeField] private CursorData[] cursors;
+    [SerializeField] private CursorShapeData[] cursors;
 
     private CursorType currentCursor = CursorType.Default;
     private object currentOwner = null;
@@ -81,4 +82,15 @@ public class CursorManager : MonoBehaviour
         Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
         currentCursor = CursorType.Default;
     }
+
+    public Vector2 GetCurrentHotspot()
+    {
+        foreach (var c in cursors)
+        {
+            if (c.type == currentCursor)
+                return c.hotspot;
+        }
+        return Vector2.zero;
+    }
+
 }
