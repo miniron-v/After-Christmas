@@ -60,15 +60,18 @@ public class MinimapManager : MonoBehaviour
             ToggleMinimapView();
         }
 
-        // 미니맵 모드에서 클릭 처리
-        if (isMinimapMode && Input.GetMouseButtonDown(0))
+        if (zoomManager.IsZoomDone())
         {
-            HandleMinimapClick();
-        }
+            // 미니맵 모드에서 클릭 처리
+            if (isMinimapMode && Input.GetMouseButtonDown(0))
+            {
+                HandleMinimapClick();
+            }
 
-        if (isMinimapMode)
-        {
-            HandleHover();
+            if (isMinimapMode)
+            {
+                HandleHover();
+            }
         }
     }
 
@@ -93,7 +96,6 @@ public class MinimapManager : MonoBehaviour
         {
             DisableUnvisitedMapObjects();
             originalPosition = targetCam.transform.position;
-
             PlayerStateManager.Instance.SetState(PlayerState.MiniMap);
             MoveToMinimap();
         }
@@ -125,6 +127,7 @@ public class MinimapManager : MonoBehaviour
             {
                 isTweening = false;
                 zoomManager.SetZoomState(true);
+
             });
     }
 
@@ -143,6 +146,7 @@ public class MinimapManager : MonoBehaviour
         if (isMapMove)
         {
             player.position = targetPlayerPosition;
+            TeleportEventManager.NotifyTeleport();
         }
 
         // 카메라 사이즈 복원
@@ -235,11 +239,11 @@ public class MinimapManager : MonoBehaviour
         foreach (var mapID in mapIDs)
         {
             Map mapObj = MapInfoManager.Instance.GetMapObject(mapID);
-                if (mapID == MapInfoManager.Instance.currentMap)
-                {
-                    mapObj.SetMapAlpha(false);
-                    continue;
-                }
+            if (mapID == MapInfoManager.Instance.currentMap)
+            {
+                mapObj.SetMapAlpha(false);
+                continue;
+            }
             if (mapObj != null)
             {
                 mapObj.SetMapAlpha(true);
@@ -302,6 +306,7 @@ public class MinimapManager : MonoBehaviour
 
         if (map != null)
         {
+            CursorShapeManager.Instance.RequestCursor(this, CursorType.Default);
             Debug.Log($"{map.mapName}");
             if (MapInfoManager.Instance.currentMap != map.mapName)
             {
@@ -349,22 +354,25 @@ public class MinimapManager : MonoBehaviour
 
         Ray ray = targetCam.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(ray, out RaycastHit hit, 500f, planeLayerMask))
+        bool isHoveringMap = Physics.Raycast(ray, out RaycastHit hit, 500f, planeLayerMask);
+
+        if (isHoveringMap)
+            CursorShapeManager.Instance.RequestCursor(this,CursorType.ButtonHover);
+        else
+            CursorShapeManager.Instance.RequestCursor(this,CursorType.Default);
+
+
+        if (isHoveringMap)
         {
             Map map = hit.collider.GetComponentInParent<Map>();
-
             if (map != null)
-            { // 현재 플레이어가 있는 맵이면 hover 무시
-                if (map.mapName == currentMapName)
-                {
-                    return;
-                }
+            {
+                // 현재 플레이어가 있는 맵이면 hover 무시
+                if (map.mapName == currentMapName) { return; }
                 if (hoveredMap != map)
                 {
                     // 이전 hover 해제 (단, 이전 hover가 currentMap이면 해제 금지)
-                    if (hoveredMap != null && hoveredMap.mapName != currentMapName)
-                        hoveredMap.SetMapAlpha(true);
-
+                    if (hoveredMap != null && hoveredMap.mapName != currentMapName) hoveredMap.SetMapAlpha(true);
                     // 새 hover 적용
                     map.SetMapAlpha(false);
                     hoveredMap = map;
@@ -373,13 +381,10 @@ public class MinimapManager : MonoBehaviour
             }
         }
         // 아무것도 hover 안됨 → hoveredMap 해제
-        if (hoveredMap != null && hoveredMap.mapName != currentMapName)
+        if (hoveredMap != null)
         {
-            hoveredMap.SetMapAlpha(true);
-            hoveredMap = null;
+            CursorShapeManager.Instance.RequestCursor(this,CursorType.Default);
+            hoveredMap.SetMapAlpha(true); hoveredMap = null;
         }
     }
-
-
-
 }

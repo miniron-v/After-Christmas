@@ -166,6 +166,7 @@ GameObject:
   - component: {fileID: 6754196214336907078}
   - component: {fileID: 5160981592052198255}
   - component: {fileID: 7386276592599088473}
+  - component: {fileID: -9140813267503321261}
   m_Layer: 5
   m_Name: TeleportButton
   m_TagString: Untagged
@@ -335,3 +336,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 2
   m_VerticalFit: 2
+--- !u!114 &-9140813267503321261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7860333183860351602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4381256ea23091c4aa7c0013a517bde3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 1
