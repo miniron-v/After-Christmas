@@ -34,9 +34,6 @@ public class Item : MonoBehaviour, IInteractable, IGlowable
     [HideInInspector]
     public string mapName;
     private Renderer rend;
-    private Color originalColor;
-
-    [SerializeField] private Color glowColor = Color.yellow;
     [SerializeField] private float glowDuration = 0.2f;
 
     //========로직=========
@@ -72,11 +69,15 @@ public class Item : MonoBehaviour, IInteractable, IGlowable
     private DialogueTrigger dialogueTrigger;
     private bool hasPlayedDialogue = false;
 
+    private MaterialPropertyBlock mpb;
+
+    private string glowProperty = "_DepthGlowDist";
+
     private void Awake()
     {
-        rend = GetComponent<Renderer>();
-        if (rend != null)
-            originalColor = rend.material.color;
+        rend = GetComponentInChildren<Renderer>();
+
+        mpb = new MaterialPropertyBlock();
 
         // 인스펙터 수정을 최소화하기 위한 로직
         // 링크된 아이템이 없다 -> 텔레포트용 X, 종단 아이템
@@ -88,13 +89,13 @@ public class Item : MonoBehaviour, IInteractable, IGlowable
         dialogueTrigger = GetComponent<DialogueTrigger>();
     }
 
-    public void Glow(bool detected)
+    public void SetGlowAmount(float value)
     {
-        Debug.Log("Sucessed Glow");
-        if (rend != null)
-        {
-            rend.material.color = detected ? glowColor : originalColor;
-        }
+        if (rend == null) return;
+
+        rend.GetPropertyBlock(mpb);
+        mpb.SetFloat(glowProperty, value);
+        rend.SetPropertyBlock(mpb);
     }
 
     public void Interact()
