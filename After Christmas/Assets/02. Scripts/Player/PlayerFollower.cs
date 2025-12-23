@@ -53,9 +53,9 @@ public class PlayerFollower : MonoBehaviour
                 ref velocity,
                 smoothTime);
 
-            RotateTowardsPlayer();
+            
         }
-
+        RotateTowardsPlayer();
         bool isMoving =
             (transform.position - lastPosition).sqrMagnitude > 0.00001f;
 
