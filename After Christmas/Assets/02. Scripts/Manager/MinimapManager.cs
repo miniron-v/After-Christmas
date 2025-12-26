@@ -6,8 +6,11 @@ public enum MinimapState { Normal, MinimapView, PostItMode }
 
 public class MinimapManager : MonoBehaviour
 {
+    public static MinimapManager Instance { get; private set; }
+
     [Header("상태 관리")]
-    public MinimapState currentState = MinimapState.Normal;
+    private MinimapState currentState = MinimapState.Normal;
+    public MinimapState CurrentState => currentState;
     [Header("플레이어 참조")]
     [SerializeField] private Transform player;
     [Header("카메라 참조")]
@@ -42,6 +45,16 @@ public class MinimapManager : MonoBehaviour
     private bool isMinimapMode = false;
     private bool isTweening = false;
     private Map hoveredMap = null;
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+    }
 
 
     private void Start()
@@ -115,6 +128,11 @@ public class MinimapManager : MonoBehaviour
         currentState = newState;
 
         Debug.Log($"상태 전환: {prevState} -> {newState}");
+
+        if(prevState != newState)
+        {
+            CloseAllPostIts();
+        }
 
         // 상태 진입/이탈 시 시각적 처리
         switch (newState)
@@ -192,8 +210,15 @@ public class MinimapManager : MonoBehaviour
     private void ExitPostItMode()
     {
         Debug.Log("포스트잇 모드 비활성화");
+
         postItPannal.SetActive(false);
     }
+
+    private void CloseAllPostIts()
+    {
+        PostItRegistry.HideAll();
+    }
+
 
     public void SaveCurrentCameraAsMinimapView()
     {

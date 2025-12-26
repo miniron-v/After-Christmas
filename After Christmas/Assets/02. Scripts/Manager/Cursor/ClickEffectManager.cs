@@ -32,7 +32,7 @@ public class CursorClickEffectManager : MonoBehaviour
         Vector2 mousePos = Input.mousePosition;
         Vector2 hotspot = cursorShape.GetCurrentHotspot();
 
-        // 🔥 커서 핫스팟 반영
+        // 커서 핫스팟 반영
         Vector2 correctedScreenPos = mousePos - hotspot;
 
         Vector3 worldPos = targetCamera.ScreenToWorldPoint(
