@@ -33,6 +33,7 @@ public class DialogueManager : MonoBehaviour
     private bool isTyping = false;
     private bool isDialogueActive = false;
     private bool isAdvanceRequested = false;
+    private bool isSentenceCompleted;
     private DialogueData currentDialogueData;
 
     private Dictionary<CharacterData, Image> characterImageMap;
@@ -69,17 +70,6 @@ public class DialogueManager : MonoBehaviour
 
         DisplayNextSentence();
     }
-
-    /*void Update()
-    {
-        if (isDialogueActive && Input.GetKeyDown(KeyCode.Space))
-        {
-            if (isTyping)
-            {
-                DisplayNextSentence();
-            }
-        }
-    }*/
 
     // Dialogue 시작
     public IEnumerator StartDialogue(DialogueData data, bool isCutscene = false)
@@ -177,13 +167,13 @@ public class DialogueManager : MonoBehaviour
     {
         currentSentence = line.sentence;
 
-        // 발화자 강조
+        // 발화자 이미지
         foreach (var kvp in characterImageMap)
         {
             kvp.Value.color = (kvp.Key == line.speaker) ? activeColor : inactiveColor;
         }
 
-        // 이름 표시
+        // 이름 텍스트
         string speakerName = line.speaker?.characterName;
         if (string.IsNullOrEmpty(speakerName))
         {
@@ -198,28 +188,50 @@ public class DialogueManager : MonoBehaviour
         // 타이핑 시작
         continueIcon.SetActive(false);
 
+        isSentenceCompleted = false;
         typingCoroutine = StartCoroutine(TypeSentence(line.sentence));
-        yield return typingCoroutine;
 
-        // 타이핑 종료 + 깜박임 시작
-        if (blinkCoroutine != null)
-            StopCoroutine(blinkCoroutine);
-        blinkCoroutine = StartCoroutine(BlinkContinueIcon());
+        while (!isSentenceCompleted)
+        {
+            yield return null;
+        }
 
         isAdvanceRequested = false;
         while (!isAdvanceRequested)
         {
             yield return null;
         }
+    }
 
-        // Space 누르면 깜박임 종료
+    // 깜박임 코루틴
+
+    private void StartBlink()
+    {
+        if (blinkCoroutine != null)
+            StopCoroutine(blinkCoroutine);
+        blinkCoroutine = StartCoroutine(BlinkContinueIcon());
+    }
+
+    private void StopBlink()
+    {
         if (blinkCoroutine != null)
         {
             StopCoroutine(blinkCoroutine);
             blinkCoroutine = null;
         }
-
         continueIcon.SetActive(false);
+    }
+
+    private IEnumerator BlinkContinueIcon()
+    {
+        while (true)
+        {
+            continueIcon.SetActive(true);
+            yield return new WaitForSeconds(0.5f);
+
+            continueIcon.SetActive(false);
+            yield return new WaitForSeconds(0.5f);
+        }
     }
 
     // 다음 문장 실행
@@ -235,46 +247,39 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    private void ContinueTypingSkip()
+    private void CompleteCurrentSentence()
     {
-        Coroutine tempCoroutine = typingCoroutine;
-        typingCoroutine = null;
-
         isTyping = false;
-
-        if (tempCoroutine != null)
-            StopCoroutine(tempCoroutine);
+        isSentenceCompleted = true;
 
         dialogueText.text = currentSentence;
+
+        StartBlink();
     }
 
-    // 깜박임 코루틴
-    private IEnumerator BlinkContinueIcon()
+    // 타이핑 효과 스킵
+    private void ContinueTypingSkip()
     {
-        while (true)
-        {
-            continueIcon.SetActive(true);
-            yield return new WaitForSeconds(0.5f);
-
-            continueIcon.SetActive(false);
-            yield return new WaitForSeconds(0.5f);
-        }
+        CompleteCurrentSentence();
     }
 
     // 타이핑 효과 코루틴
     IEnumerator TypeSentence(string sentence)
     {
         isTyping = true;
-        continueIcon.SetActive(false);
+        StopBlink();
+
         dialogueText.text = "";
-        foreach (char letter in sentence.ToCharArray())
+
+        foreach (char letter in sentence)
         {
-            if (!isTyping) break;
+            if (isSentenceCompleted) yield break;
 
             dialogueText.text += letter;
             yield return new WaitForSeconds(typingSpeed);
         }
-        isTyping = false;
+
+        CompleteCurrentSentence();
     }
 
     // dialogue 종료
