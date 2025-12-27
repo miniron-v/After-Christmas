@@ -204,14 +204,12 @@ public class DialogueManager : MonoBehaviour
     }
 
     // 깜박임 코루틴
-
     private void StartBlink()
     {
         if (blinkCoroutine != null)
             StopCoroutine(blinkCoroutine);
         blinkCoroutine = StartCoroutine(BlinkContinueIcon());
     }
-
     private void StopBlink()
     {
         if (blinkCoroutine != null)
@@ -221,7 +219,6 @@ public class DialogueManager : MonoBehaviour
         }
         continueIcon.SetActive(false);
     }
-
     private IEnumerator BlinkContinueIcon()
     {
         while (true)
@@ -233,6 +230,7 @@ public class DialogueManager : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
         }
     }
+
 
     // 다음 문장 실행
     public void DisplayNextSentence()
@@ -247,6 +245,7 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    // 문장 완성 시 실행하는 문장
     private void CompleteCurrentSentence()
     {
         isTyping = false;
