@@ -7324,6 +7324,9 @@ MonoBehaviour:
   - type: 1
     texture: {fileID: 2800000, guid: bdd0bb9bbe6d7e448ad4277adfa7efc3, type: 3}
     hotspot: {x: 14, y: 0}
+  - type: 2
+    texture: {fileID: 2800000, guid: 414a1c617a6d1d44690e562ed22384a4, type: 3}
+    hotspot: {x: 16, y: 0}
 --- !u!114 &1371466598
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9860,7 +9863,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ffb8972672d1e9458f99a01f7e4ab7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonPrefab: {fileID: 2653567335090091293, guid: a3866f06d697f114095e694a4686f5c2, type: 3}
+  buttonPrefab: {fileID: 4667239756733624309, guid: 6420015ef2c8ed44f94bb234a3b8d9ab, type: 3}
   container: {fileID: 1773990729}
 --- !u!1 &1848954681
 GameObject:

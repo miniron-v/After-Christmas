@@ -14,7 +14,8 @@ public class CursorShapeData
 public enum CursorType
 {
     Default,
-    ButtonHover
+    ButtonHover,
+    TextInput
 }
 
 public class CursorShapeManager : MonoBehaviour
