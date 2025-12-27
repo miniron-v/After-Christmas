@@ -68,6 +68,7 @@ public class DialogueManager : MonoBehaviour
     {
         if (!isDialogueActive) return;
 
+        Debug.Log($"Path: {obj.control.path}");
         DisplayNextSentence();
     }
 
