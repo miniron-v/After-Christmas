@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 using TMPro;
 using System.Collections.Generic;
 using System.Collections;
@@ -11,7 +12,10 @@ public class DialogueManager : MonoBehaviour
     public static DialogueManager Instance;
 
     public GameObject dialogueCanvas;
-    
+
+    [SerializeField] private InputActionAsset dialogueActions;
+    private InputAction nextSentence;
+
     public GameObject continueIcon;
     private Coroutine blinkCoroutine;
 
@@ -25,8 +29,10 @@ public class DialogueManager : MonoBehaviour
 
     private Queue<DialogueData.DialogueLine> dialogueQueue;
     private Coroutine typingCoroutine;
+
     private bool isTyping = false;
     private bool isDialogueActive = false;
+    private bool isAdvanceRequested = false;
     private DialogueData currentDialogueData;
 
     private Dictionary<CharacterData, Image> characterImageMap;
@@ -35,7 +41,7 @@ public class DialogueManager : MonoBehaviour
     private Color inactiveColor = new Color(0.5f, 0.5f, 0.5f, 1f);
 
     public Action onDialogueEnd;
-
+    
     private void Awake()
     {
         if (Instance == null)
@@ -51,9 +57,20 @@ public class DialogueManager : MonoBehaviour
         dialogueCanvas.SetActive(false);
         dialogueQueue = new Queue<DialogueData.DialogueLine>();
         characterImageMap = new Dictionary<CharacterData, Image>();
+
+        nextSentence = dialogueActions.FindActionMap("Dialogue").FindAction("NextSentence");
+        nextSentence.performed += OnNext;
+
     }
 
-    void Update()
+    private void OnNext(InputAction.CallbackContext obj)
+    {
+        if (!isDialogueActive) return;
+
+        DisplayNextSentence();
+    }
+
+    /*void Update()
     {
         if (isDialogueActive && Input.GetKeyDown(KeyCode.Space))
         {
@@ -62,7 +79,7 @@ public class DialogueManager : MonoBehaviour
                 DisplayNextSentence();
             }
         }
-    }
+    }*/
 
     // Dialogue 시작
     public IEnumerator StartDialogue(DialogueData data, bool isCutscene = false)
@@ -136,6 +153,8 @@ public class DialogueManager : MonoBehaviour
             }
         }
 
+        nextSentence.Enable();
+
         // 대화 시작 문장 꺼내기
         foreach (DialogueData.DialogueLine line in data.dialogueLines)
         {
@@ -158,7 +177,7 @@ public class DialogueManager : MonoBehaviour
     {
         currentSentence = line.sentence;
 
-        // 밯롸자 강조
+        // 발화자 강조
         foreach (var kvp in characterImageMap)
         {
             kvp.Value.color = (kvp.Key == line.speaker) ? activeColor : inactiveColor;
@@ -187,13 +206,9 @@ public class DialogueManager : MonoBehaviour
             StopCoroutine(blinkCoroutine);
         blinkCoroutine = StartCoroutine(BlinkContinueIcon());
 
-        bool inputReceived = false;
-        while (!inputReceived)
+        isAdvanceRequested = false;
+        while (!isAdvanceRequested)
         {
-            if (!isTyping && Input.GetKeyDown(KeyCode.Space))
-            {
-                inputReceived = true;
-            }
             yield return null;
         }
 
@@ -213,6 +228,10 @@ public class DialogueManager : MonoBehaviour
         if (isTyping)
         {
             ContinueTypingSkip();
+        }
+        else
+        {
+            isAdvanceRequested = true;
         }
     }
 
@@ -261,6 +280,8 @@ public class DialogueManager : MonoBehaviour
     // dialogue 종료
     public void EndDialogue()
     {
+        nextSentence.Disable();
+
         dialogueCanvas.SetActive(false);
         isDialogueActive = false;
 
@@ -271,11 +292,11 @@ public class DialogueManager : MonoBehaviour
         }
 
         if (blinkCoroutine != null)
-{
-    StopCoroutine(blinkCoroutine);
-    blinkCoroutine = null;
-}
-continueIcon.SetActive(false);
+        {
+            StopCoroutine(blinkCoroutine);
+            blinkCoroutine = null;
+        }
+        continueIcon.SetActive(false);
 
         characterImageMap.Clear();
 

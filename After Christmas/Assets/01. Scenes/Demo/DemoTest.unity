@@ -883,6 +883,78 @@ PrefabInstance:
       propertyPath: continueIcon
       value: 
       objectReference: {fileID: 1177348308}
+    - target: {fileID: 4683424917303153952, guid: 975eb5e427897174f9c441b9a53b5a2a, type: 3}
+      propertyPath: nextSentence.m_Name
+      value: Next Sentence
+      objectReference: {fileID: 0}
+    - target: {fileID: 4683424917303153952, guid: 975eb5e427897174f9c441b9a53b5a2a, type: 3}
+      propertyPath: nextSentence.m_SingletonActionBindings.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4683424917303153952, guid: 975eb5e427897174f9c441b9a53b5a2a, type: 3}
+      propertyPath: nextSentence.m_SingletonActionBindings.Array.data[0].m_Id
+      value: c5a183d4-3642-4a3f-8203-2b219f18cb64
+      objectReference: {fileID: 0}
+    - target: {fileID: 4683424917303153952, guid: 975eb5e427897174f9c441b9a53b5a2a, type: 3}
+      propertyPath: nextSentence.m_SingletonActionBindings.Array.data[1].m_Id
+      value: 1dff654e-6022-40e1-9eac-cb667eb74eb5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4683424917303153952, guid: 975eb5e427897174f9c441b9a53b5a2a, type: 3}
+      propertyPath: nextSentence.m_SingletonActionBindings.Array.data[0].m_Path
+      value: <Mouse>/leftButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 4683424917303153952, guid: 975eb5e427897174f9c441b9a53b5a2a, type: 3}
+      propertyPath: nextSentence.m_SingletonActionBindings.Array.data[0].m_Action
+      value: Next Sentence
+      objectReference: {fileID: 0}
+    - target: {fileID: 4683424917303153952, guid: 975eb5e427897174f9c441b9a53b5a2a, type: 3}
+      propertyPath: nextSentence.m_SingletonActionBindings.Array.data[1].m_Action
+      value: Next Sentence
+      objectReference: {fileID: 0}
+    - target: {fileID: 5941803674125805609, guid: 975eb5e427897174f9c441b9a53b5a2a, type: 3}
+      propertyPath: m_MoveAction
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5941803674125805609, guid: 975eb5e427897174f9c441b9a53b5a2a, type: 3}
+      propertyPath: m_PointAction
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5941803674125805609, guid: 975eb5e427897174f9c441b9a53b5a2a, type: 3}
+      propertyPath: m_ActionsAsset
+      value: 
+      objectReference: {fileID: -944628639613478452, guid: cacebb582c3ad654d8a1d97ba3a6e78b, type: 3}
+    - target: {fileID: 5941803674125805609, guid: 975eb5e427897174f9c441b9a53b5a2a, type: 3}
+      propertyPath: m_CancelAction
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5941803674125805609, guid: 975eb5e427897174f9c441b9a53b5a2a, type: 3}
+      propertyPath: m_SubmitAction
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5941803674125805609, guid: 975eb5e427897174f9c441b9a53b5a2a, type: 3}
+      propertyPath: m_LeftClickAction
+      value: 
+      objectReference: {fileID: 6377417852180915201, guid: cacebb582c3ad654d8a1d97ba3a6e78b, type: 3}
+    - target: {fileID: 5941803674125805609, guid: 975eb5e427897174f9c441b9a53b5a2a, type: 3}
+      propertyPath: m_RightClickAction
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5941803674125805609, guid: 975eb5e427897174f9c441b9a53b5a2a, type: 3}
+      propertyPath: m_MiddleClickAction
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5941803674125805609, guid: 975eb5e427897174f9c441b9a53b5a2a, type: 3}
+      propertyPath: m_ScrollWheelAction
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5941803674125805609, guid: 975eb5e427897174f9c441b9a53b5a2a, type: 3}
+      propertyPath: m_TrackedDevicePositionAction
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5941803674125805609, guid: 975eb5e427897174f9c441b9a53b5a2a, type: 3}
+      propertyPath: m_TrackedDeviceOrientationAction
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6406897179842145045, guid: 975eb5e427897174f9c441b9a53b5a2a, type: 3}
       propertyPath: m_Name
       value: DialogueSystem

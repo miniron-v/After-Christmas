@@ -1,0 +1,57 @@
+{
+    "name": "Dialogue",
+    "maps": [
+        {
+            "name": "Dialogue",
+            "id": "da34770c-ea5a-4d39-a701-4108db60aac5",
+            "actions": [
+                {
+                    "name": "NextSentence",
+                    "type": "Button",
+                    "id": "b68e0da5-b0f3-4754-90b2-0c85b14291a5",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "1a854de6-e66d-4829-a07d-c1c57e7ec1f5",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "NextSentence",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "225f05ba-f8fa-438b-a516-5e564e7e7650",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "NextSentence",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "PC",
+            "bindingGroup": "PC",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}
