@@ -26,7 +26,7 @@ public class PlayerCameraFollowManager : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (PlayerStateManager.Instance.CurrentState == PlayerState.MiniMap)
+        if (PlayerStateManager.Instance.currentState == PlayerState.MiniMap)
         {
             return;
         }

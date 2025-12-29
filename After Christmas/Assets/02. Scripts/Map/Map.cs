@@ -25,10 +25,15 @@ public class Map : MonoBehaviour
 
     public bool isStartMap = false;
 
+    // miniron 추가
+    [SerializeField] private Vector3 originPosition;
+    private Vector3 darkPosition = new Vector3(61f, -50f, 61f);
+
     private void Awake()
     {
         // 변수 할당 최소화를 위한 getcomponent 사용
         cinematicController = GetComponent<CinematicController>();
+        originPosition = transform.position;
     }
 
     void Start()
@@ -47,34 +52,51 @@ public class Map : MonoBehaviour
         }
     }
 
-    // 추가된 부분: 알파 값을 수정하는 함수
-    public void SetMapAlpha(float alpha)
+    // miniron: 에디터 디버깅을 위한 함수 (스크립트 - 우클릭으로 함수 실행 가능)
+    [ContextMenu("밝게")]
+    public void SetMapBright()
     {
-        // 모든 Renderer에 대해 alpha 값 수정
-        Renderer[] renderers = GetComponentsInChildren<Renderer>();
-        foreach (var renderer in renderers)
-        {
-            Material material = renderer.material;
-
-            // 렌더링 모드를 Transparent로 변경
-            if (material.HasProperty("_Mode"))
-            {
-                material.SetFloat("_Mode", 3); // 3은 Transparent 모드
-                material.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
-                material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
-                material.SetInt("_ZWrite", 0); // 깊이 버퍼 비활성화 (투명 객체)
-                material.DisableKeyword("_ALPHATEST_ON");
-                material.EnableKeyword("_ALPHABLEND_ON");
-                material.DisableKeyword("_ALPHAPREMULTIPLY_ON");
-                material.renderQueue = 3000; // 투명 오브젝트의 기본 렌더 큐 값
-            }
-
-            // 알파 값 설정
-            Color color = material.color;
-            color.a = alpha;  // alpha 값 수정
-            material.color = color;
-        }
+        SetMapAlpha(false);
+    }
+    [ContextMenu("어둡게")]
+    public void SetMapDark()
+    {
+        SetMapAlpha(true);
     }
 
+    // miniron 추가: 위치만 이동
+    public void SetMapAlpha(bool isDark)
+    {
+        transform.position = isDark ? originPosition + darkPosition : originPosition;
+    }
+
+    //// 추가된 부분: 알파 값을 수정하는 함수
+    //public void SetMapAlpha(float alpha)
+    //{
+    //    // 모든 Renderer에 대해 alpha 값 수정
+    //    Renderer[] renderers = GetComponentsInChildren<Renderer>();
+    //    foreach (var renderer in renderers)
+    //    {
+    //        Material material = renderer.material;
+
+    //        // 렌더링 모드를 Transparent로 변경
+    //        if (material.HasProperty("_Mode"))
+    //        {
+    //            material.SetFloat("_Mode", 3); // 3은 Transparent 모드
+    //            material.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
+    //            material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+    //            material.SetInt("_ZWrite", 0); // 깊이 버퍼 비활성화 (투명 객체)
+    //            material.DisableKeyword("_ALPHATEST_ON");
+    //            material.EnableKeyword("_ALPHABLEND_ON");
+    //            material.DisableKeyword("_ALPHAPREMULTIPLY_ON");
+    //            material.renderQueue = 3000; // 투명 오브젝트의 기본 렌더 큐 값
+    //        }
+
+    //        // 알파 값 설정
+    //        Color color = material.color;
+    //        color.a = alpha;  // alpha 값 수정
+    //        material.color = color;
+    //    }
+    //}
 
 }

@@ -1,4 +1,5 @@
 public interface IGlowable
 {
-    void Glow(bool detected);
+    void SetGlowAmount(float value);
 }
+

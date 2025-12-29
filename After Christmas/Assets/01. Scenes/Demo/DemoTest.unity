@@ -5148,7 +5148,7 @@ PrefabInstance:
     - target: {fileID: 862799608079397982, guid: ad5acee826c5e3e4193ee726e3d27c0f, type: 3}
       propertyPath: 'dialogueSequence.Array.data[0]'
       value: 
-      objectReference: {fileID: 11400000, guid: 6baadfe3c6e13c344b10174d98533567, type: 2}
+      objectReference: {fileID: 11400000, guid: 6afc896c17e38094b9a873e31e3091a2, type: 2}
     - target: {fileID: 1488207560393714399, guid: ad5acee826c5e3e4193ee726e3d27c0f, type: 3}
       propertyPath: m_Name
       value: BlackHole

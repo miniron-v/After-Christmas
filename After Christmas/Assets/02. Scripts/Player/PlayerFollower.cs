@@ -10,12 +10,24 @@ public class PlayerFollower : MonoBehaviour
     [Header("부드러움(SmoothDamp)")]
     [SerializeField] private float smoothTime = 0.15f;
 
+    [Header("회전")]
+    [SerializeField] private float rotationSpeed = 8f;
+
+    [SerializeField] private Animator animator;
+    private Vector3 lastPosition;
+    private float stopBuffer = 0.1f;
+
+
+
+
+
     private Vector3 velocity = Vector3.zero;
 
     private Vector3 offset;
 
     private void OnEnable()
     {
+        lastPosition = transform.position;
         TeleportEventManager.OnTeleport += TeleportFollower;
     }
 
@@ -28,25 +40,27 @@ public class PlayerFollower : MonoBehaviour
     {
         if (player == null) return;
 
-        offset = transform.position - player.position;
-
         float distance = Vector3.Distance(transform.position, player.position);
+        offset = player.position - transform.position;
+        if (distance > minDistance + stopBuffer)
+        {
+            Vector3 direction = (player.position - transform.position).normalized;
+            Vector3 targetPos = player.position - direction * minDistance;
 
-        // 최솟값보다 가까우면 멈춤
-        if (distance <= minDistance) return;
+            transform.position = Vector3.SmoothDamp(
+                transform.position,
+                targetPos,
+                ref velocity,
+                smoothTime);
 
-        // 플레이어 쪽 방향
-        Vector3 direction = (player.position - transform.position).normalized;
+            
+        }
+        RotateTowardsPlayer();
+        bool isMoving =
+            (transform.position - lastPosition).sqrMagnitude > 0.00001f;
 
-        // 목표 위치 = 플레이어 기준 minDistance 만큼 떨어진 위치
-        Vector3 targetPos = player.position - direction * minDistance;
-
-        // SmoothDamp로 부드럽게 이동
-        transform.position = Vector3.SmoothDamp(
-            transform.position,
-            targetPos,
-            ref velocity,
-            smoothTime);
+        animator.SetBool("isMoving", isMoving);
+        lastPosition = transform.position;
     }
 
     private void TeleportFollower()
@@ -57,4 +71,21 @@ public class PlayerFollower : MonoBehaviour
         // SmoothDamp 잔여 속도 제거
         velocity = Vector3.zero;
     }
+
+    private void RotateTowardsPlayer()
+    {
+        Vector3 lookDir = player.position - transform.position;
+        lookDir.y = 0f; // 상하 회전 제거
+
+        if (lookDir.sqrMagnitude < 0.0001f)
+            return;
+
+        Quaternion targetRot = Quaternion.LookRotation(lookDir);
+        transform.rotation = Quaternion.Slerp(
+            transform.rotation,
+            targetRot,
+            rotationSpeed * Time.deltaTime
+        );
+    }
+
 }

@@ -71,4 +71,9 @@ public class ZoomManager : MonoBehaviour
         maxZoomSize = maxSize;
         Debug.Log(minZoomSize + " " +  maxZoomSize);
     }
+
+    public bool IsZoomDone()
+    {
+        return isZoomEnabled;
+    }
 }
