@@ -8169,7 +8169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manualUI: {fileID: 2089193457}
-  interactAction: {fileID: 11400000, guid: 3fd3de7fba9f1c34a8df90bbd1998577, type: 2}
+  interactAction: {fileID: 11400000, guid: f7f03e557e35dff4faaa0d2d74db8f16, type: 2}
   openMapAction: {fileID: 11400000, guid: 806831c13c7b98e4a980849aec44453c, type: 2}
 --- !u!1001 &2125142422
 PrefabInstance:
