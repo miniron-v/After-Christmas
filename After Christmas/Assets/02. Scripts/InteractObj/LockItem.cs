@@ -39,9 +39,8 @@ public class LockItem : MonoBehaviour, IInteractable, IGlowable
         rend.SetPropertyBlock(mpb);
     }
 
-    public void Interact()
+    public void Interact(GameObject player)
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (dialogueTrigger == null) return;
 
         // 1. 최초 상호작용 → A 대화 (index 0)
