@@ -8,6 +8,7 @@ public class PostItAnchorButton : MonoBehaviour,
 {
     [SerializeField] private PostItView postItView;
     [SerializeField] private PostItData data;
+    [SerializeField] private GameObject destroyObj;
 
     private bool isPostItOpen = false;
 
@@ -59,7 +60,7 @@ public class PostItAnchorButton : MonoBehaviour,
         // 우클릭
         else if (eventData.button == PointerEventData.InputButton.Right)
         {
-            Destroy(gameObject);
+            Destroy(destroyObj);
         }
     }
 }

@@ -1,6 +1,7 @@
 using UnityEngine;
 using DG.Tweening;
 using System.Collections.Generic;
+using UnityEditor.Rendering;
 
 public enum MinimapState { Normal, MinimapView, PostItMode }
 
@@ -43,6 +44,8 @@ public class MinimapManager : MonoBehaviour
     private float originalSize;
 
     private bool isMinimapMode = false;
+    private bool isPostItMode = false;
+    public bool IsPostItMode => isPostItMode;
     private bool isTweening = false;
     private Map hoveredMap = null;
 
@@ -76,142 +79,107 @@ public class MinimapManager : MonoBehaviour
     {
         if (isTweening) return;
 
-        HandleInputs();
-        HandleStateBehavior();
-    }
-
-    private void HandleInputs()
-    {
-        // 1. 미니맵 토글 (어느 상태에서든 Y를 누르면 Normal로 돌아가거나 MinimapView로 진입)
+        // 🔹 토글 입력
         if (Input.GetKeyDown(minimapToggleKey) && IsMinimapControlEnabled)
         {
-            if (currentState == MinimapState.Normal)
-                TransitionTo(MinimapState.MinimapView);
-            else
-                TransitionTo(MinimapState.Normal);
+            ToggleMinimapView();
         }
 
-        // 2. 포스트잇 모드 토글 (미니맵이 켜져 있을 때만 작동)
-        if (Input.GetKeyDown(postItToggleKey) && currentState != MinimapState.Normal)
+        // 🔹 미니맵 모드에서만 hover / click
+        if (isMinimapMode && zoomManager.IsZoomDone())
         {
-            if (currentState == MinimapState.MinimapView)
-                TransitionTo(MinimapState.PostItMode);
-            else
-                TransitionTo(MinimapState.MinimapView);
-        }
-    }
-
-    private void HandleStateBehavior()
-    {
-        if (!zoomManager.IsZoomDone()) return;
-
-        switch (currentState)
-        {
-            case MinimapState.MinimapView:
-                // 미니맵 뷰에서만 텔레포트 클릭과 호버링 작동
-                if (Input.GetMouseButtonDown(0)) HandleMinimapClick();
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                TogglePostItView();
+            }
+            if (!isPostItMode)
+            {
                 HandleHover();
-                break;
-
-            case MinimapState.PostItMode:
-                // 포스트잇 모드 전용 로직 (예: 포스트잇 설치 등)
-                // 텔레포트 클릭은 막고 싶다면 여기서 HandleMinimapClick을 빼면 됩니다.
-                break;
+                if (Input.GetMouseButtonDown(0))
+                {
+                    HandleMinimapClick();
+                }
+            }
         }
+
+        if (Input.GetKeyDown(KeyCode.U))
+            {
+                Debug.Log(currentState);
+            }
     }
 
-    public void TransitionTo(MinimapState newState)
+    private void ToggleMinimapView()
     {
-        if (isTweening || currentState == newState) return;
-
-        MinimapState prevState = currentState;
-        currentState = newState;
-
-        Debug.Log($"상태 전환: {prevState} -> {newState}");
-
-        if(prevState != newState)
+        if (!isMinimapMode)
         {
-            CloseAllPostIts();
+            DisableUnvisitedMapObjects();
+            originalPosition = targetCam.transform.position;
+            PlayerStateManager.Instance.SetState(PlayerState.MiniMap);
+            EnterMinimap();
+            currentState = MinimapState.MinimapView;
         }
-
-        // 상태 진입/이탈 시 시각적 처리
-        switch (newState)
+        else
         {
-            case MinimapState.MinimapView:
-                if (prevState == MinimapState.Normal)
-                {
-                    // 일반 -> 미니맵
-                    EnterMinimapView();
-                }
-                else if (prevState == MinimapState.PostItMode)
-                {
-                    // 포스트잇 모드 해제
-                    ExitPostItMode();
-                }
-                break;
-
-            case MinimapState.Normal:
-                // 어떤 상태에서든 일반 모드로 복귀
-                if (prevState == MinimapState.PostItMode) ExitPostItMode();
-                ExitMinimapView();
-                break;
-
-            case MinimapState.PostItMode:
-                // 미니맵 -> 포스트잇 모드
-                EnterPostItMode();
-                break;
+            if(isPostItMode)
+            {
+                ExitPostItMode();
+            }
+            MoveToOriginal(originalPosition, Vector3.zero, false);  // 원래 위치로 돌아갈 때
+            zoomManager.SetZoomState(false);
+            FadeOutCanvas();
+            currentState = MinimapState.Normal;
         }
+        isMinimapMode = !isMinimapMode;
     }
 
-    private void EnterMinimapView()
+    private void TogglePostItView()
     {
-        DisableUnvisitedMapObjects();
-        originalPosition = targetCam.transform.position;
-        PlayerStateManager.Instance.SetState(PlayerState.MiniMap);
+        if (!isPostItMode)
+        {
+            currentState = MinimapState.PostItMode;
+            EnterPostItMode();
+        }
+        else
+        {
+            currentState = MinimapState.MinimapView;
+            ExitPostItMode();
+        }
+        isPostItMode = !isPostItMode;
+    }
+
+    private void EnterPostItMode()
+    {
+        currentState = MinimapState.PostItMode;
+        postItPannal.SetActive(true);
+    }
+
+    private void ExitPostItMode()
+    {
+        currentState = MinimapState.MinimapView;
+        CloseAllPostIts();
+        postItPannal.SetActive(false);
+    }
+
+    private void EnterMinimap()
+    {
+        currentState = MinimapState.MinimapView;
 
         isTweening = true;
         cameraMoveCanvas.SetActive(true);
         FadeInCanvas();
 
         targetCam.transform.DOMove(minimapPosition, transitionDuration).SetEase(Ease.InOutQuad);
-        DOTween.To(() => targetCam.orthographicSize, x => targetCam.orthographicSize = x, minimapSize, transitionDuration)
-            .SetEase(Ease.InOutQuad)
-            .OnComplete(() =>
-            {
-                isTweening = false;
-                zoomManager.SetZoomState(true);
-            });
-    }
-
-    private void ExitMinimapView()
-    {
-        isTweening = true;
-        SetEnableMapAlpha();
-        zoomManager.SetZoomState(false);
-        FadeOutCanvas();
-
-        targetCam.transform.DOMove(originalPosition, transitionDuration).SetEase(Ease.InOutQuad);
-        DOTween.To(() => targetCam.orthographicSize, x => targetCam.orthographicSize = x, originalSize, transitionDuration)
-            .SetEase(Ease.InOutQuad)
-            .OnComplete(() =>
-            {
-                isTweening = false;
-                EnableAllMapObjects();
-                PlayerStateManager.Instance.SetState(PlayerState.Play);
-            });
-    }
-
-    private void EnterPostItMode()
-    {
-        Debug.Log("포스트잇 모드 활성화");
-        postItPannal.SetActive(true);
-    }
-
-    private void ExitPostItMode()
-    {
-        Debug.Log("포스트잇 모드 비활성화");
-
-        postItPannal.SetActive(false);
+        DOTween.To(
+            () => targetCam.orthographicSize,
+            x => targetCam.orthographicSize = x,
+            minimapSize,
+            transitionDuration
+        ).SetEase(Ease.InOutQuad)
+         .OnComplete(() =>
+         {
+             isTweening = false;
+             zoomManager.SetZoomState(true);
+         });
     }
 
     private void CloseAllPostIts()
@@ -235,51 +203,11 @@ public class MinimapManager : MonoBehaviour
         Debug.Log("미니맵 정보 저장 완료");
     }
 
-    private void ToggleMinimapView()
-    {
-        if (!isMinimapMode)
-        {
-            DisableUnvisitedMapObjects();
-            originalPosition = targetCam.transform.position;
-            PlayerStateManager.Instance.SetState(PlayerState.MiniMap);
-            MoveToMinimap();
-        }
-        else
-        {
-            MoveToOriginal(originalPosition, Vector3.zero, false);  // 원래 위치로 돌아갈 때
-            zoomManager.SetZoomState(false);
-            FadeOutCanvas();
-        }
-
-        isMinimapMode = !isMinimapMode;
-    }
-
-    private void MoveToMinimap()
-    {
-        isTweening = true;
-        cameraMoveCanvas.SetActive(true);
-        FadeInCanvas(); // 캔버스를 서서히 나타나게 함
-
-        targetCam.transform
-            .DOMove(minimapPosition, transitionDuration)
-            .SetEase(Ease.InOutQuad);
-
-        DOTween
-            .To(() => targetCam.orthographicSize, x => targetCam.orthographicSize = x,
-                minimapSize, transitionDuration)
-            .SetEase(Ease.InOutQuad)
-            .OnComplete(() =>
-            {
-                isTweening = false;
-                zoomManager.SetZoomState(true);
-
-            });
-    }
 
     private void MoveToOriginal(Vector3 targetCameraPosition, Vector3 targetPlayerPosition, bool isMapMove)
     {
         isTweening = true;
-
+        hoveredMap = null;
 
         SetEnableMapAlpha();
 
@@ -309,6 +237,7 @@ public class MinimapManager : MonoBehaviour
                 isTweening = false;
                 EnableAllMapObjects();
                 PlayerStateManager.Instance.SetState(PlayerState.Play);
+                CloseAllPostIts();
             });
     }
 
@@ -345,6 +274,7 @@ public class MinimapManager : MonoBehaviour
                 else
                 {
                     mapObj.gameObject.SetActive(true);
+                    Debug.Log("지금1");
                     mapObj.SetMapAlpha(true);
                 }
             }
@@ -391,6 +321,7 @@ public class MinimapManager : MonoBehaviour
             }
             if (mapObj != null)
             {
+                Debug.Log("지금2");
                 mapObj.SetMapAlpha(true);
             }
         }
@@ -452,7 +383,7 @@ public class MinimapManager : MonoBehaviour
         if (map != null)
         {
             CursorShapeManager.Instance.RequestCursor(this, CursorType.Default);
-            Debug.Log($"{map.mapName}");
+
             if (MapInfoManager.Instance.currentMap != map.mapName)
             {
                 // Map 클릭 시, 다른 맵이라면 해당 Map으로 텔레포트 처리
@@ -464,9 +395,10 @@ public class MinimapManager : MonoBehaviour
                 // 원래 맵 클릭했다면 기존 맵으로
                 MoveToOriginal(originalPosition, Vector3.zero, false);
             }
-            isMinimapMode = !isMinimapMode;
+            isMinimapMode = false;
             zoomManager.SetZoomState(false);
             FadeOutCanvas();
+            currentState = MinimapState.Normal;
         }
     }
 
@@ -498,38 +430,46 @@ public class MinimapManager : MonoBehaviour
         string currentMapName = MapInfoManager.Instance.currentMap;
 
         Ray ray = targetCam.ScreenPointToRay(Input.mousePosition);
+        bool isHoveringMap = Physics.Raycast(ray, out RaycastHit hit, 2000f, planeLayerMask);
 
-        bool isHoveringMap = Physics.Raycast(ray, out RaycastHit hit, 500f, planeLayerMask);
-
+        // 🔹 Raycast 기준으로 커서 먼저 결정 (원래 로직 핵심)
         if (isHoveringMap)
             CursorShapeManager.Instance.RequestCursor(this, CursorType.ButtonHover);
         else
             CursorShapeManager.Instance.RequestCursor(this, CursorType.Default);
 
-
         if (isHoveringMap)
         {
-            Map map = hit.collider.GetComponentInParent<Map>();
-            if (map != null)
+            hoveredMap = hit.collider.GetComponentInParent<Map>();
+            if (hoveredMap != null)
             {
-                // 현재 플레이어가 있는 맵이면 hover 무시
-                if (map.mapName == currentMapName) { return; }
-                if (hoveredMap != map)
+                // ✅ 현재 맵이면 "alpha만 안 바꾸고" 끝
+                if (hoveredMap.mapName == currentMapName)
                 {
-                    // 이전 hover 해제 (단, 이전 hover가 currentMap이면 해제 금지)
-                    if (hoveredMap != null && hoveredMap.mapName != currentMapName) hoveredMap.SetMapAlpha(true);
-                    // 새 hover 적용
-                    map.SetMapAlpha(false);
-                    hoveredMap = map;
+                    return;
                 }
+
+                // 다른 맵 hover
+                hoveredMap.SetMapAlpha(false);
                 return;
             }
         }
-        // 아무것도 hover 안됨 → hoveredMap 해제
-        if (hoveredMap != null)
+        else
         {
-            CursorShapeManager.Instance.RequestCursor(this, CursorType.Default);
-            hoveredMap.SetMapAlpha(true); hoveredMap = null;
+            if (hoveredMap != null)
+            {
+                if (hoveredMap.mapName == currentMapName)
+                {
+                    return;
+                }
+                hoveredMap.SetMapAlpha(true);
+                return;
+            }
+
         }
+
+        // 🔹 아무 맵도 hover 안 함 → 정리
+        CursorShapeManager.Instance.RequestCursor(this, CursorType.Default);
     }
+
 }

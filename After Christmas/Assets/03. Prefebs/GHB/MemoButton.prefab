@@ -515,6 +515,7 @@ MonoBehaviour:
   postItView: {fileID: 2069606093819949030}
   data:
     text: 
+  destroyObj: {fileID: 4667239756733624309}
 --- !u!114 &6169675397336670170
 MonoBehaviour:
   m_ObjectHideFlags: 0

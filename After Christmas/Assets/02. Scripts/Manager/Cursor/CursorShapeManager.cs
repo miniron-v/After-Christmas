@@ -94,4 +94,9 @@ public class CursorShapeManager : MonoBehaviour
         return Vector2.zero;
     }
 
+    public void ForceSetDefault()
+    {
+        currentOwner = null;
+        ApplyCursor(CursorType.Default);
+    }
 }
