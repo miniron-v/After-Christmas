@@ -66,17 +66,4 @@ public class StageManager : MonoBehaviour
     {
         // 진짜 스테이지 클리어 로직 넣기
     }
-
-    void Update()
-    {
-        // 임시 씬이동 테스트(O,P == 1,2번 씬)
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            SceneManager.LoadScene("itemHandlerScene");
-        }
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            SceneManager.LoadScene("itemHandlerScene2");
-        }
-    }
 }
