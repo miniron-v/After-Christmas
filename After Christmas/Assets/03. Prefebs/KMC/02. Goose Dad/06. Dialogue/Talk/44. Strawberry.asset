@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c24672a27f90a24fb333e3077219294, type: 3}
+  m_Name: 44. Strawberry
+  m_EditorClassIdentifier: 
+  dialogueID: 0
+  prerequisiteCondition: {fileID: 0}
+  failSafeDialogue: {fileID: 11400000}
+  participants:
+  - {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
+  - {fileID: 11400000, guid: 79c650beea40e15498b7eedffcc273d5, type: 2}
+  dialogueLines:
+  - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
+    sentence: "\uC9E0! \uC774\uAC70 \uBA39\uACE0 \uC2F6\uB2E4 \uD588\uC9C0?"
+  - speaker: {fileID: 11400000, guid: 79c650beea40e15498b7eedffcc273d5, type: 2}
+    sentence: "\uC6C1...."
+  - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
+    sentence: "\uC5EC\uBCF4, \uAD1C\uCC2E\uC544?!"
+  - speaker: {fileID: 11400000, guid: 79c650beea40e15498b7eedffcc273d5, type: 2}
+    sentence: "\uAD1C\uCC2E\uC544. \uBBF8\uC548\uD574. \uC544\uAE4C\uAE4C\uC9C4 \uB538\uAE30\uAC00
+      \uC5C4\uCCAD \uBA39\uACE0 \uC2F6\uC5C8\uB294\uB370...."
+  - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
+    sentence: "\uBBF8\uC548\uD558\uAE34, \uBB58. \uAD1C\uCC2E\uC544. \uB0B4\uAC00
+      \uB2E4 \uBA39\uC73C\uBA74 \uB418\uB2C8\uAE4C!"
+  - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
+    sentence: "\uB2E4\uB978 \uBA39\uACE0 \uC2F6\uC740 \uAC74 \uC5C6\uC5B4?"

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 485f1c85076e6c64a9c103eba030eb53, type: 3}
-  m_Name: Mom
+  m_Name: Classmate
   m_EditorClassIdentifier: 
-  characterName: "\uC544\uB0B4"
-  characterImage: {fileID: 1201449511, guid: 834631a3564e00741bdbfbb8dbd3203b, type: 3}
+  characterName: "\uB3D9\uCC3D"
+  characterImage: {fileID: 0}

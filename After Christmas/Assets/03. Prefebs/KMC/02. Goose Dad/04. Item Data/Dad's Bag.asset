@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 485f1c85076e6c64a9c103eba030eb53, type: 3}
-  m_Name: Mom
+  m_Script: {fileID: 11500000, guid: afd046bbdd483c74f895f5f77149020f, type: 3}
+  m_Name: Dad's Bag
   m_EditorClassIdentifier: 
-  characterName: "\uC544\uB0B4"
-  characterImage: {fileID: 1201449511, guid: 834631a3564e00741bdbfbb8dbd3203b, type: 3}
+  itemID: "\uAC00\uBC29"
+  icon: {fileID: 21300000, guid: 9a719de5f7a40264480c3484696d3d81, type: 3}
+  description: "\uC131\uD6C8\uC758 \uAC00\uBC29\uC774\uB2E4."

@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 485f1c85076e6c64a9c103eba030eb53, type: 3}
-  m_Name: Young Mother
+  m_Script: {fileID: 11500000, guid: afd046bbdd483c74f895f5f77149020f, type: 3}
+  m_Name: Letsbe
   m_EditorClassIdentifier: 
-  characterName: "\uC5EC\uC790"
-  characterImage: {fileID: 1201449511, guid: 834631a3564e00741bdbfbb8dbd3203b, type: 3}
+  itemID: "\uB808X\uBE44"
+  icon: {fileID: -789119931, guid: 8bbacbff6e79a4b43be8cecd8b2448a5, type: 3}
+  description: "\uCE94\uC5D0 \uB2F4\uAE34 \uCEE4\uD53C\uB2E4."
