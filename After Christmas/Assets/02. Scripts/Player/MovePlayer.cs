@@ -13,12 +13,18 @@ public class MovePlayer : MonoBehaviour
     [Header("Animation")]
     [SerializeField] private Animator animator;
 
-
     private Vector2 moveInput;
+    private Rigidbody rb;
 
-    // 기존 isometric 방향
     private readonly Vector3 isoForward = new Vector3(1, 0, 1).normalized;
     private readonly Vector3 isoRight = new Vector3(1, 0, -1).normalized;
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody>();
+        rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+        rb.interpolation = RigidbodyInterpolation.Interpolate;
+    }
 
     public void OnMove(InputValue value)
     {
@@ -30,17 +36,10 @@ public class MovePlayer : MonoBehaviour
         if (!PlayerStateManager.Instance.IsPlayerControllable())
             return;
 
-        // 1. 입력 → 이동 벡터 변환
         Vector3 moveDir = isoForward * moveInput.y + isoRight * moveInput.x;
-
-        // 2. 대각선 이동 속도 보정
-        if (moveDir.sqrMagnitude > 1f)
-            moveDir.Normalize();
+        if (moveDir.sqrMagnitude > 1f) moveDir.Normalize();
 
         bool isMoving = moveInput.sqrMagnitude > 0.01f;
-
-        // 3. transform 기반 이동
-        transform.position += moveDir * moveSpeed * Time.deltaTime;
 
         if (moveDir.sqrMagnitude > 0.0001f)
         {
@@ -53,5 +52,22 @@ public class MovePlayer : MonoBehaviour
         }
 
         animator.SetBool("isMoving", isMoving); 
+    }
+
+    private void FixedUpdate()
+    {
+        if (!PlayerStateManager.Instance.IsPlayerControllable())
+        {
+            // 컨트롤 불가능할 때 미끄러지지 않도록 속도 제어
+            rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, 0);
+            return;
+        }
+
+        Vector3 moveDir = isoForward * moveInput.y + isoRight * moveInput.x;
+        if (moveDir.sqrMagnitude > 1f) moveDir.Normalize();
+
+        // Velocity 기반 이동으로 변경
+        Vector3 targetVelocity = moveDir * moveSpeed;
+        rb.linearVelocity = new Vector3(targetVelocity.x, rb.linearVelocity.y, targetVelocity.z);
     }
 }
