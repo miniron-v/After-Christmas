@@ -12559,10 +12559,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 243838367380386634, guid: e59c27b2c25d61143b8145d138c3ffa8, type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 13400000, guid: ea8280f0a9d061b46ad542993e51bcad, type: 2}
     - target: {fileID: 3818844191061978318, guid: e59c27b2c25d61143b8145d138c3ffa8, type: 3}
       propertyPath: m_Name
       value: Player
@@ -12611,14 +12607,6 @@ PrefabInstance:
       propertyPath: inventoryUI
       value: 
       objectReference: {fileID: 1317593300}
-    - target: {fileID: 8677926888533208314, guid: e59c27b2c25d61143b8145d138c3ffa8, type: 3}
-      propertyPath: m_Interpolate
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8677926888533208314, guid: e59c27b2c25d61143b8145d138c3ffa8, type: 3}
-      propertyPath: m_CollisionDetection
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
