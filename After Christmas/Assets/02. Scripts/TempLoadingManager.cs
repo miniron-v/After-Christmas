@@ -35,40 +35,42 @@ public class TempLoadingManager : MonoBehaviour
     }
 
     private IEnumerator TransitionSequence()
+{
+    var manager = PixelaterAndGreyScaleManager.Instance;
+    if (manager == null)
     {
-        var manager = PixelaterAndGreyScaleManager.Instance;
-        manager.IsTransitioning = true; // 연출 시작
-        if (manager == null)
-        {
-            Debug.LogError("Pixel Manager를 찾을 수 없습니다!");
-            yield break;
-        }
-
-        yield return StartCoroutine(FadeEffect(1, 200, 0f, 1f, manager));
-
-        yield return SceneManager.LoadSceneAsync(loadingSceneName);
-
-        if (string.IsNullOrEmpty(targetSceneName))
-        {
-            Debug.LogError("타겟 씬 이름이 비어있습니다!");
-            yield break;
-        }
-
-        AsyncOperation op = SceneManager.LoadSceneAsync(targetSceneName);
-        op.allowSceneActivation = false;
-
-        // 0.9f까지 로딩 대기
-        while (op.progress < 0.9f)
-        {
-            yield return null;
-        }
-
-        op.allowSceneActivation = true;
-        while (!op.isDone) yield return null;
-
-        yield return StartCoroutine(FadeEffect(200, 1, 1f, 0f, manager));
-        manager.IsTransitioning = false; // 연출 종료
+        Debug.LogError("Pixel Manager를 찾을 수 없습니다!");
+        yield break;
     }
+
+    manager.IsTransitioning = true;
+
+    yield return SceneManager.LoadSceneAsync(loadingSceneName);
+
+    if (string.IsNullOrEmpty(targetSceneName))
+    {
+        Debug.LogError("타겟 씬 이름이 비어있습니다!");
+        yield break;
+    }
+
+    AsyncOperation op = SceneManager.LoadSceneAsync(targetSceneName);
+    op.allowSceneActivation = false;
+
+    while (op.progress < 0.9f)
+    {
+        yield return null;
+    }
+
+    manager.targetPixelSize = 200;
+    manager.targetGreyscale = 1f;
+
+    op.allowSceneActivation = true;
+    while (!op.isDone) yield return null;
+
+    yield return StartCoroutine(FadeEffect(200, 1, 1f, 0f, manager));
+    
+    manager.IsTransitioning = false;
+}
 
     private IEnumerator FadeEffect(int startPix, int endPix, float startGrey, float endGrey, PixelaterAndGreyScaleManager manager)
     {
