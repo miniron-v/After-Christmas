@@ -212,6 +212,7 @@ public class Item : MonoBehaviour, IInteractable, IGlowable
 
     private IEnumerator TeleportByItemRoutine(GameObject player, Item target)
     {
+        PlayerStateManager.Instance.SetState(PlayerState.Fading);
         // 페이드 아웃
         bool isFadeOutComplete = false;
         FadeManager.Instance.FadeOut(() => { isFadeOutComplete = true; });
