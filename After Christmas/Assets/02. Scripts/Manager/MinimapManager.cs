@@ -25,10 +25,6 @@ public class MinimapManager : MonoBehaviour
     [SerializeField] private KeyCode minimapToggleKey = KeyCode.Y;
     [SerializeField] private KeyCode postItToggleKey = KeyCode.P;
 
-    [Header("알파 값 설정")]
-    [Range(0f, 1f)]
-    [SerializeField] private float alphaWhenPlayerAbsent = 0.5f;  // 플레이어가 없는 맵의 알파 값 (0~1)
-
     [Header("미니맵 클릭 설정")]
     [SerializeField] private LayerMask planeLayerMask;
 
