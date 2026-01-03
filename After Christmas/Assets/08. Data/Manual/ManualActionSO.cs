@@ -9,6 +9,9 @@ public class ManualActionSO : ScriptableObject
 {
     public string actionName;
 
-    [Header("Keys")]
-    public List<ManualKeyVisual> keyVisuals;
+    [Header("Input Keys")]
+    public List<KeyCode> keys;
+
+    [Header("UI")]
+    public Sprite sprite;
 }

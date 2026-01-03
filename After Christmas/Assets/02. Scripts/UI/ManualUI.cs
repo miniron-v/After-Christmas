@@ -9,23 +9,29 @@ public class ManualUI : MonoBehaviour
     [SerializeField] private GameObject manualUI;
 
     [Header("Timing")]
-    [SerializeField] private float minimumActiveTime = 2f;
+    [SerializeField] private float minimumActiveTime = 3f;
 
-    [Header("Key Icons UI")]
-    [SerializeField] private Transform keyIconRoot;
-    [SerializeField] private GameObject keyIconPrefab;
+    [Header("UI")]
+    [SerializeField] private Image panelImage;
 
-    // runtime state
-    private List<ManualKeyVisual> targetKeys;
-    private Dictionary<KeyCode, bool> keyPressedMap;
-    private Dictionary<KeyCode, Image> keyImageMap;
+    [Header("Fade Animation")]
+    [SerializeField] private CanvasGroup canvasGroup;
+    [SerializeField] private float fadeDuration = 0.3f;
 
+    [Header("Glow Fade")]
+    [SerializeField] private float glowDuration = 0.2f;
+    [SerializeField] private float fadeOutDuration = 0.3f;
+    [SerializeField] private Color glowColor = new(1.3f, 1.3f, 1.3f, 1f);
+
+    // runtime
+    private List<KeyCode> targetKeys;
     private bool actionCompleted;
     private float startTime;
     private Coroutine routine;
 
     void Start()
     {
+        canvasGroup.alpha = 0f;
         manualUI.SetActive(false);
     }
 
@@ -34,25 +40,13 @@ public class ManualUI : MonoBehaviour
         if (!manualUI.activeSelf || actionCompleted || targetKeys == null)
             return;
 
-        foreach (var kv in targetKeys)
+        // 하나라도 눌리면 완료
+        foreach (var key in targetKeys)
         {
-            // 이미 눌린 키는 스킵
-            if (keyPressedMap[kv.key])
-                continue;
-
-            if (Input.GetKeyDown(kv.key))
+            if (Input.GetKeyDown(key))
             {
-                keyPressedMap[kv.key] = true;
-
-                // sprite 활성화
-                if (keyImageMap.TryGetValue(kv.key, out Image img))
-                {
-                    img.sprite = kv.activeSprite;
-                }
-
-                Debug.Log($"[{kv.key}] 입력 → 활성화");
-
-                CheckAllKeysPressed();
+                Debug.Log($"[{key}] 입력으로 조작 완료");
+                actionCompleted = true;
                 break;
             }
         }
@@ -63,41 +57,81 @@ public class ManualUI : MonoBehaviour
     {
         if (action == null)
         {
-            Debug.LogWarning("[ManualUI] action is null");
+            Debug.LogWarning("[ManualUI] 액션이 존재하지 않음");
             return;
         }
+
         if (routine != null)
             StopCoroutine(routine);
 
-        targetKeys = action.keyVisuals;
-        keyPressedMap = new Dictionary<KeyCode, bool>();
-        keyImageMap = new Dictionary<KeyCode, Image>();
-
+        targetKeys = action.keys;
         actionCompleted = false;
         startTime = Time.realtimeSinceStartup;
 
-        SetupUI(action);
+        panelImage.sprite = action.sprite;
+        
         manualUI.SetActive(true);
 
-        Debug.Log($"[ManualUI] 조작법 알림 표시 ({action.actionName})");
+        Debug.Log($"[ManualUI] 조작법 표시 ({action.actionName})");
 
+        StartCoroutine(FadeIn());
         routine = StartCoroutine(WaitAndHide());
     }
 
-    // 모든 조작키를 눌렀는지 확인
-    private void CheckAllKeysPressed()
+    private IEnumerator FadeIn()
     {
-        foreach (bool pressed in keyPressedMap.Values)
+        float t = 0f;
+        canvasGroup.alpha = 0f;
+
+        while (t < fadeDuration)
         {
-            if (!pressed)
-                return;
+            t += Time.unscaledDeltaTime;
+            canvasGroup.alpha = Mathf.Lerp(0f, 1f, t / fadeDuration);
+            yield return null;
         }
 
-        Debug.Log("[ManualUI] 모든 키 입력 완료");
-        actionCompleted = true;
+        canvasGroup.alpha = 1f;
     }
 
-    // 조작법 알림 종료 대기 (키입력 + 3초 대기)
+    private IEnumerator GlowAndFadeOut()
+    {
+        // 🔹 1단계: 번쩍 (밝아졌다가 원래대로)
+        float t = 0f;
+        Color originalColor = panelImage.color;
+
+        while (t < glowDuration)
+        {
+            t += Time.unscaledDeltaTime;
+            float p = t / glowDuration;
+
+            // 가운데에서 가장 밝게
+            float glowStrength = Mathf.Sin(p * Mathf.PI);
+            panelImage.color = Color.Lerp(
+                originalColor,
+                glowColor,
+                glowStrength
+            );
+
+            yield return null;
+        }
+
+        panelImage.color = originalColor;
+
+        // 🔹 2단계: 스르륵 사라짐
+        t = 0f;
+        canvasGroup.alpha = 1f;
+
+        while (t < fadeOutDuration)
+        {
+            t += Time.unscaledDeltaTime;
+            canvasGroup.alpha = Mathf.Lerp(1f, 0f, t / fadeOutDuration);
+            yield return null;
+        }
+
+        canvasGroup.alpha = 0f;
+    }
+
+    // 종료 대기
     private IEnumerator WaitAndHide()
     {
         yield return new WaitUntil(() => actionCompleted);
@@ -108,33 +142,11 @@ public class ManualUI : MonoBehaviour
             yield return new WaitForSecondsRealtime(minimumActiveTime - elapsed);
         }
 
-        yield return new WaitForSecondsRealtime(1f);
+        yield return StartCoroutine(GlowAndFadeOut());
 
         manualUI.SetActive(false);
-        Debug.Log("[ManualUI] 조작법 알림 종료");
+        Debug.Log("[ManualUI] 조작법 종료");
 
         routine = null;
-    }
-
-    // UI 아이콘
-    private void SetupUI(ManualActionSO action)
-    {
-        // 초기화
-        foreach (Transform child in keyIconRoot)
-            Destroy(child.gameObject);
-
-        // 세팅
-        foreach (var kv in action.keyVisuals)
-        {
-            GameObject icon = Instantiate(keyIconPrefab, keyIconRoot);
-            Image img = icon.GetComponent<Image>();
-
-            img.sprite = kv.normalSprite;
-
-            keyPressedMap[kv.key] = false;
-            keyImageMap[kv.key] = img;
-        }
-
-        Debug.Log($"{action.actionName} UI 세팅 완료");
     }
 }

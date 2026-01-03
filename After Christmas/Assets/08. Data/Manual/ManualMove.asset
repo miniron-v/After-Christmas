@@ -13,8 +13,5 @@ MonoBehaviour:
   m_Name: ManualMove
   m_EditorClassIdentifier: 
   actionName: Move
-  keyVisuals:
-  - {fileID: 11400000, guid: e86e5480c4436684eaaa182ac8e28e82, type: 2}
-  - {fileID: 11400000, guid: 5cf5bb4dcc8a9d04ab3d35507b1ff395, type: 2}
-  - {fileID: 11400000, guid: 232fd264cfea70247bbaf88df87a4cc0, type: 2}
-  - {fileID: 11400000, guid: 7ab25de706bc37b4da6b1442845f30ca, type: 2}
+  keys: 61000000770000007300000064000000
+  sprite: {fileID: -1989364303, guid: 355a9b55eaed5aa44adf556b36c11f0f, type: 3}

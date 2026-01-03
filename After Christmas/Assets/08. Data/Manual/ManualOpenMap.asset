@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa952cf4cdaa8b5478dcd0c2fd46996f, type: 3}
   m_Name: ManualOpenMap
   m_EditorClassIdentifier: 
-  actionName: Move
-  keyVisuals:
-  - {fileID: 11400000, guid: da1f1d453a1dbc745a1fb6c9b051490d, type: 2}
+  actionName: OpenMap
+  keys: 6d000000
+  sprite: {fileID: -595300802, guid: 1c5f96f29821849428bc829f67187d89, type: 3}

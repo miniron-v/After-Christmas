@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa952cf4cdaa8b5478dcd0c2fd46996f, type: 3}
   m_Name: ManualInventory
   m_EditorClassIdentifier: 
-  actionName: Move
-  keyVisuals:
-  - {fileID: 11400000, guid: c56b06358de34a24d8db21ff96f2e28b, type: 2}
+  actionName: Inventory
+  keys: 69000000
+  sprite: {fileID: -595300802, guid: 1c5f96f29821849428bc829f67187d89, type: 3}
