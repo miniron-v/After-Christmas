@@ -29,6 +29,12 @@ public class Item : MonoBehaviour, IInteractable, IGlowable
     public Sprite itemIcon => itemData != null ? itemData.icon : null;
     [HideInInspector]
     public string itemDescription => itemData != null ? itemData.description : "No description";
+
+    [Header("Description Settings")]
+    [TextArea(3, 5)]
+    [SerializeField] private string additiveDescription; // 이 아이템만의 특수 설명
+
+    public string AdditiveDescription => additiveDescription;
     // 아이템이 있던 위치(하나의 기억)
     // map.cs에서 중앙 관리하므로 인스펙터에서 숨김
     [HideInInspector]
@@ -58,6 +64,8 @@ public class Item : MonoBehaviour, IInteractable, IGlowable
     [HideInInspector]
     // 반대 아이템으로 가는 경로가 열렸는지 체크하는 변수, 디폴트값 false
     public bool isRecorded = false;
+    [HideInInspector]
+    public bool isDescriptionRecorded = false; // 추가 설명이 기록되었는지 여부 (기억 정보)
 
     // 텔레포트(연결된 물체가 있는지)기능이 있는 아이템인지 확인, 디폴트값 true
     // isTeleportItem이 true라면 linkeditem이 1개는 있어야 함

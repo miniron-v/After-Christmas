@@ -1099,6 +1099,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1402289473}
     - target: {fileID: 3092057549691042336, guid: ad5acee826c5e3e4193ee726e3d27c0f, type: 3}
+      propertyPath: additiveDescription
+      value: "\uC124\uBA85 B"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3092057549691042336, guid: ad5acee826c5e3e4193ee726e3d27c0f, type: 3}
       propertyPath: 'linkedItems.Array.data[0]'
       value: 
       objectReference: {fileID: 1408731023}
@@ -5173,6 +5177,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1402289473}
     - target: {fileID: 3092057549691042336, guid: ad5acee826c5e3e4193ee726e3d27c0f, type: 3}
+      propertyPath: additiveDescription
+      value: "\uB2E4\uC774\uC544\uBAAC\uB4DC \uCD94\uAC00\uC124\uBA85 1"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3092057549691042336, guid: ad5acee826c5e3e4193ee726e3d27c0f, type: 3}
       propertyPath: 'linkedItems.Array.data[0]'
       value: 
       objectReference: {fileID: 2130350502}
@@ -7830,6 +7838,10 @@ PrefabInstance:
       propertyPath: teleportUI
       value: 
       objectReference: {fileID: 1402289473}
+    - target: {fileID: 3092057549691042336, guid: ad5acee826c5e3e4193ee726e3d27c0f, type: 3}
+      propertyPath: additiveDescription
+      value: "\uC124\uBA85 A"
+      objectReference: {fileID: 0}
     - target: {fileID: 3092057549691042336, guid: ad5acee826c5e3e4193ee726e3d27c0f, type: 3}
       propertyPath: 'linkedItems.Array.data[0]'
       value: 
@@ -12121,6 +12133,10 @@ PrefabInstance:
       propertyPath: teleportUI
       value: 
       objectReference: {fileID: 1402289473}
+    - target: {fileID: 3092057549691042336, guid: ad5acee826c5e3e4193ee726e3d27c0f, type: 3}
+      propertyPath: additiveDescription
+      value: "\uB2E4\uC774\uC544\uBAAC\uB4DC \uCD94\uAC00\uC124\uBA85 2"
+      objectReference: {fileID: 0}
     - target: {fileID: 3092057549691042336, guid: ad5acee826c5e3e4193ee726e3d27c0f, type: 3}
       propertyPath: 'linkedItems.Array.data[0]'
       value: 
