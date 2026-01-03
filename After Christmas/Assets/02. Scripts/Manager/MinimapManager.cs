@@ -36,8 +36,8 @@ public class MinimapManager : MonoBehaviour
     [SerializeField] private ZoomManager zoomManager;
     [Header("호버링 이동 캔버스 참조")]
     [SerializeField] private GameObject cameraMoveCanvas;
-    [Header("포스트잇 모드 패널 참조")]
-    [SerializeField] private GameObject postItPannal;
+    [Header("포스트잇 버튼이 생성될 패널 참조")]
+    [SerializeField] private GameObject buttonPanel;
     private CanvasGroup cameraMoveCanvasGroup;
 
     private Vector3 originalPosition;
@@ -62,7 +62,7 @@ public class MinimapManager : MonoBehaviour
 
     private void Start()
     {
-        postItPannal.SetActive(false);
+        buttonPanel.SetActive(false);
         cameraMoveCanvasGroup = cameraMoveCanvas.GetComponent<CanvasGroup>();
 
         originalSize = targetCam.orthographicSize;
@@ -120,6 +120,7 @@ public class MinimapManager : MonoBehaviour
         }
         else
         {
+            isMinimapMode = false;
             if(isPostItMode)
             {
                 ExitPostItMode();
@@ -129,7 +130,6 @@ public class MinimapManager : MonoBehaviour
             FadeOutCanvas();
             currentState = MinimapState.Normal;
         }
-        isMinimapMode = !isMinimapMode;
     }
 
     private void TogglePostItView()
@@ -144,24 +144,27 @@ public class MinimapManager : MonoBehaviour
             currentState = MinimapState.MinimapView;
             ExitPostItMode();
         }
-        isPostItMode = !isPostItMode;
     }
 
     private void EnterPostItMode()
     {
+        isPostItMode = true;
+        CloseAllPostIts();
         currentState = MinimapState.PostItMode;
-        postItPannal.SetActive(true);
+        buttonPanel.SetActive(true);
     }
 
     private void ExitPostItMode()
     {
+        isPostItMode = false;
         currentState = MinimapState.MinimapView;
         CloseAllPostIts();
-        postItPannal.SetActive(false);
+        buttonPanel.SetActive(false);
     }
 
     private void EnterMinimap()
     {
+        isMinimapMode = true;
         currentState = MinimapState.MinimapView;
 
         isTweening = true;
@@ -208,7 +211,8 @@ public class MinimapManager : MonoBehaviour
     {
         isTweening = true;
         hoveredMap = null;
-
+        isPostItMode = false;
+        isMinimapMode = false;
         SetEnableMapAlpha();
 
         targetCam.transform

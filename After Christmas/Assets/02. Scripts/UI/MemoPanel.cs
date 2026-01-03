@@ -6,6 +6,9 @@ public class UIObjectSpawner : MonoBehaviour, IPointerClickHandler
     [Header("생성할 버튼/포스트잇 프리팹")]
     [SerializeField] private GameObject buttonPrefab;
 
+    [Header("포스트잇 패널")]
+    [SerializeField] private PostitPanel postitPanel;
+
     [Header("생성된 버튼들이 담길 부모 (미지정 시 이 패널의 자식으로 생성)")]
     [SerializeField] private Transform container;
 
@@ -23,6 +26,7 @@ public class UIObjectSpawner : MonoBehaviour, IPointerClickHandler
 
         // 2. 프리팹 생성
         GameObject newButton = Instantiate(buttonPrefab, container);
+        newButton.GetComponentInChildren<PostItAnchorButton>().OutSideInit(postitPanel);
 
         // 3. 위치 설정
         newButton.transform.position = clickWorldPos;
