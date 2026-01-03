@@ -413,7 +413,7 @@ MonoBehaviour:
   mapDataSO: {fileID: 0}
   playerSpawnPoint: {fileID: 8263455348824763492}
   cameraSpawnPoint: {fileID: 3282227698645985755}
-  arrivalDialogue: {fileID: 11400000, guid: 6dafcb7571be30e4e9ff546b4afe059f, type: 2}
+  arrivalDialogue: {fileID: 0}
   cinematicController: {fileID: 8776539917340885464}
   isStartMap: 0
   originPosition: {x: 0, y: 0, z: 0}
