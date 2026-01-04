@@ -24,7 +24,8 @@ public class PlayerItemHandler : MonoBehaviour
 
     public void RecordFromItem(Item item, int linkedItemIDX)
     {
-        if (!item.isRecorded)
+        // 현재 상호작용한 아이템의 추가 설명 기록
+        if (!item.isDescriptionRecorded)
         {
             SpawnTransform info = new SpawnTransform(
                 item.playerSpawnPoint.position,
@@ -32,23 +33,26 @@ public class PlayerItemHandler : MonoBehaviour
                 item.mapName
             );
 
-            // 아이콘 + description 함께 기록
             ItemInfoManager.Instance.RecordItemInfo(
                 item.itemID,
                 info,
                 item.itemIcon,
-                item.itemDescription
+                item.itemDescription,
+                item.AdditiveDescription
             );
 
+            item.isDescriptionRecorded = true;
             item.isRecorded = true;
         }
 
+        // 연결된(대상) 아이템의 공간 정보만 미리 기록
         if (item.isTeleportItem && linkedItemIDX >= 0 && linkedItemIDX < item.linkedItems.Count)
         {
             Item linked = item.linkedItems[linkedItemIDX];
+
             if (!linked.isRecorded)
             {
-                SpawnTransform info = new SpawnTransform(
+                SpawnTransform linkedInfo = new SpawnTransform(
                     linked.playerSpawnPoint.position,
                     linked.cameraSpawnPoint.position,
                     linked.mapName
@@ -56,9 +60,10 @@ public class PlayerItemHandler : MonoBehaviour
 
                 ItemInfoManager.Instance.RecordItemInfo(
                     linked.itemID,
-                    info,
+                    linkedInfo,
                     linked.itemIcon,
-                    linked.itemDescription
+                    linked.itemDescription,
+                    null // 대상 아이템의 설명은 나중에 그 아이템을 직접 눌렀을 때 기록
                 );
 
                 linked.isRecorded = true;
@@ -82,10 +87,10 @@ public class PlayerItemHandler : MonoBehaviour
 
     public void Teleport(SpawnTransform selected, string mapID)
     {
-        StartCoroutine(TeleportRoutine(selected,mapID));
+        StartCoroutine(TeleportRoutine(selected, mapID));
     }
 
-    private IEnumerator TeleportRoutine(SpawnTransform selected,string mapID)
+    private IEnumerator TeleportRoutine(SpawnTransform selected, string mapID)
     {
         // 페이드 아웃
         bool isFadeOutComplete = false;

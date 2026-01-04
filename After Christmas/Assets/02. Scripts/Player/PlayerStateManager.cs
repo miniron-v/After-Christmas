@@ -4,6 +4,8 @@ public enum PlayerState
 {
     // 제한 X
     Play,
+    // 페이드 중일 때
+    Fading,
     // UI 열려있는 시점
     UIOpen,
     // 대화창 열려있는 시점
@@ -33,7 +35,7 @@ public class PlayerStateManager : MonoBehaviour
     {
         if (currentState == newState) return;
         currentState = newState;
-        Debug.Log(currentState);
+        Debug.Log($"<color=red>{currentState}</color>");
     }
 
     // UI / Dialogue / Cinematic 들어갈 때

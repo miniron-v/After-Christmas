@@ -47,6 +47,7 @@ public class FadeManager : MonoBehaviour
             {
                 fadeImage.raycastTarget = false;
                 onComplete?.Invoke();
+                PlayerStateManager.Instance.SetState(PlayerState.Play);
             });
     }
 }

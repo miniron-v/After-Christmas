@@ -446,7 +446,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c5cd3eddec5545446852c21f6ff2e19d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 385f904c99ed31443ac9a12de0fa190a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -558,7 +558,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5820819996571924747}
   m_LocalRotation: {x: -0.39190385, y: 0.20056215, z: -0.36042345, w: 0.8223632}
-  m_LocalPosition: {x: 0, y: 0, z: -30.750978}
+  m_LocalPosition: {x: 0, y: 0, z: -43}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -567,7 +567,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 53.59567, y: -27.978935}
+  m_AnchoredPosition: {x: 39.1, y: -37.9}
   m_SizeDelta: {x: 100, y: 62.9958}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &21572878278256072
@@ -591,7 +591,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_TargetDisplay: 0
 --- !u!114 &8763977181380773299
 MonoBehaviour:

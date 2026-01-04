@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -112,7 +113,7 @@ public class PlayerColliderHandler : MonoBehaviour
         if (closest != null)
         {
             IInteractable interactable = closest.GetComponent<IInteractable>();
-            if (interactable != null)
+            if (interactable != null && PlayerStateManager.Instance.IsPlayerControllable())
             {
                 interactable.Interact(gameObject);
             }
