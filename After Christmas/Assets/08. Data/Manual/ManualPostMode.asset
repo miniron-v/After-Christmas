@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa952cf4cdaa8b5478dcd0c2fd46996f, type: 3}
   m_Name: ManualPostMode
   m_EditorClassIdentifier: 
-  actionName: OpenMap
-  keys: 6d000000
-  sprite: {fileID: -214534738, guid: 9a5cc0b29df8c684aac89cbff97721e4, type: 3}
+  actionName: PostMode
+  keys: 70000000
+  sprite: {fileID: 640942521, guid: c096ec4fab115844cacd583f843a3a9e, type: 3}
