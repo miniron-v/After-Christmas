@@ -19,7 +19,7 @@ public class DialogueDataEditor : Editor
         serializedObject.Update();
 
         // 대화 논리 및 분기 설정
-        EditorGUILayout.LabelField("▶ 대화 논리 및 분기 설정", EditorStyles.boldLabel);
+        EditorGUILayout.LabelField("대화 논리 및 분기 설정", EditorStyles.boldLabel);
 
         // Dialogue ID
         SerializedProperty dialogueIDProp = serializedObject.FindProperty("dialogueID");
@@ -39,14 +39,13 @@ public class DialogueDataEditor : Editor
         EditorGUILayout.Space(15);
 
         // 참여 캐릭터 목록
-        EditorGUILayout.LabelField("▶ 참여 캐릭터 목록", EditorStyles.boldLabel);
         SerializedProperty participantsProp = serializedObject.FindProperty("participants");
         EditorGUILayout.PropertyField(participantsProp, true);
 
         GUILayout.Space(10);
 
         // 대화 라인
-        EditorGUILayout.LabelField("▶ 대화 라인", EditorStyles.boldLabel);
+        EditorGUILayout.LabelField("대화 라인", EditorStyles.boldLabel);
 
         bool isExpanded = EditorGUILayout.PropertyField(dialogueLinesProp);
 
@@ -69,7 +68,6 @@ public class DialogueDataEditor : Editor
             }
             EditorGUI.indentLevel--;
         }
-
         serializedObject.ApplyModifiedProperties();
     }
 
