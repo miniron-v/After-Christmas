@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionName: OpenMap
   keys: 6d000000
-  sprite: {fileID: -595300802, guid: 1c5f96f29821849428bc829f67187d89, type: 3}
+  sprite: {fileID: -214534738, guid: 9a5cc0b29df8c684aac89cbff97721e4, type: 3}

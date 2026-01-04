@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionName: Interact
   keys: 65000000
-  sprite: {fileID: -595300802, guid: 1c5f96f29821849428bc829f67187d89, type: 3}
+  sprite: {fileID: 2057200340, guid: a45675f94511d7a4caa63c29025ed924, type: 3}
