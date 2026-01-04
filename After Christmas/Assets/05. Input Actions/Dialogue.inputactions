@@ -37,6 +37,17 @@
                     "action": "NextSentence",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d3a0d000-8e3d-49eb-b11d-67bf5d206612",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "NextSentence",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
