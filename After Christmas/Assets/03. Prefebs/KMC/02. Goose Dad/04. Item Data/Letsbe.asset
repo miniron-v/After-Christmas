@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afd046bbdd483c74f895f5f77149020f, type: 3}
+  m_Name: Letsbe
+  m_EditorClassIdentifier: 
+  itemID: "\uB808X\uBE44"
+  icon: {fileID: -789119931, guid: 8bbacbff6e79a4b43be8cecd8b2448a5, type: 3}
+  description: "\uCE94\uC5D0 \uB2F4\uAE34 \uCEE4\uD53C\uB2E4."
