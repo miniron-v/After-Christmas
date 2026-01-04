@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Mom
   m_EditorClassIdentifier: 
   characterName: "\uC544\uB0B4"
-  characterImage: {fileID: 1201449511, guid: 834631a3564e00741bdbfbb8dbd3203b, type: 3}
+  characterImage: {fileID: 0}

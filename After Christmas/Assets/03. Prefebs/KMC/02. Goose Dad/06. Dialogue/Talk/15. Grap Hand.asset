@@ -20,7 +20,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 451b76c89f930db4fb8d72cc3b556d81, type: 2}
   dialogueLines:
   - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
-    sentence: "\uC190... \uC7A1\uC544\uB3C4 \uB418\uB098?"
+    sentence: "(\uC190... \uC7A1\uC544\uB3C4 \uB418\uB098?)"
   - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
     sentence: '...!
 

@@ -22,6 +22,6 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: 451b76c89f930db4fb8d72cc3b556d81, type: 2}
     sentence: "\uC5EC\uBCF4...."
   - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
-    sentence: "\uC5B4? \uC9C4\uC9DC?"
+    sentence: "\uC5B4? \uC9C4\uC9DC? \uC774\uAC70 \uC9C4\uC9DC\uC57C?!"
   - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
-    sentence: "\uCD95\uD558\uD574. \uC544\uBE60 \uB410\uB124?"
+    sentence: "\uCD95\uD558\uD574. \uC774\uC81C \uC544\uBE60 \uB410\uB124?"

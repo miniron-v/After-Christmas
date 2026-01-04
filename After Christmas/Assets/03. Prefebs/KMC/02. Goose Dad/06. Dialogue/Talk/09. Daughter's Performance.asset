@@ -31,13 +31,13 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: 27a256a02375f6342a49b215d6d2741c, type: 2}
     sentence: "\uB0B4\uAC00 \uD53C\uC544\uB178 \uCCD0\uC904\uAC8C!"
   - speaker: {fileID: 11400000, guid: 9058d4f4d69dc3f4ab9ab05f3a7b1440, type: 2}
-    sentence: "\uC218\uC5F0\uC544, \uB098\uC911\uC5D0 \uC544\uBE60 \uC53B\uACE0 \uB098\uC624\uBA74
+    sentence: "\uC9C0\uD604\uC544, \uB098\uC911\uC5D0 \uC544\uBE60 \uC53B\uACE0 \uB098\uC624\uBA74
       \uBCF4\uC5EC\uB4DC\uB9AC\uC790. \uC751?"
   - speaker: {fileID: 11400000, guid: 27a256a02375f6342a49b215d6d2741c, type: 2}
     sentence: "\uADF8\uCE58\uB9CC...."
   - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
     sentence: "\uC544\uBE60\uB294 \uC9C0\uAE08 \uBC14\uB85C \uB4E3\uACE0 \uC2F6\uC740\uB370,
-      \uC218\uC5F0\uC774\uAC00 \uC5F0\uC8FC\uD574\uC904 \uC218 \uC788\uC744\uAE4C?"
+      \uC9C0\uD604\uC774\uAC00 \uC5F0\uC8FC\uD574\uC904 \uC218 \uC788\uC744\uAE4C?"
   - speaker: {fileID: 11400000, guid: 27a256a02375f6342a49b215d6d2741c, type: 2}
     sentence: "\uC751! \uC544\uBE60 \uC5EC\uAE30 \uC549\uC544 \uC788\uC5B4!"
   - speaker: {fileID: 11400000, guid: 9058d4f4d69dc3f4ab9ab05f3a7b1440, type: 2}

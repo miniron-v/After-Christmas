@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Young Daughter
   m_EditorClassIdentifier: 
   characterName: "\uB538"
-  characterImage: {fileID: 1743570485, guid: 5abc8b57085fce14eb2f314975ed51ca, type: 3}
+  characterImage: {fileID: 0}

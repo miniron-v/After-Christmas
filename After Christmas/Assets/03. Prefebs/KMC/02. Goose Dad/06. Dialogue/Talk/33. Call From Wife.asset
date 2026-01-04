@@ -41,7 +41,7 @@ MonoBehaviour:
     sentence: "\uC5D0\uC774, \uAD1C\uCC2E\uC544. \uB098\uB294 \uC694\uC998 \uB3C8
       \uC4F8 \uACF3\uB3C4 \uC5C6\uB294 \uAC78."
   - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
-    sentence: "\uC751. \uC218\uC5F0\uC774\uB3C4 \uC798 \uC9C0\uB0B4\uC9C0?"
+    sentence: "\uC751. \uC9C0\uD604\uC774\uB3C4 \uC798 \uC9C0\uB0B4\uC9C0?"
   - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
     sentence: "\uC5B4\uC5B4, \uC54C\uC558\uC5B4. \uC0AC\uB791\uD574."
   - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}

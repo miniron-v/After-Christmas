@@ -28,7 +28,7 @@ MonoBehaviour:
     sentence: "\uC644\uC804 \uB9D8\uC5D0 \uB4E4\uC5B4! \uAC10\uC0AC\uD569\uB2C8\uB2E4!"
   - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
     sentence: "\uC6B0\uB9AC \uB538\uC774 \uD558\uACE0 \uC2F6\uB2E4\uB294\uB370,\uC774
-      \uC815\uB3C8 \uB2F9\uC5F0\uD558\uC9C0! \uC218\uC5F0\uC774 \uAC00\uB974\uCCD0
+      \uC815\uB3C8 \uB2F9\uC5F0\uD558\uC9C0! \uC9C0\uD604\uC774 \uAC00\uB974\uCCD0
       \uC904 \uC120\uC0DD\uB2D8\uB3C4 \uC624\uC2DC\uAE30\uB85C \uD588\uC5B4."
   - speaker: {fileID: 11400000, guid: 9058d4f4d69dc3f4ab9ab05f3a7b1440, type: 2}
     sentence: "\uB300\uC2E0, \uC5F4\uC2EC\uD788 \uD574\uC57C \uD55C\uB2E4?"
