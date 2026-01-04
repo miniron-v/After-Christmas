@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 288df8303eba79f49ac0abd8a30cfb79
+guid: c096ec4fab115844cacd583f843a3a9e
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -93,53 +93,27 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: iOS
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Code_Generated_Image_0
+      name: P_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 85
-        height: 85
+        x: 680
+        y: 805
+        width: 180
+        height: 180
       alignment: 0
       pivot: {x: 0, y: 0}
-      border: {x: 5, y: 4, z: 4, w: 5}
+      border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f1861d0aa567a2948a12c887399c32de
-      internalID: -318011158
+      spriteID: 9ab79a705d208b548958d5221c455529
+      internalID: 640942521
       vertices: []
       indices: 
       edges: []
@@ -148,7 +122,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 3c8cbccfd0531d14995ead3d27933fe6
     internalID: 0
     vertices: []
     indices: 
@@ -158,7 +132,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Code_Generated_Image_0: -318011158
+      P_0: 640942521
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
