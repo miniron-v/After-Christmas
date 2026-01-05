@@ -8,6 +8,9 @@ using System;
 public class CinematicController : MonoBehaviour
 {
 
+    public static Action OnStart;
+    public static Action OnEnd;
+
     public List<CutsceneEvent> cutsceneEventList;
 
     // 컷신 실행 상태 관리를 위한 코루틴
@@ -34,6 +37,7 @@ public class CinematicController : MonoBehaviour
     public void StartCutscene(Action onCutsceneEnd = null)
     {
         Debug.Log("시네마틱 시작됨");
+        OnStart?.Invoke();
 
         // 1. 시네마틱 시작 시 플레이어 상태 CINEMATIC으로 전환
         PlayerStateManager.Instance?.SetState(PlayerState.Cinematic);
@@ -45,7 +49,7 @@ public class CinematicController : MonoBehaviour
             {
                 // 2. 시네마틱 종료 시 플레이어 상태 PLAY로 전환
                 PlayerStateManager.Instance?.SetState(PlayerState.Play);
-
+                OnEnd?.Invoke();
                 // 기존 외부 콜백이 있으면 실행
                 onCutsceneEnd?.Invoke();
             }));
