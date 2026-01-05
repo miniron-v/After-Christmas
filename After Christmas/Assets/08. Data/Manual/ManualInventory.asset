@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: ManualInventory
   m_EditorClassIdentifier: 
   actionName: Inventory
+  rowKeyCount: 1
   keys: 69000000
   sprite: {fileID: 1530274137, guid: f6231c3dffbdfdf4b9cc0bbc65d3d37a, type: 3}

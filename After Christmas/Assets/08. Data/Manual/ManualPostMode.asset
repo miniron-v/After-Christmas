@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: ManualPostMode
   m_EditorClassIdentifier: 
   actionName: PostMode
+  rowKeyCount: 1
   keys: 70000000
   sprite: {fileID: 640942521, guid: c096ec4fab115844cacd583f843a3a9e, type: 3}

@@ -7983,6 +7983,7 @@ MonoBehaviour:
   manualUI: {fileID: 1952220937}
   minimumActiveTime: 3
   panelImage: {fileID: 770969531}
+  keySize: 30
   canvasGroup: {fileID: 770969533}
   fadeDuration: 0.8
   glowDuration: 0.5
