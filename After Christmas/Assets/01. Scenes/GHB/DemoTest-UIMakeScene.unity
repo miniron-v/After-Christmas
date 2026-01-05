@@ -378,6 +378,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RabbitsHouse
       objectReference: {fileID: 0}
+    - target: {fileID: 8680141207348165856, guid: 220f8aaf7458be24e98749ddae62bdaa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 3938860565958572097, guid: 220f8aaf7458be24e98749ddae62bdaa, type: 3}
@@ -1382,6 +1386,10 @@ PrefabInstance:
     - target: {fileID: 8680141207348165856, guid: 220f8aaf7458be24e98749ddae62bdaa, type: 3}
       propertyPath: m_Name
       value: OldLibrary
+      objectReference: {fileID: 0}
+    - target: {fileID: 8680141207348165856, guid: 220f8aaf7458be24e98749ddae62bdaa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -3695,6 +3703,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Yard
       objectReference: {fileID: 0}
+    - target: {fileID: 8680141207348165856, guid: 220f8aaf7458be24e98749ddae62bdaa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 3938860565958572097, guid: 220f8aaf7458be24e98749ddae62bdaa, type: 3}
@@ -3943,6 +3955,10 @@ PrefabInstance:
     - target: {fileID: 8680141207348165856, guid: 220f8aaf7458be24e98749ddae62bdaa, type: 3}
       propertyPath: m_Name
       value: DarkTunnel
+      objectReference: {fileID: 0}
+    - target: {fileID: 8680141207348165856, guid: 220f8aaf7458be24e98749ddae62bdaa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -4921,6 +4937,10 @@ PrefabInstance:
     - target: {fileID: 8680141207348165856, guid: 220f8aaf7458be24e98749ddae62bdaa, type: 3}
       propertyPath: m_Name
       value: BigApple
+      objectReference: {fileID: 0}
+    - target: {fileID: 8680141207348165856, guid: 220f8aaf7458be24e98749ddae62bdaa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -7082,6 +7102,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Forest
       objectReference: {fileID: 0}
+    - target: {fileID: 8680141207348165856, guid: 220f8aaf7458be24e98749ddae62bdaa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 3938860565958572097, guid: 220f8aaf7458be24e98749ddae62bdaa, type: 3}
@@ -8211,6 +8235,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GoldTunnel
       objectReference: {fileID: 0}
+    - target: {fileID: 8680141207348165856, guid: 220f8aaf7458be24e98749ddae62bdaa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 3938860565958572097, guid: 220f8aaf7458be24e98749ddae62bdaa, type: 3}
@@ -9305,6 +9333,10 @@ PrefabInstance:
     - target: {fileID: 8680141207348165856, guid: 220f8aaf7458be24e98749ddae62bdaa, type: 3}
       propertyPath: m_Name
       value: BehindTree
+      objectReference: {fileID: 0}
+    - target: {fileID: 8680141207348165856, guid: 220f8aaf7458be24e98749ddae62bdaa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:

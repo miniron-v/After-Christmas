@@ -213,15 +213,20 @@ public class Item : MonoBehaviour, IInteractable, IGlowable
     private IEnumerator TeleportByItemRoutine(GameObject player, Item target)
     {
         PlayerStateManager.Instance.SetState(PlayerState.Fading);
+        Map currentMap = GetComponentInParent<Map>(true);
+        Map targetMap = target.GetComponentInParent<Map>(true);
         // 페이드 아웃
         bool isFadeOutComplete = false;
         FadeManager.Instance.FadeOut(() => { isFadeOutComplete = true; });
 
         // 페이드 아웃 끝날 때까지 대기
         yield return new WaitUntil(() => isFadeOutComplete);
-
+        
         // 0.5초 딜레이
         yield return new WaitForSeconds(0.5f);
+
+        // 이동할 맵 활성화
+        targetMap.gameObject.SetActive(true);
 
         // 위치 이동
         player.transform.SetPositionAndRotation(
@@ -235,8 +240,10 @@ public class Item : MonoBehaviour, IInteractable, IGlowable
                 target.cameraSpawnPoint.rotation
             );
 
-        Map map = target.GetComponentInParent<Map>();
-        MapInfoManager.Instance.currentMap = map.mapName;
+        // 이동 후 기존에 위치했던 맵 비활성화
+        currentMap.gameObject.SetActive(false);
+        
+        MapInfoManager.Instance.currentMap = targetMap.mapName;
 
         TeleportEventManager.NotifyTeleport();
 
