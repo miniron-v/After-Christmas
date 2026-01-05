@@ -40,6 +40,10 @@ public class Map : MonoBehaviour
     {
         MapInfoManager.Instance.RecordMap(this);
         InitializeChildItems();
+        if (!isStartMap)
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     private void InitializeChildItems()

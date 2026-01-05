@@ -117,9 +117,8 @@ public class PlayerItemHandler : MonoBehaviour
     private void Update()
     {
         // inventoryUI가 null이 아니고, 오브젝트가 파괴되지 않은 경우만 열기
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.F) && IsInventoryControlEnabled)
         {
-
             if (inventoryUI != null && inventoryUI.gameObject != null)
             {
                 if (inventoryUI.gameObject.activeSelf)
@@ -133,4 +132,7 @@ public class PlayerItemHandler : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.G))
             UnHoldItem();
     }
+
+    private bool IsInventoryControlEnabled =>
+        PlayerStateManager.Instance.currentState is PlayerState.Play or PlayerState.UIOpen;
 }
