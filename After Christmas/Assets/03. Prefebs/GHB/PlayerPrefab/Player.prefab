@@ -1726,6 +1726,7 @@ GameObject:
   - component: {fileID: 3274375634087622306}
   - component: {fileID: 6454227992930729299}
   - component: {fileID: 5225355218624632566}
+  - component: {fileID: 7359695644161184612}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1921,6 +1922,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetCamera: {fileID: 0}
   smoothSpeed: 5
+--- !u!114 &7359695644161184612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3818844191061978318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1953309df466554d83d862c7305562e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeDuration: 1.5
 --- !u!1 &3885781187543271411
 GameObject:
   m_ObjectHideFlags: 0
@@ -2604,7 +2618,7 @@ SkinnedMeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 05791b371dd88704dba53012b9ab30fd, type: 2}
-  - {fileID: 7933312807922358329, guid: d62e78358eda17a479d1be8d03c3bb67, type: 3}
+  - {fileID: 2100000, guid: 05791b371dd88704dba53012b9ab30fd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
