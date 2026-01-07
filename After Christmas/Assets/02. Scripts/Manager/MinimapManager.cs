@@ -203,7 +203,7 @@ public class MinimapManager : MonoBehaviour
     }
 
 
-    private void MoveToOriginal(Vector3 targetCameraPosition, Vector3 targetPlayerPosition, bool isMapMove, Map newMap = null)
+    private void MoveToOriginal(Vector3 targetCameraPosition, Vector3 targetPlayerPosition, bool isMapMove)
     {
         isTweening = true;
         hoveredMap = null;
@@ -238,10 +238,7 @@ public class MinimapManager : MonoBehaviour
                 EnableAllMapObjects();
                 PlayerStateManager.Instance.SetState(PlayerState.Play);
                 CloseAllPostIts();
-                if(newMap != null)
-                {
-                    DisableOtherMap();
-                }
+                DisableOtherMap();
             });
     }
 
@@ -411,7 +408,7 @@ public class MinimapManager : MonoBehaviour
             {
                 // Map 클릭 시, 다른 맵이라면 해당 Map으로 텔레포트 처리
                 MapInfoManager.Instance.currentMap = map.mapName;
-                MoveToOriginal(map.cameraSpawnPoint.position, map.playerSpawnPoint.position, true, map);
+                MoveToOriginal(map.cameraSpawnPoint.position, map.playerSpawnPoint.position, true);
             }
             else
             {
