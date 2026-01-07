@@ -47,7 +47,10 @@ public class FadeManager : MonoBehaviour
             {
                 fadeImage.raycastTarget = false;
                 onComplete?.Invoke();
-                PlayerStateManager.Instance.SetState(PlayerState.Play);
+                if(PlayerStateManager.Instance.currentState == PlayerState.Fading)
+                {
+                    PlayerStateManager.Instance.SetState(PlayerState.Play);
+                }
             });
     }
 }
