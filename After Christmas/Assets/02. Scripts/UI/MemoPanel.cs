@@ -32,8 +32,6 @@ public class UIObjectSpawner : MonoBehaviour, IPointerClickHandler
         newButton.transform.position = clickWorldPos;
 
         // 4. UI가 겹치지 않게 패널 앞으로 살짝 띄우기
-        newButton.transform.localPosition += new Vector3(0, 0.001f, 0); 
-
-        Debug.Log($"버튼 생성 위치: {clickWorldPos}");
+        newButton.transform.localPosition += new Vector3(-3.66f,3f,-3.66f); 
     }
 }
