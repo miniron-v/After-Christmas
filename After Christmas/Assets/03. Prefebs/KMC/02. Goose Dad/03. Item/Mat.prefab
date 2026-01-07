@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 5881328584272207466}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2, y: 0, z: 0}
+  m_LocalPosition: {x: -2, y: -0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -210,6 +210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemData: {fileID: 11400000, guid: d2719e4bbf6b1c74c8dcd7a9a3b7873a, type: 2}
+  additiveDescription: 
   mapName: map0
   glowDuration: 0.2
   linkedItems:
@@ -218,6 +219,7 @@ MonoBehaviour:
   playerSpawnPoint: {fileID: 1186741874363795413}
   cameraSpawnPoint: {fileID: 0}
   isRecorded: 0
+  isDescriptionRecorded: 0
   isTeleportItem: 1
 --- !u!114 &263582327230191246
 MonoBehaviour:
