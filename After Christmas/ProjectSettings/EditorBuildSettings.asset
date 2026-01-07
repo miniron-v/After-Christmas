@@ -20,6 +20,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/01. Scenes/GHB/DemoTest-UIMakeScene 2.unity
     guid: e65896694df7bfd4487c183e30f80d16
+  - enabled: 1
+    path: Assets/01. Scenes/GHB/LoadingScene.unity
+    guid: 2ed2327ad349e5d46a5dda40daf80c7e
+  - enabled: 1
+    path: Assets/01. Scenes/GHB/PixelateManagerTestScene.unity
+    guid: 9aa7b90f49f2b4842ac6e464c0c2a38d
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

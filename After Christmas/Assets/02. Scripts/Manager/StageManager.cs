@@ -5,9 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class StageManager : MonoBehaviour
 {
+    [Header("Clear Settings")]
+    [SerializeField] private int requiredInteractionCount;
+    [SerializeField] private string nextSceneName; // 다음으로 이동할 씬 이름(기획상 현실세계)
+    public TransitionSettings clearTransitionSettings; // 스테이지 전용 전환 설정, 인스펙터에서 설정 가능
+
     // 스테이지 클리어 시 진행할 대화
     private DialogueTrigger dialogueTrigger;
-    [SerializeField] private int requiredInteractionCount;
+    
     private int currentInteractionCount = 0;
 
     private void Awake()
@@ -64,19 +69,18 @@ public class StageManager : MonoBehaviour
 
     private void StageClear()
     {
-        // 진짜 스테이지 클리어 로직 넣기
+        // 타겟 씬으로 이동
+        TempLoadingManager.Instance.TransitionTo(nextSceneName, clearTransitionSettings);
     }
 
-    void Update()
+    [SerializeField] private KeyCode clearKey = KeyCode.Tab;
+
+    private void Update()
     {
-        // 임시 씬이동 테스트(O,P == 1,2번 씬)
-        if (Input.GetKeyDown(KeyCode.O))
+        if(Input.GetKeyDown(clearKey))
         {
-            SceneManager.LoadScene("itemHandlerScene");
-        }
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            SceneManager.LoadScene("itemHandlerScene2");
+            Debug.Log("클리어 디버그 작동");
+            IncreaseCount();
         }
     }
 }

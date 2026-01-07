@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c24672a27f90a24fb333e3077219294, type: 3}
+  m_Name: 47. Vomit
+  m_EditorClassIdentifier: 
+  dialogueID: 0
+  prerequisiteCondition: {fileID: 0}
+  failSafeDialogue: {fileID: 11400000}
+  participants:
+  - {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
+  - {fileID: 11400000, guid: 79c650beea40e15498b7eedffcc273d5, type: 2}
+  dialogueLines:
+  - speaker: {fileID: 11400000, guid: 79c650beea40e15498b7eedffcc273d5, type: 2}
+    sentence: "\uC6B0\uC6C1...."
+  - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
+    sentence: "\uAD1C\uCC2E\uC544?"
+  - speaker: {fileID: 11400000, guid: 79c650beea40e15498b7eedffcc273d5, type: 2}
+    sentence: "\uAD1C\uCC2E\uC544. \uBBF8\uC548\uD574. \uB098 \uB54C\uBB38\uC5D0
+      \uAE7C\uC9C0?"
+  - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
+    sentence: "\uBBF8\uC548\uD558\uAE34.... \uB0B4\uAC00 \uB354 \uBBF8\uC548\uD558\uC9C0."

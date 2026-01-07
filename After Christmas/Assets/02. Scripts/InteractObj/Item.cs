@@ -29,6 +29,12 @@ public class Item : MonoBehaviour, IInteractable, IGlowable
     public Sprite itemIcon => itemData != null ? itemData.icon : null;
     [HideInInspector]
     public string itemDescription => itemData != null ? itemData.description : "No description";
+
+    [Header("Description Settings")]
+    [TextArea(3, 5)]
+    [SerializeField] private string additiveDescription; // 이 아이템만의 특수 설명
+
+    public string AdditiveDescription => additiveDescription;
     // 아이템이 있던 위치(하나의 기억)
     // map.cs에서 중앙 관리하므로 인스펙터에서 숨김
     [HideInInspector]
@@ -58,6 +64,8 @@ public class Item : MonoBehaviour, IInteractable, IGlowable
     [HideInInspector]
     // 반대 아이템으로 가는 경로가 열렸는지 체크하는 변수, 디폴트값 false
     public bool isRecorded = false;
+    [HideInInspector]
+    public bool isDescriptionRecorded = false; // 추가 설명이 기록되었는지 여부 (기억 정보)
 
     // 텔레포트(연결된 물체가 있는지)기능이 있는 아이템인지 확인, 디폴트값 true
     // isTeleportItem이 true라면 linkeditem이 1개는 있어야 함
@@ -98,9 +106,8 @@ public class Item : MonoBehaviour, IInteractable, IGlowable
         rend.SetPropertyBlock(mpb);
     }
 
-    public void Interact()
+    public void Interact(GameObject player)
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
 
         if (!hasPlayedDialogue && dialogueTrigger != null && dialogueTrigger.HasDialogue())
         {
@@ -205,15 +212,21 @@ public class Item : MonoBehaviour, IInteractable, IGlowable
 
     private IEnumerator TeleportByItemRoutine(GameObject player, Item target)
     {
+        PlayerStateManager.Instance.SetState(PlayerState.Fading);
+        Map currentMap = GetComponentInParent<Map>(true);
+        Map targetMap = target.GetComponentInParent<Map>(true);
         // 페이드 아웃
         bool isFadeOutComplete = false;
         FadeManager.Instance.FadeOut(() => { isFadeOutComplete = true; });
 
         // 페이드 아웃 끝날 때까지 대기
         yield return new WaitUntil(() => isFadeOutComplete);
-
+        
         // 0.5초 딜레이
         yield return new WaitForSeconds(0.5f);
+
+        // 이동할 맵 활성화
+        targetMap.gameObject.SetActive(true);
 
         // 위치 이동
         player.transform.SetPositionAndRotation(
@@ -227,8 +240,10 @@ public class Item : MonoBehaviour, IInteractable, IGlowable
                 target.cameraSpawnPoint.rotation
             );
 
-        Map map = target.GetComponentInParent<Map>();
-        MapInfoManager.Instance.currentMap = map.mapName;
+        // 이동 후 기존에 위치했던 맵 비활성화
+        currentMap.gameObject.SetActive(false);
+        
+        MapInfoManager.Instance.currentMap = targetMap.mapName;
 
         TeleportEventManager.NotifyTeleport();
 

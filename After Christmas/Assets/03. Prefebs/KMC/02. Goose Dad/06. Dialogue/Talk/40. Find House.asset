@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c24672a27f90a24fb333e3077219294, type: 3}
+  m_Name: 40. Find House
+  m_EditorClassIdentifier: 
+  dialogueID: 0
+  prerequisiteCondition: {fileID: 0}
+  failSafeDialogue: {fileID: 11400000}
+  participants:
+  - {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
+  - {fileID: 11400000, guid: 451b76c89f930db4fb8d72cc3b556d81, type: 2}
+  dialogueLines:
+  - speaker: {fileID: 0}
+    sentence: "\uC5EC\uAE34 \uC5B4\uB5A4\uAC00\uC694? \uC774 \uADFC\uCC98\uC5D0\uC11C
+      \uC2E0\uD63C\uBD80\uBD80\uAC00 \uC0B4\uAE30\uC5D4 \uC5EC\uAE30\uAC00 \uB531\uC774\uC5D0\uC694."
+  - speaker: {fileID: 11400000, guid: 9058d4f4d69dc3f4ab9ab05f3a7b1440, type: 2}
+    sentence: "\uC640\uC544...."

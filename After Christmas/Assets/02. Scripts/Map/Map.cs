@@ -3,11 +3,11 @@ using UnityEngine;
 public class Map : MonoBehaviour
 {
     [Header("맵 관련 데이터 (SO)")]
-    public MapDataSO mapDataSO;
+    // public MapDataSO mapDataSO;
 
     // 맵 id, so에서 관리하므로 hide in inspector
     [HideInInspector]
-    public string mapName => mapDataSO.mapID;
+    public string mapName => name;
 
     [Header("현재 맵으로 텔레포트했을 때 플레이어 스폰 위치")]
     public Transform playerSpawnPoint;
@@ -40,6 +40,10 @@ public class Map : MonoBehaviour
     {
         MapInfoManager.Instance.RecordMap(this);
         InitializeChildItems();
+        if (!isStartMap)
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     private void InitializeChildItems()

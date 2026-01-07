@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -13,11 +14,11 @@ public class MapRecord
     public Vector3 playerSpawnPoint;
     public Vector3 cameraSpawnPoint;
 
-    public MapRecord(string id, Sprite icon = null, string desc = null, Vector3? spawn = null, Vector3? cam = null)
+    public MapRecord(string id, /*Sprite icon = null, string desc = null,*/ Vector3? spawn = null, Vector3? cam = null)
     {
         mapID = id;
-        mapIcon = icon;
-        description = desc;
+        //mapIcon = icon;
+        //description = desc;
         playerSpawnPoint = spawn ?? Vector3.zero;
         cameraSpawnPoint = cam ?? Vector3.zero;
     }
@@ -106,20 +107,36 @@ public class MapInfoManager : MonoBehaviour
     /// </summary>
     public void VisitMap(string mapID)
     {
+        // 코루틴으로 실행하여 대기 로직 처리
+        StartCoroutine(VisitMapRoutine(mapID));
+    }
+
+    private IEnumerator VisitMapRoutine(string mapID)
+    {
         int sceneIndex = GetSceneIndex(SceneManager.GetActiveScene().name);
-        if (sceneIndex < 0) return;
+        if (sceneIndex < 0) yield break;
 
         Map mapObj = GetMapObject(mapID);
-        if (mapObj == null) return;
+        if (mapObj == null) yield break;
+
+        // 핵심: 화면 페이드 연출(모자이크/흑백 해제)이 끝날 때까지 기다림
+        if (PixelaterAndGreyScaleManager.Instance != null)
+        {
+            while (PixelaterAndGreyScaleManager.Instance.IsTransitioning)
+            {
+                yield return null;
+            }
+        }
 
         string key = GetVisitedKey(sceneIndex, mapID);
         bool firstVisit = !visitedMaps[sceneIndex].Contains(key);
         visitedMaps[sceneIndex].Add(key);
 
-        if (!firstVisit) return;
+        if (!firstVisit) yield break;
 
-        Debug.Log($"[MapInfoManager] Visiting Map: {mapID}");
+        Debug.Log($"[MapInfoManager] Transition Finished. Starting Map Sequence: {mapID}");
 
+        // 시네마틱 및 대화 실행
         if (mapObj.cinematicController != null)
         {
             mapObj.cinematicController.StartCutscene(() =>
@@ -128,10 +145,9 @@ public class MapInfoManager : MonoBehaviour
                     StartCoroutine(DialogueManager.Instance.StartDialogue(mapObj.arrivalDialogue));
             });
         }
-        else
+        else if (mapObj.arrivalDialogue != null)
         {
-            if (mapObj.arrivalDialogue != null)
-                StartCoroutine(DialogueManager.Instance.StartDialogue(mapObj.arrivalDialogue));
+            yield return StartCoroutine(DialogueManager.Instance.StartDialogue(mapObj.arrivalDialogue));
         }
     }
 
@@ -151,8 +167,8 @@ public class MapInfoManager : MonoBehaviour
         {
             dict[mapObj.mapName] = new MapRecord(
                 mapObj.mapName,
-                mapObj.mapDataSO != null ? mapObj.mapDataSO.mapIcon : null,
-                mapObj.mapDataSO != null ? mapObj.mapDataSO.description : "",
+                //mapObj.mapDataSO != null ? mapObj.mapDataSO.mapIcon : null,
+                //mapObj.mapDataSO != null ? mapObj.mapDataSO.description : "",
                 mapObj.playerSpawnPoint != null ? mapObj.playerSpawnPoint.position : Vector3.zero,
                 mapObj.cameraSpawnPoint != null ? mapObj.cameraSpawnPoint.position : Vector3.zero
             );

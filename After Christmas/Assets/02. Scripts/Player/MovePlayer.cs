@@ -15,32 +15,37 @@ public class MovePlayer : MonoBehaviour
 
 
     private Vector2 moveInput;
-
-    // 기존 isometric 방향
+    private Rigidbody rb;
     private readonly Vector3 isoForward = new Vector3(1, 0, 1).normalized;
     private readonly Vector3 isoRight = new Vector3(1, 0, -1).normalized;
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
 
     public void OnMove(InputValue value)
     {
         moveInput = value.Get<Vector2>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (!PlayerStateManager.Instance.IsPlayerControllable())
+        {
+            rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, 0);
             return;
+        }
 
-        // 1. 입력 → 이동 벡터 변환
         Vector3 moveDir = isoForward * moveInput.y + isoRight * moveInput.x;
-
-        // 2. 대각선 이동 속도 보정
         if (moveDir.sqrMagnitude > 1f)
             moveDir.Normalize();
 
+        Vector3 targetlinearVelocity = moveDir * moveSpeed;
+        rb.linearVelocity = new Vector3(targetlinearVelocity.x, rb.linearVelocity.y, targetlinearVelocity.z);
+
         bool isMoving = moveInput.sqrMagnitude > 0.01f;
 
-        // 3. transform 기반 이동
-        transform.position += moveDir * moveSpeed * Time.deltaTime;
 
         if (moveDir.sqrMagnitude > 0.0001f)
         {

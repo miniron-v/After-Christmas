@@ -92,7 +92,7 @@ public class DialogueTrigger : MonoBehaviour, IInteractable
         runningSequence = null;
     }
 
-    public void Interact()
+    public void Interact(GameObject player)
     {
         if (DialogueManager.Instance != null && DialogueManager.Instance.IsDialogueActive())
         {

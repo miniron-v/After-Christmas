@@ -14,7 +14,8 @@ public class CursorShapeData
 public enum CursorType
 {
     Default,
-    ButtonHover
+    ButtonHover,
+    TextInput
 }
 
 public class CursorShapeManager : MonoBehaviour
@@ -93,4 +94,9 @@ public class CursorShapeManager : MonoBehaviour
         return Vector2.zero;
     }
 
+    public void ForceSetDefault()
+    {
+        currentOwner = null;
+        ApplyCursor(CursorType.Default);
+    }
 }

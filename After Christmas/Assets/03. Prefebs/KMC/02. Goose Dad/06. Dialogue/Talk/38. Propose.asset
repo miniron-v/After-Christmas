@@ -1,0 +1,111 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c24672a27f90a24fb333e3077219294, type: 3}
+  m_Name: 38. Propose
+  m_EditorClassIdentifier: 
+  dialogueID: 0
+  prerequisiteCondition: {fileID: 0}
+  failSafeDialogue: {fileID: 11400000}
+  participants:
+  - {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
+  - {fileID: 11400000, guid: 451b76c89f930db4fb8d72cc3b556d81, type: 2}
+  dialogueLines:
+  - speaker: {fileID: 11400000, guid: 9058d4f4d69dc3f4ab9ab05f3a7b1440, type: 2}
+    sentence: "\uC5B4?"
+  - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
+    sentence: "\uC790\uAE30\uC57C. \uB0B4\uAC00 \uC815\uB9D0 \uC624\uB798 \uACE0\uBBFC\uD574\uBD24\uB294\uB370...."
+  - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
+    sentence: "\uB0B4\uAC00 \uC55E\uC73C\uB85C \uC5B4\uB5A4 \uC0B6\uC744 \uC0B4\uC9C4
+      \uBAA8\uB974\uACA0\uC9C0\uB9CC, \uD55C \uAC00\uC9C0\uB294 \uD655\uC2E0\uD560
+      \uC218 \uC788\uC5B4."
+  - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
+    sentence: "\uB0B4\uAC00 \uC0B4\uC544\uAC00\uB294 \uBAA8\uB4E0 \uC21C\uAC04\uC5D0,
+      \uC790\uAE30\uAC00 \uB0B4 \uC606\uC5D0 \uC788\uC5B4\uC900\uB2E4\uBA74. \uADF8\uAC83\uB9CC\uC73C\uB85C\uB3C4
+      \uB09C \uD56D\uC0C1 \uD589\uBCF5\uD560 \uAC83 \uAC19\uC544."
+  - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
+    sentence: "\uADF8\uB798\uC11C \uB9D0\uC778\uB370...."
+  - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
+    sentence: "\uB098\uB791 \uACB0\uD63C\uD574\uC904\uB798?"
+  - speaker: {fileID: 11400000, guid: 9058d4f4d69dc3f4ab9ab05f3a7b1440, type: 2}
+    sentence: ...?!
+  - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
+    sentence: "(\uAE34 \uCE68\uBB35. \uC2DC\uB124\uB9C8\uD2F1\uC73C\uB85C \uB123\uC744
+      \uC608\uC815)"
+  - speaker: {fileID: 11400000, guid: 9058d4f4d69dc3f4ab9ab05f3a7b1440, type: 2}
+    sentence: "...\uC65C, \uB098\uC57C?"
+  - speaker: {fileID: 11400000, guid: 9058d4f4d69dc3f4ab9ab05f3a7b1440, type: 2}
+    sentence: "\uB108\uB3C4 \uC54C\uC796\uC544. \uB09C \uB2E4\uB978 \uC5EC\uC790\uB4E4\uCC98\uB7FC
+      \uC560\uAD50\uB3C4 \uC798 \uBABB\uBD80\uB9AC\uACE0, \uBB34\uB69D\uB69D\uD55C
+      \uAC70."
+  - speaker: {fileID: 11400000, guid: 9058d4f4d69dc3f4ab9ab05f3a7b1440, type: 2}
+    sentence: "\uB108\uB294 \uD45C\uD604\uB3C4 \uC11C\uC2B4\uC5C6\uC774 \uC798 \uD558\uACE0,
+      \uB610 \uADF8\uB9CC\uD07C \uC0AC\uB791 \uB9CE\uC774 \uBC1B\uC544\uC57C \uD558\uB294
+      \uC0AC\uB78C\uC778\uB370... \uB09C \uC544\uB2C8\uC796\uC544."
+  - speaker: {fileID: 11400000, guid: 9058d4f4d69dc3f4ab9ab05f3a7b1440, type: 2}
+    sentence: "\uB09C, \uB108\uD55C\uD14C \uCDA9\uBD84\uD788 \uD45C\uD604\uD574 \uC904
+      \uC790\uC2E0\uC774 \uC5C6\uC5B4. \uB098\uB791 \uAC19\uC774 \uC0B4\uBA74 \uC0C1\uCC98\uB9CC
+      \uBC1B\uC744 \uAC70\uC57C. \uADF8\uB7F0\uB370, \uC65C...."
+  - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
+    sentence: "...\uB9DE\uC544. \uBD84\uBA85 \uC790\uAE30\uB294 \uBB34\uB69D\uB69D\uD55C
+      \uD3B8\uC774\uC57C. \uADF8\uB798\uC11C \uC61B\uB0A0\uC5D4, \uB0A0 \uC0AC\uB791\uD558\uC9C0
+      \uC54A\uB294 \uAC8C \uC544\uB2D0\uAE4C. \uADF8\uB0E5 \uC678\uB85C\uC6CC\uC11C
+      \uB9CC\uB098\uB294 \uAC74 \uC544\uB2D0\uAE4C.... \uADF8\uB807\uAC8C\uB3C4 \uC0DD\uAC01\uD588\uC5C8\uC5B4."
+  - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
+    sentence: "\uD558\uC9C0\uB9CC \uC774\uC820 \uC54C\uC544."
+  - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
+    sentence: "\uC57D\uC18D \uC2DC\uAC04 1\uC2DC\uAC04 \uC804\uC5D0 \uB098\uC640\uC11C
+      \uB0A0 \uAE30\uB2E4\uB9AC\uACE0, \uAE38\uC744 \uAC78\uC744 \uB550 \uB0B4 \uC18D\uB3C4\uC5D0
+      \uB9DE\uCDB0 \uC870\uAE08 \uBE68\uB9AC \uAC78\uC5B4\uC8FC\uACE0."
+  - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
+    sentence: "\uC2DD\uB2F9\uC740 \uD56D\uC0C1 \uB0B4\uAC00 \uC88B\uC544\uD558\uB294
+      \uBA54\uB274\uB85C, \uC601\uD654\uB3C4 \uB0B4 \uCDE8\uD5A5\uC778 \uCF54\uBBF8\uB514
+      \uC704\uC8FC\uB85C. \uC0AC\uC2E4 \uB2F9\uC2E0\uC740 \uB85C\uB9E8\uC2A4\uB97C
+      \uB354 \uC88B\uC544\uD558\uB294\uB370. \uC548 \uADF8\uB798?"
+  - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
+    sentence: "\uB370\uC774\uD2B8\uD560 \uB54C\uB3C4 \uB108\uBB34 \uBE44\uC2FC \uACF3\uC740
+      \uB0B4\uAC00 \uBD80\uB2F4\uB420\uAE4C\uBD10 \uAC70\uC808\uD558\uACE0, \uC120\uBB3C\uC744
+      \uBC1B\uC544\uB3C4 \uD56D\uC0C1 \uBBF8\uC548\uD574\uC11C, \uAD1C\uD788 \uC2EB\uC740\uC18C\uB9AC\uB9CC
+      \uD588\uC5C8\uC9C0."
+  - speaker: {fileID: 11400000, guid: 9058d4f4d69dc3f4ab9ab05f3a7b1440, type: 2}
+    sentence: "\uADF8\uAC74...."
+  - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
+    sentence: "\uADF8\uCE58\uB9CC, \uB09C \uADF8\uB54C\uB9C8\uB2E4 \uC9C0\uC5B4\uC8FC\uB294
+      \uBBF8\uC18C\uAC00 \uC88B\uC558\uC5B4. \uB0B4\uAC00 \uBCF8 \uC0AC\uB78C\uB4E4
+      \uC911, \uAC00\uC7A5 \uD589\uBCF5\uD558\uAC8C \uC6C3\uC5B4\uC92C\uAC70\uB4E0."
+  - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
+    sentence: "\uADF8\uBFD0\uC774\uC57C? \uC601\uD654\uAD00\uC5D0\uC120 \uD31D\uCF58
+      \uB4E4\uC5B4\uC8FC\uB824 \uD558\uACE0, \uC804\uD654 \uC2EB\uC5B4\uD558\uB294\uB370\uB3C4
+      \uB0B4\uAC00 \uAC78 \uB550 \uBA87 \uC2DC\uAC04\uC774\uACE0 \uAC19\uC774 \uC598\uAE30\uD574\uC92C\uC796\uC544."
+  - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
+    sentence: "\uB0B4\uAC00 \uBC14\uBCF4 \uAC19\uC558\uC5B4. \uAF2D \uB9D0\uB85C
+      \uD558\uB294 \uAC83\uB9CC\uC774, \uC804\uBD80\uAC00 \uC544\uB2CC\uB370."
+  - speaker: {fileID: 11400000, guid: 9058d4f4d69dc3f4ab9ab05f3a7b1440, type: 2}
+    sentence: ....
+  - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
+    sentence: "\uC790\uAE30 \uB9D0\uC774 \uB9DE\uC544. \uB09C \uC560\uC815 \uD45C\uD604\uB3C4
+      \uB9CE\uC774 \uD558\uACE0, \uB610 \uB9CE\uC774 \uBC1B\uC544\uC57C \uD558\uB294
+      \uC0AC\uB78C\uC774\uC57C."
+  - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
+    sentence: "\uADF8\uAC8C \uB0B4 \uC131\uACA9\uC774\uACE0, \uB610 \uC758\uC2EC\uC740
+      \uB9CE\uC544\uC11C \uD639\uC2DC \uB0A0 \uC0AC\uB791\uD558\uC9C0 \uC54A\uB294
+      \uAC78\uAE4C, \uD63C\uC790 \uBD88\uC548\uD574\uD558\uAE30\uB3C4 \uD574."
+  - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
+    sentence: "\uADF8\uB798\uC11C, \uB204\uAD6C\uBCF4\uB2E4 \uB9CE\uC774 \uD45C\uD604\uD574\uC8FC\uB294
+      \uB124\uAC00 \uC88B\uC544."
+  - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
+    sentence: "(\uC57D\uAC04\uC758 \uCE68\uBB35. \uC77C\uC5B4\uC11C\uC11C \uBC18\uC9C0\uB97C
+      \uC9C1\uC811 \uB07C\uC6CC\uC900\uB2E4.)"
+  - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
+    sentence: "\uB098\uC640 \uACB0\uD63C\uD574\uC918. \uB0B4\uAC00 \uD3C9\uC0DD \uD589\uBCF5\uD558\uAC8C
+      \uD574\uC904\uAC8C."
+  - speaker: {fileID: 11400000, guid: 451b76c89f930db4fb8d72cc3b556d81, type: 2}
+    sentence: "...\uC751. \uC88B\uC544."

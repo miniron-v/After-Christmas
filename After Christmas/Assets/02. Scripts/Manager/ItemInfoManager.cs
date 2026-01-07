@@ -10,14 +10,18 @@ public class ItemRecord
     public List<SpawnTransform> spawnPoints = new List<SpawnTransform>();
     public Sprite icon;
     public string description;
+    public List<string> additiveDescriptions = new List<string>(); // 추가설명 리스트
 
-    public ItemRecord(SpawnTransform firstSpawn, Sprite icon = null, string desc = null)
+    public ItemRecord(SpawnTransform firstSpawn, Sprite icon = null, string desc = null, string addDesc = null)
     {
         if (firstSpawn.mapName != null)
             spawnPoints.Add(firstSpawn);
 
         this.icon = icon;
         description = desc;
+
+        if (!string.IsNullOrEmpty(addDesc))
+            additiveDescriptions.Add(addDesc);
     }
 }
 
@@ -86,6 +90,43 @@ public class ItemInfoManager : MonoBehaviour
         {
             DebugDumpAllData();
         }
+        // 설명이 잘 들어가는지 테스트하기 위한 임시 디버그로그. 다이아몬드 기준으로 작성됨
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            string targetScene = "DemoTest-UIMakeScene";
+            string targetItemID = "다이아몬드";
+
+            int sceneIdx = GetSceneIndex(targetScene);
+
+            if (sceneIdx != -1)
+            {
+                var dict = sceneItemData[sceneIdx];
+                if (dict.TryGetValue(targetItemID, out var record))
+                {
+                    Debug.Log($"<color=cyan>[Item Debug]</color> <b>{targetItemID}</b> 의 추가 설명 (개수: {record.additiveDescriptions.Count})");
+
+                    if (record.additiveDescriptions.Count == 0)
+                    {
+                        Debug.Log("- 등록된 추가 설명이 없습니다.");
+                    }
+                    else
+                    {
+                        for (int i = 0; i < record.additiveDescriptions.Count; i++)
+                        {
+                            Debug.Log($"  {i + 1}. {record.additiveDescriptions[i]}");
+                        }
+                    }
+                }
+                else
+                {
+                    Debug.LogWarning($"[Item Debug] '{targetScene}' 씬에서 '{targetItemID}' 아이템 기록을 찾을 수 없습니다.");
+                }
+            }
+            else
+            {
+                Debug.LogError($"[Item Debug] '{targetScene}' 이름의 씬이 ItemInfoManager 리스트에 등록되어 있지 않습니다.");
+            }
+        }
     }
 
     /// <summary>
@@ -137,7 +178,7 @@ public class ItemInfoManager : MonoBehaviour
     }
 
     // ✅ 아이템 기록 (한 번에 icon, description, spawn 포함)
-    public void RecordItemInfo(string itemID, SpawnTransform info, Sprite icon = null, string description = null)
+    public void RecordItemInfo(string itemID, SpawnTransform info, Sprite icon = null, string description = null, string addDesc = null)
     {
         int sceneIndex = GetSceneIndex(SceneManager.GetActiveScene().name);
         if (sceneIndex < 0) return;
@@ -146,7 +187,7 @@ public class ItemInfoManager : MonoBehaviour
 
         if (!dict.TryGetValue(itemID, out var record))
         {
-            record = new ItemRecord(info, icon, description);
+            record = new ItemRecord(info, icon, description, addDesc);
             dict[itemID] = record;
         }
         else
@@ -156,6 +197,10 @@ public class ItemInfoManager : MonoBehaviour
                 record.icon = icon;
             if (!string.IsNullOrEmpty(description) && string.IsNullOrEmpty(record.description))
                 record.description = description;
+            if (!string.IsNullOrEmpty(addDesc) && !record.additiveDescriptions.Contains(addDesc))
+            {
+                record.additiveDescriptions.Add(addDesc); // 추가설명 리스트에 추가
+            }
         }
     }
 

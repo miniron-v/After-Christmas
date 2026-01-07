@@ -7,7 +7,7 @@ public class PlayerCameraFollowManager : MonoBehaviour
     public Camera targetCamera;          // 따라오는 카메라
     public float smoothSpeed = 5f;
 
-    private Vector3 cameraOffset;
+    [SerializeField] private Vector3 cameraOffset;
 
     private void Awake()
     {
@@ -21,7 +21,7 @@ public class PlayerCameraFollowManager : MonoBehaviour
         }
 
         // Player = this.transform
-        cameraOffset = targetCamera.transform.position - transform.position;
+        // cameraOffset = targetCamera.transform.position - transform.position;
     }
 
     private void LateUpdate()

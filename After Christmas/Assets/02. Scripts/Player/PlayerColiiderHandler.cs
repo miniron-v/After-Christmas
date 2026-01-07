@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,6 +7,7 @@ public class PlayerColliderHandler : MonoBehaviour
     [SerializeField] private LayerMask itemLayerMask;
     [SerializeField] private float interactRange = 2f;
     [SerializeField] private BoxCollider glowTrigger;
+    private GameObject player;
 
     // 트리거 안에 들어온 Glowable 관리
     private readonly List<IGlowable> glowables = new();
@@ -84,14 +86,6 @@ public class PlayerColliderHandler : MonoBehaviour
 
             // 0 ~ 2
             float glowValue = Mathf.Clamp(t * 2f, 0f, 2f);
-
-            Debug.Log(
-                $"[Glow Update]\n" +
-                $"- CurrentDist : {currentDist}\n" +
-                $"- StartDist   : {startDist}\n" +
-                $"- GlowValue   : {glowValue}"
-            );
-
             glowable.SetGlowAmount(glowValue);
         }
     }
@@ -119,9 +113,9 @@ public class PlayerColliderHandler : MonoBehaviour
         if (closest != null)
         {
             IInteractable interactable = closest.GetComponent<IInteractable>();
-            if (interactable != null)
+            if (interactable != null && PlayerStateManager.Instance.IsPlayerControllable())
             {
-                interactable.Interact();
+                interactable.Interact(gameObject);
             }
         }
     }
