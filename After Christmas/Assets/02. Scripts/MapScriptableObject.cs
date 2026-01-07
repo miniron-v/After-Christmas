@@ -1,5 +1,7 @@
+using System;
 using UnityEngine;
 
+[Obsolete("이제 안 씀")]
 [CreateAssetMenu(fileName = "NewMapData", menuName = "Map/MapDataSO")]
 public class MapDataSO : ScriptableObject
 {

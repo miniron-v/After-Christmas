@@ -73,9 +73,11 @@ public class StageManager : MonoBehaviour
         TempLoadingManager.Instance.TransitionTo(nextSceneName, clearTransitionSettings);
     }
 
+    [SerializeField] private KeyCode clearKey = KeyCode.Tab;
+
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Tab))
+        if(Input.GetKeyDown(clearKey))
         {
             Debug.Log("클리어 디버그 작동");
             IncreaseCount();
