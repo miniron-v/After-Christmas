@@ -14,11 +14,11 @@ public class MapRecord
     public Vector3 playerSpawnPoint;
     public Vector3 cameraSpawnPoint;
 
-    public MapRecord(string id, Sprite icon = null, string desc = null, Vector3? spawn = null, Vector3? cam = null)
+    public MapRecord(string id, /*Sprite icon = null, string desc = null,*/ Vector3? spawn = null, Vector3? cam = null)
     {
         mapID = id;
-        mapIcon = icon;
-        description = desc;
+        //mapIcon = icon;
+        //description = desc;
         playerSpawnPoint = spawn ?? Vector3.zero;
         cameraSpawnPoint = cam ?? Vector3.zero;
     }
@@ -167,8 +167,8 @@ public class MapInfoManager : MonoBehaviour
         {
             dict[mapObj.mapName] = new MapRecord(
                 mapObj.mapName,
-                mapObj.mapDataSO != null ? mapObj.mapDataSO.mapIcon : null,
-                mapObj.mapDataSO != null ? mapObj.mapDataSO.description : "",
+                //mapObj.mapDataSO != null ? mapObj.mapDataSO.mapIcon : null,
+                //mapObj.mapDataSO != null ? mapObj.mapDataSO.description : "",
                 mapObj.playerSpawnPoint != null ? mapObj.playerSpawnPoint.position : Vector3.zero,
                 mapObj.cameraSpawnPoint != null ? mapObj.cameraSpawnPoint.position : Vector3.zero
             );
