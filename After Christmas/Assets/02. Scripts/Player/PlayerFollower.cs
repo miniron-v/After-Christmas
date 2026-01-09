@@ -36,7 +36,7 @@ public class PlayerFollower : MonoBehaviour
         TeleportEventManager.OnTeleport -= TeleportFollower;
     }
 
-    private void LateUpdate()
+    private void FixedUpdate()
     {
         if (player == null) return;
 
