@@ -111,12 +111,14 @@ public class MinimapManager : MonoBehaviour
             DisableUnvisitedMapObjects();
             originalPosition = targetCam.transform.position;
             PlayerStateManager.Instance.SetState(PlayerState.MiniMap);
+            PostItRegistry.SetAllButtonsVisible(true);
             EnterMinimap();
             currentState = MinimapState.MinimapView;
         }
         else
         {
             isMinimapMode = false;
+            PostItRegistry.SetAllButtonsVisible(false);
             if(isPostItMode)
             {
                 ExitPostItMode();
@@ -210,6 +212,7 @@ public class MinimapManager : MonoBehaviour
         isPostItMode = false;
         isMinimapMode = false;
         SetEnableMapAlpha();
+        PostItRegistry.SetAllButtonsVisible(false);
 
         targetCam.transform
             .DOMove(targetCameraPosition, transitionDuration)

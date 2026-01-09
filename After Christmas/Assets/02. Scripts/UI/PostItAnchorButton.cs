@@ -27,6 +27,7 @@ public class PostItAnchorButton : MonoBehaviour,
         canvas.overrideSorting = true;
         canvas.sortingOrder = 5;
         postItView.Hide();
+        PostItRegistry.RegisterButton(gameObject);
     }
     public void OutSideInit(PostitPanel panel)
     {
@@ -100,5 +101,10 @@ public class PostItAnchorButton : MonoBehaviour,
         isPostItOpen = false;
 
         if (postitPanel != null) postitPanel.Hide();
+    }
+
+    private void OnDestroy()
+    {
+        PostItRegistry.UnregisterButton(gameObject);
     }
 }
