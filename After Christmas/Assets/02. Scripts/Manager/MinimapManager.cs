@@ -119,6 +119,7 @@ public class MinimapManager : MonoBehaviour
         {
             isMinimapMode = false;
             PostItRegistry.SetAllButtonsVisible(false);
+            CloseAllPostIts();
             if(isPostItMode)
             {
                 ExitPostItMode();
@@ -213,6 +214,7 @@ public class MinimapManager : MonoBehaviour
         isMinimapMode = false;
         SetEnableMapAlpha();
         PostItRegistry.SetAllButtonsVisible(false);
+        CloseAllPostIts();
 
         targetCam.transform
             .DOMove(targetCameraPosition, transitionDuration)

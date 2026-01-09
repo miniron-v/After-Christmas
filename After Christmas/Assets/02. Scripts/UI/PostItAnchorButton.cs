@@ -58,17 +58,17 @@ public class PostItAnchorButton : MonoBehaviour,
 
         if (eventData.button == PointerEventData.InputButton.Left)
         {
-            if (isPostItOpen) 
+            if (isPostItOpen)
             {
                 ClosePostIt();
             }
-            else 
+            else
             {
                 if (postitPanel != null && postitPanel.IsActive)
                 {
                     postitPanel.TriggerBackdropClick();
                 }
-                
+
                 OpenPostIt();
             }
         }
@@ -84,7 +84,7 @@ public class PostItAnchorButton : MonoBehaviour,
     {
         if (isPostItOpen) return;
         postItView.Show(data, editable: true);
-        
+
         isPostItOpen = true;
 
         // 주입받은 패널을 활성화하고 본인의 닫기 함수를 넘김
@@ -101,6 +101,14 @@ public class PostItAnchorButton : MonoBehaviour,
         isPostItOpen = false;
 
         if (postitPanel != null) postitPanel.Hide();
+    }
+
+    private void OnDisable()
+    {
+        if (postItView != null && !isPostItOpen)
+        {
+            postItView.Hide();
+        }
     }
 
     private void OnDestroy()
