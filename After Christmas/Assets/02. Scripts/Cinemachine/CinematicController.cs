@@ -96,17 +96,6 @@ public class CinematicController : MonoBehaviour
                 yield return StartCoroutine(RunTimelineEvent(currentEvent.cinematicTimeline));
             }
         }
-        // ==디버그용 1초 동안 진행 로그 출력==
-        float debugTime = 1f;
-        float elapsed = 0f;
-        while (elapsed < debugTime)
-        {
-            Debug.Log("시네마틱 진행중...");
-            yield return null;
-            elapsed += Time.deltaTime;
-        }
-        // ==디버그용==
-        Debug.Log("시네마틱 끝ㄴ");
         runningCutscene = null;
         // 컷신 종료 후 콜백 호출
         onCutsceneEnd?.Invoke();

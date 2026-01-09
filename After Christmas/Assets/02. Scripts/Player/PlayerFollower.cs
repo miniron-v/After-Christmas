@@ -36,7 +36,7 @@ public class PlayerFollower : MonoBehaviour
         TeleportEventManager.OnTeleport -= TeleportFollower;
     }
 
-    private void LateUpdate()
+    private void FixedUpdate()
     {
         if (player == null) return;
 
@@ -53,11 +53,13 @@ public class PlayerFollower : MonoBehaviour
                 ref velocity,
                 smoothTime);
 
-            
+
         }
         RotateTowardsPlayer();
-        bool isMoving =
-            (transform.position - lastPosition).sqrMagnitude > 0.00001f;
+        Vector3 movement = transform.position - lastPosition;
+        movement.y = 0f;
+
+        bool isMoving = movement.sqrMagnitude > 0.00001f;
 
         animator.SetBool("isMoving", isMoving);
         lastPosition = transform.position;
@@ -67,7 +69,7 @@ public class PlayerFollower : MonoBehaviour
     {
         // 텔레포트 후에도 동일한 상대 위치 유지
         transform.position = player.position + offset;
-
+        lastPosition = transform.position;
         // SmoothDamp 잔여 속도 제거
         velocity = Vector3.zero;
     }

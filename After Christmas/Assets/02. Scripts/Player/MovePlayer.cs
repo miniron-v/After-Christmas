@@ -34,6 +34,10 @@ public class MovePlayer : MonoBehaviour
         if (!PlayerStateManager.Instance.IsPlayerControllable())
         {
             rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, 0);
+            if (animator != null)
+            {
+                animator.SetBool("isMoving", false);
+            }
             return;
         }
 
@@ -57,6 +61,6 @@ public class MovePlayer : MonoBehaviour
             );
         }
 
-        animator.SetBool("isMoving", isMoving); 
+        animator.SetBool("isMoving", isMoving);
     }
 }
