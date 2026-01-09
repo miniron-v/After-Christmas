@@ -26,7 +26,7 @@ public class PostItView : MonoBehaviour
         canvasGroup.blocksRaycasts = editable;
         canvasGroup.interactable = editable;
 
-        PostItRegistry.Register(this);   // ⭐ 등록
+        PostItRegistry.Register(this);
     }
 
     public void Hide()
@@ -43,11 +43,6 @@ public class PostItView : MonoBehaviour
         isEditing = false;
         boundData = null;
 
-        PostItRegistry.Unregister(this); // ⭐ 해제
-    }
-
-    private void OnDestroy()
-    {
         PostItRegistry.Unregister(this);
     }
 

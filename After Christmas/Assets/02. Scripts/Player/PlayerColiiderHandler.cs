@@ -14,6 +14,9 @@ public class PlayerColliderHandler : MonoBehaviour
     private readonly Dictionary<IGlowable, Transform> glowableTransforms = new();
     private readonly Dictionary<IGlowable, float> glowStartDistances = new();
 
+    private Vector3 lastPosition;
+    [SerializeField] private float teleportThreshold = 5f;
+
     private void OnTriggerEnter(Collider other)
     {
         if (glowTrigger == null || !glowTrigger.enabled)
@@ -56,8 +59,26 @@ public class PlayerColliderHandler : MonoBehaviour
         }
     }
 
+    private void ResetGlowables()
+    {
+        foreach (var glowable in glowables)
+        {
+            glowable?.SetGlowAmount(0f);
+        }
+        glowables.Clear();
+        glowableTransforms.Clear();
+        glowStartDistances.Clear();
+    }
+
     private void Update()
     {
+
+        if (Vector3.Distance(transform.position, lastPosition) > teleportThreshold)
+        {
+            ResetGlowables();
+        }
+
+        lastPosition = transform.position;
         if (!PlayerStateManager.Instance.IsPlayerControllable())
             return;
 

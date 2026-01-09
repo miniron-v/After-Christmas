@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 499908425096282708}
   m_Layer: 0
-  m_Name: Cloth Shopping
+  m_Name: (Legacy) Cloth Shopping
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
