@@ -206,7 +206,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2163705545567877675}
   m_Layer: 0
-  m_Name: Daughter's Room
+  m_Name: Parent's Room
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
