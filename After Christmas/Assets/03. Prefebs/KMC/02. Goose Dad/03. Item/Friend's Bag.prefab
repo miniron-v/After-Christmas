@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94ef42f644130b046b34da3da814dfe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemData: {fileID: 11400000, guid: 3ecec737cf6c2e24daee42c0dfcfb750, type: 2}
+  itemData: {fileID: 11400000, guid: 8837891e8d0d73043ad355b6838bd3b1, type: 2}
   additiveDescription: 
   mapName: map0
   glowDuration: 0.2
