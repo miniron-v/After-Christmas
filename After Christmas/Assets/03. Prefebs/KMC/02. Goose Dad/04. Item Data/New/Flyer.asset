@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afd046bbdd483c74f895f5f77149020f, type: 3}
+  m_Name: Flyer
+  m_EditorClassIdentifier: 
+  itemID: "\uCE58\uD0A8"
+  icon: {fileID: 1395503472, guid: 24893904860bacb40be21b9c2af7f8ce, type: 3}
+  description: "\uD55C\uAD6D\uC778\uC774 \uC0AC\uB791\uD558\uB294 \uCE58\uD0A8\uC774\uB2E4."
