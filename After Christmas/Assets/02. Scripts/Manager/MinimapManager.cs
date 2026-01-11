@@ -1,7 +1,6 @@
 using UnityEngine;
 using DG.Tweening;
 using System.Collections.Generic;
-using UnityEditor.Rendering;
 
 public enum MinimapState { Normal, MinimapView, PostItMode }
 

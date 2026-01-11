@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.Playables;
 using System.Collections.Generic;
 using System.Collections;
-using static Unity.VisualScripting.FlowStateWidget;
 using System;
 
 public class CinematicController : MonoBehaviour
