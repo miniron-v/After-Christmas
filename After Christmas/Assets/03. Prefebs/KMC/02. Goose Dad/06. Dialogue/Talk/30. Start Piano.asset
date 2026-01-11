@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c24672a27f90a24fb333e3077219294, type: 3}
+  m_Name: 30. Start Piano
+  m_EditorClassIdentifier: 
+  dialogueID: 1
+  prerequisiteCondition: {fileID: 0}
+  failSafeDialogue: {fileID: 11400000}
+  participants:
+  - {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
+  - {fileID: 11400000, guid: 9058d4f4d69dc3f4ab9ab05f3a7b1440, type: 2}
+  dialogueLines:
+  - speaker: {fileID: 11400000, guid: 9058d4f4d69dc3f4ab9ab05f3a7b1440, type: 2}
+    sentence: "\uD53C\uC544\uB178 \uC120\uC0DD\uB2D8\uC774 \uADF8\uB7EC\uB294\uB370,
+      \uC9C0\uD604\uC774\uAC00 \uC7AC\uB2A5\uC774 \uC788\uB300."
+  - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
+    sentence: "\uC815\uB9D0? \uC798 \uB410\uB2E4."
+  - speaker: {fileID: 11400000, guid: 9058d4f4d69dc3f4ab9ab05f3a7b1440, type: 2}
+    sentence: "...\uADF8\uB798\uC11C, \uD55C\uBC88 \uC9C4\uC9C0\uD558\uAC8C \uD53C\uC544\uB2C8\uC2A4\uD2B8\uB97C
+      \uD574\uBCF4\uB294 \uAC74 \uC5B4\uB5BB\uACA0\uB0D0 \uD558\uC2DC\uB354\uB77C."
+  - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
+    sentence: "\uADF8\uB798? \uADF8\uB7FC \uD558\uBA74 \uB418\uB294 \uAC70 \uC544\uB0D0?
+      \uC9C0\uD604\uC774\uB3C4 \uD53C\uC544\uB178\uCE58\uB294 \uAC70 \uC88B\uC544\uD558\uC796\uC544."
+  - speaker: {fileID: 11400000, guid: 9058d4f4d69dc3f4ab9ab05f3a7b1440, type: 2}
+    sentence: "\uBB38\uC81C\uB294 \uB3C8\uC774\uC9C0. \uC545\uAE30\uB294 \uC81C\uB300\uB85C
+      \uB41C \uC2A4\uC2B9\uD55C\uD14C \uC0AC\uC0AC\uBC1B\uC544\uC57C \uD55C\uB2E4\uB294\uB370,
+      \uB808\uC2A8\uBE44\uC5D0, \uCF69\uCFE0\uB974 \uC900\uBE44\uC5D0...."
+  - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
+    sentence: "\uB0B4\uAC00 \uC870\uAE08 \uB35C \uC785\uACE0 \uB35C \uBA39\uC73C\uBA74
+      \uB418\uC9C0, \uBB50. \uADF8\uB7EC\uBA74 \uC9C0\uD604\uC774 \uB808\uC2A8\uBE44\uB294
+      \uB300\uC904 \uC218 \uC788\uC9C0 \uC54A\uC744\uAE4C?"

@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c24672a27f90a24fb333e3077219294, type: 3}
+  m_Name: 06. Laundry
+  m_EditorClassIdentifier: 
+  dialogueID: 0
+  prerequisiteCondition: {fileID: 0}
+  failSafeDialogue: {fileID: 11400000}
+  participants:
+  - {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
+  dialogueLines:
+  - speaker: {fileID: 0}
+    sentence: "\uC815\uD6C8\uC774 \uC8FC\uB9D0 \uC800\uB141, \uBE68\uB798\uB97C \uAC1C\uACE0
+      \uC788\uB2E4."
+  - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
+    sentence: ....
+  - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
+    sentence: "(\uD790\uB054)"
+  - speaker: {fileID: 0}
+    sentence: "\uACC4\uC18D\uD574\uC11C \uD734\uB300\uD3F0\uC744 \uCCD0\uB2E4\uBCF4\uC9C0\uB9CC,
+      \uC57C\uC18D\uD558\uAC8C\uB3C4 \uD734\uB300\uD3F0\uC740 \uC6B8\uB9B4 \uAE30\uBBF8\uAC00
+      \uC5C6\uB2E4."
+  - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
+    sentence: ....

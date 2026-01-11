@@ -1,7 +1,6 @@
 using UnityEngine;
 using DG.Tweening;
 using System.Collections.Generic;
-using UnityEditor.Rendering;
 
 public enum MinimapState { Normal, MinimapView, PostItMode }
 
@@ -18,7 +17,7 @@ public class MinimapManager : MonoBehaviour
     [SerializeField] private Camera targetCam;
 
     [HideInInspector] public Vector3 minimapPosition;
-    [HideInInspector] public float minimapSize;
+    public float minimapSize;
 
     [Header("전환 관련 설정")]
     [SerializeField] private float transitionDuration = 1f;

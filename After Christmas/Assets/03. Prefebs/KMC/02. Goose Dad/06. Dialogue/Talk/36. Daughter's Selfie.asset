@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c24672a27f90a24fb333e3077219294, type: 3}
+  m_Name: 36. Daughter's Selfie
+  m_EditorClassIdentifier: 
+  dialogueID: 0
+  prerequisiteCondition: {fileID: 0}
+  failSafeDialogue: {fileID: 11400000}
+  participants:
+  - {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
+  dialogueLines:
+  - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
+    sentence: "\uB538\uC774 \uB5A0\uB09C \uBC29\uC740 \uACF5\uD5C8\uD55C \uC678\uB85C\uC6C0\uB9CC
+      \uB290\uAEF4\uC9C4\uB2E4."
+  - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
+    sentence: "\uC815\uD6C8\uC740 \uCCAD\uC18C\uAE30\uB97C \uB3CC\uB9AC\uB2E4 \uB9D0\uACE0,
+      \uD558\uC5FC\uC5C6\uC774 \uADF8 \uC7A5\uBA74\uC744 \uBC14\uB77C\uBCF4\uACE0
+      \uC788\uB2E4."

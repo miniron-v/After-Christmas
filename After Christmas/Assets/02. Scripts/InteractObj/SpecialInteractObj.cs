@@ -81,6 +81,8 @@ public class SpecialInteractObj : MonoBehaviour, IInteractable, IGlowable
         {
             cinematic.StartCutscene(() =>
             {
+                UnlockItem();   // 임시 함수. 단순히 켜고 끄기만 함
+
                 // 컷신 끝나면 대화 진행
                 if (dialogueTrigger != null)
                 {
@@ -113,5 +115,14 @@ public class SpecialInteractObj : MonoBehaviour, IInteractable, IGlowable
         }
     }
 
+    public Item[] unlockItems;
 
+    private void UnlockItem()
+    {
+        foreach (var item in unlockItems)
+        {
+            item.gameObject.SetActive(true);
+        }
+        gameObject.SetActive(false);
+    }
 }

@@ -6,24 +6,27 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/01. Scenes/KMC/02. Goose Dad.unity
+    guid: 176a838d80248bb4d83e1156e4ea0bc6
+  - enabled: 0
     path: Assets/01. Scenes/GHB/itemHandlerScene.unity
     guid: 48ee3ce7afa04ba4f91f3a7551e5455f
-  - enabled: 1
+  - enabled: 0
     path: Assets/01. Scenes/GHB/itemHandlerScene2.unity
-    guid: a904f164e4ca3944eaeb854d05cbc87a
-  - enabled: 1
+    guid: d51ebc3434c436d45a21d0f37875d389
+  - enabled: 0
     path: Assets/01. Scenes/GHB/DemoTest-UIMakeScene.unity
-    guid: 7d58f7ef9d0bd3d4f9e5f1116c773e50
-  - enabled: 1
+    guid: 9f130ae8154c3b74ca21a15e3379b881
+  - enabled: 0
     path: Assets/01. Scenes/GHB/DemoTest-UIMakeScene 1.unity
     guid: 7e8dabb3bf5eed044ad6af5beadfe3f2
-  - enabled: 1
+  - enabled: 0
     path: Assets/01. Scenes/GHB/DemoTest-UIMakeScene 2.unity
     guid: e65896694df7bfd4487c183e30f80d16
-  - enabled: 1
+  - enabled: 0
     path: Assets/01. Scenes/GHB/LoadingScene.unity
     guid: 2ed2327ad349e5d46a5dda40daf80c7e
-  - enabled: 1
+  - enabled: 0
     path: Assets/01. Scenes/GHB/PixelateManagerTestScene.unity
     guid: 9aa7b90f49f2b4842ac6e464c0c2a38d
   m_configObjects:

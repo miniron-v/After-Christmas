@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c24672a27f90a24fb333e3077219294, type: 3}
+  m_Name: 05. Picnic
+  m_EditorClassIdentifier: 
+  dialogueID: 0
+  prerequisiteCondition: {fileID: 0}
+  failSafeDialogue: {fileID: 11400000}
+  participants:
+  - {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
+  - {fileID: 11400000, guid: 9058d4f4d69dc3f4ab9ab05f3a7b1440, type: 2}
+  - {fileID: 11400000, guid: 27a256a02375f6342a49b215d6d2741c, type: 2}
+  dialogueLines:
+  - speaker: {fileID: 11400000, guid: 27a256a02375f6342a49b215d6d2741c, type: 2}
+    sentence: "\uC640, \uD53C\uC790\uB2E4!"
+  - speaker: {fileID: 11400000, guid: 9058d4f4d69dc3f4ab9ab05f3a7b1440, type: 2}
+    sentence: "\uD53C\uC790\uAC00 \uADF8\uB807\uAC8C \uC88B\uC544?"
+  - speaker: {fileID: 11400000, guid: 27a256a02375f6342a49b215d6d2741c, type: 2}
+    sentence: "\uC751, \uB09C \uD53C\uC790\uAC00 \uC138\uC0C1\uC5D0\uC11C \uC81C\uC77C
+      \uC88B\uC544!"
+  - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
+    sentence: "\uADF8\uB798? \uADF8\uB7FC \uC55E\uC73C\uB85C \uC544\uBE60\uAC00 \uD1F4\uADFC\uD560
+      \uB54C \uD53C\uC790 \uC0AC\uC62C\uAE4C?"
+  - speaker: {fileID: 11400000, guid: 27a256a02375f6342a49b215d6d2741c, type: 2}
+    sentence: "\uC548 \uB3FC! \uCE58\uD0A8\uC774 \uB354 \uC88B\uC544!"
+  - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
+    sentence: "\uD558\uD558, \uC54C\uC558\uB2E4. \uC544\uBE60\uAC00 \uC55E\uC73C\uB85C\uB3C4
+      \uB9DB\uC788\uB294 \uAC70 \uC790\uC8FC \uC0AC\uC62C\uAC8C."
+  - speaker: {fileID: 11400000, guid: 27a256a02375f6342a49b215d6d2741c, type: 2}
+    sentence: "\uC544\uC2F8!"
