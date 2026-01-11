@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 
 [Serializable]
 public class ItemRecord
@@ -30,7 +32,9 @@ public class ItemInfoManager : MonoBehaviour
     [Serializable]
     public class SceneInfo
     {
+        #if UNITY_EDITOR
         public SceneAsset sceneAsset;
+        #endif
         [HideInInspector] public string sceneName;
     }
 
@@ -46,27 +50,46 @@ public class ItemInfoManager : MonoBehaviour
 
     private HashSet<int> visitedScenes = new HashSet<int>();
 
+    #if UNITY_EDITOR
+    private void OnValidate()
+    {
+        if (sceneInfos == null) return;
+
+        bool isDirty = false;
+        foreach (var info in sceneInfos)
+        {
+            if (info.sceneAsset != null)
+            {
+                if (info.sceneName != info.sceneAsset.name)
+                {
+                    info.sceneName = info.sceneAsset.name;
+                    isDirty = true;
+                }
+            }
+        }
+
+        if (isDirty)
+        {
+            EditorUtility.SetDirty(this);
+        }
+    }
+    #endif
+
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-
             foreach (var info in sceneInfos)
             {
-                if (info.sceneAsset != null)
-                    info.sceneName = info.sceneAsset.name;
-
                 sceneItemData.Add(new Dictionary<string, ItemRecord>());
             }
 
             SceneManager.sceneLoaded += OnSceneLoaded;
-            Debug.Log($"[ItemInfoManager] Awake - Created new instance ({GetInstanceID()})");
         }
         else
         {
-            Debug.LogWarning($"[ItemInfoManager] Duplicate found ({GetInstanceID()}), destroying.");
             Destroy(gameObject);
         }
     }
