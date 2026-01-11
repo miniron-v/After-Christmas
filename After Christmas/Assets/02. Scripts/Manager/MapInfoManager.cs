@@ -29,7 +29,9 @@ public class MapInfoManager : MonoBehaviour
     [Serializable]
     public class SceneInfo
     {
+        #if UNITY_EDITOR
         public SceneAsset sceneAsset;
+        #endif
         [HideInInspector] public string sceneName;
     }
 
@@ -49,18 +51,36 @@ public class MapInfoManager : MonoBehaviour
     [HideInInspector]
     public string currentMap;
 
+    #if UNITY_EDITOR
+    private void OnValidate()
+    {
+        if (sceneInfos == null) return;
+
+        bool isDirty = false;
+        foreach (var info in sceneInfos)
+        {
+            if (info.sceneAsset != null && info.sceneName != info.sceneAsset.name)
+            {
+                info.sceneName = info.sceneAsset.name;
+                isDirty = true;
+            }
+        }
+
+        if (isDirty)
+        {
+            EditorUtility.SetDirty(this);
+        }
+    }
+    #endif
+
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-
             foreach (var info in sceneInfos)
             {
-                if (info.sceneAsset != null)
-                    info.sceneName = info.sceneAsset.name;
-
                 sceneMapData.Add(new Dictionary<string, MapRecord>());
                 visitedMaps.Add(new HashSet<string>());
             }
@@ -70,7 +90,6 @@ public class MapInfoManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning($"[MapInfoManager] Duplicate detected, destroying {GetInstanceID()}");
             Destroy(gameObject);
         }
     }
