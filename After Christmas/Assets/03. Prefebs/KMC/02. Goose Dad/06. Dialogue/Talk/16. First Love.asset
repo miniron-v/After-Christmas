@@ -24,5 +24,5 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: fd0830ce7cb70644a8969dc5c6ca986f, type: 2}
     sentence: "\uB6AB\uC5B4\uC9C0\uACA0\uB2E4, \uB6AB\uC5B4\uC9C0\uACA0\uC5B4. \uADF8\uB807\uAC8C
       \uC88B\uC73C\uBA74 \uBC25\uC774\uB098 \uBA39\uC790 \uD558\uB4E0\uAC00."
-  - speaker: {fileID: 11400000, guid: 451b76c89f930db4fb8d72cc3b556d81, type: 2}
+  - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
     sentence: "\uC544\uB0D0, \uB0B4\uAC00 \uBB34\uC2A8...."

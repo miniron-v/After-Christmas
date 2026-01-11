@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1c24672a27f90a24fb333e3077219294, type: 3}
-  m_Name: 35. Call With Daughter
+  m_Name: 36-2. Daughter's Selfie
   m_EditorClassIdentifier: 
   dialogueID: 0
   prerequisiteCondition: {fileID: 0}
@@ -19,18 +19,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
   dialogueLines:
   - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
-    sentence: "\uC751, \uB538. \uB3C5\uC77C \uC0DD\uD65C\uC740 \uC5B4\uB54C? \uC74C\uC2DD\uC740
-      \uC785\uC5D0 \uC798 \uB9DE\uACE0?"
+    sentence: "\uAC11\uC790\uAE30 \uC815\uD6C8\uC758 \uD734\uB300\uD3F0\uC774 \uC6B8\uB9B0\uB2E4.
+      \uBB38\uC790\uC600\uB2E4."
   - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
-    sentence: "\uC77C\uC740 \uBB34\uC2A8. \uAC04\uB9CC\uC5D0 \uC6B0\uB9AC \uB538
-      \uBAA9\uC18C\uB9AC \uB4E3\uACE0 \uC2F6\uC5B4\uC11C."
+    sentence: "\uB538\uC774 \uBCF4\uB0B8 \uBB38\uC790\uC5D4 \uC790\uC2E0\uC758 \uC5BC\uAD74\uC774
+      \uB098\uC628 \uC0AC\uC9C4\uC774 \uC2E4\uB824 \uC788\uB2E4. \uB538\uC758 \uC5BC\uAD74
+      \uB4A4\uB85C \uC9D0\uC744 \uD480\uACE0 \uC788\uB294 \uC544\uB0B4\uC758 \uBAA8\uC2B5\uC774
+      \uBCF4\uC778\uB2E4."
   - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
-    sentence: "\uC5B4, \uC751. \uC54C\uC558\uC5B4. \uBC25 \uC798 \uCC59\uACA8\uBA39\uACE0."
+    sentence: "\uC798 \uB3C4\uCC29\uD588\uB098\uBCF4\uB124. \uB2E4\uD589\uC774\uB2E4."
   - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
-    sentence: "\uC751. \uC0AC\uB791\uD574, \uC6B0\uB9AC \uB538."
-  - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
-    sentence: "...\uC9C0\uD604\uC774 \uC5C4\uB9C8\uD55C\uD14C\uB3C4 \uC804\uD654\uD574\uBCFC\uAE4C?"
-  - speaker: {fileID: 0}
-    sentence: "\uB69C\uB974\uB974--- \uB69C\uB974\uB974---"
-  - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
-    sentence: "...\uB9CE\uC774 \uBC14\uC05C\uAC00\uBCF4\uB124."
+    sentence: "\uC88B\uC544. \uB098\uB3C4 \uD798\uB0B4\uC11C \uB9C8\uC800 \uCCAD\uC18C\uD574\uBCFC\uAE4C!"
