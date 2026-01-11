@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afd046bbdd483c74f895f5f77149020f, type: 3}
   m_Name: Soju Bottle
   m_EditorClassIdentifier: 
-  itemID: "\uC804\uACF5\uCC45"
+  itemID: "\uC18C\uC8FC\uBCD1"
   icon: {fileID: 21300000, guid: 50e238042a05b4540b96ef3f0c92e8a1, type: 3}
-  description: "\uC804\uACF5\uCC45\uC774\uB2E4. \uB77C\uBA74 \uBC1B\uCE68\uC73C\uB85C
-    \uB6F0\uC5B4\uB09C \uC131\uB2A5\uC744 \uBCF4\uC778\uB2E4."
+  description: "\uC18C\uC8FC\uAC00 \uB4E4\uC5B4 \uC788\uB294 \uBCD1\uC774\uB2E4.
+    \uC5B4\uB978\uB4E4\uC5D0\uAC8C \uC775\uC219\uD55C \uCD08\uB85D\uC0C9\uC744 \uB744\uACE0
+    \uC788\uB2E4. "

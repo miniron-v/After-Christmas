@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afd046bbdd483c74f895f5f77149020f, type: 3}
   m_Name: Beer Can
   m_EditorClassIdentifier: 
-  itemID: "\uCE58\uD0A8"
+  itemID: "\uB9E5\uC8FC \uCE94"
   icon: {fileID: 1395503472, guid: 24893904860bacb40be21b9c2af7f8ce, type: 3}
-  description: "\uD55C\uAD6D\uC778\uC774 \uC0AC\uB791\uD558\uB294 \uCE58\uD0A8\uC774\uB2E4."
+  description: "\uB9E5\uC8FC \uCE94\uC774\uB2E4. 4\uAC1C \uBB36\uC74C\uC73C\uB85C
+    \uC0AC\uBA74 \uC2F8\uAC8C \uC0B4 \uC218 \uC788\uB2E4. "

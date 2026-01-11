@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afd046bbdd483c74f895f5f77149020f, type: 3}
   m_Name: Coat
   m_EditorClassIdentifier: 
-  itemID: "\uACF5\uC6D0 \uB098\uBB34"
+  itemID: "\uCF54\uD2B8"
   icon: {fileID: 21300000, guid: 9a719de5f7a40264480c3484696d3d81, type: 3}
-  description: "\uACF5\uC6D0\uC758 \uB098\uBB34\uB2E4."
+  description: "\uBA4B\uC9C4 \uB514\uC790\uC778\uC758 \uCF54\uD2B8\uB2E4. "

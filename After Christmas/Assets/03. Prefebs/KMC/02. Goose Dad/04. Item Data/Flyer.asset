@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afd046bbdd483c74f895f5f77149020f, type: 3}
   m_Name: Flyer
   m_EditorClassIdentifier: 
-  itemID: "\uCE58\uD0A8"
+  itemID: "\uC804\uB2E8\uC9C0"
   icon: {fileID: 1395503472, guid: 24893904860bacb40be21b9c2af7f8ce, type: 3}
-  description: "\uD55C\uAD6D\uC778\uC774 \uC0AC\uB791\uD558\uB294 \uCE58\uD0A8\uC774\uB2E4."
+  description: "\uD654\uB824\uD55C \uB514\uC790\uC778\uC758 \uC804\uB2E8\uC9C0\uB2E4. "

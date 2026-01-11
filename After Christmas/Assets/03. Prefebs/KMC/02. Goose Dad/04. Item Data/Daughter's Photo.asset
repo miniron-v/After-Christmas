@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afd046bbdd483c74f895f5f77149020f, type: 3}
   m_Name: Daughter's Photo
   m_EditorClassIdentifier: 
-  itemID: "\uCEE4\uD53C"
+  itemID: "\uB538 \uC0AC\uC9C4"
   icon: {fileID: -789119931, guid: 8bbacbff6e79a4b43be8cecd8b2448a5, type: 3}
-  description: "\uAE08\uC0C9 \uD3EC\uC7A5\uC9C0\uB85C \uB36E\uC778 \uC2A4\uD2F1 \uCEE4\uD53C\uB2E4."
+  description: "\uC131\uD6C8\uC774 \uAC00\uC7A5 \uC544\uB07C\uB294 \uC0AC\uC9C4\uC774\uB2E4. "

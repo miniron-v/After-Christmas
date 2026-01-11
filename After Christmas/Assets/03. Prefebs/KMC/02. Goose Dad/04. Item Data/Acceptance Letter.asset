@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afd046bbdd483c74f895f5f77149020f, type: 3}
   m_Name: Acceptance Letter
   m_EditorClassIdentifier: 
-  itemID: "\uC804\uACF5\uCC45"
+  itemID: "\uD569\uACA9 \uD1B5\uC9C0\uC11C"
   icon: {fileID: 21300000, guid: 50e238042a05b4540b96ef3f0c92e8a1, type: 3}
-  description: "\uC804\uACF5\uCC45\uC774\uB2E4. \uB77C\uBA74 \uBC1B\uCE68\uC73C\uB85C
-    \uB6F0\uC5B4\uB09C \uC131\uB2A5\uC744 \uBCF4\uC778\uB2E4."
+  description: "\uB3C5\uC77C \uC720\uBA85 \uC74C\uD559 \uD559\uAD50\uC758 \uD569\uACA9
+    \uD1B5\uC9C0\uC11C\uB2E4. "

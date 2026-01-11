@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afd046bbdd483c74f895f5f77149020f, type: 3}
   m_Name: Kimbap
   m_EditorClassIdentifier: 
-  itemID: "\uCEE4\uD53C"
+  itemID: "\uAE40\uBC25"
   icon: {fileID: -789119931, guid: 8bbacbff6e79a4b43be8cecd8b2448a5, type: 3}
-  description: "\uAE08\uC0C9 \uD3EC\uC7A5\uC9C0\uB85C \uB36E\uC778 \uC2A4\uD2F1 \uCEE4\uD53C\uB2E4."
+  description: "\uD55C\uAD6D\uC778\uC758 \uC18C\uC6B8 \uD478\uB4DC \uAE40\uBC25\uC774\uB2E4. "
