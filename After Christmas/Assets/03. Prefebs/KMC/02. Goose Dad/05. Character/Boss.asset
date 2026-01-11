@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 485f1c85076e6c64a9c103eba030eb53, type: 3}
   m_Name: Boss
   m_EditorClassIdentifier: 
-  characterName: "\uC0C1\uC0AC"
+  characterName: "\uBD80\uC7A5"
   characterImage: {fileID: 0}

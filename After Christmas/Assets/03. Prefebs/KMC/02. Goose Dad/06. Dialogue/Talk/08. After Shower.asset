@@ -22,7 +22,7 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
     sentence: "\uD6C4...."
   - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
-    sentence: "\uC0E4\uC6CC\uB97C \uB9C8\uCE58\uACE0 \uB098\uC628 \uC131\uD6C8. \uD734\uB300\uD3F0\uC744
+    sentence: "\uC0E4\uC6CC\uB97C \uB9C8\uCE58\uACE0 \uB098\uC628 \uC815\uD6C8. \uD734\uB300\uD3F0\uC744
       \uC9D1\uC5B4 \uBB38\uC790\uB97C \uD655\uC778\uD55C\uB2E4."
   - speaker: {fileID: 11400000, guid: 9058d4f4d69dc3f4ab9ab05f3a7b1440, type: 2}
     sentence: "\uC785\uAE08\uD55C \uAC70 \uD655\uC778\uD588\uC5B4. \uB2F9\uC2E0\uC740

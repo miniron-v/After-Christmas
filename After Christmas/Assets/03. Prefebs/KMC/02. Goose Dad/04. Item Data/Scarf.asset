@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemID: "\uBAA9\uB3C4\uB9AC"
   icon: {fileID: 1395503472, guid: 24893904860bacb40be21b9c2af7f8ce, type: 3}
-  description: "\uC5C4\uB9C8\uAC00 \uC544\uB07C\uB294 \uBAA9\uB3C4\uB9AC\uB2E4. "
+  description: "\uC544\uB0B4\uAC00 \uC544\uB07C\uB294 \uBAA9\uB3C4\uB9AC\uB2E4. "

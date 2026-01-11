@@ -21,7 +21,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 432565de3a7a0944b8823d5d07ea31d4, type: 2}
   dialogueLines:
   - speaker: {fileID: 11400000, guid: fd0830ce7cb70644a8969dc5c6ca986f, type: 2}
-    sentence: "\uC57C, \uB2C8\uB124 \uADF8\uAC74 \uAE30\uC5B5\uB098\uB0D0? \uC131\uD6C8\uC774
+    sentence: "\uC57C, \uB2C8\uB124 \uADF8\uAC74 \uAE30\uC5B5\uB098\uB0D0? \uC815\uD6C8\uC774
       \uB2F4 \uB118\uB2E4\uAC00 \uC120\uB3C4\uBD80\uD55C\uD14C \uAC78\uB9B0 \uAC70?"
   - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
     sentence: "\uC57C\uC774, \uB10C \uBB54 \uB9CC\uB098\uAE30\uB9CC \uD558\uBA74

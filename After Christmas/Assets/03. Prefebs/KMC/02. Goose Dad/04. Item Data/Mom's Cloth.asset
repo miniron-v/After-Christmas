@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afd046bbdd483c74f895f5f77149020f, type: 3}
   m_Name: Mom's Cloth
   m_EditorClassIdentifier: 
-  itemID: "\uC5C4\uB9C8\uC758 \uC637"
+  itemID: "\uC544\uB0B4\uC758 \uC637"
   icon: {fileID: 21300000, guid: 50e238042a05b4540b96ef3f0c92e8a1, type: 3}
-  description: "\uC5C4\uB9C8\uAC00 \uC544\uB07C\uB294 \uC637\uC774\uB2E4. "
+  description: "\uC544\uB0B4\uAC00 \uC544\uB07C\uB294 \uC637\uC774\uB2E4. "

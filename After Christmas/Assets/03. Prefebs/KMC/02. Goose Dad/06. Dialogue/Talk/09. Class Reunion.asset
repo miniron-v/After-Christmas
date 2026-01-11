@@ -23,7 +23,7 @@ MonoBehaviour:
     sentence: "\uC774\uC57C, \uC624\uC131\uC804\uC790 \uCC28\uC7A5?"
   - speaker: {fileID: 11400000, guid: 676254e7aa7eb764aba7cb6d93ddf024, type: 2}
     sentence: "\uB300\uAE30\uC5C5 \uCC28\uC7A5\uC5D0, \uB538\uC740 \uB3C5\uC77C\uC5D0
-      \uC720\uD559\uC5D0. \uBC15\uC131\uD6C8 \uC644\uC804 \uC131\uACF5\uD588\uB124!"
+      \uC720\uD559\uC5D0. \uBC15\uC815\uD6C8 \uC644\uC804 \uC131\uACF5\uD588\uB124!"
   - speaker: {fileID: 11400000, guid: 8b42e8caee73953478515d20c4f2cc55, type: 2}
     sentence: '....
 

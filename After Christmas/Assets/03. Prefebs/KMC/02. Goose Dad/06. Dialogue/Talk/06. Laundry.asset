@@ -19,7 +19,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
   dialogueLines:
   - speaker: {fileID: 0}
-    sentence: "\uC131\uD6C8\uC774 \uC8FC\uB9D0 \uC800\uB141, \uBE68\uB798\uB97C \uAC1C\uACE0
+    sentence: "\uD6C8\uC774 \uC8FC\uB9D0 \uC800\uB141, \uBE68\uB798\uB97C \uAC1C\uACE0
       \uC788\uB2E4."
   - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
     sentence: ....
