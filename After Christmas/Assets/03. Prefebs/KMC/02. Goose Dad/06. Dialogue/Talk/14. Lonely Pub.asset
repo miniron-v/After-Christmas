@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c24672a27f90a24fb333e3077219294, type: 3}
+  m_Name: 14. Lonely Pub
+  m_EditorClassIdentifier: 
+  dialogueID: 0
+  prerequisiteCondition: {fileID: 0}
+  failSafeDialogue: {fileID: 11400000}
+  participants:
+  - {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
+  - {fileID: 11400000, guid: fd0830ce7cb70644a8969dc5c6ca986f, type: 2}
+  - {fileID: 11400000, guid: 432565de3a7a0944b8823d5d07ea31d4, type: 2}
+  dialogueLines:
+  - speaker: {fileID: 11400000, guid: fd0830ce7cb70644a8969dc5c6ca986f, type: 2}
+    sentence: "\uC57C, \uB2C8\uB124 \uADF8\uAC74 \uAE30\uC5B5\uB098\uB0D0? \uC131\uD6C8\uC774
+      \uB2F4 \uB118\uB2E4\uAC00 \uC120\uB3C4\uBD80\uD55C\uD14C \uAC78\uB9B0 \uAC70?"
+  - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
+    sentence: "\uC57C\uC774, \uB10C \uBB54 \uB9CC\uB098\uAE30\uB9CC \uD558\uBA74
+      \uADF8 \uC598\uAE30\uB0D0?"
+  - speaker: {fileID: 11400000, guid: fd0830ce7cb70644a8969dc5c6ca986f, type: 2}
+    sentence: "\uC194\uC9C1\uD788 \uC6C3\uAE30\uC796\uC544. \uADF8\uB54C \uC548 \uB9DE\uC744\uB77C\uACE0
+      \uAD50\uBCF5\uC73C\uB85C \uC5BC\uAD74 \uAC00\uB9B0 \uAC70, \uB09C \uC544\uC9C1\uB3C4
+      \uAC00\uB054 \uAFC8\uC5D0 \uB098\uC628\uB2E4\uB2C8\uAE4C? \uC6C3\uACA8\uC11C."
+  - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
+    sentence: "\uADF8\uB7EC\uB294 \uB108\uB3C4 \uC911\uD559\uAD50 \uB54C \uC9DD\uC0AC\uB791\uD558\uB358
+      \uC560 \uC788\uC5C8\uC796\uC544? \uBD84\uBA85 \uAC54 \uC774\uB984\uC774...."
+  - speaker: {fileID: 11400000, guid: fd0830ce7cb70644a8969dc5c6ca986f, type: 2}
+    sentence: "\uC544, \uC54C\uC558\uC5B4. \uBBF8\uC548! \uADF8\uB9CC\uD560\uAC8C!"
+  - speaker: {fileID: 11400000, guid: 432565de3a7a0944b8823d5d07ea31d4, type: 2}
+    sentence: "\uC57C, \uC5EC\uAE30 \uAC54 \uBAA8\uB974\uB294 \uC560\uB3C4 \uC788\uB0D0?
+      \uBB58 \uC774\uC81C\uC640\uC11C."
+  - speaker: {fileID: 11400000, guid: 432565de3a7a0944b8823d5d07ea31d4, type: 2}
+    sentence: "\uC57C, \uB0C5\uB46C\uB77C. \uC77C\uD3B8\uB2E8\uC2EC \uC21C\uC560\uBCF4\uC600\uC796\uC544~.
+      \uC878\uC5C5\uD560 \uB54C\uAE4C\uC9C0 \uB9D0\uB3C4 \uBABB \uC11E\uC5B4\uBD24\uC9C0\uB9CC."
+  - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
+    sentence: "\uD558\uD558\uD558\uD558\uD558!"

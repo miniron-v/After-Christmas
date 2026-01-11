@@ -3176,7 +3176,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b136ab09d4c85f428d1d99d6949a2da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cutsceneEventList: []
+  cutsceneEventList:
+  - hasDialogueContent: 1
+    cinematicTimeline: {fileID: 0}
+    loopTimeline: 0
+    dialogueData: {fileID: 11400000, guid: 36184113e1e9a2d4bbf0b884e6de68fb, type: 2}
 --- !u!114 &199124222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5628,7 +5632,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b136ab09d4c85f428d1d99d6949a2da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cutsceneEventList: []
+  cutsceneEventList:
+  - hasDialogueContent: 1
+    cinematicTimeline: {fileID: 0}
+    loopTimeline: 0
+    dialogueData: {fileID: 11400000, guid: 4614e6ef8a5818b4fb610b60e621c278, type: 2}
 --- !u!114 &291227672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7249,6 +7257,76 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 365174027}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &367758270
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 933531370}
+    m_Modifications:
+    - target: {fileID: 3738639439818269453, guid: e19a8224d7777fd4b90be63c6887ed6b, type: 3}
+      propertyPath: m_Name
+      value: woman_rig
+      objectReference: {fileID: 0}
+    - target: {fileID: 4082935754422122935, guid: e19a8224d7777fd4b90be63c6887ed6b, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 4082935754422122935, guid: e19a8224d7777fd4b90be63c6887ed6b, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 4082935754422122935, guid: e19a8224d7777fd4b90be63c6887ed6b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.56
+      objectReference: {fileID: 0}
+    - target: {fileID: 4082935754422122935, guid: e19a8224d7777fd4b90be63c6887ed6b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4082935754422122935, guid: e19a8224d7777fd4b90be63c6887ed6b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4082935754422122935, guid: e19a8224d7777fd4b90be63c6887ed6b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.057974137
+      objectReference: {fileID: 0}
+    - target: {fileID: 4082935754422122935, guid: e19a8224d7777fd4b90be63c6887ed6b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4082935754422122935, guid: e19a8224d7777fd4b90be63c6887ed6b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.99831814
+      objectReference: {fileID: 0}
+    - target: {fileID: 4082935754422122935, guid: e19a8224d7777fd4b90be63c6887ed6b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4082935754422122935, guid: e19a8224d7777fd4b90be63c6887ed6b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4082935754422122935, guid: e19a8224d7777fd4b90be63c6887ed6b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 173.353
+      objectReference: {fileID: 0}
+    - target: {fileID: 4082935754422122935, guid: e19a8224d7777fd4b90be63c6887ed6b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e19a8224d7777fd4b90be63c6887ed6b, type: 3}
+--- !u!4 &367758271 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4082935754422122935, guid: e19a8224d7777fd4b90be63c6887ed6b, type: 3}
+  m_PrefabInstance: {fileID: 367758270}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &372276831
 GameObject:
   m_ObjectHideFlags: 0
@@ -10236,7 +10314,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b136ab09d4c85f428d1d99d6949a2da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cutsceneEventList: []
+  cutsceneEventList:
+  - hasDialogueContent: 1
+    cinematicTimeline: {fileID: 0}
+    loopTimeline: 0
+    dialogueData: {fileID: 11400000, guid: d25db9de617e8aa4f910358ff1215046, type: 2}
 --- !u!114 &534099396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15831,7 +15913,7 @@ MonoBehaviour:
   - hasDialogueContent: 1
     cinematicTimeline: {fileID: 0}
     loopTimeline: 0
-    dialogueData: {fileID: 11400000, guid: 5c2fef69cfca34a4eb1c04bef2165277, type: 2}
+    dialogueData: {fileID: 11400000, guid: 9d20b6c7af70fe44dbfd65e69fadb28d, type: 2}
 --- !u!114 &834022185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17437,6 +17519,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 254683420}
+  - {fileID: 367758271}
+  - {fileID: 1590683758}
   m_Father: {fileID: 392852963}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &934585580
@@ -18662,7 +18746,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b136ab09d4c85f428d1d99d6949a2da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cutsceneEventList: []
+  cutsceneEventList:
+  - hasDialogueContent: 1
+    cinematicTimeline: {fileID: 0}
+    loopTimeline: 0
+    dialogueData: {fileID: 11400000, guid: 8800906ceb5ad7749b8dd41487fb1308, type: 2}
 --- !u!114 &1003858957
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23379,7 +23467,7 @@ GameObject:
   - component: {fileID: 1279105273}
   - component: {fileID: 1279105272}
   m_Layer: 0
-  m_Name: 24. After Company DInner 2
+  m_Name: 24. After Company DInner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23421,7 +23509,7 @@ MonoBehaviour:
   - hasDialogueContent: 1
     cinematicTimeline: {fileID: 0}
     loopTimeline: 0
-    dialogueData: {fileID: 11400000, guid: d26e44f9d2c24024a96f6e226cd5a504, type: 2}
+    dialogueData: {fileID: 11400000, guid: 53e6067bc9f3f77469e6294a2088a35e, type: 2}
 --- !u!114 &1279105273
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25626,7 +25714,7 @@ MonoBehaviour:
   - hasDialogueContent: 1
     cinematicTimeline: {fileID: 0}
     loopTimeline: 0
-    dialogueData: {fileID: 11400000, guid: 53e6067bc9f3f77469e6294a2088a35e, type: 2}
+    dialogueData: {fileID: 11400000, guid: fc2744aca72d456489c1d9cb43aced81, type: 2}
 --- !u!114 &1386469366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28633,7 +28721,7 @@ MonoBehaviour:
   - hasDialogueContent: 1
     cinematicTimeline: {fileID: 0}
     loopTimeline: 0
-    dialogueData: {fileID: 11400000, guid: 53e6067bc9f3f77469e6294a2088a35e, type: 2}
+    dialogueData: {fileID: 11400000, guid: dd9d53a7c1ea284409d86e7733598394, type: 2}
 --- !u!114 &1562756852
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29237,6 +29325,76 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1386469364}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1590683757
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 933531370}
+    m_Modifications:
+    - target: {fileID: 4747218351412923007, guid: 7b8e48d3e317fd146a58d21f55c2ceb4, type: 3}
+      propertyPath: m_Name
+      value: Dummy_Big
+      objectReference: {fileID: 0}
+    - target: {fileID: 5380202163808932037, guid: 7b8e48d3e317fd146a58d21f55c2ceb4, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 5380202163808932037, guid: 7b8e48d3e317fd146a58d21f55c2ceb4, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 5380202163808932037, guid: 7b8e48d3e317fd146a58d21f55c2ceb4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.6199913
+      objectReference: {fileID: 0}
+    - target: {fileID: 5380202163808932037, guid: 7b8e48d3e317fd146a58d21f55c2ceb4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5380202163808932037, guid: 7b8e48d3e317fd146a58d21f55c2ceb4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.5400009
+      objectReference: {fileID: 0}
+    - target: {fileID: 5380202163808932037, guid: 7b8e48d3e317fd146a58d21f55c2ceb4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.73581487
+      objectReference: {fileID: 0}
+    - target: {fileID: 5380202163808932037, guid: 7b8e48d3e317fd146a58d21f55c2ceb4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5380202163808932037, guid: 7b8e48d3e317fd146a58d21f55c2ceb4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.6771828
+      objectReference: {fileID: 0}
+    - target: {fileID: 5380202163808932037, guid: 7b8e48d3e317fd146a58d21f55c2ceb4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5380202163808932037, guid: 7b8e48d3e317fd146a58d21f55c2ceb4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5380202163808932037, guid: 7b8e48d3e317fd146a58d21f55c2ceb4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -85.248
+      objectReference: {fileID: 0}
+    - target: {fileID: 5380202163808932037, guid: 7b8e48d3e317fd146a58d21f55c2ceb4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7b8e48d3e317fd146a58d21f55c2ceb4, type: 3}
+--- !u!4 &1590683758 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5380202163808932037, guid: 7b8e48d3e317fd146a58d21f55c2ceb4, type: 3}
+  m_PrefabInstance: {fileID: 1590683757}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1598178752
 GameObject:
   m_ObjectHideFlags: 0
@@ -33135,7 +33293,7 @@ GameObject:
   - component: {fileID: 1858705197}
   - component: {fileID: 1858705196}
   m_Layer: 0
-  m_Name: 21. After Company Dinner
+  m_Name: 21. After Company Dinner 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33246,7 +33404,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b136ab09d4c85f428d1d99d6949a2da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cutsceneEventList: []
+  cutsceneEventList:
+  - hasDialogueContent: 1
+    cinematicTimeline: {fileID: 0}
+    loopTimeline: 0
+    dialogueData: {fileID: 11400000, guid: caa7058256e0bfc4d91af197a843c2ef, type: 2}
 --- !u!114 &1858841296
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34338,7 +34500,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b136ab09d4c85f428d1d99d6949a2da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cutsceneEventList: []
+  cutsceneEventList:
+  - hasDialogueContent: 1
+    cinematicTimeline: {fileID: 0}
+    loopTimeline: 0
+    dialogueData: {fileID: 11400000, guid: 8965251516ab30145a171f2ce30c764d, type: 2}
 --- !u!114 &1916272510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34890,6 +35056,10 @@ MonoBehaviour:
     cinematicTimeline: {fileID: 0}
     loopTimeline: 0
     dialogueData: {fileID: 11400000, guid: 526a4e8bdebaddf4180a0f07931404f4, type: 2}
+  - hasDialogueContent: 1
+    cinematicTimeline: {fileID: 0}
+    loopTimeline: 0
+    dialogueData: {fileID: 11400000, guid: 36a55ff664ae02949b94bf4a1c7205a9, type: 2}
 --- !u!114 &1962861655
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c24672a27f90a24fb333e3077219294, type: 3}
+  m_Name: 08. After Shower
+  m_EditorClassIdentifier: 
+  dialogueID: 0
+  prerequisiteCondition: {fileID: 0}
+  failSafeDialogue: {fileID: 0}
+  participants:
+  - {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
+  - {fileID: 11400000, guid: 9058d4f4d69dc3f4ab9ab05f3a7b1440, type: 2}
+  dialogueLines:
+  - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
+    sentence: "\uD6C4...."
+  - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
+    sentence: "\uC0E4\uC6CC\uB97C \uB9C8\uCE58\uACE0 \uB098\uC628 \uC131\uD6C8. \uD734\uB300\uD3F0\uC744
+      \uC9D1\uC5B4 \uBB38\uC790\uB97C \uD655\uC778\uD55C\uB2E4."
+  - speaker: {fileID: 11400000, guid: 9058d4f4d69dc3f4ab9ab05f3a7b1440, type: 2}
+    sentence: "\uC785\uAE08\uD55C \uAC70 \uD655\uC778\uD588\uC5B4. \uB2F9\uC2E0\uC740
+      \uC798 \uC9C0\uB0B4?"
+  - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
+    sentence: "\uC5EC\uAE30\uC800\uAE30\uC11C \uB098\uB791 \uBABB \uB180\uC544\uC11C
+      \uC548\uB2EC\uC778\uB370 \uBB58. \uAC71\uC815 \uC548 \uD574\uB3C4 \uB3FC!"
+  - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
+    sentence: "\uB2F5\uC7A5\uC744 \uBCF4\uB0B4\uAE30 \uBB34\uC12D\uAC8C \uC804\uD654\uAC00
+      \uAC78\uB824\uC628\uB2E4. \uC544\uC27D\uAC8C\uB3C4 \uC544\uB0B4\uB294 \uC544\uB2C8\uB2E4."
+  - speaker: {fileID: 11400000, guid: 676254e7aa7eb764aba7cb6d93ddf024, type: 2}
+    sentence: "\uC57C, \uB108 \uC774\uBC88 \uB3D9\uCC3D\uD68C\uB294 \uAF2D \uC640\uB77C?
+      \uB108 \uBCF4\uACE0 \uC2F6\uB2E8 \uC560\uB4E4\uC774 \uD55C\uB458\uC774 \uC544\uB0D0!"
+  - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
+    sentence: "\uC54C\uC558\uC5B4, \uC778\uB9C8. \uAC08\uAC8C, \uAC00."

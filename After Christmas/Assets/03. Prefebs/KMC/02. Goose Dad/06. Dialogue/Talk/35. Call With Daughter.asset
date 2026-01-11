@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c24672a27f90a24fb333e3077219294, type: 3}
+  m_Name: 35. Call With Daughter
+  m_EditorClassIdentifier: 
+  dialogueID: 0
+  prerequisiteCondition: {fileID: 0}
+  failSafeDialogue: {fileID: 11400000}
+  participants:
+  - {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
+  dialogueLines:
+  - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
+    sentence: "\uC751, \uB538. \uB3C5\uC77C \uC0DD\uD65C\uC740 \uC5B4\uB54C? \uC74C\uC2DD\uC740
+      \uC785\uC5D0 \uC798 \uB9DE\uACE0?"
+  - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
+    sentence: "\uC77C\uC740 \uBB34\uC2A8. \uAC04\uB9CC\uC5D0 \uC6B0\uB9AC \uB538
+      \uBAA9\uC18C\uB9AC \uB4E3\uACE0 \uC2F6\uC5B4\uC11C."
+  - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
+    sentence: "\uC5B4, \uC751. \uC54C\uC558\uC5B4. \uBC25 \uC798 \uCC59\uACA8\uBA39\uACE0."
+  - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
+    sentence: "\uC751. \uC0AC\uB791\uD574, \uC6B0\uB9AC \uB538."
+  - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
+    sentence: "\uB9CE\uC774 \uBC14\uC05C\uAC00\uBCF4\uB124."

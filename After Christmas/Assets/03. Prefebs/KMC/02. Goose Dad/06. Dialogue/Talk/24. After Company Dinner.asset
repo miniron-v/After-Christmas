@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c24672a27f90a24fb333e3077219294, type: 3}
+  m_Name: 24. After Company Dinner
+  m_EditorClassIdentifier: 
+  dialogueID: 0
+  prerequisiteCondition: {fileID: 0}
+  failSafeDialogue: {fileID: 11400000}
+  participants:
+  - {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
+  - {fileID: 11400000, guid: 005d17647ede0cf4fbe5c227785ba4a1, type: 2}
+  - {fileID: 11400000, guid: 987e42df4611eff46ac4e3e4b8260897, type: 2}
+  dialogueLines:
+  - speaker: {fileID: 11400000, guid: 005d17647ede0cf4fbe5c227785ba4a1, type: 2}
+    sentence: "\uC790\uC790, \uC624\uB298\uC740 \uD574 \uB730 \uB54C\uAE4C\uC9C0
+      \uB9C8\uC2DC\uC790\uACE0!"
+  - speaker: {fileID: 11400000, guid: 005d17647ede0cf4fbe5c227785ba4a1, type: 2}
+    sentence: "\uC790\uB124\uB3C4 \uAC00\uC57C\uC9C0! \uC5B4\uCC28\uD53C \uC9D1\uC5D0
+      \uAC00\uBD24\uC790 \uC544\uBB34\uB3C4 \uC5C6\uC796\uC544?"
+  - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
+    sentence: "\uD558\uD558. \uADF8\uB7F4\uAE4C\uC694?"
+  - speaker: {fileID: 11400000, guid: 005d17647ede0cf4fbe5c227785ba4a1, type: 2}
+    sentence: "3\uCC28\uB294 \uB178\uB798\uBC29 \uC5B4\uB54C? \uB178\uB798\uBC29!"
+  - speaker: {fileID: 11400000, guid: 987e42df4611eff46ac4e3e4b8260897, type: 2}
+    sentence: "\uC544\uC720, \uB178\uB798\uBC29 \uC88B\uC8E0!"
+  - speaker: {fileID: 0}
+    sentence: "\uC090\uB9AC\uB9AC---"
+  - speaker: {fileID: 11400000, guid: 005d17647ede0cf4fbe5c227785ba4a1, type: 2}
+    sentence: "\uC5B4, \uC7A0\uAE50\uB9CC.... \uC5B4, \uC5EC\uBCF4. \uC65C?"
+  - speaker: {fileID: 11400000, guid: 005d17647ede0cf4fbe5c227785ba4a1, type: 2}
+    sentence: "\uC5B4, \uC5EC\uBCF4. \uADF8\uAC8C \uC624\uB298\uC740 \uD68C\uC2DD\uC774...."
+  - speaker: {fileID: 11400000, guid: 005d17647ede0cf4fbe5c227785ba4a1, type: 2}
+    sentence: "\uC544\uB0D0, \uB2F9\uC2E0\uB3C4 \uC54C\uC796\uC544. \uD68C\uC2DD\uB3C4
+      \uC77C\uC758 \uC5F0\uC7A5\uC120\u3147...."
+  - speaker: {fileID: 0}
+    sentence: '!$@#!'
+  - speaker: {fileID: 11400000, guid: 005d17647ede0cf4fbe5c227785ba4a1, type: 2}
+    sentence: "\uC54C\uC558\uC5B4. \uC9C0\uAE08 \uBC14\uB85C \uB4E4\uC5B4\uAC08\uAC8C.
+      \uC544\uB0D0, \uC9C4\uC9DC \uAE08\uBC29\uC774\uC57C."
+  - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
+    sentence: "(\uD76C\uBBF8\uD55C \uBD80\uB7EC\uC6C0\uC774 \uB2F4\uAE34 \uB208\uC73C\uB85C
+      \uBD80\uC7A5\uC744 \uBC14\uB77C\uBCF8\uB2E4.)"
+  - speaker: {fileID: 11400000, guid: 005d17647ede0cf4fbe5c227785ba4a1, type: 2}
+    sentence: "\uBBF8\uC548\uD558\uB124. \uC9D1\uC0AC\uB78C\uC774 \uD558\uB3C4 \uB09C\uB9AC\uB77C....
+      \uBA3C\uC800 \uB4E4\uC5B4\uAC00\uBCF4\uACA0\uB124."
+  - speaker: {fileID: 11400000, guid: 987e42df4611eff46ac4e3e4b8260897, type: 2}
+    sentence: "\uC544\uC720, \uC544\uB2D9\uB2C8\uB2E4. \uC2DC\uAC04\uB3C4 \uB2A6\uC5C8\uB294\uB370
+      \uC624\uB298\uC740 \uC5EC\uAE30\uC11C \uCAD1 \uD560\uAE4C\uC694?"
