@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: ManualMove
   m_EditorClassIdentifier: 
   actionName: Move
+  rowKeyCount: 3
   keys: 61000000770000007300000064000000
   sprite: {fileID: -512109341, guid: 7700e4e65aa571b4ca55ca4e4532ac1a, type: 3}

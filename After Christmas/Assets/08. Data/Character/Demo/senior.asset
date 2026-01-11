@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: senior
   m_EditorClassIdentifier: 
   characterName: "\uC0AC\uC218"
-  characterImage: {fileID: 0}
+  characterImage: {fileID: -243263391, guid: 27f9f670456e9c84086cd24a09b62b92, type: 3}

@@ -13,6 +13,7 @@ public class ManualUI : MonoBehaviour
 
     [Header("UI")]
     [SerializeField] private Image panelImage;
+    [SerializeField] private float keySize = 45f;
 
     [Header("Fade Animation")]
     [SerializeField] private CanvasGroup canvasGroup;
@@ -68,9 +69,17 @@ public class ManualUI : MonoBehaviour
         actionCompleted = false;
         startTime = Time.realtimeSinceStartup;
 
-        panelImage.sprite = action.sprite;
-        
         manualUI.SetActive(true);
+
+        panelImage.sprite = action.sprite;
+
+        RectTransform rt = panelImage.rectTransform;
+        rt.SetSizeWithCurrentAnchors(
+            RectTransform.Axis.Horizontal,
+            keySize * action.rowKeyCount
+        );
+
+        LayoutRebuilder.ForceRebuildLayoutImmediate(rt);
 
         Debug.Log($"[ManualUI] 조작법 표시 ({action.actionName})");
 

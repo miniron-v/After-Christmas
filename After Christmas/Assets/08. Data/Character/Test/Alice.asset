@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Alice
   m_EditorClassIdentifier: 
   characterName: "\uC568\uB9AC\uC2A4"
-  characterImage: {fileID: 1201449511, guid: 834631a3564e00741bdbfbb8dbd3203b, type: 3}
+  characterImage: {fileID: -243263391, guid: 27f9f670456e9c84086cd24a09b62b92, type: 3}
