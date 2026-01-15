@@ -16,24 +16,8 @@ MonoBehaviour:
   prerequisiteCondition: {fileID: 0}
   failSafeDialogue: {fileID: 11400000}
   participants:
-  - {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
-  - {fileID: 11400000, guid: fd0830ce7cb70644a8969dc5c6ca986f, type: 2}
+  - {fileID: 11400000, guid: 18983c6cf05ee4040bef40d61c29cc7d, type: 2}
+  - {fileID: 11400000, guid: 3546db6422f82da45b4b98162056c5eb, type: 2}
   dialogueLines:
-  - speaker: {fileID: 11400000, guid: fd0830ce7cb70644a8969dc5c6ca986f, type: 2}
-    sentence: "\uB108\uB124 \uC544\uC9C1 \uC0AC\uADC0\uB0D0?"
-  - speaker: {fileID: 11400000, guid: fd0830ce7cb70644a8969dc5c6ca986f, type: 2}
-    sentence: "\uC751? \uB2F9\uC5F0\uD558\uC9C0."
-  - speaker: {fileID: 11400000, guid: fd0830ce7cb70644a8969dc5c6ca986f, type: 2}
-    sentence: "\uAF64 \uC624\uB798 \uAC00\uB124. \uAE08\uBC29 \uD5E4\uC5B4\uC9C8
-      \uC904 \uC54C\uC558\uB294\uB370."
-  - speaker: {fileID: 11400000, guid: fd0830ce7cb70644a8969dc5c6ca986f, type: 2}
-    sentence: "\uBB50? \uC65C?"
-  - speaker: {fileID: 11400000, guid: fd0830ce7cb70644a8969dc5c6ca986f, type: 2}
-    sentence: "\uADF8\uB807\uC796\uC544, \uB124 \uC5EC\uC790\uCE5C\uAD6C\uB294 \uBB54\uAC00...
-      \uB9C8\uC9C0\uBABB\uD574 \uBC1B\uC544\uC8FC\uB294 \uB290\uB08C\uC774\uB784\uAE4C."
-  - speaker: {fileID: 11400000, guid: fd0830ce7cb70644a8969dc5c6ca986f, type: 2}
-    sentence: "\uBCFC\uB584\uB9C8\uB2E4 \uB124\uAC00 \uB4E4\uC774\uB300\uACE0 \uC801\uB2F9\uD788
-      \uBC1B\uC544\uC8FC\uACE0. \uADF8\uB798\uC11C \uC624\uB798 \uBABB \uAC08 \uC904
-      \uC54C\uC558\uC9C0."
-  - speaker: {fileID: 11400000, guid: fd0830ce7cb70644a8969dc5c6ca986f, type: 2}
-    sentence: "\uADF8\uB7F0 \uAC70 \uC544\uB0D0."
+  - speaker: {fileID: 11400000, guid: 18983c6cf05ee4040bef40d61c29cc7d, type: 2}
+    sentence: ....

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1c24672a27f90a24fb333e3077219294, type: 3}
-  m_Name: 11. Home Alone
+  m_Name: 28. Box In Closet
   m_EditorClassIdentifier: 
   dialogueID: 0
   prerequisiteCondition: {fileID: 0}
@@ -19,6 +19,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 18983c6cf05ee4040bef40d61c29cc7d, type: 2}
   - {fileID: 11400000, guid: 3546db6422f82da45b4b98162056c5eb, type: 2}
   dialogueLines:
-  - speaker: {fileID: 11400000, guid: 18983c6cf05ee4040bef40d61c29cc7d, type: 2}
-    sentence: "...\uC800\uD76C \uC544\uBE60\uB3C4 \uD1F4\uADFC\uD558\uBA74 \uB298
-      \uCE58\uD0A8 \uC0AC\uB4E4\uACE0 \uC624\uC168\uB294\uB370."
+  - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
+    sentence: 

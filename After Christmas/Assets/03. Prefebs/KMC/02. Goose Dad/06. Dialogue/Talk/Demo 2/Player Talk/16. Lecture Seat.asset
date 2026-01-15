@@ -16,16 +16,10 @@ MonoBehaviour:
   prerequisiteCondition: {fileID: 0}
   failSafeDialogue: {fileID: 11400000}
   participants:
-  - {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
-  - {fileID: 11400000, guid: 451b76c89f930db4fb8d72cc3b556d81, type: 2}
+  - {fileID: 11400000, guid: 18983c6cf05ee4040bef40d61c29cc7d, type: 2}
+  - {fileID: 11400000, guid: 3546db6422f82da45b4b98162056c5eb, type: 2}
   dialogueLines:
-  - speaker: {fileID: 11400000, guid: 451b76c89f930db4fb8d72cc3b556d81, type: 2}
-    sentence: "\uC544, \uC654\uC5B4?"
-  - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
-    sentence: "\uC751. \uBE68\uB9AC \uC654\uB124?"
-  - speaker: {fileID: 11400000, guid: 451b76c89f930db4fb8d72cc3b556d81, type: 2}
-    sentence: "\uC5BC\uB9C8 \uC548 \uB410\uC5B4."
-  - speaker: {fileID: 11400000, guid: 451b76c89f930db4fb8d72cc3b556d81, type: 2}
-    sentence: "\uC774\uC9C0\uD61C\uB294 \uB2A5\uC219\uD558\uAC8C \uAC00\uBC29\uC744
-      \uCE58\uC6CC\uC8FC\uACE0, \uC815\uD6C8\uC740 \uCC3D\uAC00 \uCABD \uC790\uB9AC\uC5D0
-      \uC549\uB294\uB2E4."
+  - speaker: {fileID: 11400000, guid: 18983c6cf05ee4040bef40d61c29cc7d, type: 2}
+    sentence: "\uB300\uD559\uAD50 \uAC15\uC758\uC2E4... \uBB54\uAC00 \uADF8\uB9BD\uB124\uC694."
+  - speaker: {fileID: 11400000, guid: 3546db6422f82da45b4b98162056c5eb, type: 2}
+    sentence: "\uC878\uC5C5\uD558\uBA74 \uBCFC\uC77C \uC5C6\uC73C\uB2C8\uAE4C."

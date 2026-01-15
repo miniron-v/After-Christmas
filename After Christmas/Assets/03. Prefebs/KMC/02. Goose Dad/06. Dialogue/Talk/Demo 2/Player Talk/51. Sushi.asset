@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1c24672a27f90a24fb333e3077219294, type: 3}
-  m_Name: 14. Lonely Pub
+  m_Name: 51. Sushi
   m_EditorClassIdentifier: 
   dialogueID: 0
   prerequisiteCondition: {fileID: 0}
@@ -20,7 +20,15 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3546db6422f82da45b4b98162056c5eb, type: 2}
   dialogueLines:
   - speaker: {fileID: 11400000, guid: 18983c6cf05ee4040bef40d61c29cc7d, type: 2}
-    sentence: "\uACC4\uC18D \uD734\uB300\uD3F0\uC744 \uCCD0\uB2E4\uBCF4\uB124\uC694?"
+    sentence: "\uB9DB\uC788\uACA0\uB2E4...."
   - speaker: {fileID: 11400000, guid: 3546db6422f82da45b4b98162056c5eb, type: 2}
-    sentence: "\uAE30\uB2E4\uB9AC\uB294 \uC5F0\uB77D\uC774\uB77C\uB3C4 \uC788\uB098
-      \uBCF4\uC9C0."
+    sentence: "\uCD08\uBC25 \uC88B\uC544\uD574?"
+  - speaker: {fileID: 11400000, guid: 18983c6cf05ee4040bef40d61c29cc7d, type: 2}
+    sentence: "\uB124. \uC120\uBC30\uB294\uC694?"
+  - speaker: {fileID: 11400000, guid: 3546db6422f82da45b4b98162056c5eb, type: 2}
+    sentence: "...\uC2EB\uC5B4\uD558\uC9C4 \uC54A\uC544."
+  - speaker: {fileID: 11400000, guid: 3546db6422f82da45b4b98162056c5eb, type: 2}
+    sentence: "\uADF8\uBCF4\uB2E4, \uC9C0\uAE08 \uD55C\uB208 \uD314 \uB54C\uAC00
+      \uC544\uB2D0 \uD150\uB370?"
+  - speaker: {fileID: 11400000, guid: 18983c6cf05ee4040bef40d61c29cc7d, type: 2}
+    sentence: "\uC557."
