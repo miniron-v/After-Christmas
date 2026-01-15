@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8239022456875690945}
   - component: {fileID: 156155714463960465}
   m_Layer: 10
-  m_Name: Special_Wallet
+  m_Name: Special_Purse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

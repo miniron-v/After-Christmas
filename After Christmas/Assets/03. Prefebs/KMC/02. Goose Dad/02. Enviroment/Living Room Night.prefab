@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 460626396723949707, guid: 48da48103706d3243b4f05df94bb7d96, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 530227352173795807, guid: 48da48103706d3243b4f05df94bb7d96, type: 3}
       propertyPath: m_RenderingLayerMask
       value: 4
@@ -60,6 +64,10 @@ PrefabInstance:
       propertyPath: m_RenderingLayerMask
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 2260151534050416392, guid: 48da48103706d3243b4f05df94bb7d96, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 2605107065206992988, guid: 48da48103706d3243b4f05df94bb7d96, type: 3}
       propertyPath: m_RenderingLayerMask
       value: 4
@@ -69,6 +77,10 @@ PrefabInstance:
       value: Living Room Night
       objectReference: {fileID: 0}
     - target: {fileID: 2739482725182683702, guid: 48da48103706d3243b4f05df94bb7d96, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2825631408327284880, guid: 48da48103706d3243b4f05df94bb7d96, type: 3}
       propertyPath: m_RenderingLayerMask
       value: 4
       objectReference: {fileID: 0}
