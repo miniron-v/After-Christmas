@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionName: OpenMap
   rowKeyCount: 1
-  keys: 6d000000
-  sprite: {fileID: -214534738, guid: 9a5cc0b29df8c684aac89cbff97721e4, type: 3}
+  keys: 09000000
+  sprite: {fileID: 21300000, guid: 7096d706de82afe48b5373485f07c299, type: 3}

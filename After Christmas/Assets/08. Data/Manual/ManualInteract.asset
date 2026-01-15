@@ -15,4 +15,4 @@ MonoBehaviour:
   actionName: Interact
   rowKeyCount: 1
   keys: 65000000
-  sprite: {fileID: 2057200340, guid: a45675f94511d7a4caa63c29025ed924, type: 3}
+  sprite: {fileID: 21300000, guid: c75ef2fdf75718f4a92a64063b4d960a, type: 3}

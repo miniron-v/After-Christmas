@@ -61,5 +61,9 @@ MonoBehaviour:
       \uC218\uC9D1\uD574\uC11C, \uADE0\uC5F4\uB4E4\uC744 \uBA54\uC6B0\uB294 \uAC70\uC57C."
   - speaker: {fileID: 11400000, guid: 3546db6422f82da45b4b98162056c5eb, type: 2}
     sentence: "\uC774 \uC0AC\uB78C\uC5D0\uAC8C \uC758\uBBF8 \uC788\uB294 \uBB3C\uAC74\uC740
-      \uAC00\uAE4C\uC774 \uAC00\uBA74 \uBE5B\uC774 \uB0A0 \uAC70\uC57C. \uBA3C\uC800,
-      \uC5EC\uAE30\uC11C \uBE5B\uB098\uB294 \uBB3C\uCCB4\uB97C \uCC3E\uC544 \uB20C\uB7EC\uBCF4\uC790."
+      \uAC00\uAE4C\uC774 \uAC00\uBA74 \uBE5B\uC774 \uB0A0 \uAC70\uC57C. \uBE5B\uB098\uB294
+      \uBB3C\uCCB4\uB97C \uCC3E\uC544 E\uB97C \uB20C\uB7EC\uBCF4\uC790."
+  - speaker: {fileID: 11400000, guid: 18983c6cf05ee4040bef40d61c29cc7d, type: 2}
+    sentence: "E\uC694?"
+  - speaker: {fileID: 11400000, guid: 3546db6422f82da45b4b98162056c5eb, type: 2}
+    sentence: "\uADF8\uB7F0 \uAC8C \uC788\uC5B4."
