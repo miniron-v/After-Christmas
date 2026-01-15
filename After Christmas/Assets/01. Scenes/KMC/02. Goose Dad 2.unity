@@ -3536,10 +3536,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7630155353218581767, guid: 33698ffef21551c49be980bfc9df4919, type: 3}
-      propertyPath: orthographic size
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 8085072966891917716, guid: 33698ffef21551c49be980bfc9df4919, type: 3}
       propertyPath: m_Name
       value: Main Camera
@@ -9974,7 +9970,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3301217685206439612, guid: 571e48c5bae28214e90ac92e07b0f1c1, type: 3}
       propertyPath: m_LocalScale.y
-      value: 8.203077
+      value: 11.440832
       objectReference: {fileID: 0}
     - target: {fileID: 3301217685206439612, guid: 571e48c5bae28214e90ac92e07b0f1c1, type: 3}
       propertyPath: m_LocalScale.z
@@ -9986,7 +9982,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3301217685206439612, guid: 571e48c5bae28214e90ac92e07b0f1c1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.38
+      value: 2.18
       objectReference: {fileID: 0}
     - target: {fileID: 3301217685206439612, guid: 571e48c5bae28214e90ac92e07b0f1c1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -12378,7 +12374,7 @@ PrefabInstance:
       objectReference: {fileID: 1846856602}
     - target: {fileID: 4828565074262011728, guid: 951f59edbe3aea742a71b3edd999ca50, type: 3}
       propertyPath: minimapSize
-      value: 130
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 4828565074262011728, guid: 951f59edbe3aea742a71b3edd999ca50, type: 3}
       propertyPath: cameraMoveCanvas
@@ -12390,11 +12386,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4828565074262011728, guid: 951f59edbe3aea742a71b3edd999ca50, type: 3}
       propertyPath: minimapPosition.x
-      value: -20.6
+      value: -59.22823
+      objectReference: {fileID: 0}
+    - target: {fileID: 4828565074262011728, guid: 951f59edbe3aea742a71b3edd999ca50, type: 3}
+      propertyPath: minimapPosition.y
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4828565074262011728, guid: 951f59edbe3aea742a71b3edd999ca50, type: 3}
       propertyPath: minimapPosition.z
-      value: -2.672
+      value: -33.447193
       objectReference: {fileID: 0}
     - target: {fileID: 5389987261545820298, guid: 951f59edbe3aea742a71b3edd999ca50, type: 3}
       propertyPath: m_Name
