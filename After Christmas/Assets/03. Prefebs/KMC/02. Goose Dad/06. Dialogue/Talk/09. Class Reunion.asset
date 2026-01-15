@@ -18,6 +18,7 @@ MonoBehaviour:
   participants:
   - {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
   - {fileID: 11400000, guid: 676254e7aa7eb764aba7cb6d93ddf024, type: 2}
+  - {fileID: 11400000, guid: 8b42e8caee73953478515d20c4f2cc55, type: 2}
   dialogueLines:
   - speaker: {fileID: 11400000, guid: 676254e7aa7eb764aba7cb6d93ddf024, type: 2}
     sentence: "\uC774\uC57C, \uC624\uC131\uC804\uC790 \uCC28\uC7A5?"

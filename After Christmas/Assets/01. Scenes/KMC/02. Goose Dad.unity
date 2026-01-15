@@ -1941,6 +1941,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3575239761862266372, guid: 975eb5e427897174f9c441b9a53b5a2a, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -56.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3575239761862266372, guid: 975eb5e427897174f9c441b9a53b5a2a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -127.54
+      objectReference: {fileID: 0}
     - target: {fileID: 3801737964964210528, guid: 975eb5e427897174f9c441b9a53b5a2a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1981,11 +1989,23 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6255161213535755337, guid: 975eb5e427897174f9c441b9a53b5a2a, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -56.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6255161213535755337, guid: 975eb5e427897174f9c441b9a53b5a2a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -127.54
+      objectReference: {fileID: 0}
     - target: {fileID: 6406897179842145045, guid: 975eb5e427897174f9c441b9a53b5a2a, type: 3}
       propertyPath: m_Name
       value: DialogueSystem
       objectReference: {fileID: 0}
     - target: {fileID: 6406897179842145045, guid: 975eb5e427897174f9c441b9a53b5a2a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8379358033278337507, guid: 975eb5e427897174f9c441b9a53b5a2a, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -5003,6 +5023,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1029674161}
     m_Modifications:
+    - target: {fileID: 7342045069639273509, guid: f6e20bf77cc0de54bbdcdaffd729f629, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: fdb3d079cd80c994cb50a1d1a2f48d31, type: 2}
     - target: {fileID: 7402058962781021921, guid: f6e20bf77cc0de54bbdcdaffd729f629, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -5043,6 +5067,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8567152381363828077, guid: f6e20bf77cc0de54bbdcdaffd729f629, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: fdb3d079cd80c994cb50a1d1a2f48d31, type: 2}
     - target: {fileID: 8656726674224626092, guid: f6e20bf77cc0de54bbdcdaffd729f629, type: 3}
       propertyPath: m_Name
       value: Airport
@@ -7951,7 +7979,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b136ab09d4c85f428d1d99d6949a2da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cutsceneEventList: []
+  cutsceneEventList:
+  - hasDialogueContent: 1
+    cinematicTimeline: {fileID: 0}
+    loopTimeline: 0
+    dialogueData: {fileID: 11400000, guid: 752daf6b6d09c354c866a2145cba35bd, type: 2}
 --- !u!114 &392852965
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &7458570979325644775
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 499908425096282708, guid: 696f5d4830e4f2747b288089c940144e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 499908425096282708, guid: 696f5d4830e4f2747b288089c940144e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 499908425096282708, guid: 696f5d4830e4f2747b288089c940144e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 499908425096282708, guid: 696f5d4830e4f2747b288089c940144e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 499908425096282708, guid: 696f5d4830e4f2747b288089c940144e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 499908425096282708, guid: 696f5d4830e4f2747b288089c940144e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 499908425096282708, guid: 696f5d4830e4f2747b288089c940144e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 499908425096282708, guid: 696f5d4830e4f2747b288089c940144e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 499908425096282708, guid: 696f5d4830e4f2747b288089c940144e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 499908425096282708, guid: 696f5d4830e4f2747b288089c940144e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 654502943803078507, guid: 696f5d4830e4f2747b288089c940144e, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 654502943803078507, guid: 696f5d4830e4f2747b288089c940144e, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 6e8355d7a7e618e4880582871f5b5097, type: 2}
+    - target: {fileID: 2432430828643547514, guid: 696f5d4830e4f2747b288089c940144e, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504869303653803179, guid: 696f5d4830e4f2747b288089c940144e, type: 3}
+      propertyPath: m_Name
+      value: Way Home Night
+      objectReference: {fileID: 0}
+    - target: {fileID: 6114367951515967630, guid: 696f5d4830e4f2747b288089c940144e, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8025946020057375198, guid: 696f5d4830e4f2747b288089c940144e, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8746794899237698052, guid: 696f5d4830e4f2747b288089c940144e, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 4
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 696f5d4830e4f2747b288089c940144e, type: 3}

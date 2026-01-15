@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.9411765}
+  m_Color: {r: 1, g: 0.9078254, b: 0.60691816, a: 0.9411765}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1055,7 +1055,7 @@ MonoBehaviour:
   nameText: {fileID: 2081720692319258433}
   dialogueText: {fileID: 3941052111685884359}
   currentSentence: 
-  typingSpeed: 0.05
+  typingSpeed: 0.02
   characterImageSlots:
   - {fileID: 5548509288671405552}
   - {fileID: 7662139972406600257}
