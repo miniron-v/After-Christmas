@@ -10,18 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1c24672a27f90a24fb333e3077219294, type: 3}
-  m_Name: 32. Missed Call
+  m_Name: 51. Sushi
   m_EditorClassIdentifier: 
   dialogueID: 0
   prerequisiteCondition: {fileID: 0}
   failSafeDialogue: {fileID: 11400000}
   participants:
   - {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
+  - {fileID: 11400000, guid: 987e42df4611eff46ac4e3e4b8260897, type: 2}
   dialogueLines:
+  - speaker: {fileID: 11400000, guid: 987e42df4611eff46ac4e3e4b8260897, type: 2}
+    sentence: "\uACFC\uC7A5\uB2D8, \uCD08\uBC25 \uC88B\uC544\uD558\uC2DC\uB098\uBD10\uC694?"
   - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
-    sentence: "(\uC804\uD654\uB77C\uB3C4 \uAC78\uC5B4\uBCFC\uAE4C?)"
+    sentence: "\uC544, \uC751. \uB0B4\uAC00 \uC81C\uC77C \uC88B\uC544\uD558\uB294
+      \uAC8C \uCD08\uBC25\uC774\uAC70\uB4E0."
   - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
-    sentence: "\uB3C5\uC77C\uC774 \uC9C0\uAE08... \uC2DC\uAC04\uC774...."
-  - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
-    sentence: "(...\uC9C0\uAE08 \uC2DC\uAC04\uC774\uBA74 \uC790\uACE0 \uC788\uACA0\uB124.
-      \uB2E4\uC74C\uC5D0 \uAC78\uC5B4\uC57C\uACA0\uB2E4.)"
+    sentence: "\uD3C9\uC18C\uC5D0 \uB9C8\uD2B8\uC5D0\uC11C\uB3C4 \uC790\uC8FC \uC0AC\uBA39\uACE0,
+      \uC0DD\uC77C \uB550 \uAC00\uC871\uC774\uB791 \uB2E4\uAC19\uC774 \uCD08\uBC25\uC9D1\uC5D0
+      \uAC14\uC9C0."

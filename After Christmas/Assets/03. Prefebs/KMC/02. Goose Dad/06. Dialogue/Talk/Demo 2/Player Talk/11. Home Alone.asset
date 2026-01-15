@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1c24672a27f90a24fb333e3077219294, type: 3}
-  m_Name: 32. Missed Call
+  m_Name: 11. Home Alone
   m_EditorClassIdentifier: 
   dialogueID: 0
   prerequisiteCondition: {fileID: 0}
@@ -19,9 +19,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
   dialogueLines:
   - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
-    sentence: "(\uC804\uD654\uB77C\uB3C4 \uAC78\uC5B4\uBCFC\uAE4C?)"
+    sentence: "\uB098 \uC654\uC5B4~. \uC9C0\uD604\uC544, \uC544\uBE60\uAC00 \uCE58\uD0A8
+      \uC0AC\uC654\uB2E4!"
   - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
-    sentence: "\uB3C5\uC77C\uC774 \uC9C0\uAE08... \uC2DC\uAC04\uC774...."
-  - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
-    sentence: "(...\uC9C0\uAE08 \uC2DC\uAC04\uC774\uBA74 \uC790\uACE0 \uC788\uACA0\uB124.
-      \uB2E4\uC74C\uC5D0 \uAC78\uC5B4\uC57C\uACA0\uB2E4.)"
+    sentence: "...\uC544. \uC774\uC81C \uC5C6\uC9C0."

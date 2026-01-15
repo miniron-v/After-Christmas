@@ -10,18 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1c24672a27f90a24fb333e3077219294, type: 3}
-  m_Name: 32. Missed Call
+  m_Name: 21. Buy Popcorn
   m_EditorClassIdentifier: 
   dialogueID: 0
   prerequisiteCondition: {fileID: 0}
   failSafeDialogue: {fileID: 11400000}
   participants:
   - {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
+  - {fileID: 11400000, guid: 9058d4f4d69dc3f4ab9ab05f3a7b1440, type: 2}
   dialogueLines:
   - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
-    sentence: "(\uC804\uD654\uB77C\uB3C4 \uAC78\uC5B4\uBCFC\uAE4C?)"
+    sentence: "\uC601\uD654 \uC644\uC804 \uAE30\uB300\uB41C\uB2E4. \uADF8\uCE58?"
   - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
-    sentence: "\uB3C5\uC77C\uC774 \uC9C0\uAE08... \uC2DC\uAC04\uC774...."
+    sentence: "\uAC70\uB300 \uACE0\uB9B4\uB77C\uAC00 \uB098\uC624\uB294 \uC601\uD654\uB77C\uB2C8,
+      \uBD84\uBA85 \uC7AC\uBC0C\uC744 \uAC70\uC57C!"
+  - speaker: {fileID: 11400000, guid: 9058d4f4d69dc3f4ab9ab05f3a7b1440, type: 2}
+    sentence: "\uADF8\uB7EC\uAC8C. \uC7AC\uBC0C\uACA0\uB2E4."
   - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
-    sentence: "(...\uC9C0\uAE08 \uC2DC\uAC04\uC774\uBA74 \uC790\uACE0 \uC788\uACA0\uB124.
-      \uB2E4\uC74C\uC5D0 \uAC78\uC5B4\uC57C\uACA0\uB2E4.)"
+    sentence: "\uAC71\uC815 \uB9C8. \uB0B4\uAC00 \uC0AC\uB294 \uAC70\uB2C8\uAE4C."
+  - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
+    sentence: "...\uC751. \uACE0\uB9C8\uC6CC."

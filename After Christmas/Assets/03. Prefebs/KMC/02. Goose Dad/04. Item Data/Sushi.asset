@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: afd046bbdd483c74f895f5f77149020f, type: 3}
-  m_Name: Password
+  m_Name: Sushi
   m_EditorClassIdentifier: 
-  itemID: 0527
+  itemID: "\uCD08\uBC25"
   icon: {fileID: 21300000, guid: 50e238042a05b4540b96ef3f0c92e8a1, type: 3}
-  description: "\uACB0\uD63C\uAE30\uB150\uC77C\uC774\uC790 \uBE44\uBC00\uBC88\uD638."
+  description: "\uCD08\uBC25."
