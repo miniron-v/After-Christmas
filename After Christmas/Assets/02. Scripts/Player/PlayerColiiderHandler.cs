@@ -28,7 +28,8 @@ public class PlayerColliderHandler : MonoBehaviour
         IGlowable glowable = other.GetComponentInParent<IGlowable>();
         if (glowable != null && !glowables.Contains(glowable))
         {
-            float startDist = Vector3.Distance(transform.position, other.transform.position);
+            Vector3 targetPosition = new Vector3(other.transform.position.x, 0, other.transform.position.z);
+            float startDist = Vector3.Distance(transform.position, targetPosition);
 
             Debug.Log(
                 $"[Glow Enter]\n" +
@@ -100,7 +101,8 @@ public class PlayerColliderHandler : MonoBehaviour
             if (!glowStartDistances.TryGetValue(glowable, out float startDist))
                 continue;
 
-            float currentDist = Vector3.Distance(transform.position, target.position);
+            Vector3 targetPosition = new Vector3(target.position.x, 0, target.position.z);
+            float currentDist = Vector3.Distance(transform.position, targetPosition);
 
             // 트리거 진입 시 거리 기준 정규화
             float t = 1f - (currentDist / startDist);

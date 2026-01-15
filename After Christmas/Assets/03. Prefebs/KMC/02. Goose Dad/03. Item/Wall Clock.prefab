@@ -304,7 +304,7 @@ GameObject:
   - component: {fileID: 1193954119145504368}
   - component: {fileID: 6157469670664687150}
   - component: {fileID: 1562464809771500573}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Wall Clock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
