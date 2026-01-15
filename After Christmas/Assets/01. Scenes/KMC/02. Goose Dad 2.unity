@@ -10677,6 +10677,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1243365462316035039, guid: 061e266628a805d4e945f3d1e47781aa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2172636927802770581, guid: 061e266628a805d4e945f3d1e47781aa, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -10757,12 +10761,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2747210132722779210, guid: 061e266628a805d4e945f3d1e47781aa, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -5527028629639694758, guid: a0aea7ac70024994491f1a9495ed9447, type: 2}
     - target: {fileID: 9134657753228668916, guid: 061e266628a805d4e945f3d1e47781aa, type: 3}
       propertyPath: m_Name
       value: HoldItemUI
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 2158085312220673173, guid: 061e266628a805d4e945f3d1e47781aa, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 061e266628a805d4e945f3d1e47781aa, type: 3}
@@ -13152,6 +13161,10 @@ PrefabInstance:
     - target: {fileID: 1796416859361742475, guid: ff6b9be710eb6bc49aa14386256c1502, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1814523536163760695, guid: ff6b9be710eb6bc49aa14386256c1502, type: 3}
+      propertyPath: m_text
+      value: "\uC544\uC774\uD15C \uC120\uD0DD "
       objectReference: {fileID: 0}
     - target: {fileID: 1880075856582077930, guid: ff6b9be710eb6bc49aa14386256c1502, type: 3}
       propertyPath: m_AnchorMax.y
