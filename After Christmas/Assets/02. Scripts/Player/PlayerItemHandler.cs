@@ -67,11 +67,16 @@ public class PlayerItemHandler : MonoBehaviour
                 );
 
                 linked.isRecorded = true;
+
+                if (itemAcquiredUI != null)
+                {
+                    StartCoroutine(itemAcquiredUI.NoticeItemAcquired(item.itemID));
+                }
             }
         }
     }
 
-
+    [SerializeField] private ItemAcquiredUI itemAcquiredUI;
 
     public bool isHavingItem(string itemID) => ItemInfoManager.Instance.IsHavingItem(itemID);
 

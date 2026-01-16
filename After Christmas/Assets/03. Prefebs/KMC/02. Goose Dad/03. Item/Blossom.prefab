@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3128536165656852742}
   - component: {fileID: 3357312437684938490}
   - component: {fileID: 4329352792236920030}
+  - component: {fileID: 8369272207867147850}
   m_Layer: 0
   m_Name: SakuraTree_E
   m_TagString: Untagged
@@ -87,6 +88,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &8369272207867147850
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4921303303950714085}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 43944573435456032, guid: 9d642dd3a2ff904da90e9417ae5cddec, type: 3}
 --- !u!1 &7903869654126792502
 GameObject:
   m_ObjectHideFlags: 0
@@ -206,7 +229,7 @@ Transform:
   m_GameObject: {fileID: 8520801120394155283}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.6500015, y: 0, z: -0.38999796}
+  m_LocalPosition: {x: 2.6500015, y: 0.1, z: -0.38999796}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
