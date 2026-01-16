@@ -19,7 +19,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
   - {fileID: 11400000, guid: 451b76c89f930db4fb8d72cc3b556d81, type: 2}
   dialogueLines:
-  - speaker: {fileID: 11400000, guid: 9058d4f4d69dc3f4ab9ab05f3a7b1440, type: 2}
+  - speaker: {fileID: 11400000, guid: 451b76c89f930db4fb8d72cc3b556d81, type: 2}
     sentence: "\uC5EC\uAE30 \uBE44\uC2FC \uB370 \uC544\uB0D0?"
   - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
     sentence: "\uC5D0\uC774, \uBCC4\uB85C \uC548 \uBE44\uC2F8. \uAD1C\uCC2E\uC544,

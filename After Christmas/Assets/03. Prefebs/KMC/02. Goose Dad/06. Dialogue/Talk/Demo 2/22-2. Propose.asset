@@ -84,7 +84,7 @@ MonoBehaviour:
       \uB0B4\uAC00 \uBD80\uB2F4\uB420\uAE4C\uBD10 \uAC70\uC808\uD558\uACE0, \uC120\uBB3C\uC744
       \uBC1B\uC544\uB3C4 \uD56D\uC0C1 \uBBF8\uC548\uD574\uC11C, \uAD1C\uD788 \uC2EB\uC740\uC18C\uB9AC\uB9CC
       \uD588\uC5C8\uC9C0."
-  - speaker: {fileID: 11400000, guid: 9058d4f4d69dc3f4ab9ab05f3a7b1440, type: 2}
+  - speaker: {fileID: 11400000, guid: 451b76c89f930db4fb8d72cc3b556d81, type: 2}
     sentence: "\uADF8\uAC74...."
   - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
     sentence: "\uADF8\uCE58\uB9CC, \uB09C \uADF8\uB54C\uB9C8\uB2E4 \uC9C0\uC5B4\uC8FC\uB294
@@ -97,7 +97,7 @@ MonoBehaviour:
   - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
     sentence: "\uADF8\uB550 \uB0B4\uAC00 \uBC14\uBCF4 \uAC19\uC558\uC5B4. \uAF2D
       \uB9D0\uB85C \uD558\uB294 \uAC83\uB9CC\uC774, \uC804\uBD80\uAC00 \uC544\uB2CC\uB370."
-  - speaker: {fileID: 11400000, guid: 9058d4f4d69dc3f4ab9ab05f3a7b1440, type: 2}
+  - speaker: {fileID: 11400000, guid: 451b76c89f930db4fb8d72cc3b556d81, type: 2}
     sentence: ....
   - speaker: {fileID: 11400000, guid: 9ab2da8d8a102d544b3cd1b4f3e4b2c4, type: 2}
     sentence: "\uC790\uAE30 \uB9D0\uC774 \uB9DE\uC544. \uB09C \uC560\uC815 \uD45C\uD604\uB3C4

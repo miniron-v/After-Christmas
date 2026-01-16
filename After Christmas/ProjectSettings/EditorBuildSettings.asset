@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/01. Scenes/KMC/02. Goose Dad 2.unity
+    guid: 6bbee1cd4edc2c44eb6b081419ce4a32
+  - enabled: 0
     path: Assets/01. Scenes/KMC/02. Goose Dad.unity
     guid: 176a838d80248bb4d83e1156e4ea0bc6
   - enabled: 0

@@ -25,7 +25,7 @@ MonoBehaviour:
     sentence: "\uC751. \uBE68\uB9AC \uC654\uB124?"
   - speaker: {fileID: 11400000, guid: 451b76c89f930db4fb8d72cc3b556d81, type: 2}
     sentence: "\uC5BC\uB9C8 \uC548 \uB410\uC5B4."
-  - speaker: {fileID: 11400000, guid: 451b76c89f930db4fb8d72cc3b556d81, type: 2}
+  - speaker: {fileID: 0}
     sentence: "\uC774\uC9C0\uD61C\uB294 \uB2A5\uC219\uD558\uAC8C \uAC00\uBC29\uC744
       \uCE58\uC6CC\uC8FC\uACE0, \uC815\uD6C8\uC740 \uCC3D\uAC00 \uCABD \uC790\uB9AC\uC5D0
       \uC549\uB294\uB2E4."
