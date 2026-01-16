@@ -64,6 +64,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: Way Home Night
       objectReference: {fileID: 0}
+    - target: {fileID: 4940309474133677011, guid: 696f5d4830e4f2747b288089c940144e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4940309474133677011, guid: 696f5d4830e4f2747b288089c940144e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4940309474133677011, guid: 696f5d4830e4f2747b288089c940144e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.00000008742278
+      objectReference: {fileID: 0}
+    - target: {fileID: 4940309474133677011, guid: 696f5d4830e4f2747b288089c940144e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4940309474133677011, guid: 696f5d4830e4f2747b288089c940144e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4940309474133677011, guid: 696f5d4830e4f2747b288089c940144e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 180
+      objectReference: {fileID: 0}
     - target: {fileID: 6114367951515967630, guid: 696f5d4830e4f2747b288089c940144e, type: 3}
       propertyPath: m_RenderingLayerMask
       value: 4
