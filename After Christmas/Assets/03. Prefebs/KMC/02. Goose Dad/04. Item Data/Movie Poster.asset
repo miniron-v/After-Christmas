@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Movie Poster
   m_EditorClassIdentifier: 
   itemID: "\uC601\uD654 \uD3EC\uC2A4\uD130"
-  icon: {fileID: 1395503472, guid: 24893904860bacb40be21b9c2af7f8ce, type: 3}
+  icon: {fileID: 21300000, guid: 46bb8b3160ec01c4db6d3f83ed9166fd, type: 3}
   description: "\uC601\uD654 \uD3EC\uC2A4\uD130\uB2E4. \uAC70\uB300\uD55C \uACE0\uB9B4\uB77C\uAC00
     \uADF8\uB824\uC838 \uC788\uB2E4. "

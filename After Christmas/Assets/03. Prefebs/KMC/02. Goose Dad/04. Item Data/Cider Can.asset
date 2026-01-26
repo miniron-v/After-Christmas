@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Cider Can
   m_EditorClassIdentifier: 
   itemID: "\uCE94 \uC74C\uB8CC"
-  icon: {fileID: 21300000, guid: 50e238042a05b4540b96ef3f0c92e8a1, type: 3}
-  description: "\uBCC4\uC774 7\uAC1C \uADF8\uB824\uC9C4 \uCD08\uB85D \uC74C\uB8CC\uC218\uB2E4."
+  icon: {fileID: 21300000, guid: d64e0004c95d19c418d05e4f4b3f2f6e, type: 3}
+  description: "\uC2DC\uAEBC\uBA3C \uC0C9\uAE54\uC758 \uBE68\uAC04 \uCE94 \uC74C\uB8CC\uC218\uB2E4."

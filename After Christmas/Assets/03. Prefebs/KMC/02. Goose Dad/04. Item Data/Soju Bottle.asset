@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Soju Bottle
   m_EditorClassIdentifier: 
   itemID: "\uC18C\uC8FC\uBCD1"
-  icon: {fileID: 21300000, guid: 50e238042a05b4540b96ef3f0c92e8a1, type: 3}
+  icon: {fileID: 21300000, guid: 5d23d155a966cf8418d99d7d65ba0515, type: 3}
   description: "\uC18C\uC8FC\uAC00 \uB4E4\uC5B4 \uC788\uB294 \uBCD1\uC774\uB2E4.
     \uC5B4\uB978\uB4E4\uC5D0\uAC8C \uC775\uC219\uD55C \uCD08\uB85D\uC0C9\uC744 \uB744\uACE0
     \uC788\uB2E4. "

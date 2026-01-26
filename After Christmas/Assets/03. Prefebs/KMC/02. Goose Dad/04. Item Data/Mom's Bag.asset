@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Mom's Bag
   m_EditorClassIdentifier: 
   itemID: "\uC774\uC9C0\uD61C\uC758 \uAC00\uBC29"
-  icon: {fileID: 21300000, guid: 50e238042a05b4540b96ef3f0c92e8a1, type: 3}
+  icon: {fileID: 21300000, guid: a330d7d5745dffb45b37dc83f48d7444, type: 3}
   description: "\uC774\uC9C0\uD61C\uAC00 \uB4E4\uACE0 \uB2E4\uB2C8\uB358 \uAC00\uBC29\uC774\uB2E4."

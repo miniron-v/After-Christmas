@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Coat
   m_EditorClassIdentifier: 
   itemID: "\uCF54\uD2B8"
-  icon: {fileID: 21300000, guid: 9a719de5f7a40264480c3484696d3d81, type: 3}
+  icon: {fileID: 21300000, guid: 50dc35ebaa99a854986540d2236cfd83, type: 3}
   description: "\uBA4B\uC9C4 \uB514\uC790\uC778\uC758 \uCF54\uD2B8\uB2E4. "

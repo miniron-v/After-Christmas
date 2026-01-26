@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Wall Clock
   m_EditorClassIdentifier: 
   itemID: "\uBCBD\uC2DC\uACC4"
-  icon: {fileID: 21300000, guid: 50e238042a05b4540b96ef3f0c92e8a1, type: 3}
+  icon: {fileID: 21300000, guid: ec73e87d0eb93f841968a3b5cf932e73, type: 3}
   description: "\uC2DC\uAC04\uC744 \uC54C\uB824\uC8FC\uB294 \uACE0\uB9C8\uC6B4 \uC2DC\uACC4\uB2E4. "

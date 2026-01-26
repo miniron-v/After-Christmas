@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Blossom
   m_EditorClassIdentifier: 
   itemID: "\uBC9A\uAF43\uB098\uBB34"
-  icon: {fileID: 21300000, guid: 50e238042a05b4540b96ef3f0c92e8a1, type: 3}
+  icon: {fileID: 21300000, guid: 60437960fe8b9da4fb07906f4faa496b, type: 3}
   description: "\uBC9A\uAF43\uC774 \uD53C\uB294 \uB098\uBB34\uB2E4."
