@@ -1,9 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEditor;
+using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
+using UnityEngine.SceneManagement;
 
 [Serializable]
 public class MapRecord
@@ -158,8 +160,11 @@ public class MapInfoManager : MonoBehaviour
         // 시네마틱 및 대화 실행
         if (mapObj.cinematicController != null)
         {
+            LerpSaturation(0f, saturationDuration);
             mapObj.cinematicController.StartCutscene(() =>
             {
+                LerpSaturation(-75f, saturationDuration);
+
                 if (mapObj.arrivalDialogue != null)
                     StartCoroutine(DialogueManager.Instance.StartDialogue(mapObj.arrivalDialogue));
             });
@@ -249,4 +254,38 @@ public class MapInfoManager : MonoBehaviour
         return visitedList;
     }
 
+    // 기억 채도 조절
+    [SerializeField] private Volume volume;
+    [SerializeField] private float saturationDuration = 0.5f;
+
+    public void LerpSaturation(float target, float duration)
+    {
+        StartCoroutine(LerpRoutine(target, duration));
+    }
+
+    IEnumerator LerpRoutine(float target, float duration)
+    {
+        ColorAdjustments colorAdjustments;
+
+        if (volume.profile.TryGet(out colorAdjustments) == false)
+        {
+            yield break;
+        }
+
+        float start = colorAdjustments.saturation.value;
+        float time = 0f;
+
+        while (time < duration)
+        {
+            time += Time.deltaTime;
+            float t = time / duration;
+
+            colorAdjustments.saturation.value =
+                Mathf.Lerp(start, target, t);
+
+            yield return null;
+        }
+
+        colorAdjustments.saturation.value = target;
+    }
 }
