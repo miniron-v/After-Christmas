@@ -27,7 +27,7 @@ public class IsometricMover : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!PlayerStateManager.Instance.IsPlayerControllable())
+        if (!GameStateManager.Instance.IsPlayerControllable())
         {
             rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, 0);
             return;

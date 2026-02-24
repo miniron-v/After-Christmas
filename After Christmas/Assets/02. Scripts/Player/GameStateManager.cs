@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public enum PlayerState
+public enum GameState
 {
     // 제한 X
     Play,
@@ -18,12 +18,12 @@ public enum PlayerState
     Paused
 }
 
-public class PlayerStateManager : MonoBehaviour
+public class GameStateManager : MonoBehaviour
 {
-    public static PlayerStateManager Instance { get; private set; }
+    public static GameStateManager Instance { get; private set; }
 
-    public PlayerState currentState { get; private set; } = PlayerState.Play;
-    public PlayerState prevState { get; private set; }
+    public GameState currentState { get; private set; } = GameState.Play;
+    public GameState prevState { get; private set; }
 
     private void Awake()
     {
@@ -31,7 +31,7 @@ public class PlayerStateManager : MonoBehaviour
     }
 
     // 일반 상태 변경 (Play, MiniMap 등)
-    public void SetState(PlayerState newState)
+    public void SetState(GameState newState)
     {
         if (currentState == newState) return;
         currentState = newState;
@@ -39,7 +39,7 @@ public class PlayerStateManager : MonoBehaviour
     }
 
     // UI / Dialogue / Cinematic 들어갈 때
-    public void EnterOverlayState(PlayerState overlayState)
+    public void EnterOverlayState(GameState overlayState)
     {
         prevState = currentState;
         SetState(overlayState);
@@ -53,7 +53,7 @@ public class PlayerStateManager : MonoBehaviour
 
     public bool IsPlayerControllable()
     {
-        return currentState == PlayerState.Play;
+        return currentState == GameState.Play;
     }
 }
 

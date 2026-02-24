@@ -55,7 +55,7 @@ public class NewInventoryUI : MonoBehaviour
         handler = h;
         gameObject.SetActive(true);
 
-        PlayerStateManager.Instance.EnterOverlayState(PlayerState.UIOpen);
+        GameStateManager.Instance.EnterOverlayState(GameState.UIOpen);
         BuildPatientList();
 
         string sceneName = SceneManager.GetActiveScene().name;
@@ -101,7 +101,7 @@ public class NewInventoryUI : MonoBehaviour
             tabletScreenCanvasGroup.alpha = 1f;                 // 초기화
             handler = null;
             UIModalGate.Release(this);
-            PlayerStateManager.Instance.ExitOverlayState();
+            GameStateManager.Instance.ExitOverlayState();
             isAnimating = false;
         });
     }

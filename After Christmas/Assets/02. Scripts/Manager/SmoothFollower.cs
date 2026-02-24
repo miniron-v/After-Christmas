@@ -24,7 +24,7 @@ public class SmoothFollower : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (PlayerStateManager.Instance.currentState == PlayerState.MiniMap) { return; }
+        if (GameStateManager.Instance.currentState == GameState.MiniMap) { return; }
 
         FollowTarget();
     }

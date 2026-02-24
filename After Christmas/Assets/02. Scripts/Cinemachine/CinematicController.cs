@@ -39,7 +39,7 @@ public class CinematicController : MonoBehaviour
         OnStart?.Invoke();
 
         // 1. 시네마틱 시작 시 플레이어 상태 CINEMATIC으로 전환
-        PlayerStateManager.Instance?.SetState(PlayerState.Cinematic);
+        GameStateManager.Instance?.SetState(GameState.Cinematic);
 
         if (runningCutscene == null)
         {
@@ -47,7 +47,7 @@ public class CinematicController : MonoBehaviour
             runningCutscene = StartCoroutine(RunCutsceneSequence(() =>
             {
                 // 2. 시네마틱 종료 시 플레이어 상태 PLAY로 전환
-                PlayerStateManager.Instance?.SetState(PlayerState.Play);
+                GameStateManager.Instance?.SetState(GameState.Play);
                 OnEnd?.Invoke();
                 // 기존 외부 콜백이 있으면 실행
                 onCutsceneEnd?.Invoke();

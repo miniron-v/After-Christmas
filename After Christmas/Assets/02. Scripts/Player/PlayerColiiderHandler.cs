@@ -80,7 +80,7 @@ public class PlayerColliderHandler : MonoBehaviour
         }
 
         lastPosition = transform.position;
-        if (!PlayerStateManager.Instance.IsPlayerControllable())
+        if (!GameStateManager.Instance.IsPlayerControllable())
             return;
 
         UpdateGlowAmounts();
@@ -136,7 +136,7 @@ public class PlayerColliderHandler : MonoBehaviour
         if (closest != null)
         {
             IInteractable interactable = closest.GetComponent<IInteractable>();
-            if (interactable != null && PlayerStateManager.Instance.IsPlayerControllable())
+            if (interactable != null && GameStateManager.Instance.IsPlayerControllable())
             {
                 interactable.Interact(gameObject);
             }
