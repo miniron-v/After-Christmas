@@ -1,0 +1,14 @@
+﻿<Solution>
+  <Project Path="MoreMountains.Tools.csproj" />
+  <Project Path="AllIn13DShaderAssemebly.Editor.csproj" />
+  <Project Path="Assembly-CSharp.csproj" />
+  <Project Path="Lofelt.NiceVibrations.csproj" />
+  <Project Path="MoreMountains.Tools.Editor.csproj" />
+  <Project Path="AllIn13DShaderDemoScriptsAssembly.csproj" />
+  <Project Path="AllIn1SpriteShaderAssembly.csproj" />
+  <Project Path="Lofelt.NiceVibrations.Demo.csproj" />
+  <Project Path="Assembly-CSharp-firstpass.csproj" />
+  <Project Path="Assembly-CSharp-Editor.csproj" />
+  <Project Path="AllIn13DShaderAssemebly.csproj" />
+  <Project Path="Lofelt.NiceVibrations.Editor.csproj" />
+</Solution>
