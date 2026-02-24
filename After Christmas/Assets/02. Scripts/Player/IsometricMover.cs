@@ -63,7 +63,7 @@ public class IsometricMover : MonoBehaviour
         transform.rotation = Quaternion.Slerp(
             transform.rotation,
             targetRotation,
-            rotationSpeed * Time.deltaTime
+            rotationSpeed * Time.fixedDeltaTime
         );
     }
 }
