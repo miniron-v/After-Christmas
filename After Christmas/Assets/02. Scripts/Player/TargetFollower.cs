@@ -46,23 +46,23 @@ public class TargetFollower : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector3 toPlayerFlat = target.position - rb.position;
-        toPlayerFlat.y = 0f;
+        Vector3 toTargetFlat = target.position - rb.position;
+        toTargetFlat.y = 0f;
 
-        float distance = UpdateDistance(toPlayerFlat);
+        float distance = UpdateDistance(toTargetFlat);
 
-        Follow(toPlayerFlat, distance);
-        Rotate(toPlayerFlat);
+        Follow(toTargetFlat, distance);
+        Rotate(toTargetFlat);
     }
 
-    private float UpdateDistance(Vector3 toPlayerFlat)
+    private float UpdateDistance(Vector3 toTargetFlat)
     {
-        float distSqr = toPlayerFlat.sqrMagnitude;
+        float distSqr = toTargetFlat.sqrMagnitude;
         if (distSqr <= EpsilonSqr)
             return 0f;
 
         float distance = Mathf.Sqrt(distSqr);
-        Vector3 dir = toPlayerFlat / distance;
+        Vector3 dir = toTargetFlat / distance;
         offset = -dir * minDistance;
 
         return distance;
@@ -96,11 +96,11 @@ public class TargetFollower : MonoBehaviour
         rb.linearVelocity = desiredVel;
     }
 
-    private void Rotate(Vector3 toPlayerFlat)
+    private void Rotate(Vector3 toTargetFlat)
     {
-        if (toPlayerFlat.sqrMagnitude <= EpsilonSqr) return;
+        if (toTargetFlat.sqrMagnitude <= EpsilonSqr) return;
 
-        Quaternion targetRot = Quaternion.LookRotation(toPlayerFlat.normalized, Vector3.up);
+        Quaternion targetRot = Quaternion.LookRotation(toTargetFlat.normalized, Vector3.up);
 
         Quaternion newRot = Quaternion.Slerp(
             rb.rotation,
