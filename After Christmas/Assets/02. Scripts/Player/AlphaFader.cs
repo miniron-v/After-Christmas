@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class PlayerAlphaFader : MonoBehaviour
+public class AlphaFader : MonoBehaviour
 {
     
     private string transparencyProp = "_Tweak_transparency";

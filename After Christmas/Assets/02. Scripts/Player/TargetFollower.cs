@@ -17,6 +17,9 @@ public class TargetFollower : MonoBehaviour
     [Header("거리 버퍼(떨림 방지)")]
     [SerializeField] private float stopBuffer = 0.1f;
 
+    [Header("따라가기 속도 최대치")]
+    [SerializeField] private float maxFollowSpeed = 6f;
+
     private Rigidbody rb;
     private Vector3 smoothDampVelocity = Vector3.zero;
 
@@ -83,13 +86,13 @@ public class TargetFollower : MonoBehaviour
             rb.position,
             targetPos,
             ref smoothDampVelocity,
-            smoothTime
+            smoothTime,
+            maxFollowSpeed,
+            Time.fixedDeltaTime
         );
 
-        Vector3 delta = newPos - rb.position;
-        Vector3 desiredVel = delta / Time.fixedDeltaTime;
+        Vector3 desiredVel = (newPos - rb.position) / Time.fixedDeltaTime;
         desiredVel.y = rb.linearVelocity.y;
-
         rb.linearVelocity = desiredVel;
     }
 
