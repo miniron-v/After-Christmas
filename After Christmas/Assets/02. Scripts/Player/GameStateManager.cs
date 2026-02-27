@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 public enum GameState
 {
@@ -25,6 +27,17 @@ public class GameStateManager : MonoBehaviour
     public GameState currentState { get; private set; } = GameState.Play;
     public GameState prevState { get; private set; }
 
+    [Serializable]
+    public class GameStateChangedUnityEvent : UnityEvent<GameState, GameState> { }
+
+    [Header("Events")]
+    // 모든 상태 변경 시 호출
+    [SerializeField] private GameStateChangedUnityEvent onStateChanged;
+    // 미니맵 진입 시 호출
+    [SerializeField] private UnityEvent onEnterMiniMap;
+    // 미니맵 이탈 시 호출
+    [SerializeField] private UnityEvent onExitMiniMap;
+
     private void Awake()
     {
         Instance = this;
@@ -34,7 +47,14 @@ public class GameStateManager : MonoBehaviour
     public void SetState(GameState newState)
     {
         if (currentState == newState) return;
+
+        var old = currentState;
         currentState = newState;
+
+        onStateChanged?.Invoke(old, newState);
+
+        if (old != GameState.MiniMap && newState == GameState.MiniMap) { onEnterMiniMap?.Invoke(); }
+        if (old == GameState.MiniMap && newState != GameState.MiniMap) { onExitMiniMap?.Invoke(); }
         Debug.Log($"<color=red>{currentState}</color>");
     }
 

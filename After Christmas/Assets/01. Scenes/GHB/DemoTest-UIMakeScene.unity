@@ -1041,6 +1041,83 @@ PrefabInstance:
       addedObject: {fileID: 820284629}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad5acee826c5e3e4193ee726e3d27c0f, type: 3}
+--- !u!1 &85773998
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 85774000}
+  - component: {fileID: 85773999}
+  m_Layer: 0
+  m_Name: GameStateManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &85773999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 85773998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a443ab3d9e6a475499e0c8a7a6ef4e2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  onEnterMiniMap:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 705671299}
+        m_TargetAssemblyTypeName: SmoothFollower, Assembly-CSharp
+        m_MethodName: StopFollow
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onExitMiniMap:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 705671299}
+        m_TargetAssemblyTypeName: SmoothFollower, Assembly-CSharp
+        m_MethodName: StartFollow
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!4 &85774000
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 85773998}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -23.99287, y: 0, z: 103.54251}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &107729156 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9078641536990461099, guid: ad5acee826c5e3e4193ee726e3d27c0f, type: 3}
@@ -3958,6 +4035,17 @@ Camera:
   m_CorrespondingSourceObject: {fileID: 7630155353218581767, guid: 33698ffef21551c49be980bfc9df4919, type: 3}
   m_PrefabInstance: {fileID: 705671297}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &705671299 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1072197628852335272, guid: 33698ffef21551c49be980bfc9df4919, type: 3}
+  m_PrefabInstance: {fileID: 705671297}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0d7c8068f29ee24db67d2b530c325c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SmoothFollower
 --- !u!4 &707915818 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 86547782c0ca55f4098b1185db372acc, type: 3}
@@ -10998,7 +11086,8 @@ PrefabInstance:
       propertyPath: inventoryUI
       value: 
       objectReference: {fileID: 1317593300}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3274375634087622306, guid: e59c27b2c25d61143b8145d138c3ffa8, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -11244,3 +11333,4 @@ SceneRoots:
   - {fileID: 3329102163333965222}
   - {fileID: 140045278}
   - {fileID: 767154165}
+  - {fileID: 85774000}

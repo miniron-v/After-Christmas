@@ -11,12 +11,13 @@ public class SmoothFollower : MonoBehaviour
     [SerializeField] private Vector3 cameraOffset;
 
     private Vector3 currentVelocity = Vector3.zero;
+    private bool isFollowing = true;
 
     private void Awake()
     {
         if (!target)
         {
-            Debug.LogError("CameraFollow: target이 설정되지 않았습니다.");
+            Debug.LogError("SmoothFollower: target이 설정되지 않았습니다.");
             enabled = false;
             return;
         }
@@ -24,9 +25,19 @@ public class SmoothFollower : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (GameStateManager.Instance.currentState == GameState.MiniMap) { return; }
-
+        if (!isFollowing) return;
         FollowTarget();
+    }
+
+    public void StartFollow()
+    {
+        isFollowing = true;
+    }
+
+    public void StopFollow()
+    {
+        isFollowing = false;
+        currentVelocity = Vector3.zero; // 잔떨림방지
     }
 
     private void FollowTarget()
