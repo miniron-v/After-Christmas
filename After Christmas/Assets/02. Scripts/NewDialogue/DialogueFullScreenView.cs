@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DialogueUI : MonoBehaviour, IDialogueView
+public class DialogueFullScreenView : MonoBehaviour, IDialogueView
 {
     [Header("UI")]
     [SerializeField] private GameObject root;
