@@ -22,18 +22,6 @@ public class AlphaFader : MonoBehaviour
         Init();
     }
 
-    private void OnEnable()
-    {
-        CinematicController.OnStart += SetTransparentInstant;
-        CinematicController.OnEnd += SetOpaqueGradual;
-    }
-
-    private void OnDisable()
-    {
-        CinematicController.OnStart -= SetTransparentInstant;
-        CinematicController.OnEnd -= SetOpaqueGradual;
-    }
-
     public void CacheRenderers()
     {
         renderers.Clear();

@@ -3,12 +3,12 @@ using UnityEngine.Playables;
 using System.Collections.Generic;
 using System.Collections;
 using System;
+using UnityEngine.Events;
 
 public class CinematicController : MonoBehaviour
 {
-
-    public static Action OnStart;
-    public static Action OnEnd;
+    public UnityEvent onCinematicStart;
+    public UnityEvent onCinematicEnd;
 
     public List<CutsceneEvent> cutsceneEventList;
 
@@ -35,21 +35,16 @@ public class CinematicController : MonoBehaviour
 
     public void StartCutscene(Action onCutsceneEnd = null)
     {
-        Debug.Log("시네마틱 시작됨");
-        OnStart?.Invoke();
+        onCinematicStart?.Invoke();
 
-        // 1. 시네마틱 시작 시 플레이어 상태 CINEMATIC으로 전환
         GameStateManager.Instance?.SetState(GameState.Cinematic);
 
         if (runningCutscene == null)
         {
-            // RunCutsceneSequence 호출, 끝나면 PLAY로 전환
             runningCutscene = StartCoroutine(RunCutsceneSequence(() =>
             {
-                // 2. 시네마틱 종료 시 플레이어 상태 PLAY로 전환
                 GameStateManager.Instance?.SetState(GameState.Play);
-                OnEnd?.Invoke();
-                // 기존 외부 콜백이 있으면 실행
+                onCinematicEnd?.Invoke(); 
                 onCutsceneEnd?.Invoke();
             }));
         }
