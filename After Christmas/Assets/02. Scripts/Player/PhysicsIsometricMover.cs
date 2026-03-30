@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody))]
-public class IsometricMover : MonoBehaviour
+public class PhysicsIsometricMover : MonoBehaviour
 {
     [Header("Player Movement")]
     [SerializeField] private float moveSpeed = 5f;
