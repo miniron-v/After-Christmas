@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,7 +6,6 @@ public class PlayerColliderHandler : MonoBehaviour
     [SerializeField] private LayerMask itemLayerMask;
     [SerializeField] private float interactRange = 2f;
     [SerializeField] private BoxCollider glowTrigger;
-    private GameObject player;
 
     // 트리거 안에 들어온 Glowable 관리
     private readonly List<IGlowable> glowables = new();
@@ -16,6 +14,8 @@ public class PlayerColliderHandler : MonoBehaviour
 
     private Vector3 lastPosition;
     [SerializeField] private float teleportThreshold = 5f;
+
+    private bool canInteract = true;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -60,6 +60,11 @@ public class PlayerColliderHandler : MonoBehaviour
         }
     }
 
+    public void OnGameStateChanged(GameState oldState, GameState newState)
+    {
+        canInteract = (newState == GameState.Play);
+    }
+
     private void ResetGlowables()
     {
         foreach (var glowable in glowables)
@@ -73,15 +78,17 @@ public class PlayerColliderHandler : MonoBehaviour
 
     private void Update()
     {
-
         if (Vector3.Distance(transform.position, lastPosition) > teleportThreshold)
         {
             ResetGlowables();
         }
 
         lastPosition = transform.position;
-        if (!PlayerStateManager.Instance.IsPlayerControllable())
+
+        if (!canInteract)
+        {   
             return;
+        }
 
         UpdateGlowAmounts();
 
@@ -136,7 +143,7 @@ public class PlayerColliderHandler : MonoBehaviour
         if (closest != null)
         {
             IInteractable interactable = closest.GetComponent<IInteractable>();
-            if (interactable != null && PlayerStateManager.Instance.IsPlayerControllable())
+            if (interactable != null)
             {
                 interactable.Interact(gameObject);
             }

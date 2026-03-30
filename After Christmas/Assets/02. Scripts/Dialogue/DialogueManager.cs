@@ -101,7 +101,7 @@ public class DialogueManager : MonoBehaviour
         dialogueCanvas.SetActive(true);
 
         // 대화 시작 시 플레이어 상태 DIALOGUE로 전환
-        PlayerStateManager.Instance?.SetState(PlayerState.Dialogue);
+        GameStateManager.Instance?.SetState(GameState.Dialogue);
 
         dialogueQueue.Clear();
         characterImageMap.Clear();
@@ -306,7 +306,7 @@ public class DialogueManager : MonoBehaviour
         characterImageMap.Clear();
 
         // 대화 종료 시 플레이어 상태 PLAY로 전환
-        PlayerStateManager.Instance?.SetState(PlayerState.Play);
+        GameStateManager.Instance?.SetState(GameState.Play);
     }
 
     public bool IsDialogueActive()

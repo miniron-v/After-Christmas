@@ -212,7 +212,7 @@ public class Item : MonoBehaviour, IInteractable, IGlowable
 
     private IEnumerator TeleportByItemRoutine(GameObject player, Item target)
     {
-        PlayerStateManager.Instance.SetState(PlayerState.Fading);
+        GameStateManager.Instance.SetState(GameState.Fading);
         Map currentMap = GetComponentInParent<Map>(true);
         Map targetMap = target.GetComponentInParent<Map>(true);
         // 페이드 아웃
