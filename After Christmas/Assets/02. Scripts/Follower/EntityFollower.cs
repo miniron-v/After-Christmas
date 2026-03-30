@@ -1,15 +1,10 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class TargetFollower : MonoBehaviour
+public class EntityFollower : BaseFollower
 {
-    [SerializeField] private Transform target;
-
     [Header("유지 최소거리")]
     [SerializeField] private float minDistance = 2f;
-
-    [Header("부드러움(SmoothDamp)")]
-    [SerializeField] private float smoothTime = 0.15f;
 
     [Header("회전")]
     [SerializeField] private float rotationSpeed = 8f;
@@ -21,9 +16,7 @@ public class TargetFollower : MonoBehaviour
     [SerializeField] private float maxFollowSpeed = 6f;
 
     private Rigidbody rb;
-    private Vector3 smoothDampVelocity = Vector3.zero;
-
-    // 텔레포트 상대 위치 유지용
+    
     private Vector3 offset;
 
     private const float EpsilonSqr = 0.0001f * 0.0001f;
@@ -44,7 +37,7 @@ public class TargetFollower : MonoBehaviour
         TeleportEventManager.OnTeleport -= TeleportFollower;
     }
 
-    private void FixedUpdate()
+    protected override void FollowLogic()
     {
         Vector3 toTargetFlat = target.position - rb.position;
         toTargetFlat.y = 0f;
@@ -85,7 +78,7 @@ public class TargetFollower : MonoBehaviour
         Vector3 newPos = Vector3.SmoothDamp(
             rb.position,
             targetPos,
-            ref smoothDampVelocity,
+            ref currentVelocity, 
             smoothTime,
             maxFollowSpeed,
             Time.fixedDeltaTime
@@ -115,7 +108,7 @@ public class TargetFollower : MonoBehaviour
     {
         rb.position = target.position + offset;
 
-        smoothDampVelocity = Vector3.zero;
+        currentVelocity = Vector3.zero;
 
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
