@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class EntityFollower : BaseFollower
+public class PhysicsEntityFollower : BaseFollower
 {
     [Header("유지 최소거리")]
     [SerializeField] private float minDistance = 2f;
