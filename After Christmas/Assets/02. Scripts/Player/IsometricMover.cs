@@ -14,6 +14,7 @@ public class IsometricMover : MonoBehaviour
     private Rigidbody rb;
     private readonly Vector3 isoForward = new Vector3(1, 0, 1).normalized;
     private readonly Vector3 isoRight = new Vector3(1, 0, -1).normalized;
+    private bool canMove = true;
 
     private void Awake()
     {
@@ -25,9 +26,14 @@ public class IsometricMover : MonoBehaviour
         moveInput = value.Get<Vector2>();
     }
 
+    public void OnGameStateChanged(GameState oldState, GameState newState)
+    {
+        canMove = newState == GameState.Play;
+    }
+
     void FixedUpdate()
     {
-        if (!GameStateManager.Instance.IsPlayerControllable())
+        if (!canMove)
         {
             rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, 0);
             return;

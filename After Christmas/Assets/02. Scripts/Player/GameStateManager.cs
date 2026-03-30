@@ -53,6 +53,7 @@ public class GameStateManager : MonoBehaviour
 
         onStateChanged?.Invoke(old, newState);
 
+        // TODO : 미니맵 관련 작업 시에 미니맵 매니저 쪽으로 판단권한까지 위임해서 이쪽에서는 순수하게 이벤트만 발송하도록 수정.
         if (old != GameState.MiniMap && newState == GameState.MiniMap) { onEnterMiniMap?.Invoke(); }
         if (old == GameState.MiniMap && newState != GameState.MiniMap) { onExitMiniMap?.Invoke(); }
         Debug.Log($"<color=red>{currentState}</color>");
@@ -69,11 +70,6 @@ public class GameStateManager : MonoBehaviour
     public void ExitOverlayState()
     {
         SetState(prevState);
-    }
-
-    public bool IsPlayerControllable()
-    {
-        return currentState == GameState.Play;
     }
 }
 
