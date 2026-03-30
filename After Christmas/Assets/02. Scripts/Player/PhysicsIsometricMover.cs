@@ -39,9 +39,14 @@ public class PhysicsIsometricMover : MonoBehaviour
             return;
         }
 
+        // 방향 계산
         Vector3 moveDir = CalculateMoveDir(moveInput);
-        ApplyMovement(moveDir);
-        ApplyRotation(moveDir);
+        
+        // 방향과 속도를 곱해 실제 이동 속도 계산
+        Vector3 desiredVelocity = moveDir * moveSpeed;
+
+        ApplyMovement(desiredVelocity); // 이동에는 속도 전달
+        ApplyRotation(moveDir);         // 회전에는 방향 전달
     }
 
     private Vector3 CalculateMoveDir(Vector2 input)
@@ -54,10 +59,9 @@ public class PhysicsIsometricMover : MonoBehaviour
         return dir;
     }
 
-    private void ApplyMovement(Vector3 moveDir)
+    private void ApplyMovement(Vector3 velocity)
     {
-        Vector3 v = moveDir * moveSpeed;
-        rb.linearVelocity = new Vector3(v.x, rb.linearVelocity.y, v.z);
+        rb.linearVelocity = new Vector3(velocity.x, rb.linearVelocity.y, velocity.z);
     }
 
     private void ApplyRotation(Vector3 moveDir)
