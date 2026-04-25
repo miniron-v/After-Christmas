@@ -12,14 +12,14 @@ public class DialoguePresenter
         _model = model;
     }
 
-    private void OnEnable()
+    public void OnEnable()
     {
-        Debug.Log("Presenter: 적절한 로그");
+        Debug.Log("Presenter: 이벤트 연결 완료");
         _view._onClicked += _model.LoadNextSentence;
         _model._onLoadedNextSentence += _view.ShowNextSentence;
     }
 
-    private void OnDisable()
+    public void OnDisable()
     {
         _view._onClicked -= _model.LoadNextSentence;
         _model._onLoadedNextSentence -= _view.ShowNextSentence;

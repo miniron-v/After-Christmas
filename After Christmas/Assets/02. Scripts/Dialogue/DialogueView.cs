@@ -7,12 +7,12 @@ public class DialogueView : MonoBehaviour
 
     public void OnClick()
     {
-        Debug.Log("View: 클릭됨");
+        Debug.Log($"View({gameObject.name}): 클릭됨");
         _onClicked?.Invoke();
     }
 
     public void ShowNextSentence()
     {
-        Debug.Log("View: 다음 문장 보여주기");
+        Debug.Log($"View({gameObject.name}): 다음 문장 보여주기");
     }
 }
