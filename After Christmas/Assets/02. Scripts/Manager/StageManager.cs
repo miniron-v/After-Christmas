@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class StageManager : MonoBehaviour
@@ -8,13 +9,13 @@ public class StageManager : MonoBehaviour
     public TransitionSettings clearTransitionSettings; // 스테이지 전용 전환 설정, 인스펙터에서 설정 가능
 
     // 스테이지 클리어 시 진행할 대화
-    private DialogueTrigger dialogueTrigger;
+    private DialoguePresenter dialogueTrigger;
     
     private int currentInteractionCount = 0;
 
     private void Awake()
     {
-        dialogueTrigger = GetComponent<DialogueTrigger>();
+        dialogueTrigger = GetComponent<DialoguePresenter>();
     }
 
     private void OnEnable()
@@ -49,7 +50,8 @@ public class StageManager : MonoBehaviour
             cinematic.StartCutscene(() =>
             {
                 if (dialogueTrigger != null)
-                    dialogueTrigger.StartDialogueSequence(StageClear);
+                    Debug.Log("dialogue: start stage clear dialogue");
+                // dialogueTrigger.StartDialogueSequence(StageClear);
                 else
                     StageClear();
             });
@@ -57,7 +59,8 @@ public class StageManager : MonoBehaviour
         else
         {
             if (dialogueTrigger != null)
-                dialogueTrigger.StartDialogueSequence(StageClear);
+                Debug.Log("diagloue: start stage clera dialogue");
+            // dialogueTrigger.StartDialogueSequence(StageClear);
             else
                 StageClear();
         }

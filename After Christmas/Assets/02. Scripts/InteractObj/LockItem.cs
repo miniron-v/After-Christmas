@@ -11,7 +11,7 @@ public class LockItem : MonoBehaviour, IInteractable, IGlowable
 
     private Renderer rend;
 
-    private DialogueTrigger dialogueTrigger;
+    private DialoguePresenter dialogueTrigger;
 
     private bool firstInteraction = true;
 
@@ -25,7 +25,7 @@ public class LockItem : MonoBehaviour, IInteractable, IGlowable
 
         mpb = new MaterialPropertyBlock();
 
-        dialogueTrigger = GetComponent<DialogueTrigger>();
+        dialogueTrigger = GetComponent<DialoguePresenter>();
     }
 
 
@@ -47,7 +47,8 @@ public class LockItem : MonoBehaviour, IInteractable, IGlowable
         if (firstInteraction)
         {
             firstInteraction = false;
-            dialogueTrigger.StartDialogueAtIndex(0);
+            Debug.Log("dialogue: start dialogue index 0");
+            // dialogueTrigger.StartDialogueAtIndex(0);
             return;
         }
 
@@ -55,15 +56,18 @@ public class LockItem : MonoBehaviour, IInteractable, IGlowable
         if (!IsUnLockable(player))
         {
             // B 대화 (index 1)
-            dialogueTrigger.StartDialogueAtIndex(1);
+            Debug.Log("dialogue: start dialogue index 1");
+            // dialogueTrigger.StartDialogueAtIndex(1);
             return;
         }
 
         // 3. 대화 (index 2) → 끝나면 UnLockItem 실행
-        dialogueTrigger.StartDialogueAtIndex(2, () =>
+        Debug.Log("dialogue: start dialogue index 2");
+        /*dialogueTrigger.StartDialogueAtIndex(2, () =>
         {
-            UnLockItem();
-        });
+            UnLockItem(); 
+        });*/
+        UnLockItem();
     }
 
     private bool IsUnLockable(GameObject player)

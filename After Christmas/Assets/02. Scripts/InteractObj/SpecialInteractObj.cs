@@ -12,7 +12,7 @@ public class SpecialInteractObj : MonoBehaviour, IInteractable, IGlowable
 
     private string glowProperty = "_DepthGlowDist";
 
-    private DialogueTrigger dialogueTrigger;
+    private DialoguePresenter dialogueTrigger;
 
     // 최초 상호작용인지가 아닌, 특수 상호작용이 완료되었는지 확인하는 변수(한개로 여러번 상호작용 방지)
     private bool isSpecialInteracted = false;
@@ -24,7 +24,7 @@ public class SpecialInteractObj : MonoBehaviour, IInteractable, IGlowable
         rend = GetComponentInChildren<Renderer>();
 
         mpb = new MaterialPropertyBlock();
-        dialogueTrigger = GetComponent<DialogueTrigger>();
+        dialogueTrigger = GetComponent<DialoguePresenter>();
     }
 
     public void SetGlowAmount(float value)
@@ -45,7 +45,8 @@ public class SpecialInteractObj : MonoBehaviour, IInteractable, IGlowable
         if (firstInteraction)
         {
             firstInteraction = false;
-            dialogueTrigger.StartDialogueAtIndex(0);
+            Debug.Log("dialogue: start dialogue index 0");
+            // dialogueTrigger.StartDialogueAtIndex(0);
             return;
         }
 
@@ -53,7 +54,8 @@ public class SpecialInteractObj : MonoBehaviour, IInteractable, IGlowable
         if (!IsSpecialInteractable(player))
         {
             // B 대화 (index 1)
-            dialogueTrigger.StartDialogueAtIndex(1);
+            Debug.Log("dialogue: start dialogue index 1");
+            // dialogueTrigger.StartDialogueAtIndex(1);
             return;
         }
 
@@ -84,7 +86,8 @@ public class SpecialInteractObj : MonoBehaviour, IInteractable, IGlowable
                 UnlockItem();   // 임시 함수. 단순히 켜고 끄기만 함
 
                 // 컷신 끝나면 대화 진행
-                if (dialogueTrigger != null)
+                Debug.Log("dialouge : start dialogue at end cutscene");
+/*                if (dialogueTrigger != null)
                 {
                     dialogueTrigger.StartDialogueAtIndex(2, () =>
                     {
@@ -95,13 +98,14 @@ public class SpecialInteractObj : MonoBehaviour, IInteractable, IGlowable
                 {
                     // 대화가 없으면 바로 이벤트
                     interactWithItem?.Invoke();
-                }
+                }*/
             });
         }
         else
         {
             // 컷신 없으면 바로 대화
-            if (dialogueTrigger != null)
+            Debug.Log("dialogue : start dialogue without cutscene");
+/*            if (dialogueTrigger != null)
             {
                 dialogueTrigger.StartDialogueAtIndex(2, () =>
                 {
@@ -111,7 +115,7 @@ public class SpecialInteractObj : MonoBehaviour, IInteractable, IGlowable
             else
             {
                 interactWithItem?.Invoke();
-            }
+            }*/
         }
     }
 

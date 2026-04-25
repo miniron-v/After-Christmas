@@ -1,8 +1,8 @@
 using UnityEngine;
 using static DialogueData;
 
-[CreateAssetMenu(menuName = "New Dialogue/CharacterData")]
-public class NewCharacterData : ScriptableObject
+[CreateAssetMenu(menuName = "Dialogue/CharacterData")]
+public class CharacterData : ScriptableObject
 {
     public string characterName;
     public Sprite characterImage;

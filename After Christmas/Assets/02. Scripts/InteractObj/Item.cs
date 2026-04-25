@@ -74,7 +74,7 @@ public class Item : MonoBehaviour, IInteractable, IGlowable
     public bool isTeleportItem = true;
 
     // 대화 로직 관련 변수
-    private DialogueTrigger dialogueTrigger;
+    private DialoguePresenter dialogueTrigger;
     private bool hasPlayedDialogue = false;
 
     private MaterialPropertyBlock mpb;
@@ -94,7 +94,7 @@ public class Item : MonoBehaviour, IInteractable, IGlowable
             isTeleportItem = false;
         }
 
-        dialogueTrigger = GetComponent<DialogueTrigger>();
+        dialogueTrigger = GetComponent<DialoguePresenter>();
     }
 
     public void SetGlowAmount(float value)
@@ -108,8 +108,8 @@ public class Item : MonoBehaviour, IInteractable, IGlowable
 
     public void Interact(GameObject player)
     {
-
-        if (!hasPlayedDialogue && dialogueTrigger != null && dialogueTrigger.HasDialogue())
+        Debug.Log("dialogue: checking hasDialogue");
+/*        if (!hasPlayedDialogue && dialogueTrigger != null && dialogueTrigger.HasDialogue())
         {
             hasPlayedDialogue = true;
             dialogueTrigger.StartDialogueSequence(() => PerformInteraction(player));
@@ -117,7 +117,9 @@ public class Item : MonoBehaviour, IInteractable, IGlowable
         else
         {
             PerformInteraction(player);
-        }
+        }*/
+
+        PerformInteraction(player);
     }
 
     private void PerformInteraction(GameObject player)

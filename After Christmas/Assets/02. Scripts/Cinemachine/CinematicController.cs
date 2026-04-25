@@ -71,10 +71,11 @@ public class CinematicController : MonoBehaviour
             activeCinematicTimeline = null;
         }
 
-        if (DialogueManager.Instance != null && DialogueManager.Instance.IsDialogueActive())
+        Debug.Log("dialogue : checking dialogue isActive and finished dialogue");
+/*        if (DialogueManager.Instance != null && DialogueManager.Instance.IsDialogueActive())
         {
             DialogueManager.Instance.EndDialogue();
-        }
+        }*/
 
         Debug.Log("컷신 종료");
     }
@@ -161,10 +162,12 @@ public class CinematicController : MonoBehaviour
             activeCinematicTimeline.Play();
         }
 
-        if (DialogueManager.Instance != null)
+        Debug.Log("dialogue: start dialogue coroutine");
+/*        if (DialogueManager.Instance != null)
         {
             yield return StartCoroutine(DialogueManager.Instance.StartDialogue(currentEvent.dialogueData, isCutscene: true));
-        }
+        }*/
+        yield return new WaitForEndOfFrame(); // 코루틴 오류 방지용으로 추가한 것
 
         if (activeCinematicTimeline != null)
         {

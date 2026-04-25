@@ -1,8 +1,8 @@
 using System;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "New Dialogue/Dialogue Data")]
-public class NewDialogueData : ScriptableObject
+[CreateAssetMenu(menuName = "Dialogue/Dialogue Data")]
+public class DialogueData : ScriptableObject
 {
     // 대화 UI 형태 선택
     public DialogueViewType viewType;

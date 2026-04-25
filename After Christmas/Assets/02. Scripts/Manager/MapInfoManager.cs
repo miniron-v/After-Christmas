@@ -161,12 +161,14 @@ public class MapInfoManager : MonoBehaviour
             mapObj.cinematicController.StartCutscene(() =>
             {
                 if (mapObj.arrivalDialogue != null)
-                    StartCoroutine(DialogueManager.Instance.StartDialogue(mapObj.arrivalDialogue));
+                    Debug.Log("dialogue: start dialogue");
+                    // StartCoroutine(DialogueManager.Instance.StartDialogue(mapObj.arrivalDialogue));
             });
         }
         else if (mapObj.arrivalDialogue != null)
         {
-            yield return StartCoroutine(DialogueManager.Instance.StartDialogue(mapObj.arrivalDialogue));
+            Debug.Log("dialogue: start dialogue");
+            // yield return StartCoroutine(DialogueManager.Instance.StartDialogue(mapObj.arrivalDialogue));
         }
     }
 
