@@ -1,72 +1,27 @@
 using UnityEngine;
-using static DialogueData;
 
 public class DialoguePresenter
 {
-    private readonly IDialogueView view;
-    private DialogueModel model;
+    // view와 model 선언
+    private DialogueView _view;
+    private DialogueModel _model;
 
-    public DialoguePresenter(IDialogueView view)
+    public DialoguePresenter(DialogueModel model, DialogueView view)
     {
-        this.view = view;
+        _view = view;
+        _model = model;
     }
 
-    public void StartDialogue(DialogueData dialogueData)
+    private void OnEnable()
     {
-        model = new DialogueModel(dialogueData);
-
-        if (!model.HasLine)
-        {
-            EndDialogue();
-            return;
-        }
-
-        view.Clear();
-        view.Show();
-        ShowCurrentLine();
+        Debug.Log("Presenter: 적절한 로그");
+        _view._onClicked += _model.LoadNextSentence;
+        _model._onLoadedNextSentence += _view.ShowNextSentence;
     }
 
-    public void OnNext()
+    private void OnDisable()
     {
-        if (model == null)
-            return;
-
-        if (view.IsTyping)
-        {
-            view.FinishTyping();
-            return;
-        }
-
-        if (!view.IsComplete)
-            return;
-
-        if (model.HasNext)
-        {
-            model.MoveNext();
-            ShowCurrentLine();
-        }
-        else
-        {
-            EndDialogue();
-        }
-    }
-
-    private void ShowCurrentLine()
-    {
-        DialogueLine line = model.CurrentLine;
-
-        string speakerName = line.speaker != null ? line.speaker.characterName : string.Empty;
-        Sprite portrait = line.speaker != null ? line.speaker.characterImage : null;
-
-        view.SetSpeakerName(speakerName);
-        view.SetPortrait(portrait);
-        view.StartTyping(line.sentence);
-    }
-
-    private void EndDialogue()
-    {
-        view.Clear();
-        view.Hide();
-        model = null;
+        _view._onClicked -= _model.LoadNextSentence;
+        _model._onLoadedNextSentence -= _view.ShowNextSentence;
     }
 }

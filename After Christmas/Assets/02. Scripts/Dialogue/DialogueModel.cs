@@ -1,36 +1,13 @@
-using static DialogueData;
+using System;
+using UnityEngine;
 
 public class DialogueModel
 {
-    private readonly DialogueData dialogueData;
-    private int currentIndex;
+    public event Action _onLoadedNextSentence;
 
-    public DialogueModel(DialogueData dialogueData)
+    public void LoadNextSentence()
     {
-        this.dialogueData = dialogueData;
-        currentIndex = 0;
-    }
-
-    public bool HasLine =>
-        dialogueData != null &&
-        dialogueData.dialogueLines != null &&
-        dialogueData.dialogueLines.Length > 0;
-
-    public bool HasNext =>
-        dialogueData != null &&
-        currentIndex + 1 < dialogueData.dialogueLines.Length;
-
-    public DialogueLine CurrentLine =>
-        dialogueData.dialogueLines[currentIndex];
-
-    public void MoveNext()
-    {
-        if (HasNext)
-            currentIndex++;
-    }
-
-    public void Reset()
-    {
-        currentIndex = 0;
+        Debug.Log("Model : 다음 문장 로드");
+        _onLoadedNextSentence?.Invoke();
     }
 }
