@@ -139,5 +139,5 @@ public class PlayerItemHandler : MonoBehaviour
     }
 
     private bool IsInventoryControlEnabled =>
-        PlayerStateManager.Instance.currentState is PlayerState.Play or PlayerState.UIOpen;
+        GameStateManager.Instance.currentState is GameState.Play or GameState.UIOpen;
 }

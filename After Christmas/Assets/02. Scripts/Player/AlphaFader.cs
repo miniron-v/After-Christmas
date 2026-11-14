@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class PlayerAlphaFader : MonoBehaviour
+public class AlphaFader : MonoBehaviour
 {
     
     private string transparencyProp = "_Tweak_transparency";
@@ -20,18 +20,6 @@ public class PlayerAlphaFader : MonoBehaviour
     void Awake()
     {
         Init();
-    }
-
-    private void OnEnable()
-    {
-        CinematicController.OnStart += SetTransparentInstant;
-        CinematicController.OnEnd += SetOpaqueGradual;
-    }
-
-    private void OnDisable()
-    {
-        CinematicController.OnStart -= SetTransparentInstant;
-        CinematicController.OnEnd -= SetOpaqueGradual;
     }
 
     public void CacheRenderers()

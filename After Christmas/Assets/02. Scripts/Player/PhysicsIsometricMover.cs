@@ -1,0 +1,79 @@
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+[RequireComponent(typeof(Rigidbody))]
+public class PhysicsIsometricMover : MonoBehaviour
+{
+    [Header("Player Movement")]
+    [SerializeField] private float moveSpeed = 5f;
+
+    [Header("Rotation")]
+    [SerializeField] private float rotationSpeed = 10f;
+
+    private Vector2 moveInput;
+    private Rigidbody rb;
+    private readonly Vector3 isoForward = new Vector3(1, 0, 1).normalized;
+    private readonly Vector3 isoRight = new Vector3(1, 0, -1).normalized;
+    private bool canMove = true;
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
+
+    public void OnMove(InputValue value)
+    {
+        moveInput = value.Get<Vector2>();
+    }
+
+    public void OnGameStateChanged(GameState oldState, GameState newState)
+    {
+        canMove = newState == GameState.Play;
+    }
+
+    void FixedUpdate()
+    {
+        if (!canMove)
+        {
+            rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, 0);
+            return;
+        }
+
+        // 방향 계산
+        Vector3 moveDir = CalculateMoveDir(moveInput);
+        
+        // 방향과 속도를 곱해 실제 이동 속도 계산
+        Vector3 desiredVelocity = moveDir * moveSpeed;
+
+        ApplyMovement(desiredVelocity); // 이동에는 속도 전달
+        ApplyRotation(moveDir);         // 회전에는 방향 전달
+    }
+
+    private Vector3 CalculateMoveDir(Vector2 input)
+    {
+        Vector3 dir = isoForward * input.y + isoRight * input.x;
+
+        if (dir.sqrMagnitude > 1f)
+            dir.Normalize();
+
+        return dir;
+    }
+
+    private void ApplyMovement(Vector3 velocity)
+    {
+        rb.linearVelocity = new Vector3(velocity.x, rb.linearVelocity.y, velocity.z);
+    }
+
+    private void ApplyRotation(Vector3 moveDir)
+    {
+        if (moveDir.sqrMagnitude < 0.0001f)
+            return;
+
+        Quaternion targetRotation = Quaternion.LookRotation(moveDir, Vector3.up);
+        transform.rotation = Quaternion.Slerp(
+            transform.rotation,
+            targetRotation,
+            rotationSpeed * Time.fixedDeltaTime
+        );
+    }
+}

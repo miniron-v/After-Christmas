@@ -109,7 +109,7 @@ public class MinimapManager : MonoBehaviour
         {
             DisableUnvisitedMapObjects();
             originalPosition = targetCam.transform.position;
-            PlayerStateManager.Instance.SetState(PlayerState.MiniMap);
+            GameStateManager.Instance.SetState(GameState.MiniMap);
             PostItRegistry.SetAllButtonsVisible(true);
             EnterMinimap();
             currentState = MinimapState.MinimapView;
@@ -240,7 +240,7 @@ public class MinimapManager : MonoBehaviour
             {
                 isTweening = false;
                 EnableAllMapObjects();
-                PlayerStateManager.Instance.SetState(PlayerState.Play);
+                GameStateManager.Instance.SetState(GameState.Play);
                 CloseAllPostIts();
                 DisableOtherMap();
             });
@@ -382,7 +382,7 @@ public class MinimapManager : MonoBehaviour
     }*/
 
     private bool IsMinimapControlEnabled =>
-        PlayerStateManager.Instance.currentState is PlayerState.Play or PlayerState.MiniMap;
+        GameStateManager.Instance.currentState is GameState.Play or GameState.MiniMap;
 
     private void HandleMinimapClick()
     {
